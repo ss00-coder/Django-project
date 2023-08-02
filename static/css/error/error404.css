@@ -1,0 +1,89 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css");
+
+
+html {
+  font-family: 'Pretendard';
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+h1,p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+
+svg {
+  display: block;
+}
+
+
+button {
+  background-image: none;
+  cursor: pointer;
+  text-transform: none;
+  font-family: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+
+.flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 144px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex h1 {
+  text-align: center;
+  margin-top: 38px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 34px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.flex p {
+  text-align: center;
+  margin-top: 8px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333334;
+  fill: #333334;
+}
+
+.flex div {
+  margin-top: 26px;
+}
+
+
+.homebutton {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #1d1d1e;
+}
