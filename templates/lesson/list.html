@@ -15,6 +15,7 @@
   <body>
     <!-- 헤더 -->
     <header></header>
+    <!-- 메인 -->
     <main class="main">
       <!-- 필터 -->
       <div class="filter">
@@ -33,7 +34,7 @@
             </label>
           </div>
         </div>
-        <button onclick="showCatagoryFilter()" type="button" class="filter-button">
+        <button type="button" class="filter-button">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="filter-image">
             <path d="M4 7a.8.8 0 0 1 .8-.8h14.4a.8.8 0 0 1 0 1.6H4.8A.8.8 0 0 1 4 7Z"></path>
             <path
@@ -910,65 +911,67 @@
     </main>
     <!-- 모달 -->
     <div class="filter-modal">
-      <!-- <div class="category-select">
-        <div class="category-wrapper">
-          <h4 class="category-title">언어 설정</h4>
-          <div style="height: 24px"></div>
-          <div class="category-tag-container">
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">한국어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">영어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">일본어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">중국어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">독일어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">스페인어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">프랑스어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">스웨덴어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">베트남어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">태국어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">그리스어</span>
-            </label>
-            <label class="category-tag">
-              <input type="checkbox" class="category-input" />
-              <span class="category-tag-name">러시아어</span>
-            </label>
+      <div id="modal">
+        <div class="category-select">
+          <div class="category-wrapper">
+            <h4 class="category-title">언어 설정</h4>
+            <div style="height: 24px"></div>
+            <div class="category-tag-container">
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">한국어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">영어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">일본어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">중국어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">독일어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">스페인어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">프랑스어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">스웨덴어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">베트남어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">태국어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">그리스어</span>
+              </label>
+              <label class="category-tag">
+                <input type="checkbox" class="category-input" />
+                <span class="category-tag-name">러시아어</span>
+              </label>
+            </div>
+            <div style="height: 24px"></div>
+            <button type="button" class="category-apply">적용</button>
           </div>
-          <div style="height: 24px"></div>
-          <button type="button" class="category-apply">적용</button>
         </div>
       </div>
-      <div class="filter-blur"></div> -->
+      <div class="filter-blur"></div>
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
