@@ -1,3 +1,5 @@
+/* lesson/list.html */
+
 /* 카테고리 필터 */
 $(".filter-modal").hide();
 
