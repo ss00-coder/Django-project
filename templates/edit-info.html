@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/mypage/edit-info.css" />
+    <title>마이페이지 포스트</title>
+  </head>
+  <body>
+    <div id="main-wrap" data-reactroot>
+      <div class="full-wrap">
+        <!----------------------------------- 헤더 ------------------------------------->
+        <nav class="header">
+          <div>
+            <div class="left-top-logo">
+              <a href="">
+                <svg
+                  viewBox="0 0 32 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="lg:hidden w-[31px] content_primary_inverse"
+                >
+                  <path
+                    d="M21.96 15.796h9.232A15.592 15.592 0 0 0 .059 14.55c-.011.116-.019.234-.027.351v.105c-.013.21-.022.423-.022.637v.154h9.957c0-2.987-2.228-5.412-4.978-5.412a4.755 4.755 0 0 0-3.41 1.473c1.051-1.346 2.63-2.203 4.395-2.203 3.165 0 5.725 2.75 5.725 6.142h7.562v-.154c0-5.7-4.31-10.321-9.629-10.321a9.085 9.085 0 0 0-4.62 1.266 10.976 10.976 0 0 1 16.949 9.21v-.003Z"
+                  ></path>
+                </svg>
+                <svg
+                  viewBox="0 0 115 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="hidden lg:block w-[96px] content_primary_inverse"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M98.073 1.695a1.695 1.695 0 1 1 1.695 1.695 1.687 1.687 0 0 1-1.695-1.695Zm2.967 2.863v11.23h-2.539V4.556l2.539.002Zm-7.842 11.23h2.544V.102h-2.544v5.725h-.042a4.791 4.791 0 0 0-3.517-1.483c-2.925 0-5.214 2.332-5.214 5.828 0 3.496 2.29 5.827 5.214 5.827a4.79 4.79 0 0 0 3.517-1.483h.042v1.272Zm-3.054-2.162c-1.737 0-3.093-1.4-3.093-3.454 0-2.056 1.355-3.455 3.093-3.455 1.739 0 3.094 1.4 3.094 3.455s-1.356 3.454-3.094 3.454Zm-45.282 2.373c-3.709 0-6.167-1.867-6.336-4.978h2.925c.317 1.906 1.653 2.584 3.327 2.584 1.843 0 2.986-.847 2.986-1.927 0-1.376-1.604-1.75-3.542-2.202l-.462-.108C41.28 8.774 38.78 7.8 38.78 4.81c0-2.204 1.887-4.492 5.531-4.492 3.221 0 5.68 1.908 6.04 4.768h-2.884c-.296-1.292-1.207-2.374-3.094-2.374-1.674 0-2.839.827-2.839 1.93 0 1.49 1.468 1.83 3.482 2.298l.587.138c2.331.551 4.916 1.42 4.916 4.344 0 2.86-2.31 4.576-5.658 4.576Zm11.59-9.155v5.02c0 1.526.933 1.759 1.675 1.759.405.003.805-.091 1.166-.275v2.288c-.46.18-.948.272-1.441.276-2.14 0-3.942-1.06-3.942-4.108v-4.96h-2.328V4.556h2.33V1.32h2.543v3.236h2.843v2.288h-2.845Zm14.814 5.532h-2.739c-.516 1.113-1.329 1.377-2.516 1.377-1.441 0-2.712-.954-2.903-2.755h8.304c0-4.539-2.648-6.654-5.615-6.654-3.052 0-5.446 2.332-5.446 5.828 0 3.496 2.4 5.827 5.636 5.827 2.268 0 4.532-1.048 5.279-3.623Zm-2.67-3.328h-5.51c.277-1.415 1.42-2.437 2.756-2.437 1.335 0 2.479 1.018 2.754 2.437Zm14.135 6.74h-2.5a17.563 17.563 0 0 1-.063-1.442h-.044C79.107 15.597 77.837 16 76.564 16c-2.246 0-3.877-1.334-3.877-3.496 0-1.674 1.08-3.263 4.068-3.391 1.357-.064 3.327-.085 3.327-.085v-.571c0-1.378-1.144-2.035-2.331-2.035-1.188 0-2.097.657-2.24 1.695h-2.634c.125-2.395 2.098-3.772 4.895-3.772 2.819 0 4.854 1.76 4.854 4.408v3.39c0 2.035.02 2.946.105 3.645Zm-5.234-4.832c-1.59.085-2.183.678-2.183 1.505 0 .953.763 1.44 1.844 1.44 1.59 0 2.924-.975 2.924-2.628v-.423s-1.419.043-2.585.106Zm31.193-6.57c-3.242 0-5.742 2.522-5.742 5.807 0 3.289 2.498 5.805 5.741 5.805 3.243 0 5.744-2.521 5.744-5.805 0-3.285-2.501-5.808-5.743-5.808Zm.004 2.373c1.777 0 3.112 1.42 3.112 3.434 0 2.012-1.336 3.432-3.112 3.432s-3.111-1.419-3.111-3.432c0-2.014 1.334-3.434 3.111-3.434Z"
+                  ></path>
+                  <path
+                    d="M21.96 15.796h9.232A15.592 15.592 0 0 0 .059 14.55c-.011.116-.019.234-.027.351v.105c-.013.21-.022.423-.022.637v.154h9.957c0-2.987-2.228-5.412-4.978-5.412a4.755 4.755 0 0 0-3.41 1.473c1.051-1.346 2.63-2.203 4.395-2.203 3.165 0 5.725 2.75 5.725 6.142h7.562v-.154c0-5.7-4.31-10.321-9.629-10.321a9.085 9.085 0 0 0-4.62 1.266 10.976 10.976 0 0 1 16.949 9.21v-.003Z"
+                  ></path>
+                </svg>
+              </a>
+              <div class="left-head-mid-bar">|</div>
+              <div class="left-head-CR-Studio">
+                <span>Creator Studio</span>
+              </div>
+            </div>
+          </div>
+          <div class="right_profile-pic">
+            <div class="relative">
+              <button class="relative-button">
+                <span>
+                  <img alt="프로필 이미지" src="" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <!---------------------------------- 메인 ------------------------------------>
+        <div class="body-main">
+          <nav class="left-category-bar-wrap">
+            <div class="top-profile-area-wrap">
+              <div class="top-profile-area-wrap-center">
+                <div class="p-photo">
+                  <button class="button-to-mypage">
+                    <span>
+                      <img src="" alt="" />
+                    </span>
+                    <span class="img-span"></span>
+                  </button>
+                </div>
+                <h2 class="member-name">멤버이름</h2>
+                <a target="_blank" href="">
+                  <button type="button" class="myPage-button">
+                    <div class="for-button-wrap">
+                      <div>내 페이지</div>
+                      <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="16px"
+                        width="16px"
+                        class="mypage-btn"
+                      >
+                        <path
+                          d="M11 7a1 1 0 0 0-1-1H4v14h14v-6a1 1 0 1 0-2 0v4H6V8h4a1 1 0 0 0 1-1Z"
+                        ></path>
+                        <path
+                          d="M19.01 3.829H20v6.656a1 1 0 1 1-2 0V7.244l-5.293 5.293a1 1 0 0 1-1.414-1.415l5.293-5.292h-3.243a1 1 0 1 1 0-2H19.01Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </button>
+                </a>
+              </div>
+            </div>
+            <ul class="left-category-box-wrp">
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M15.4 4.4H8.8a4.4 4.4 0 0 0-4.4 4.4v6.6a4.4 4.4 0 0 0 4.4 4.4h6.6a4.4 4.4 0 0 0 4.4-4.4V8.8a4.4 4.4 0 0 0-4.4-4.4ZM8.8 2.8a6 6 0 0 0-6 6v6.6a6 6 0 0 0 6 6h6.6a6 6 0 0 0 6-6V8.8a6 6 0 0 0-6-6H8.8Z"
+                    ></path>
+                    <path
+                      d="M12.2 12.5a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM12.2 16.4c2.21 0 4-.672 4-1.5s-1.79-1.5-4-1.5-4 .672-4 1.5 1.79 1.5 4 1.5Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">내 페이지</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M6.6 6.3a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0ZM6.6 12.3a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0ZM6.6 18.3a1.8 1.8 0 1 1-3.6 0 1.8 1.8 0 0 1 3.6 0ZM9 6.3A1.3 1.3 0 0 1 10.3 5h9.4a1.3 1.3 0 1 1 0 2.6h-9.4A1.3 1.3 0 0 1 9 6.3ZM9 12.3a1.3 1.3 0 0 1 1.3-1.3h9.4a1.3 1.3 0 1 1 0 2.6h-9.4A1.3 1.3 0 0 1 9 12.3ZM9 18.3a1.3 1.3 0 0 1 1.3-1.3h9.4a1.3 1.3 0 1 1 0 2.6h-9.4A1.3 1.3 0 0 1 9 18.3Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">기본정보</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M21.38 2.768a1.726 1.726 0 0 0-2.441 0L17.807 3.9l2.442 2.441L21.38 5.21a1.727 1.727 0 0 0 0-2.441ZM19.141 7.449 16.7 5.007l-6.542 6.541-1.193 2.573c-.314.676.386 1.376 1.062 1.062L12.6 13.99l6.541-6.541Z"
+                    ></path>
+                    <path
+                      d="M16.015 3.233A5.662 5.662 0 0 0 15.4 3.2H8.6A5.6 5.6 0 0 0 3 8.8v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.8c0-.247-.016-.49-.047-.729l-7.397 7.075a.447.447 0 0 1-.127.086l-2.764 1.228a2.281 2.281 0 0 1-3.034-2.959l.915-2.205a4.805 4.805 0 0 1 1.02-1.536l6.449-6.527Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">포스트</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M21.38 2.768a1.726 1.726 0 0 0-2.441 0L17.807 3.9l2.442 2.441L21.38 5.21a1.727 1.727 0 0 0 0-2.441ZM19.141 7.449 16.7 5.007l-6.542 6.541-1.193 2.573c-.314.676.386 1.376 1.062 1.062L12.6 13.99l6.541-6.541Z"
+                    ></path>
+                    <path
+                      d="M16.015 3.233A5.662 5.662 0 0 0 15.4 3.2H8.6A5.6 5.6 0 0 0 3 8.8v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.8c0-.247-.016-.49-.047-.729l-7.397 7.075a.447.447 0 0 1-.127.086l-2.764 1.228a2.281 2.281 0 0 1-3.034-2.959l.915-2.205a4.805 4.805 0 0 1 1.02-1.536l6.449-6.527Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">내가 쓴 후기</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    width="20"
+                    height="18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M6.5 8.7h2a6.058 6.058 0 0 1 1.769.265A6.508 6.508 0 0 0 9.38 10.3H6.5a4.4 4.4 0 0 0-4.4 4.4v1c0 .221.18.4.4.4h6.881c.295.59.677 1.13 1.129 1.6H2.5a2 2 0 0 1-2-2v-1a6 6 0 0 1 6-6Z"
+                      fill="#333334"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.5 7.2a3.501 3.501 0 0 1 0-7 3.5 3.5 0 1 1 0 7Zm1.9-3.5a1.9 1.9 0 1 1-3.8 0 1.9 1.9 0 0 1 3.8 0ZM11.945 10.147a.665.665 0 0 1 .306-.74l.833-.49a.665.665 0 0 1 .795.092l.46.437c.167.16.398.231.63.23a.892.892 0 0 0 .626-.24l.451-.445a.665.665 0 0 1 .794-.105l.84.476a.665.665 0 0 1 .32.735l-.15.616a.895.895 0 0 0 .116.66c.118.2.298.36.522.423l.61.169c.287.079.486.338.488.635l.008.966a.665.665 0 0 1-.477.643l-.608.179a.892.892 0 0 0-.513.43.898.898 0 0 0-.105.663l.159.614a.665.665 0 0 1-.307.74l-.832.49a.665.665 0 0 1-.795-.092l-.46-.437a.898.898 0 0 0-.63-.23.892.892 0 0 0-.626.24l-.452.445a.665.665 0 0 1-.794.105l-.84-.476a.665.665 0 0 1-.319-.734l.15-.618a.894.894 0 0 0-.117-.66.893.893 0 0 0-.52-.421l-.612-.17a.665.665 0 0 1-.488-.635l-.008-.965a.665.665 0 0 1 .477-.643l.608-.18a.892.892 0 0 0 .514-.43.899.899 0 0 0 .105-.663l-.159-.614Zm3.115 4.279a1.283 1.283 0 1 0 0-2.567 1.283 1.283 0 0 0 0 2.567Z"
+                      fill="#333334"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">과외 목록</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M21.38 2.768a1.726 1.726 0 0 0-2.441 0L17.807 3.9l2.442 2.441L21.38 5.21a1.727 1.727 0 0 0 0-2.441ZM19.141 7.449 16.7 5.007l-6.542 6.541-1.193 2.573c-.314.676.386 1.376 1.062 1.062L12.6 13.99l6.541-6.541Z"
+                    ></path>
+                    <path
+                      d="M16.015 3.233A5.662 5.662 0 0 0 15.4 3.2H8.6A5.6 5.6 0 0 0 3 8.8v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.8c0-.247-.016-.49-.047-.729l-7.397 7.075a.447.447 0 0 1-.127.086l-2.764 1.228a2.281 2.281 0 0 1-3.034-2.959l.915-2.205a4.805 4.805 0 0 1 1.02-1.536l6.449-6.527Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">1:1문의 리스트</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg
+                    viewBox="0 0 24 25"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="category-icons"
+                  >
+                    <path
+                      d="M21.38 2.768a1.726 1.726 0 0 0-2.441 0L17.807 3.9l2.442 2.441L21.38 5.21a1.727 1.727 0 0 0 0-2.441ZM19.141 7.449 16.7 5.007l-6.542 6.541-1.193 2.573c-.314.676.386 1.376 1.062 1.062L12.6 13.99l6.541-6.541Z"
+                    ></path>
+                    <path
+                      d="M16.015 3.233A5.662 5.662 0 0 0 15.4 3.2H8.6A5.6 5.6 0 0 0 3 8.8v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.8c0-.247-.016-.49-.047-.729l-7.397 7.075a.447.447 0 0 1-.127.086l-2.764 1.228a2.281 2.281 0 0 1-3.034-2.959l.915-2.205a4.805 4.805 0 0 1 1.02-1.536l6.449-6.527Z"
+                    ></path>
+                  </svg>
+                  <span class="icon-text">쪽지 목록</span>
+                </a>
+              </li>
+              <li class="left-category-list">
+                <a class="category-items" href="">
+                  <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" class="category-icons">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M22 8.942c0 .513-.24.996-.649 1.304A2.188 2.188 0 0 0 20.477 12c0 .716.34 1.351.874 1.754.409.308.649.79.649 1.304v.968A3.967 3.967 0 0 1 18.04 20H5.96A3.967 3.967 0 0 1 2 16.026v-.968c0-.513.24-.996.649-1.304A2.188 2.188 0 0 0 3.523 12c0-.716-.34-1.351-.874-1.754A1.633 1.633 0 0 1 2 8.942v-.967A3.967 3.967 0 0 1 5.96 4h12.08C20.228 4 22 5.78 22 7.975v.967ZM5.96 5.631a2.34 2.34 0 0 0-2.336 2.344v.967A3.82 3.82 0 0 1 5.147 12a3.82 3.82 0 0 1-1.523 3.058v.968a2.34 2.34 0 0 0 2.335 2.343h12.082a2.34 2.34 0 0 0 2.335-2.343v-.968A3.82 3.82 0 0 1 18.853 12c0-1.25.598-2.36 1.523-3.058v-.967A2.34 2.34 0 0 0 18.04 5.63H5.959Z"fill="#333334"></path>
+                    <path d="M16.112 14.066c0 .751-.606 1.36-1.354 1.36a1.356 1.356 0 0 1-1.353-1.36c0-.75.606-1.358 1.353-1.358.748 0 1.354.608 1.354 1.358ZM10.697 9.537c0 .75-.606 1.359-1.353 1.359A1.356 1.356 0 0 1 7.99 9.537c0-.75.606-1.359 1.354-1.359.747 0 1.353.609 1.353 1.36ZM13.957 8.728a.772.772 0 0 1 1.095 0 .78.78 0 0 1 0 1.1l-5.419 5.44a.773.773 0 0 1-1.095 0 .78.78 0 0 1 0-1.1l5.419-5.44Z"fill="#333334"></path>
+                  </svg>
+                  <span class="icon-text">결제 내역</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="body-page-wrap">
+            <div class="bodyPage-grid">
+              <div class="body-page-header">
+                <div class="body-page-header-text-frame">
+                  <h3 class="myPage-text">내 페이지</h3>
+                  <div class="body-page-head-button-right">
+                    <button type="button" class="page-sample">
+                      <div class="page-sample-text-box">
+                        <div>페이지 샘플</div>
+                        <svg
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="10px"
+                          width="10px"
+                          class="pg-sample-icon"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"
+                          ></path>
+                        </svg>
+                      </div>
+                    </button>
+                    <div class="edit-button-wrap">
+                      <button type="button" class="edit-button">수정</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-text-wrap">
+                <div>
+                  <div class="profile-text">
+                    <strong class="profile-bold">프로필 사진</strong>
+                  </div>
+                  <span class="profile-explain"
+                    >프로필 사진을 등록 해주세요</span
+                  >
+                </div>
+              </div>
+              <div class="file-upload-ex">
+                <div class="flex">
+                  <div class="profile-img-wrap">
+                    <span class="profile-img-sizing">
+                      <img style="border-radius: 9999px"
+                        alt="프로필 이미지"
+                        src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F50329359-0e8b-4ba3-a1b7-302917cad5b5%2FprofileImage%2Fe74552d2-4626-4596-8e6e-bbcc81285719.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1920&q=100"
+                      />
+                    </span>
+                  </div>
+                  <div class="profile-standard">
+                    <div class="standard-head">
+                      <button type="button" class="img-attach-button">
+                        "이미지 업로드"
+                        <input
+                          type="file"
+                          accept="image/png,image/jpeg,image/jpg"
+                          class="img-upload-btn"
+                        />
+                      </button>
+                    </div>
+                    <p class="standard-body">
+                      <span>파일 형식은 jpg 또는 png로,</span>
+                      <br />
+                      <span
+                        >사이즈는 가로 200px, 세로 200px 이상으로
+                        올려주세요</span
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <hr class="head-cut-line" />
+              <div class="coverImg-wrap">
+                <div>
+                  <div class="cv-wrap">
+                    <strong class="cv-title">커버 사진</strong>
+                  </div>
+                  <span class="cv-explain"
+                    >페이지의 커버 사진을 등록해주세요</span
+                  >
+                </div>
+              </div>
+              <div class="img-attach-wrap">
+                <div class="img-attach-frame">
+                  <div class="img-attach-cover">
+                    <svg
+                      viewBox="0 0 49 49"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="empty-img"
+                    >
+                      <path
+                        d="M27.782 19.785c1.154-2.172 4.29-2.108 5.354.11l6.68 13.917c1.275 2.655-.66 5.731-3.606 5.731H9.882c-1.506 0-2.472-1.6-1.77-2.932l4.998-9.486a3 3 0 0 1 4.765-.733l4.192 4.151 5.715-10.758ZM19.067 15.543a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
+                        fill="#C2B8FF"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="img-upload-main">
+                    <button type="button" class="img-up-button">
+                      "이미지 업로드"<input
+                        type="file"
+                        accept="image/png,image/jpeg,image/jpg"
+                        class="img-attach-input"
+                      />
+                    </button>
+                  </div>
+                  <p class="img-attach-standard">
+                    <span>파일 형식은 jpg 또는 png로,</span>
+                    <br />
+                    <span>사이즈는 가로 800px, 세로 296px로 올려주세요</span>
+                  </p>
+                </div>
+              </div>
+              <hr class="mid-cut-line" />
+              <div class="simple-intro-wrap">
+                <div>
+                  <div class="intro-head">
+                    <strong class="intro-text"> 한 줄 소개</strong>
+                    <svg class="intro-dot">
+                      <circle cx="4" cy="4" r="4"></circle>
+                    </svg>
+                  </div>
+                  <span class="intro-body">간략한 소개글을 입력해주세요.</span>
+                </div>
+              </div>
+              <div class="intro-text-wrap" style="grid-column-start: 6">
+                <div>
+                  <label class="intro-text-main">
+                    <input
+                      type="text"
+                      class="intro-text"
+                      placeholder="한 줄 소개를 입력해주세요."
+                    />
+                  </label>
+                  <div class="intro-text-body">
+                    <div class="ml-auto">2/50</div>
+                  </div>
+                </div>
+              </div>
+              <hr class="mid-bottom-line" />
+              <div class="introducing">
+                <div>
+                  <div class="introducing-head">
+                    <strong class="introducing-text"
+                      >자기소개/하고싶은말</strong
+                    >
+                    <svg
+                      viewBox="0 0 8 8"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="intro-o"
+                    >
+                      <circle cx="4" cy="4" r="4"></circle>
+                    </svg>
+                  </div>
+                  <span class="introducing-body"
+                    >어떤 언어를 배우고 싶은지,도움이 필요한 부분 등 자유롭게
+                    작성 해주세요</span
+                  >
+                </div>
+              </div>
+              <div class="text-border-wrap" style="grid-column-start: 6">
+                <textarea class="textarea-box"></textarea>
+                <div class="text-border-frame">
+                  <div class="text-border-container">
+                    <div class="text-edit-option-wrap">
+                      <div role="group" class="text-edit-option-fram">
+                        <div role="group" class="text-edit-option-container">
+                          <div title role="toolbar" class="toolbar-group">
+                            <button type="button" title="굵게" class="tox-tbtn">
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    d="M7.8 19c-.3 0-.5 0-.6-.2l-.2-.5V5.7c0-.2 0-.4.2-.5l.6-.2h5c1.5 0 2.7.3 3.5 1 .7.6 1.1 1.4 1.1 2.5a3 3 0 0 1-.6 1.9c-.4.6-1 1-1.6 1.2.4.1.9.3 1.3.6s.8.7 1 1.2c.4.4.5 1 .5 1.6 0 1.3-.4 2.3-1.3 3-.8.7-2.1 1-3.8 1H7.8Zm5-8.3c.6 0 1.2-.1 1.6-.5.4-.3.6-.7.6-1.3 0-1.1-.8-1.7-2.3-1.7H9.3v3.5h3.4Zm.5 6c.7 0 1.3-.1 1.7-.4.4-.4.6-.9.6-1.5s-.2-1-.7-1.4c-.4-.3-1-.4-2-.4H9.4v3.8h4Z"
+                                    fill-rule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="기울임체"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    d="m16.7 4.7-.1.9h-.3c-.6 0-1 0-1.4.3-.3.3-.4.6-.5 1.1l-2.1 9.8v.6c0 .5.4.8 1.4.8h.2l-.2.8H8l.2-.8h.2c1.1 0 1.8-.5 2-1.5l2-9.8.1-.5c0-.6-.4-.8-1.4-.8h-.3l.2-.9h5.8Z"
+                                    fill-rule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="글머리 기호 목록"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg c width="24" height="24" focusable="false">
+                                  <path
+                                    d="M11 5h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2Zm0 6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2Zm0 6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2ZM4.5 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1Zm0 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1Zm0 6c0-.4.1-.8.4-1 .3-.4.7-.5 1.1-.5.4 0 .8.1 1 .4.4.3.5.7.5 1.1 0 .4-.1.8-.4 1-.3.4-.7.5-1.1.5-.4 0-.8-.1-1-.4-.4-.3-.5-.7-.5-1.1Z"
+                                    fill-rule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="번호 매기기 목록"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    d="M10 17h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2Zm0-6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2Zm0-6h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 1 1 0-2ZM6 4v3.5c0 .3-.2.5-.5.5a.5.5 0 0 1-.5-.5V5h-.5a.5.5 0 0 1 0-1H6Zm-1 8.8.2.2h1.3c.3 0 .5.2.5.5s-.2.5-.5.5H4.9a1 1 0 0 1-.9-1V13c0-.4.3-.8.6-1l1.2-.4.2-.3a.2.2 0 0 0-.2-.2H4.5a.5.5 0 0 1-.5-.5c0-.3.2-.5.5-.5h1.6c.5 0 .9.4.9 1v.1c0 .4-.3.8-.6 1l-1.2.4-.2.3ZM7 17v2c0 .6-.4 1-1 1H4.5a.5.5 0 0 1 0-1h1.2c.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3H4.4a.4.4 0 1 1 0-.8h1.3c.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3H4.5a.5.5 0 1 1 0-1H6c.6 0 1 .4 1 1Z"
+                                    fill-rule="evenodd"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="링크 삽입/편집"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    d="M6.2 12.3a1 1 0 0 1 1.4 1.4l-2 2a2 2 0 1 0 2.6 2.8l4.8-4.8a1 1 0 0 0 0-1.4 1 1 0 1 1 1.4-1.3 2.9 2.9 0 0 1 0 4L9.6 20a3.9 3.9 0 0 1-5.5-5.5l2-2Zm11.6-.6a1 1 0 0 1-1.4-1.4l2-2a2 2 0 1 0-2.6-2.8L11 10.3a1 1 0 0 0 0 1.4A1 1 0 1 1 9.6 13a2.9 2.9 0 0 1 0-4L14.4 4a3.9 3.9 0 0 1 5.5 5.5l-2 2Z"
+                                    fill-rule="nonzero"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="사진첨부"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    fill-rule="nonzero"
+                                    d="m5 15.7 2.3-2.2c.3-.3.7-.3 1 0L11 16l5.1-5c.3-.4.8-.4 1 0l2 1.9V8H5v7.7ZM5 18V19h3l1.8-1.9-2-2L5 17.9Zm14-3-2.5-2.4-6.4 6.5H19v-4ZM4 6h16c.6 0 1 .4 1 1v13c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V7c0-.6.4-1 1-1Zm6 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4ZM4.5 4h15a.5.5 0 1 1 0 1h-15a.5.5 0 0 1 0-1Zm2-2h11a.5.5 0 1 1 0 1h-11a.5.5 0 0 1 0-1Z"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <button
+                              type="button"
+                              title="링크목록"
+                              class="tox-tbtn"
+                            >
+                              <span class="tool-icon tool-btn">
+                                <svg width="24" height="24" focusable="false">
+                                  <path
+                                    d="M4 3h16c.6 0 1 .4 1 1v16c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V4c0-.6.4-1 1-1Zm1 2v14h14V5H5Zm4.8 2.6 5.6 4a.5.5 0 0 1 0 .8l-5.6 4A.5.5 0 0 1 9 16V8a.5.5 0 0 1 .8-.4Z"
+                                    fill-rule="nonzero"
+                                  ></path>
+                                </svg>
+                              </span>
+                              <div class="tool-btn-select-v">
+                                <svg width="10" height="10" focusable="false">
+                                  <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8Z"
+                                    fill-rule="nonzero"
+                                  ></path>
+                                </svg>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="anchorbar"></div>
+                    </div>
+                    <div class="text-sidebar-wrap">
+                      <div class="text-edit-area">
+                        <iframe class="text-edit-area-iframe"></iframe>
+                      </div>
+                      <div class="text-sidebar">
+                        <div class="text-sidebar-closing">
+                          <div class="text-sidebar-container"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="bottom-anchorbaar"></div>
+                  </div>
+                  <div aria-hidden="true" class="text-view-wrap">
+                    <div class="text-view-wrap-container"></div>
+                  </div>
+                  <div aria-hidden="true" class="text-throbber"></div>
+                </div>
+                <div class="text-area-bottom-gap"></div>
+              </div>
+              <hr class="mid-low-line" />
+              <div class="sns-account-wrap">
+                <div>
+                  <div class="sns-head">
+                    >
+                    <strong class="sns-text">SNS 계정</strong>
+                  </div>
+                  <span class="sns-text-body"></span>
+                </div>
+              </div>
+              <div class="sns-account-url-wrap" style="grid-column-start: 6">
+                <div class="sns-account-frame">
+                  <div>
+                    <p class="sns-first-text">Instagram</p>
+                    <label class="sns-first-text-box">
+                      <input
+                        type="text"
+                        class="sns-input"
+                        placeholder="URL 입력..."
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <p class="sns-first-text">Twitter</p>
+                    <label class="sns-first-text-box">
+                      <input
+                        type="text"
+                        class="sns-input"
+                        placeholder="URL 입력..."
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <p class="sns-first-text">Youtube</p>
+                    <label class="sns-first-text-box">
+                      <input
+                        type="text"
+                        class="sns-input"
+                        placeholder="URL 입력..."
+                      />
+                    </label>
+                  </div>
+                  <div>
+                    <p class="sns-first-text">Facebook</p>
+                    <label class="sns-first-text-box">
+                      <input
+                        type="text"
+                        class="sns-input"
+                        placeholder="URL 입력..."
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <hr class="sns-bottom-line" />
+              <div class="link-text-wrap">
+                <div>
+                  <div class="link-title-text">
+                    <strong class="link-title"> 링크 </strong>
+                  </div>
+                  <span class="link-font-body"
+                    >나의 프로필과 관련된 링크를 아카이빙 해보세요</span
+                  >
+                </div>
+              </div>
+              <div class="link-upload-wrap" style="grid-column-start: 6">
+                <div class="link-upload-frame">
+                  <div class="link-upload-body">
+                    <div class="link-photo">
+                      <div class="photo-upload">
+                        <svg
+                          viewBox="0 0 49 49"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="upload"
+                        >
+                          <path
+                            d="M27.782 19.785c1.154-2.172 4.29-2.108 5.354.11l6.68 13.917c1.275 2.655-.66 5.731-3.606 5.731H9.882c-1.506 0-2.472-1.6-1.77-2.932l4.998-9.486a3 3 0 0 1 4.765-.733l4.192 4.151 5.715-10.758ZM19.067 15.543a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"
+                            fill="#C2B8FF"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="photo-upload-standard">
+                        <div class="link-text-title">
+                          <button type="button" class="upload-button">
+                            "링크 썸네일 업로드"
+                            <input type="file" class="upload-input" />
+                          </button>
+                        </div>
+                        <span class="link-upload-text"
+                          >파일 형식은 jpg 또는 png로, 사이즈는 가로 200px, 세로
+                          200px 이상으로 올려주세요.</span
+                        >
+                      </div>
+                    </div>
+                    <div class="link-upload-box-wrap">
+                      <div class="link-title-box">
+                        <div>
+                          <label class="link-title-box-title">
+                            <input
+                              type="text"
+                              class="link-inputframe"
+                              placeholder="링크 제목 입력"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="link-url-input">
+                        <div>
+                          <label class="link-title-box-title">
+                            <input
+                              type="text"
+                              class="link-inputframe"
+                              placeholder="URL 입력"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="link-make">
+                        <button type="button" class="link-add-button">
+                          링크 만들기
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
