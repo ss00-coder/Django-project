@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-* {
-  margin: 0;
-  padding: 0;
-}
 
-=======
->>>>>>> 4908295b0d6eaa63c17b21cca2546c264e13d2ee
 html {
   line-height: 1.5;
   tab-size: 4;
@@ -13,8 +6,7 @@ html {
   height: 100%;
 }
 
-<<<<<<< HEAD
-=======
+
 body {
   height: 100%;
   margin: 0;
@@ -317,8 +309,57 @@ span.recommend-post-item-sub-count {
   color: #8a8a8b;
   fill: #8a8a8b;
 }
->>>>>>> 4908295b0d6eaa63c17b21cca2546c264e13d2ee
 
 
+div.recommend-post-refresh {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
 
+button.recommend-post-refresh-btn {
+  width: 116px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333334;
+  fill: #333334;
+  border-color: rgba(0,0,0,.1);
+  background-color: #fff;
+  cursor: pointer;
+}
 
+button.recommend-post-refresh-btn svg{
+  width: 16px;
+  height: 16px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+
+span.recommend-post-refresh-text {
+  margin-left: 4px;
+  color: #333334;
+  fill: #333334;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+span.recommend-post-refresh-count {
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  
+}
