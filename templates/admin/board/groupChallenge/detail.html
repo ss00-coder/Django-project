@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 단체 챌린지 게시판 상세보기</title>
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal_modify.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_challenge_detail.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="../../../../static/image/logo/logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>단체 챌린지 게시판 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a href="">
+                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+                        <div class="board-info-box">
+                            <div class="board-info-title-box" style="position: relative">
+                                <span>단체 챌린지 상세보기</span>
+                                <button class="btn_done" style="position: absolute; right: 22px; top: 15px;">수정</button>
+                            </div>
+                            <hr>
+                            <div class="info-table">
+                                <div class="board_info board_writer">
+                                    <div class="selection is-hidden" name="personal">개인 챌린지</div>
+                                    <div class="selection selected" name="group">단체 챌린지</div>
+                                </div>
+                                <!-- <div class="info-member">
+									<span class="span-bold">좋아요 :</span>
+									<span>3</span>
+								</div> -->
+                                <div class="board_info board_reigster_date">
+                                    <span class="span-bold">작성 날짜 :</span>
+                                    <!-- 작성 날짜  -->
+                                    <span>2023.04.23 11:01</span>
+                                </div>
+                                <div class="play_date_wrapper" style="padding:12px 0; font-size: 12px" >
+                                    <div><span class="span-bold">시작일:</span> 2023.04.27</div>
+                                    <div><span class="span-bold">종료일:</span> 2023.05.03</div>
+                                </div>
+                                <hr>
+                                <div class="board_title">
+                                    <span class="span-bold">제목 :</span>
+                                    <!-- 제목  -->
+                                    <span>제목</span>
+                                </div>
+                                <div class="board_content">
+                                    <!-- 게시판 내용 -->
+                                    게시판 내용
+                                    <br>
+                                    게시판 내용
+                                    <br>
+                                    게시판 내용
+                                </div>
+                                <section class="img_wrapper_box">
+                                    <div class="img_ul_wrapper">
+                                        <ul class="img_ul">
+                                            <li class="img_list" id="li0">
+                                                <div class="img_box_wrapper">
+                                                    <header class="delete_button_wrapper">
+                                                        <label id="label0" for="button0">
+                                                            <button icon-position="0" color="white" fill="false"
+                                                                type="button"
+                                                                class="pasing-button-1 pasing-no-select"
+                                                                id="button0">
+                                                                <span class="pasing-button-span">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="24" height="24" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path
+                                                                            d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                            fill="#cacaca"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </label>
+                                                    </header>
+                                                    <article class="img_wrapper">
+                                                        <div class="img_div">
+                                                            <img src="../../../../static/image/board/board-img.png" alt=""
+                                                                class="inserted_img">
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+</html>

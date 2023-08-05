@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+.container {
+	width: 100%;
+	margin-left: 250px;
+	margin-top: 55px;
+}
+
+.info-flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.board-info-box-layout {
+	border: 0.0625rem solid #f2f2f2;
+    box-shadow: 11px 13px 11px -14px grey;
+    background: #fff;
+}
+
+.info-title-box-flex {
+	display: flex;
+    position: fixed;
+	justify-content: flex-start;
+}
+
+.info-title-box {
+	width: 100%;
+	height: 55px;
+	border-radius: 3px;
+	background: #fff;
+	box-shadow: 11px 13px 11px -14px grey;
+}
+
+.info-table {
+	margin: 0 auto;
+	padding: 10px 30px;
+}
+
+.board-info-title-box {
+	padding: 20px 27px 15px;
+}
+
+.board-info-title-box {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.select-name {
+	padding-top : 20px;
+	padding-left: 5px;
+}
+
+.container-margin {
+	margin: 40px 250px 0px;
+}
+
+.board-info-box-layout {
+	margin-top: 30px;	
+}
+
+.prev-button-layout {
+	position: relative;
+}
+
+.prev-icon {
+	position: absolute;
+	width: 20px;	
+    top: -2px;
+}
+
+.prev-title {
+	font-weight: 500;
+	padding-left: 28px;	
+}
+
+hr {
+	height: 1px;
+	background: #f2f1f1;
+	border: 0;
+}
+
+.span-bold {
+	font-weight: bold;
+}
+
+.info-member {
+	margin-bottom: 10px;	
+}
+
+.info-tag {
+	font-size: 13px;
+	color: #c1c1c1;
+}
+
+.info span {
+	font-size: 13px;
+	font-weight: bold;
+}
+
+div.margin {
+	margin-top : 50px;	
+}
+
+div.margin span {
+	font-size: 14px;
+}
+
+.write-count-box {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.count {
+	padding-left : 15px;
+}
+
+.board-info-box-layout2 {
+	height: 300px;
+}
+
+.board-info-box-flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.modify-button-box {
+	padding: 20px 27px 15px;
+	font-size: 12px;
+    font-weight: 400;
+	position: relative;
+}
+
+.gear-icon {
+	width: 10px;	
+}
+
+div.info-table>div.board_info {
+    /* display: inline-block; */
+    margin-right: 12px;
+}
+
+.info-table div {
+    margin: 10px 0;
+}
+
+.info-table button.btn_done {
+    font-family: 'GmarketSansMedium';
+    width: 100px;
+    height: 30px;
+    background-color: #4F6DF5;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+}
+
+div.board_content {
+    min-height: 320px;
+}
+
+.board-info-box {
+    width: 100%;
+}
+
+header.delete_button_wrapper * {
+    padding: 0;
+    margin: 0;
+}
+
+div.head_button_wrapper {
+    width: fit-content;
+    height: fit-content;
+}
+
+div.file-image-box {
+    margin: 8px 16px 8px 0;
+    padding: 8px 11px;
+    background-color: #4F6DF5;
+    color: white;
+    border-radius: 8px;
+    width: 90px;
+    height: 40px;
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.file-image-box>img {
+    width: 16px;
+}
+
+div.file_insert_wrapper {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 8px;
+}
+
+div.file-image-box {
+    display: flex;
+}
+
+.img_ul {
+    display: flex;
+}
+
+.img_box_wrapper {
+    position:relative;
+}
+
+.delete_button_wrapper {
+    position: absolute;
+    right: 0;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.delete_button_wrapper button {
+    opacity: 80%;
+    height: fit-content;
+}
+
+.img_list {
+    padding-right: 16px;
+}
+
+div.play_date_wrapper>div {
+	margin: 0;
+    margin-bottom: 12px;
+}

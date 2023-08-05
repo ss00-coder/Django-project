@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 문의 게시판 목록</title>
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+
+<body>
+    <div>
+        <div class="ikfo-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="/image/logo/logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>문의 게시판 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="delete-box-layout">
+                        <div class="delete-box">
+                            <button class="delete-button">선택 게시물 삭제</button>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>문의 게시판 목록</span>
+                            </div>
+
+                            <div class="info-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="checkbox-line">
+                                                <input type="checkbox" id="allSelect">
+                                            </th>
+                                            <th>No</th>
+                                            <!-- <th>카테고리</th> -->
+                                            <th>게시판 제목</th>
+                                            <th>작성자 명</th>
+                                            <th>작성 날짜</th>
+                                            <th>답변</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" name="check">
+                                        </td>
+                                        <td class="noticeId">
+                                            1
+                                        </td>
+                                        <!-- <td>자유 게시판</td> -->
+                                        <td>
+                                            <a href="">
+                                                게시판 제목
+                                            </a>
+                                        </td>
+                                        <td>
+                                            닉네임
+                                        </td>
+                                        <td>
+                                            2023.04.23 10:55
+                                        </td>
+                                        <td class="is_answer is_warning">
+                                            미답변
+                                            <hr>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" name="check">
+                                        </td>
+                                        <td class="noticeId">
+                                            2
+                                        </td>
+                                        <!-- <td>자유 게시판</td> -->
+                                        <td>
+                                            <a href="">
+                                                게시판 제목
+                                            </a>
+                                        </td>
+                                        <td>
+                                            닉네임
+                                        </td>
+                                        <td>
+                                            2023.04.23 10:55
+                                        </td>
+                                        <td class="is_answer is_warning">
+                                            미답변
+                                            <hr>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" name="check">
+                                        </td>
+                                        <td class="noticeId">
+                                            3
+                                        </td>
+                                        <!-- <td>자유 게시판</td> -->
+                                        <td>
+                                            <a href="">
+                                                게시판 제목
+                                            </a>
+                                        </td>
+                                        <td>
+                                            닉네임
+                                        </td>
+                                        <td>
+                                            2023.04.23 10:55
+                                        </td>
+                                        <td class="is_answer is_active">
+                                            답변완료
+                                            <hr>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 페이지 버튼 -->
+
+                    <!-- <section id="content-wrap">
+                        <ul></ul>
+                        <div id="paging-wrap">
+                            <c:if test="${prev}">
+                                <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${startPage - 1}'"
+                                    class="paging paging-move"><img
+                                        src="${pageContext.request.contextPath}/images/prev.png"
+                                        width="15px"></a>
+                            </c:if>
+                            <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                <c:choose>
+                                    <c:when test="${i eq page}">
+                                        <a href="javascript:void(0)" class="paging paging-checked">
+                                            <c:out value="${i}" />
+                                        </a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${i}'"
+                                            class="paging">
+                                            <c:out value="${i}" />
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <div></div>
+                        </div>
+                    </section> -->
+
+                    <div class="page-button-box-layout">
+                        <div class="page-button-box">
+                            <!-- 페이지 번호 -->
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="../../../../static/image/admin/left_icon.png"
+                                            class="left-button">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-button-active page-button">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <span>1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-button">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <span>2</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="page-button">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <span>3</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="../../../../static/image/admin/right_icon.png"
+                                            class="right-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 페이지 버튼 끝 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/checkbox.js"></script>
+<script src="/js/admin/board_proposal.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+
+</html>
