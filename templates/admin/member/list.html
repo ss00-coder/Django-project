@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 회원 정보 목록</title>
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_member_list.css">
+    <link rel="icon" href="../../../../static/image/logo/favicon.png">
+</head>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="../../../../static/image/logo/logo.png">
+                </div>
+                <!-- <div class="logo-title">
+                    <span>Jar</span>
+                </div> -->
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>회원정보 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="delete-box-layout">
+                        <div class="delete-box">
+                            <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>회원정보 목록</span>
+                            </div>
+
+                            <div class="info-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="checkbox-line">
+                                                <input type="checkbox" id="allSelect">
+                                            </th>
+                                            <th>No</th>
+                                            <th>회원상태</th>
+                                            <th>이메일</th>
+                                            <th>이름</th>
+                                            <th>닉네임</th>
+                                            <th>핸드폰 번호</th>
+                                            <th>가입 날짜</th>
+                                        </tr>
+                                    </thead>
+                                    <tr th:each="memberDTO : ${memberDTOS}">
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" class="memberCheckbox" name="check" th:value="${memberDTO.id}">
+                                        </td>
+                                        <td th:text="${memberDTO.id}">
+                                            1
+                                        </td>
+                                        <td class="member_type is_active" th:text="${memberDTO.memberStatus}">
+                                            일반회원
+                                            <hr>
+                                        </td>
+                                        <td>
+                                            <a th:href="@{detail/{id}(id=${memberDTO.id})}" th:text="${memberDTO.memberEmail}">
+                                                ljs1234@gmail.com
+                                            </a> <!-- 디테일 컨트롤러 제작하고 연결  -->
+                                        </td>
+                                        <td th:text="${memberDTO.memberName}">ljs1234</td>
+                                        <td th:text="${memberDTO.memberNickname}">ljs1234</td>
+                                        <td th:text="${memberDTO.memberPhoneNumber}">01012341234</td>
+                                        <td th:text="${#temporals.format(memberDTO.createdDate, 'yyyy-MM-dd')}"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section><!-- 폼태그 -->
+
+                    <!-- 페이지 버튼 -->
+                    <div class="page-button-box-layout">
+                        <div class="page-button-box">
+                            <!-- 페이지 번호 -->
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="../../../../static/image/admin/left_icon.png" class="left-button">
+                                    </div>
+                                </div>
+                            </div>
+                            <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
+                                    <span class="page-button" th:text="${num}"></span>
+                                </a>
+                                <div style="width: 2px;"></div>
+                            </th:block>
+                            <div class="">
+                                <div class="page-button-margin">
+                                    <div>
+                                        <img src="../../../../static/image/admin/right_icon.png" class="right-button">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 페이지 버튼 끝 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/checkbox.js"></script>
+<script src="/js/admin/page.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script>
+    const memberId = '${memberDTO.id}';
+
+    function getSelectedMemberIds() {
+        const memberIds = [];
+        $(".memberCheckbox:checked").each(function() {
+            memberIds.push($(this).val());
+        });
+        return memberIds;
+    }
+
+    function deleteMembers(memberIds) {
+        $.ajax({
+            url: "/admin/member/delete",
+            type: "DELETE",
+            contentType: "application/json",
+            data: JSON.stringify(memberIds),
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+
+    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.page-button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('page-button-active');
+                } else {
+                    $(element).removeClass('page-button-active');
+                }
+            });
+        }
+    });
+
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".memberCheckbox:checked");
+            const memberIds = [];
+            checkedItems.each(function() {
+                memberIds.push($(this).val());
+            });
+
+            if (memberIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteSuggests(memberIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+</script>
+</html>

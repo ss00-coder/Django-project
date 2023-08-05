@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 단체 챌린지 게시판 작성</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/admin/admin_common.css">
+    <link rel="stylesheet" href="/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="stylesheet" href="/css/admin/admin_board_proposal_modify.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="/image/logo/logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>단체 챌린지 게시판 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a href="">
+                                <img src="/image/admin/prev_icon.png" class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="section_wrapper is-flex">
+                        <!-- 내용 섹션 -->
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>단체 챌린지 작성하기</span>
+                                </div>
+                                <hr>
+                                <div class="info-table">
+                                    <form action="">
+                                        <input type="hidden" name="boardId" value="">
+                                        <!-- <input type="hidden" name="page" value=""> -->
+                                        <div>
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off" value="">
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <label class="selection_label is-inline-block" for="">
+                                                <div>
+                                                    <div class="selection" name="group" style="font-weight: 100">단체 챌린지</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="select_date_wrapper">
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="startdate" />
+                                            <span> ~ </span>
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="enddate" />
+                                        </div>
+                                        <div style="display: inline-block;">
+                                            <label class="file_insert_label">
+                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <div class="file-image-box">
+                                                    <p style="font-weight: 100">사진 첨부</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <textarea class="board-content" name="boardContent"
+                                                placeholder="내용을 입력해주세요."></textarea>
+                                        </div>
+                                        <section class="img_wrapper_box">
+                                            <div class="img_ul_wrapper">
+                                                <ul class="img_ul">
+                                                </ul>
+                                            </div>
+                                        </section>
+                                        <div>
+                                            <button class="btn_done" style="font-weight: 100">등록</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/button_change_action.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+    });
+
+    // const $alertModal = $(".alert-modal-display");
+
+    // 이미지 파일
+    let inputFiles = [];
+    let $imgUl = $($('ul.img_ul')[0]);
+    let $lists;
+
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            $imgUl.empty();
+
+            reader.onload = (e) => {
+                if (index >= 3) {
+                    return;
+                }
+                let text = `
+                        <li class="img_list" id="li${index}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label id="label${index}" for="button${index}">
+                                        <button icon-position="0" color="white" fill="false" type="button"
+                                            class="pasing-button-1 pasing-no-select" id="button${index}">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="` + e.target.result + `" alt=""
+                                            class="inserted_img">
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                `;
+
+                $imgUl.append(text);
+                index++;
+                $('.img_ul>li').on('click', (e) => {
+                    console.log($(e.currentTarget));
+                    console.log("딜리트 버튼 눌림")
+                    $(e.currentTarget).remove();
+                });
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+</script>
+
+</html>

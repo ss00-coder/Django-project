@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 제안 게시판 상세보기</title>
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../../static/css/board/proposal/write.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal_modify.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+</head>
+<style>
+    .img_wrapper_box {
+        width: fit-content;
+        padding: 16px 0;
+    }
+
+    .img_box_wrapper {
+        position: relative;
+    }
+
+    /*.img_div>img {*/
+    /*    max-width: 250px;*/
+    /*    !* max-height: 160px; *!*/
+    /*    height: 200px;*/
+    /*}*/
+
+    .delete_button_wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    header.delete_button_wrapper * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .delete_button_wrapper {
+        position: absolute;
+        right: 0;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .delete_button_wrapper button {
+        opacity: 80%;
+        height: fit-content;
+    }
+</style>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="../../../../static/image/logo/logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>제안 게시판 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a th:href="@{/admin/board/proposal/list}">
+                                <img style="top: 2px;" src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                                <span class="prev-title" >리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="section_wrapper is-flex">
+                        <!-- 내용 섹션 -->
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>제안 게시글 상세보기</span>
+                                </div>
+                                <hr>
+                                <div class="info-table">
+                                    <form action="">
+                                        <div class="board_title">
+                                            <span class="span-bold">제목 :</span>
+                                            <!-- 제목  -->
+                                            <span th:text="${suggestDTO.boardTitle}">제안챌린지제목</span>
+                                        </div>
+                                        <div class="board_info board_writer">
+                                            <span class="span-bold">작성자 :</span>
+                                            <!-- 작성자 명  -->
+                                            <span th:text="${suggestDTO.memberDTO.memberNickname}">작성자닉네임</span>
+                                        </div>
+                                        <!-- <div class="info-member">
+                                <span class="span-bold">좋아요 :</span>
+                                <span>3</span>
+                            </div> -->
+                                        <div class="board_info board_reigster_date">
+                                            <span class="span-bold">작성 날짜 :</span>
+                                            <!-- 작성 날짜  -->
+                                            <span th:text="${#temporals.format(suggestDTO.updatedDate, 'yyyy/MM/dd')}">2023.04.23</span>
+                                        </div>
+                                        <label style="cursor: default;color: #fff; background-color: #4F6DF5; width: 75px; font-size: 1px; display: inline-block;">
+                                            <div class="type_wrapper" style="display: flex; margin: 5px 0; justify-content: center;">
+                                                <span th:text="${suggestDTO.boardType}">개인</span>
+                                                <button type="button" style="display: none;"></button>
+                                            </div>
+                                        </label>
+                                        <hr>
+                                        <div style="min-height: 200px;" th:text="${suggestDTO.boardContent}">
+                                            게시글 내용
+                                        </div>
+                                        <section class="img_wrapper_box">
+                                            <div class="img_ul_wrapper">
+                                                <ul class="img_ul">
+                                                    <li class="img_list" id="li0">
+                                                        <div class="img_box_wrapper">
+<!--                                                            <header class="delete_button_wrapper" style="display: none;">-->
+<!--                                                                <label id="label0">-->
+<!--                                                                    <button icon-position="0" color="white" fill="false"-->
+<!--                                                                        class="pasing-button-1 pasing-no-select" id="button0">-->
+<!--                                                                        <span class="pasing-button-span">-->
+<!--                                                                            <svg xmlns="http://www.w3.org/2000/svg"-->
+<!--                                                                                width="24" height="24" fill="none"-->
+<!--                                                                                viewBox="0 0 24 24">-->
+<!--                                                                                <path-->
+<!--                                                                                    d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"-->
+<!--                                                                                    fill="#cacaca"></path>-->
+<!--                                                                            </svg>-->
+<!--                                                                        </span>-->
+<!--                                                                    </button>-->
+<!--                                                                </label>-->
+<!--                                                            </header>-->
+<!--                                                            <th:block th:each="fileDTO : ${suggestDTO.fileDTOS}">-->
+                                                        <section class="img_wrapper_box">
+                                                            <div class="img_ul_wrapper">
+                                                                <ul class="img_wrapper img_ul sumnail-layout">
+<!--                                                                    <div class="img_div">-->
+<!--                                                                        <img th:src="@{'/file/display(fileName=' + fileDTO.filePath + '/' + fileDTO.fileUuid + '_' + fileDTO.fileOriginalName + ')'}" alt="" class="inserted_img">-->
+<!--                                                                    </div>-->
+                                                                </ul>
+                                                            </div>
+<!--                                                            </th:block>-->
+
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </section>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+
+
+    const suggestDTO = [[${suggestDTO}]];
+
+    let fileDTOS = suggestDTO.fileDTOS;
+
+    fileDTOS.forEach((fileDTO, i) => {
+        let text = `
+        <li class="img_div">
+            <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+        </li>
+   `;
+
+        $(".img_wrapper").append(text);
+    });
+</script>
+
+</html>
