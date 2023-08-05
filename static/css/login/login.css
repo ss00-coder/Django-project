@@ -74,7 +74,7 @@ body {
 
 body {
   display: block;
-  margin: 8px;
+  margin: 0;
 }
 
 div {
@@ -110,12 +110,13 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 }
 
 .left-full{
-  padding-top: 56px;
+  padding-top: 84px;
   padding-bottom: 56px;
   width: 55%;
   align-items: center;
   flex-direction: column;
   display: flex;
+  background-color: #2be2503b;
 }
 
 .left-head{
@@ -137,9 +138,9 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: #333334;
-  fill: #333334;
-  background-color: #f3f3f4;
+  color: #ffffff;
+  fill: #ffffff;
+  background-color: #000;
 }
 
 .button-text-wrap{
@@ -182,6 +183,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   font-weight: 700;
   font-size: 41px;
   line-height: 23px;
+  text-shadow: 0 0 black;
 }
 
 
@@ -225,4 +227,48 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 .kakao-button{
   flex-shrink: 0;
   margin-right: 4px;
+}
+
+.right-full{
+  width: 45%;
+  display: block;
+}
+
+.right-wrap{
+  height: 100%;
+  position: relative;
+  background-color: #f3f3f4;
+}
+
+.right-span{
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+.login-page-img{
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
