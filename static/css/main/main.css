@@ -6,7 +6,6 @@ html {
   height: 100%;
 }
 
-
 body {
   height: 100%;
   margin: 0;
@@ -27,18 +26,24 @@ button {
   padding: 0;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 menu, ol, ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-
 #wrap {
   min-height: 100%;
 }
 
-/* #banner {
+
+/* 슬라이더 배너 */
+#slide-banner {
   position: relative;
   display: flex;
   justify-content: center;
@@ -46,29 +51,122 @@ menu, ol, ul {
   margin: 32px auto 60px auto;
 }
 
-div.swiper {
-  touch-action: pan-y;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  overflow: hidden;
-  list-style: none;
-  padding: 0;
-  z-index: 1;
+div.mySwiper {
   width: 1678px;
   min-width: 1678px;
 }
 
-div.swiper-wraper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  display: flex;
-  transition-property: transform;
-  box-sizing: content-box;
-} */
+div.swiper-slide {
+  width: 560px;
+}
 
+div.swiper-slide-next img,
+div.swiper-slide-prev img{
+  animation: fadeout 0.5s;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeout {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0.3;
+  }
+}
+
+button.swiper-slide-btn {
+  border-radius: 16px;
+  border-style: none;
+  width: 550px;
+  height: 336px;
+  transition-duration: .5s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4,0,.2,1);
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+}
+
+button.swiper-slide-btn img{
+  width: 100%;
+  display: block;
+} 
+
+/* 슬라이드 버튼 */
+div.slide-banner-button {
+  padding-left: 32px;
+  padding-right: 32px;
+  width: 550px;
+  display: flex;
+  column-gap: 12px;
+  align-items: center;
+  bottom: 24px;
+  left: 34%;
+  position: absolute;
+  z-index: 5;
+}
+
+div.slide-banner-count {
+  padding: 6px 12px 6px 12px;
+  border-radius: 20px;
+  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.4);
+  width: auto;
+}
+
+div.slide-banner-count span:first-child{
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #fff;
+  fill: #fff;
+}
+
+div.slide-banner-count span:last-child{
+  color: hsla(0,0%,100%,.8);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+div.slide-banner-btns {
+  display: flex;
+  column-gap: 12px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.4);
+  position: inherit;
+  margin: 0;
+}
+
+.swiper-button-next svg,
+.swiper-button-prev svg {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  fill: #fff;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+
+/* 메인 콘텐츠 */
 #main {
   row-gap: 48px;
   display: flex;
