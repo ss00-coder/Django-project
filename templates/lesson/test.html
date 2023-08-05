@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <form method="post">
+      <textarea id="mytextarea">Hello, World!</textarea>
+    </form>
+  </body>
+  <script
+    src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"
+  ></script>
+
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+    });
+  </script>
+</html>
