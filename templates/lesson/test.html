@@ -3,13 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .tox.tox-tinymce {
+        border-radius: 8px !important;
+        resize: none !important;
+        width: 560px !important;
+        height: 474px !important;
+      }
+
+      .tox-statusbar{
+        display: none !important;
+      }
+    </style>
   </head>
 
   <body>
-    <form method="post">
-      <textarea id="mytextarea">Hello, World!</textarea>
-    </form>
+
+    <textarea id="image-tools"></textarea>
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script
     src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"
@@ -17,7 +29,16 @@
 
   <script>
     tinymce.init({
-      selector: '#mytextarea',
+      selector: 'textarea#image-tools',
+      height: 500,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste imagetools wordcount',
+      ],
+      toolbar:
+        'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
     });
   </script>
 </html>
