@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
 
 html {
   line-height: 1.5;
@@ -43,6 +48,11 @@ menu, ol, ul {
 
 
 /* 슬라이더 배너 */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
 #slide-banner {
   position: relative;
   display: flex;
@@ -60,8 +70,8 @@ div.swiper-slide {
   width: 560px;
 }
 
-div.swiper-slide-next img,
-div.swiper-slide-prev img{
+div.swiper-slide-next>div>button>img,
+div.swiper-slide-prev>div>button>img{
   animation: fadeout 0.5s;
   animation-fill-mode: both;
 }
@@ -160,10 +170,7 @@ div.slide-banner-btns {
   fill: #fff;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  display: none;
-}
+
 
 
 /* 메인 콘텐츠 */
@@ -210,6 +217,8 @@ div.startmentor-title-select svg {
   display: block;
 }
 
+
+/* 주간 인기 과외 선생님 슬라이드 */
 div.starmentor-banner {
   min-height: 218px;
   margin-top: 24px;
@@ -221,16 +230,152 @@ div.starmentor-banner-relative {
   position: relative;
 }
 
-div.slide-banner {
-  font-size: 20px;
-  background-color: rgb(146, 221, 255);
-  width: 704px;
-  height: 218px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+div.sub-swiper-wrapper>div {
+  margin-left: 0;
 }
 
+button.swiper-slide-sub-btn {
+  text-align: left;
+  width: 100%;
+  display: block;
+  border: 0 solid #e5e7eb;
+}
+
+span.swiper-slide-sub-btn-child-span {
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+span.swiper-slide-sub-btn-child-span>span {
+  display: block;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 100% 0px 0px;
+}
+
+
+span.swiper-slide-sub-btn-child-span>img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 16px;
+}
+
+div.swiper-slide-sub-border {
+  border: 0 solid #e5e7eb;
+  border-width: 1px;
+  border-radius: 16px;
+  width: 128px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-color: rgba(0,0,0,.1);
+}
+
+h2.starmentor-nickname {
+  overflow: hidden;
+  margin: 12px 0 0 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+p.starmentor-language {
+  margin: 2px 0 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666667;
+  fill: #666667;
+}
+
+p.starmentor-introduction {
+  overflow: hidden;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  word-break: break-all;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+button.swiper-sub-button-prev {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  display: flex;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  z-index: 5;
+  left: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 0 solid #e5e7eb;
+  display:none;
+}
+
+button.swiper-sub-button-next {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  border-radius: 9999px;
+  border: 0 solid #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  right:0;
+  position: absolute;
+  z-index: 5;
+  background-color: #fff;
+
+}
+
+button.swiper-sub-button-prev>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+button.swiper-sub-button-next>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+
+/* 최근 주목받는 포스트 */
 header.recommend-post {
   margin-left: 16px;
   padding-top: 48px;
@@ -460,4 +605,533 @@ span.recommend-post-refresh-count {
   font-size: 14px;
   line-height: 16px;
   
+}
+
+/*추천 포스트*/
+div.recommend-one-post {
+  border: 0 solid #e5e7eb;
+  padding-top: 28px;
+  border-top-width: 1px;
+  border-color: #e6e6e7;
+}
+
+button.recommend-one-post-btn {
+  display: flex;
+  text-align: left;
+  flex-direction: row;
+  width: 100%;
+  border: 0 solid #e5e7eb;
+}
+
+div.recommend-one-post-btn-img {
+  width: 50%;
+  margin-top: 24px;
+  border-radius: 16px;
+  position: relative;
+}
+
+span.recommend-one-post-btn-img-span {
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  border-radius: 16px;
+}
+
+span.recommend-one-post-btn-img-span>span{
+  display: block;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 63.75% 0px 0px;
+}
+
+span.recommend-one-post-btn-img-span>img{
+  position: absolute;
+  inset: 0px;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0;
+  height: 0;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
+
+section.recommend-one-post-btn-content {
+  width: 50%;
+  display: flex;
+  row-gap: 16px;
+  flex-direction: column;
+  margin: 24px 36px 0 0;
+  order: -9999;
+}
+
+strong.recommend-one-post-btn-content-strong {
+  color: rgb(126, 105, 254);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+
+}
+
+h2.recommend-one-post-btn-content-h2 {
+  margin: 8px 0 0 0;
+  word-break: keep-all;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 34px;
+  color: #333334;
+  fill: #333334;
+}
+
+p.recommend-one-post-btn-content-p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #666667;
+  fill: #666667;
+  margin: 0;
+}
+
+
+
+/* 새로운 과외 선생님을 만나보세요*/
+header.new-teacher-title {
+  padding-top: 28px;
+  border-top-width: 1px;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 16px;
+  border: 0 solid #e5e7eb;
+  border-top-width: 1px;
+  border-color: #e6e6e7;
+}
+
+div.new-teacher-title-flex {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+h1.new-teacher-title-content {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #333334;
+  fill: #333334;
+  margin: 0;
+}
+
+div.new-teacher-title-flex svg{
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+
+div.new-teacher-banner {
+  min-height: 218px;
+  margin-top: 24px;
+}
+
+div.new-teacher-banner-relative {
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+}
+
+div.third-swiper-wrapper>div {
+  margin-left: 0;
+}
+
+button.swiper-slide-third-btn {
+  text-align: left;
+  width: 100%;
+  display: block;
+  border: 0 solid #e5e7eb;
+}
+
+span.swiper-slide-third-btn-child-span {
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+span.swiper-slide-third-btn-child-span>span {
+  display: block;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 100% 0px 0px;
+}
+
+
+span.swiper-slide-third-btn-child-span>img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 16px;
+}
+
+div.swiper-slide-third-border {
+  border: 0 solid #e5e7eb;
+  border-width: 1px;
+  border-radius: 16px;
+  width: 128px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-color: rgba(0,0,0,.1);
+}
+
+h2.new-teacher-nickname {
+  overflow: hidden;
+  margin: 12px 0 0 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+p.new-teacher-language {
+  margin: 2px 0 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666667;
+  fill: #666667;
+}
+
+p.new-teacher-introduction {
+  overflow: hidden;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  word-break: break-all;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+button.swiper-third-button-prev {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  display: flex;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  z-index: 5;
+  left: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 0 solid #e5e7eb;
+  display:none;
+}
+
+button.swiper-third-button-next {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  border-radius: 9999px;
+  border: 0 solid #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  right:0;
+  position: absolute;
+  z-index: 5;
+  background-color: #fff;
+
+}
+
+button.swiper-third-button-prev>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+button.swiper-third-button-next>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+
+
+
+/*폴인어스 과외 선생님*/
+header.teachers-title {
+  padding-top: 28px;
+  border-top-width: 1px;
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 16px;
+  border: 0 solid #e5e7eb;
+  border-top-width: 1px;
+  border-color: #e6e6e7;
+}
+
+div.teachers-title-flex {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+h1.teachers-title-content {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #333334;
+  fill: #333334;
+  margin: 0;
+}
+
+div.teachers-title-flex svg{
+  width: 20px;
+  height: 20px;
+  margin-top: 0;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+/*폴인어스 카테고리*/
+div.teachers-category {
+  margin-top: 20px;
+}
+
+ul.teachers-category-list {
+  margin: 0 16px;
+  display: flex;
+  column-gap: 8px;
+  overflow-x: auto;
+  cursor: pointer;
+}
+li.teachers-category-item {
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
+button.teachers-category-item-btn {
+  padding: 8px 11px;
+  border-width: 1px;
+  border-radius: 33px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  border-color: #e6e6e7;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  background-color: #fff;
+}
+
+button.teachers-category-item-btn-active {
+  padding: 9px 12px;
+  border-radius: 33px;
+  border-width: 1px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #fff;
+  fill: #fff;
+  background-color: #7e69fe;
+}
+
+
+/*폴인어스 과외 선생님 슬라이드*/
+div.teachers-banner {
+  margin-top: 20px;
+  margin-bottom: 128px;
+}
+
+div.teachers-banner-relative {
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+}
+
+div.fourth-swiper-wrapper>div {
+  margin-left: 0;
+}
+
+button.swiper-slide-fourth-btn {
+  text-align: left;
+  width: 100%;
+  display: block;
+  border: 0 solid #e5e7eb;
+}
+
+span.swiper-slide-fourth-btn-child-span {
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+span.swiper-slide-fourth-btn-child-span>span {
+  display: block;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 100% 0px 0px;
+}
+
+
+span.swiper-slide-fourth-btn-child-span>img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 16px;
+}
+
+div.swiper-slide-fourth-border {
+  border: 0 solid #e5e7eb;
+  border-width: 1px;
+  border-radius: 16px;
+  width: 128px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: absolute;
+  border-color: rgba(0,0,0,.1);
+}
+
+h2.teachers-nickname {
+  overflow: hidden;
+  margin: 12px 0 0 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+p.teachers-language {
+  margin: 2px 0 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #666667;
+  fill: #666667;
+}
+
+p.teachers-introduction {
+  overflow: hidden;
+  margin: 4px 0 0 0;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  word-break: break-all;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+button.swiper-fourth-button-prev {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  display: flex;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  z-index: 5;
+  left: 0;
+  position: absolute;
+  background-color: #fff;
+  border: 0 solid #e5e7eb;
+  display:none;
+}
+
+button.swiper-fourth-button-next {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px, rgba(0, 0, 0, 0.1) 0px 4px 5px;
+  top: 44px;
+  border-radius: 9999px;
+  border: 0 solid #e5e7eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  right:0;
+  position: absolute;
+  z-index: 5;
+  background-color: #fff;
+
+}
+
+button.swiper-fourth-button-prev>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+button.swiper-fourth-button-next>svg {
+  width: 16px;
+  height: 16px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
 }
