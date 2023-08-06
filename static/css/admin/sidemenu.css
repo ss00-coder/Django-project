@@ -43,7 +43,12 @@ button {
 	bottom: 0;
 	z-index: 99;
 	width: 250px;
-	background-color: #4e4e4e;
+	background-color: #d6802a;
+}
+
+.side-menu div ul li:hover:not(.active) {
+  background-color: #000000;
+  color: white;
 }
 
 .menu-bar li span {
@@ -55,7 +60,7 @@ button {
 	color: #fff;
 	display: flex;
 	justify-content: flex-start;
-	margin: 20px 45px 0px;
+	margin: 39px 45px 10px;
 }
 
 .menus .select-menu {
@@ -82,7 +87,7 @@ button {
 .icon {
 	padding-top: 2px;
 	width: 16px;
-	filter: invert(71%) sepia(59%) saturate(0%) hue-rotate(176deg) brightness(91%) contrast(94%);
+	filter: invert(90%) sepia(59%) saturate(0%) hue-rotate(176deg) brightness(91%) contrast(94%);
 }
 
 .triangle {
@@ -106,7 +111,7 @@ button {
 }
 
 .menu-title-layout {
-	margin: 8px 18px 0px 44px;
+	margin: 8px 18px 0px 85px;
 }
 
 .menus2,

@@ -110,13 +110,13 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 }
 
 .left-full{
-  padding-top: 84px;
+  padding-top: 52px;
   padding-bottom: 56px;
   width: 55%;
   align-items: center;
   flex-direction: column;
   display: flex;
-  background-color: #2be2503b;
+  background-color: #e58f26d3;
 }
 
 .left-head{
@@ -155,7 +155,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 }
 
 .left-main{
-  margin-top: 52px;
+  margin-top: 38px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 32px;
@@ -172,18 +172,13 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   font-weight: 700;
   font-size: 32px;
   line-height: 44px;
+  margin-bottom: 40px;
 }
 
 .logo-text{
   width: 352px;
-  height: 30px;
+  height: 176px;
   margin-top: 24px;
-  color: #ed5a74;
-  fill: #ed5a74;
-  font-weight: 700;
-  font-size: 41px;
-  line-height: 23px;
-  text-shadow: 0 0 black;
 }
 
 
@@ -195,7 +190,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   row-gap: 12px;
   flex-direction: column;
   display: flex;
-  margin-top: 80px;
+  margin-top: 30px;
 }
 
 .kakao-btn{
