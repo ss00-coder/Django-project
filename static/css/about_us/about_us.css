@@ -256,7 +256,7 @@ button, select {
   display: flex;
 }
 
-.text-box1 >svg{
+.text-box1 >img{
   width: 36px;
   height: 36px;
   color: #1d1d1e;
@@ -435,7 +435,7 @@ button, select {
   display: flex;
 }
 
-.text-box3 >svg{
+.text-box3 >img{
   width: 36px;
   height: 36px;
   color: #1d1d1e;
@@ -577,6 +577,7 @@ menu, ol, ul {
   color: #fff;
   fill: #fff;
   background-color: #000;
+  cursor: pointer;
 }
 
 

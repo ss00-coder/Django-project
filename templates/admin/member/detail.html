@@ -14,9 +14,10 @@
 
 <body>
     <div>
+        <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="/image/logo/logo.png">
+                    <img src="../../../static/image/admin/foreign-us.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -38,8 +39,8 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a th:href="@{/admin/member/list}">
-                                <img src="/image/admin/prev_icon.png"
+                            <a>
+                                <img src="../../../static/image/admin/prev_icon.png"
                                     class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -53,10 +54,10 @@
                                     <span>회원 정보</span>
                                 </div>
                                 <div class="modify-button-box">
-                                    <a th:href="@{/admin/member/modify/{id}(id=${memberDTO.id})}">
-                                        <img src="../../../../static/image/admin/gear_icon.png"
+                                    <a>
+                                        <img src="../../../static/image/admin/gear_icon.png"
                                             class="gear-icon">
-                                        <a th:href="@{/admin/member/modify/{id}(id=${memberDTO.id})}">수정</a>
+                                        <a>수정</a>
                                     </a>
                                 </div>
                             </div>
@@ -67,7 +68,7 @@
 
                                     </div>
                                     <div class="member-nickname-box">
-                                        <span th:text="${memberDTO.memberNickname}">닉네임123</span>
+                                        <span>닉네임123</span>
                                     </div>
                                 </div>
                                 <div class="member-info-box">
@@ -75,21 +76,21 @@
                                         <span class="info-tag">이름</span>
                                         <!-- 이름 -->
                                         <div class="info">
-                                            <span th:text="${memberDTO.memberName}">이준상</span>
+                                            <span>이준상</span>
                                         </div>
                                     </div>
                                     <div class="member-info-tag-box">
                                         <span class="info-tag">이메일</span>
                                         <!-- 이메일 -->
                                         <div class="info">
-                                            <span th:text="${memberDTO.memberEmail}">ljs1234@gmail.com</span>
+                                            <span>ljs1234@gmail.com</span>
                                         </div>
                                     </div>
                                     <div class="member-info-tag-box">
                                         <span class="info-tag">핸드폰 번호</span>
                                         <!-- 핸드폰 번호 -->
                                         <div class="info">
-                                            <span th:text="${memberDTO.memberPhoneNumber}">010-1234-1234</span>
+                                            <span>010-1234-1234</span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,36 +107,79 @@
                                 <div class="info-margin">
                                     <span class="info-tag">가입일</span>
                                     <!-- 유저 가입날짜  -->
-                                    <h4 th:text="${#temporals.format(memberDTO.createdDate, 'yyyy-MM-dd')}">2023.01.01</h4>
+                                    <h4>2023.01.01</h4>
                                 </div>
                                 <div class="info-margin margin">
                                     <!-- 유저 작성한 것들  -->
                                     <hr style="margin: 8px 0;">
-                                    <span class="info-tag">챌린지</span>
+                                    <span class="info-tag">과외</span>
                                     <div class="info-margin">
                                         <div class="write-count-box">
                                             <div>
-                                                <span>참여한 개인 챌린지</span>
+                                                <span>참여한 과외</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="info-margin">
-                                        <div class="write-count-box">
-                                            <div>
-                                                <span>참여한 그룹 챌린지</span>
-                                            </div>
-                                            <div class="count">
-                                                <span>0회</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="info-margin is-hidden">
                                         <div class="write-count-box">
                                             <div>
                                                 <span>참여한 챌린지</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-margin margin">
+                                    <!-- 유저 작성한 것들  -->
+                                    <hr style="margin: 8px 0;">
+                                    <span class="info-tag">헬퍼스</span>
+                                    <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 헬퍼스</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-margin is-hidden">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 챌린지</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-margin margin">
+                                    <!-- 유저 작성한 것들  -->
+                                    <hr style="margin: 8px 0;">
+                                    <span class="info-tag">이벤트</span>
+                                    <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 이벤트</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-margin is-hidden">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 이벤트</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>
@@ -161,7 +205,7 @@
 
     if (fileDTO == undefined || fileDTO == null) {
         text = `
-                    <img style="width: 100%; object-fit: cover; height="100%;" src="/image/logo/normal_profile.png">
+                    <img style="width: 100%; object-fit: cover; height="100%;" src="../../../../static/image/admin/normal_profile.png">
         `;
     }else {
         text = `

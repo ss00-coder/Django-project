@@ -2,7 +2,7 @@ $(".triangle-button").each((i, e) => {
 		
     var index = i;
     var $dom = $(e);
-    var $menus = $($(".menus")[index]);   
+    var $menus = $($(".menus")[index]);  
     let checkSlide;
     
     $dom.on("click", function(e) {
@@ -16,7 +16,8 @@ $(".triangle-button").each((i, e) => {
        } else{
           $dom.addClass("triangle-acitve");
           $menus.slideDown();
-          checkSlide = true;
+          
+    checkSlide = true;
        }
     });
  });
