@@ -1,0 +1,490 @@
+/* lesson/list.html */
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+html {
+  height: 100%;
+  line-height: 1.5;
+  tab-size: 4;
+  font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  display: block;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  line-height: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+[role='button'],
+button {
+  cursor: pointer;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  background-color: transparent;
+  background-image: none;
+}
+
+main.main {
+  display: flex;
+  padding-left: 0;
+  padding-right: 0;
+  flex-direction: column;
+  max-width: 720px;
+  min-height: 100vh;
+  min-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  position: relative;
+}
+
+div.filter {
+  padding-top: 50px;
+  padding-bottom: 14px;
+  justify-content: space-between;
+  border-bottom-width: 1px;
+  align-items: center;
+  display: flex;
+  border-color: #e6e6e7;
+}
+
+div.filter div.order {
+  align-items: center;
+  display: flex;
+}
+
+div.filter label.order-label-active {
+  padding-left: 0;
+  padding-right: 12px;
+  position: relative;
+}
+
+div.filter label.order-label-nonactive {
+  padding-left: 12px;
+  padding-right: 12px;
+  position: relative;
+}
+
+div.filter input.order-input {
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+div.filter span.order-text-active {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+div.filter span.order-text-nonactive {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+div.filter span.order-line {
+  border-left-width: 2px;
+  overflow: hidden;
+  flex-grow: 0;
+  width: 2px;
+  height: 16px;
+  display: flex;
+  border-color: #e6e6e7;
+}
+
+div.filter button.filter-button {
+  gap: 6px;
+  align-items: center;
+  display: flex;
+}
+
+div.filter svg.filter-image {
+  width: 24px;
+  height: 24px;
+  color: #666667;
+  fill: #666667;
+}
+
+div.filter span.filter-text {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+/* 글목록 */
+ul.post-wrapper {
+  margin-top: 28px;
+  row-gap: 1rem;
+  column-gap: 2.25rem;
+  display: grid;
+}
+
+ul.post-wrapper li.post:first-child {
+  padding-top: 8px;
+  border-width: 0;
+  padding-bottom: 0;
+  border-color: #f3f3f4;
+}
+
+ul.post-wrapper li.post {
+  padding-bottom: 0;
+  padding-top: 20px;
+  border-top-width: 1px;
+  border-color: #f3f3f4;
+}
+
+ul.post-wrapper button.post-link {
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+
+ul.post-wrapper div.post-container {
+  column-gap: 16px;
+  display: flex;
+}
+
+ul.post-wrapper div.post-text {
+  display: flex;
+  word-break: break-all;
+  width: 100%;
+  flex-direction: column;
+}
+
+ul.post-wrapper div.tags {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 4px;
+  align-items: center;
+  width: fit-content;
+  display: flex;
+  margin-bottom: 8px;
+  background-color: #f2f0fc;
+}
+
+ul.post-wrapper svg.tag-image {
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+ul.post-wrapper span.tag-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+
+ul.post-wrapper h2.post-title {
+  display: block;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  overflow: hidden;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #333334;
+  fill: #333334;
+}
+
+ul.post-wrapper p.post-content {
+  display: block;
+  margin-top: 6px;
+  word-break: break-word;
+  word-wrap: break-word;
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  height: 36px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+ul.post-wrapper div.post-image {
+  width: 102px;
+  height: 102px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+ul.post-wrapper span.post-thumbnail {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+ul.post-wrapper img.thumbnail-image {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 8px;
+}
+
+ul.post-wrapper div.post-writer {
+  align-items: center;
+  display: flex;
+  margin-top: 12px;
+}
+
+ul.post-wrapper div.writer-profile-image {
+  width: 18px;
+  height: 18px;
+  background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
+      center center / cover no-repeat,
+    rgb(255, 255, 255);
+  box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
+}
+
+ul.post-wrapper div.writer-info {
+  column-gap: 2px;
+  align-items: center;
+  display: flex;
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+ul.post-wrapper div.writer-name {
+  max-width: 100%;
+  overflow: hidden;
+  word-break: break-all;
+  color: #333334;
+  fill: #333334;
+}
+
+ul.post-wrapper svg.writer-line {
+  width: 8px;
+  height: 8px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+ul.post-wrapper span.write-info {
+  flex-shrink: 0;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+/* 필터 모달 */
+div.filter-modal {
+  transform: translate(-50%, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+  width: 100%;
+  z-index: 20;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  position: fixed;
+}
+
+div.filter-modal div.category-select {
+  padding-top: 27px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  width: 100%;
+  z-index: 20;
+  bottom: 0;
+  position: absolute;
+  background-color: #fff;
+}
+
+div.filter-modal div.filter-blur {
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+div.filter-modal div.category-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 351px;
+  padding-bottom: 16px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 328px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.filter-modal h4.category-title {
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+div.filter-modal div.category-tag-container {
+  row-gap: 10px;
+  column-gap: 8px;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+div.filter-modal label.category-tag {
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-width: 1px;
+  border-radius: 33px;
+  cursor: pointer;
+  position: relative;
+  border-color: #7e69fe;
+}
+
+div.filter-modal input.category-input {
+  opacity: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+div.filter-modal span.category-tag-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+div.filter-modal button.category-apply {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 24px;
+  justify-content: center;
+  align-items: center;
+  min-width: 88px;
+  width: 100%;
+  height: 48px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #1d1d1e;
+}
