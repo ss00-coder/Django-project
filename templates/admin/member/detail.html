@@ -17,7 +17,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../static/image/admin/foreign-us.png">
+                    <img src="../../../static/image/login/foreign-us.-logo.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -51,12 +51,11 @@
                         <section class="board-info-box-layout">
                             <div class="board-info-box board-info-box-flex">
                                 <div class="board-info-title-box">
-                                    <span>회원 정보</span>
+                                    <span>👤 회원 정보</span>
                                 </div>
                                 <div class="modify-button-box">
                                     <a>
-                                        <img src="../../../static/image/admin/gear_icon.png"
-                                            class="gear-icon">
+                                        <span>⚙️</span>
                                         <a>수정</a>
                                     </a>
                                 </div>
@@ -65,7 +64,6 @@
                             <div class="board-info-box">
                                 <div class="member-img-box">
                                     <div class="member-img">
-
                                     </div>
                                     <div class="member-nickname-box">
                                         <span>닉네임123</span>
@@ -197,22 +195,4 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script th:inline="javascript">
-    const memberDTO = [['${memberDTO}']];
-
-    const fileDTO = memberDTO.fileDTO;
-    let text = '';
-
-    if (fileDTO == undefined || fileDTO == null) {
-        text = `
-                    <img style="width: 100%; object-fit: cover; height="100%;" src="../../../../static/image/admin/normal_profile.png">
-        `;
-    }else {
-        text = `
-                      <img style="width: 100%; object-fit: cover; height="100%;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}">
-                  `;
-    }
-    $(".member-img").append(text);
-
-</script>
 </html>

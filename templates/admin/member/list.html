@@ -17,7 +17,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../static/image/admin/foreign-us.png">
+                    <img src="../../../static/image/login/foreign-us.-logo.png">
                 </div>
                 <!-- <div class="logo-title">
                     <span>Jar</span>
@@ -48,7 +48,7 @@
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>회원정보 목록</span>
+                                <span>👤 회원정보 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -67,11 +67,11 @@
                                             <th>가입 날짜</th>
                                         </tr>
                                     </thead>
-                                    <tr th:each="memberDTO : ${memberDTOS}">
+                                    <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" class="memberCheckbox" name="check" th:value="${memberDTO.id}">
+                                            <input type="checkbox" class="memberCheckbox" name="check">
                                         </td>
-                                        <td th:text="${memberDTO.id}">
+                                        <td>
                                             1
                                         </td>
                                         <td class="member_type is_active" th:text="${memberDTO.memberStatus}">
@@ -79,14 +79,14 @@
                                             <hr>
                                         </td>
                                         <td>
-                                            <a th:href="@{detail/{id}(id=${memberDTO.id})}" th:text="${memberDTO.memberEmail}">
+                                            <a>
                                                 ljs1234@gmail.com
                                             </a> <!-- 디테일 컨트롤러 제작하고 연결  -->
                                         </td>
-                                        <td th:text="${memberDTO.memberName}">ljs1234</td>
-                                        <td th:text="${memberDTO.memberNickname}">ljs1234</td>
-                                        <td th:text="${memberDTO.memberPhoneNumber}">01012341234</td>
-                                        <td th:text="${#temporals.format(memberDTO.createdDate, 'yyyy-MM-dd')}"></td>
+                                        <td>임수현</td>
+                                        <td>lsh1234</td>
+                                        <td>01012341234</td>
+                                        <td>2023/08/09</td>
                                     </tr>
                                 </table>
                             </div>
@@ -97,23 +97,45 @@
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
                             <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="../../../../static/image/admin/left_icon.png" class="left-button">
+                            <div class="page-button-box-layout">
+                                <div class="page-button-box">
+                                    <!-- 페이지 번호 -->
+                                    <div class="">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <img src="../../../../static/image/admin/left_icon.png"
+                                                    class="left-button">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
-                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
-                                    <span class="page-button" th:text="${num}"></span>
-                                </a>
-                                <div style="width: 2px;"></div>
-                            </th:block>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="../../../../static/image/admin/right_icon.png" class="right-button">
+                                    <div class="page-button-active page-button">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <span>1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="page-button">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <span>2</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="page-button">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <span>3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <img src="../../../../static/image/admin/right_icon.png"
+                                                    class="right-button">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +148,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../../../static/js/admin/board_proposal.js"></script>
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/page.js"></script>
 <script src="/js/admin/sidemenu.js"></script>

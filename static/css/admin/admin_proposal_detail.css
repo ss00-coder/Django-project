@@ -13,7 +13,7 @@
 
 .board-info-box-layout {
 	border: 0.0625rem solid #f2f2f2;
-    box-shadow: 11px 13px 11px -14px grey;
+    box-shadow: 11px 13px 11px -14px rgb(0, 0, 0);
     background: #fff;
 }
 
@@ -96,7 +96,7 @@ hr {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	background-image: url('/image/admin/nomal_person_icon.png');
+	background-image: url('../../../static/image/admin/nomal_person_icon.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
@@ -161,11 +161,8 @@ div.margin span {
 
 .modify-button-box {
 	padding: 20px 27px 15px;
-	font-size: 12px;
-    font-weight: 400;
+	font-size: 14px;
+	font-weight: 400;
 	position: relative;
 }
 
-.gear-icon {
-	width: 10px;	
-}

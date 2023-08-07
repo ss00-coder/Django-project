@@ -43,7 +43,7 @@ button {
 	bottom: 0;
 	z-index: 99;
 	width: 250px;
-	background-color: #d6802a;
+	background-color: #fb8d1f;
 }
 
 .side-menu div ul li:hover:not(.active) {
@@ -111,7 +111,7 @@ button {
 }
 
 .menu-title-layout {
-	margin: 8px 18px 0px 85px;
+	margin: 8px 18px 0px 48px;
 }
 
 .menus2,
@@ -122,7 +122,7 @@ button {
 .menu-name {
 	color: #fff;
 	font-size: 20px;
-	margin-top: 6px;
+	margin-top: 12px;
 	font-weight: bold;
 }
 
