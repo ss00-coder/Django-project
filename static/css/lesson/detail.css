@@ -104,8 +104,8 @@ button {
 div.main-content {
   padding-top: 16px;
   padding-bottom: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 main.main {
@@ -114,7 +114,7 @@ main.main {
   min-width: 320px;
   width: 100%;
   display: flex;
-  margin-left: auto;
+  margin-left: 200px;
   margin-right: auto;
   position: relative;
   background-color: #fff;
@@ -232,10 +232,11 @@ main div.image-wrapper img {
   height: auto;
 }
 
-main section.writer-detail-info {
+/* 글 작성자 */
+section.writer-detail-info {
   padding-top: 32px;
   padding-bottom: 32px;
-  border-top-width: 1px;
+  /* border-top-width: 1px; */
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
@@ -245,7 +246,7 @@ main section.writer-detail-info {
   border-color: #f3f3f4;
 }
 
-main button.writer-detail-profile {
+button.writer-detail-profile {
   box-shadow: 0 0 #0000, 0 0 #0000, 0px -2px 20px rgba(0, 0, 0, 0.08);
   border-width: 0.8px;
   border-radius: 9999px;
@@ -257,7 +258,7 @@ main button.writer-detail-profile {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-main span.writer-detail-profile-wrapper {
+span.writer-detail-profile-wrapper {
   box-sizing: border-box;
   display: block;
   overflow: hidden;
@@ -272,7 +273,7 @@ main span.writer-detail-profile-wrapper {
   inset: 0px;
 }
 
-main span.writer-detail-profile-wrapper img {
+span.writer-detail-profile-wrapper img {
   position: absolute;
   inset: 0px;
   box-sizing: border-box;
@@ -290,7 +291,7 @@ main span.writer-detail-profile-wrapper img {
   object-position: center center;
 }
 
-main div.writer-introduce {
+div.writer-introduce {
   padding-left: 40px;
   padding-right: 40px;
   gap: 4px;
@@ -298,15 +299,14 @@ main div.writer-introduce {
   display: flex;
 }
 
-main div.writer-introduce button {
+div.writer-introduce button {
   text-align: center;
   font-weight: 700;
   font-size: 17px;
   line-height: 24px;
 }
 
-main div.writer-introduce p {
-  width: 404px;
+div.writer-introduce p {
   text-align: center;
   word-break: break-all;
   font-weight: 400;
@@ -316,7 +316,7 @@ main div.writer-introduce p {
   fill: #8a8a8b;
 }
 
-main div.writer-button-wrapper {
+div.writer-button-wrapper {
   white-space: nowrap;
   gap: 8px;
   align-items: center;
@@ -324,7 +324,7 @@ main div.writer-button-wrapper {
   display: flex;
 }
 
-main div.writer-button-wrapper div.lesson {
+div.writer-button-wrapper div.lesson {
   height: 32px;
   display: flex;
   margin-left: auto;
@@ -335,7 +335,7 @@ main div.writer-button-wrapper div.lesson {
   line-height: 18px;
 }
 
-main button.lesson-button {
+button.lesson-button {
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 16px;
@@ -352,18 +352,18 @@ main button.lesson-button {
   background-color: #1d1d1e;
 }
 
-main button.lesson-button .lesson-text {
+button.lesson-button .lesson-text {
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
-main button.lesson-button .lesson-text svg {
+button.lesson-button .lesson-text svg {
   flex-shrink: 0;
   margin-right: 4px;
 }
 
-main div.hosting {
+div.hosting {
   height: 32px;
   display: flex;
   margin-left: auto;
@@ -374,7 +374,7 @@ main div.hosting {
   line-height: 18px;
 }
 
-main button.hosting-button {
+button.hosting-button {
   font-weight: 700;
   padding-left: 16px;
   padding-right: 16px;
@@ -389,13 +389,13 @@ main button.hosting-button {
   background-color: #fff;
 }
 
-main div.hosting-text {
+div.hosting-text {
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
-main div.hosting-text svg {
+div.hosting-text svg {
   flex-shrink: 0;
   margin-right: 4px;
 }
@@ -479,41 +479,41 @@ main div.comment-write-profile {
   position: relative;
 }
 
-main div.comment-write-profile span.profile-icon{
+main div.comment-write-profile span.profile-icon {
   box-sizing: border-box;
-    display: block;
-    overflow: hidden;
-    width: initial;
-    height: initial;
-    background: none;
-    opacity: 1;
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
-    position: absolute;
-    inset: 0px;
-}
-
-main div.comment-write-profile span.profile-icon img{
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
   position: absolute;
-    inset: 0px;
-    box-sizing: border-box;
-    padding: 0px;
-    border: none;
-    margin: auto;
-    display: block;
-    width: 0px;
-    height: 0px;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 9999px;
+  inset: 0px;
 }
 
-main span.comment-placeholder{
+main div.comment-write-profile span.profile-icon img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 9999px;
+}
+
+main span.comment-placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
@@ -901,7 +901,7 @@ footer div.post-footer-wrapper {
 
 footer div.post-footer-container {
   justify-content: space-between;
-  width: 720px;
+  width: 1000px;
   display: flex;
 }
 
