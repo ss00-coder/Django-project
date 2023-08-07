@@ -16,11 +16,9 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../static/image/admin/foreign-us.png">
+                    <img src="../../../static/image/login/foreign-us.-logo.png">
                 </div>
-                <div class="logo-title">
-                    <span>Jar</span>
-                </div>
+                <div class="logo-title"></div>
             </div>
             <div>
                 <div class="select-name">
@@ -29,7 +27,204 @@
             </div>
         </div>
         <div class="wrap">
-
+					<div th:fragment="sidebar">
+						<div id="side-bar">
+							<div class="side-menu">
+								<div>
+									<div class="menu-title-layout">
+										<div class="menu-title">
+											<div class="menu-name">MENU</div>
+										</div>
+									</div>
+									<ul class="menu-bar">
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/notice_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a>
+													<span>공지사항 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus2 menus" style="display: none">
+												<li class="select-menu">
+													<a>
+														<span>공지사항 목록</span>
+													</a>
+												</li>
+												<li class="select-menu">
+													<a>
+														<span>공지사항 작성</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/user_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a>
+													<span>회원정보 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus2 menus" style="display: none">
+												<li class="select-menu">
+													<a>
+														<span>회원 목록</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+			
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/board_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a href="">
+													<span>과외목록 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus1 menus" style="display: none">
+												<!-- <li class="select-menu">
+																			<a href="adminPage-boardList.jsp">
+																					<span>전체 게시판</span>
+																			</a>
+																	</li> -->
+												<li class="select-menu">
+													<a>
+														<span>과외 상세보기</span>
+													</a>
+												</li>
+												<li class="select-menu">
+													<a>
+														<span>과외 수정/삭제</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+			
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/notice_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a>
+													<span>헬퍼스 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus2 menus" style="display: none">
+												<li class="select-menu">
+													<a>
+														<span>헬퍼스목록 상세보기</span>
+													</a>
+												</li>
+												<li class="select-menu">
+													<a>
+														<span>헬퍼스목록 수정/삭제</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/notice_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a>
+													<span>이벤트목록 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus2 menus" style="display: none">
+												<li class="select-menu">
+													<a>
+														<span>이벤트 상세보기</span>
+													</a>
+												</li>
+												<li class="select-menu">
+													<a>
+														<span>이벤트 수정/삭제</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li class="menu">
+											<div class="menu-flex">
+												<div>
+													<img
+														src="../../../../static/image/admin/notice_icon.png"
+														class="icon"
+													/>
+												</div>
+												<a>
+													<span>1:1문의 관리</span>
+												</a>
+												<div class="triangle-button">
+													<img
+														src="../../../../static/image/admin/arrow_icon.png"
+														class="icon triangle-icon triangle"
+													/>
+												</div>
+											</div>
+											<ul class="menus2 menus" style="display: none">
+												<li class="select-menu">
+													<a>
+														<span>답변 작성</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
             <!-- 사이드 바 -->
             <div th:replace="~{admin/side_bar :: sidebar}"></div>
 
@@ -39,7 +234,7 @@
 					<div style="margin: 0 auto;width: 70%;">
 						<div class="prev-button-layout">
 							<div>
-								<a th:href="@{/admin/member/detail/{id}(id=${memberDTO.id})}">
+								<a>
 									<img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
 									<span class="prev-title">회원정보로 돌아가기</span>
 								</a>
@@ -50,7 +245,7 @@
 							<section class="board-info-box-layout" style="width: 100%;">
 								<div class="board-info-box">
 									<div class="board-info-title-box">
-										<span>회원 정보</span>
+										<span>👤 회원 정보</span>
 									</div>
 								</div>
 								<hr>
@@ -63,32 +258,32 @@
 											<span class="info-tag">이름</span>
 											<!-- 이름 -->
 											<div class="info info-name">
-												<span th:text="${memberDTO.memberName}"></span>
+												<span></span>
 											</div>
 										</div>
-										<form th:action="@{/admin/member/modify/{id}(id=${memberDTO.id})}" method="post">
+										<form method="post">
 											<div class="member-info-tag-box">
 												<span class="info-tag">이메일</span>
 												<div class="info">
-													<input type="text" class="member-email" name="memberEmail" th:value="${memberDTO.memberEmail}">
+													<input type="text" class="member-email" name="memberEmail" >
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">닉네임</span>
 												<div class="info">
-													<input type="text" class="member-nickname" name="memberNickname" th:value="${memberDTO.memberNickname}">
+													<input type="text" class="member-nickname" name="memberNickname">
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">핸드폰 번호</span>
 												<div class="info">
-													<input type="text" class="member-phone" name="memberPhoneNumber" th:value="${memberDTO.memberPhoneNumber}">
+													<input type="text" class="member-phone" name="memberPhoneNumber">
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">유저 상태</span>
 												<div class="info">
-													<input type="text" class="member-status" name="memberStatus" th:value="${memberDTO.memberStatus}">
+													<input type="text" class="member-status" name="memberStatus">
 												</div>
 											</div>
 											<div class="button-box">
