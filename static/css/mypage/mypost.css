@@ -1,0 +1,381 @@
+*, :after, :before {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+}
+
+menu, ol, ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  line-height: inherit;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+.wrap-screen-flex {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 58px;
+  top: 0;
+  left: 0;
+  padding: 0 32px;
+  z-index: 20;
+  position: sticky;
+  background-color: #1d1d1e;
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-container > a > svg{
+  width: 96px;
+  color: #fff;
+  fill: #fff;
+}
+
+.header-logo-line {
+  margin: 0 10px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+  fill: #fff;
+}
+
+.header-logo-teacherStudio {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #fff;
+  fill: #fff;
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header-profile-pos {
+  position: relative;
+}
+
+.header-profile-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: #e6e6e7;
+  position: relative;
+}
+
+.header-profile-btn-span {
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+.header-profile-btn-span > img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 9999px;
+}
+
+#main {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+.side-nav {
+  flex-basis: 260px;
+  border-width: 1px;
+  border-color: #e6e6e7;
+  background-color: #fafafb;
+  position: relative;
+}
+
+.side-nav-top {
+  padding-bottom: 28px;
+  padding-top: 40px;
+  margin: 0 32px;
+  border-bottom-width: 1px;
+  border-color: rgba(0,0,0,.06);
+}
+
+.side-nav-top-flex {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.side-nav-top-nickname {
+  margin: 0 0 12px 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.side-nav-top-mypage-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  padding: 0 15px;
+  border-width: 1px;
+  border-radius: 16px;
+  border-style: solid;
+  border-color: rgba(0,0,0,.1);
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #333334;
+  fill: #333334;
+  background-color: #fff;
+}
+
+.side-nav-top-mypage-btn:hover{
+  background-color: rgba(0, 0, 0, .05);
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.side-nav-top-mypage-btn-flex {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.side-nav-top-mypage-btn-flex > svg {
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.side-nav-bottom {
+  padding: 32px 24px;
+}   
+
+.side-nav-bottom-item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.side-nav-bottom-item:hover {
+  background-color: #f2f0fc;
+}
+
+.side-nav-bottom-item-active {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background-color: #f2f0fc;
+}
+
+.side-nav-bottom-item-a {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.side-nav-bottom-item-a > svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  color: #333334;
+  fill: #333334;
+  display: block;
+}
+
+.side-nav-bottom-item-a > span {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
+}
+
+.side-nav-bottom-item-a > svg:last-child {
+  position: relative;
+  left: 45px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  height: 16px;
+  width: 16px;
+}
+
+.side-nav-bottom-item-a-active {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.side-nav-bottom-item-a-active > svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  color: #7e69fe;
+  fill: #7e69fe;
+}
+
+.side-nav-bottom-item-a-active > span {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+
+/* 작성 글 목록 */
+.mypost {
+  overflow-x: auto;
+  flex-basis: 0px;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.mypost-grid {
+  display: grid;
+  row-gap: 0;
+  column-gap: 16px;
+  grid-template-columns: repeat(12,minmax(0,1fr));
+  width: 944px;
+  padding-bottom: 64px;
+  margin: 0 auto;
+}
+
+.mypost-grid-container {
+  grid-column: 1/-1;
+}
+
+/* <div class="mypost-grid-top">
+  <header>
+      <h1>포스트</h1>
+      <div class="mypost-grid-top-create">
+        <button class="mypost-grid-top-create-btn */
+
+.mypost-grid-top {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.mypost-grid-top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 0 0 0;
+}
+
+.mypost-grid-top-header-h1 {
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.mypost-grid-top-create-btn {
+  background-color: #1d1d1e;
+  color: #fff;
+  fill: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  position: relative;
+  display: flex;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  padding: 0 16px;
+}
+
+.mypost-grid-top-create-btn:hover {
+  background-color: #000000;
+}
+
