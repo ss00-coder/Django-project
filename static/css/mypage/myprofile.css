@@ -554,12 +554,6 @@ p.mypage-grid-imgicon-explanation {
 }
 
 
-/* "mypage-grid-introduce">
-                            <div>
-                                <label class="mypage-grid-introduce-label">
-                                    <input type="text" value="" placeholder="한 줄 소개를 입력해주세요.">
-                                </label> */
-
 .mypage-grid-introduce {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -620,6 +614,15 @@ p.mypage-grid-imgicon-explanation {
     border-radius: 8px;
     border: 1px solid #e6e6e7;
     background-color: bisque;
+}
+
+.mypage-grid-details-input {
+    text-align: center;
+    width: 544px;
+    height: 350px;
+    border-radius: 8px;
+    border: 1px solid #e6e6e7;
+    outline: none;
 }
 
 
