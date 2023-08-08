@@ -38,7 +38,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a th:href="@{/admin/board/notice/list}">
+                            <a>
                                 <img style="top: 2px;" src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -49,22 +49,22 @@
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>공지사항 수정하기</span>
+                                <span>💞 헬퍼스 수정하기</span>
                             </div>
                             <div class="info-table">
-                                <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
+                                <form>
                                     <div>
                                         <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
-                                               autocomplete="off" th:value="${noticeDTO.noticeTitle}">
+                                               autocomplete="off">
                                     </div>
                                     <hr>
                                     <div>
                                         <textarea class="board-content" name="noticeContent"
-                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
+                                                  placeholder="내용을 입력해주세요."></textarea>
                                     </div>
                                     <hr>
-                                    <div>
-                                        <button class="btn_done">수정 완료</button>
+                                    <div class="btn-done-pos">
+                                        <button class="btn_done">변경</button>
                                     </div>
                                 </form>
 

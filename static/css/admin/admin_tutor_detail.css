@@ -2,19 +2,29 @@
 
 .container {
 	width: 100%;
-	margin-left: 250px;
 	margin-top: 55px;
 }
 
 .info-flex {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 .board-info-box-layout {
 	border: 0.0625rem solid #f2f2f2;
-    box-shadow: 14px 14px 13px -13px rgb(0, 0, 0);
+    box-shadow: 11px 13px 32px -14px rgb(0, 0, 0);
     background: #fff;
+}
+
+.select-name {
+	padding-top: 17px;
+	padding-left: 5px;
+}
+
+.select-name span {
+	color: white;
+	padding-top: 17px;
+	padding-left: 5px;
 }
 
 .logo-box{
@@ -35,7 +45,8 @@
 .info-title-box {
 	width: 100%;
 	height: 55px;
-	background: #000000;;
+	border-radius: 3px;
+	background: #000000;
 	box-shadow: 11px 13px 11px -14px grey;
 }
 
@@ -53,7 +64,6 @@
 	font-weight: bold;
 }
 
-
 .select-name {
 	padding-top : 17px;
 	padding-left: 5px;
@@ -65,16 +75,42 @@
 	padding-left: 5px;
 }
 
+.member-img-box-wrap{
+  display: flex;
+  justify-content: space-between;
+}
 
-.container-margin {
-	margin-top: 40px;
+.member-names{
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.teacher-name{
+  padding-left: 30px;
+}
+
+.teacher{
+  padding-left: 21px;
+}
+
+.student-name{
+  padding-right: 115px;
+}
+
+.student{
+  padding-right: 85px;
 }
 
 
+.container-margin {
+	margin: 40px 250px 0px;
+}
+
 .board-info-box-layout {
-	margin-top: 30px;	
-	min-width: 450px;
-	max-width: 500px;
+  width: 44%;
+  min-width: 251px;
+  margin-top: 30px;
 }
 
 .prev-button-layout {
@@ -114,10 +150,11 @@ hr {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	background-image: url('../../../static/image/admin/logo/normal_profile.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
+	background-image:url(../../image/profile_icon.png);
+	opacity: 20%;
 }
 
 .member-nickname-box {
@@ -130,7 +167,7 @@ hr {
 }
 
 .member-info-box {
-	margin : 50px;
+	margin: 32px;
 }
 
 .member-info-tag-box {
@@ -142,41 +179,48 @@ hr {
 	color: #c1c1c1;
 }
 
-div.info-name {
-	margin-top: 0px;
-}
-
-.info {
-	margin-top : 10px;
+.info span {
+	font-size: 13px;
+	font-weight: bold;
 }
 
 .member-info {
-	margin : 20px;	
+	margin: 28px;
 }
 
-input {
-	font-family: 'GmarketSansMedium';
-	outline: none;
-	border: none;
-	width: 50%;
-	border-bottom: 1px solid #c1c1c1;
-	height: 20px;
-	font-size: 15px;
+div.margin {
+	margin-top : 50px;	
 }
 
-button {
-	font-family: 'GmarketSansMedium';
-	width: 100px;
-	height: 30px;
-	background-color: #000000;
-	font-size: 15px;
-	font-weight: bold;
-	color: #fff;
-	border: none; 
-	cursor: pointer;
+div.margin span {
+	font-size: 14px;
 }
 
-.button-box {
-	text-align: right;
-	margin-top: 10px;
+.write-count-box {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.count {
+	padding-left : 15px;
+}
+
+.board-info-box-layout2 {
+	height: fit-content;
+}
+
+.board-info-box-flex {
+	display: flex;
+	justify-content: space-between;
+}
+
+.modify-button-box {
+	padding: 20px 27px 15px;
+	font-size: 12px;
+    font-weight: 400;
+	position: relative;
+}
+
+.gear-icon {
+	width: 10px;	
 }

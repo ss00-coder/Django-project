@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 개인 챌린지 게시판 목록</title>
+    <title>관리자 페이지- 과외 매칭 목록</title>
     <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="../../../../static/css/admin/admin_board.css">
@@ -18,7 +18,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="/image/logo/logo.png">
+                    <img src="../../../../static/image/admin/foreign-us.-logo.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>개인 챌린지 게시판 관리</span>
+                    <span>과외 매칭 관리</span>
                 </div>
             </div>
         </div>
@@ -40,8 +40,15 @@
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
                         <div class="delete-box">
-                            <button class="delete-button" style="font-size: 14px">선택 게시물 삭제</button>
+                            <button class="delete-button" style="font-size: 14px">선택 매칭 삭제</button>
                         </div>
+                    </div>
+                    <!-- 검색 창 -->
+                    <div class="search-box-wrap">
+                        <input type="text" placeholder="검색어 입력" class="search-box">
+                        <button type="button" class="search-button">
+                            <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                        </button>
                     </div>
 
                     <!-- 내용 섹션 -->
@@ -49,7 +56,7 @@
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>개인 챌린지 게시판 목록</span>
+                                <span>✏️ 과외 매칭 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -60,27 +67,47 @@
                                                 <input type="checkbox" id="allSelect">
                                             </th>
                                             <th>No</th>
-                                            <th>챌린지 타입</th>
-                                            <th style="font-size: 14px;font-weight: bold">게시판 제목</th>
-                                            <th>작성 날짜</th>
+                                            <th>언어</th>
+                                            <th style="font-size: 14px;font-weight: bold">과외 선생님</th>
+                                            <th>과외 개시 날짜</th>
                                             <th>상태</th>
                                         </tr>
                                     </thead>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             1
                                         </td>
-                                        <td>개인</td>
+                                        <td>영어</td>
                                         <td>
                                             <a style="font-size: 15px;">
-                                                게시판 제목
+                                                김혜빈
                                             </a>
                                         </td>
                                         <td>
-                                            2023.04.23 10:55
+                                            2023.08.02 10:12
+                                        </td>
+                                        <td>
+                                            진행중
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="checkbox-line">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
+                                        </td>
+                                        <td class="noticeId">
+                                            2
+                                        </td>
+                                        <td>일본어</td>
+                                        <td>
+                                            <a style="font-size: 15px;">
+                                                오주연
+                                            </a>
+                                        </td>
+                                        <td>
+                                            2023.08.09 20:12
                                         </td>
                                         <td>
                                             진행중
@@ -127,7 +154,7 @@
                             <div class="">
                                 <div class="page-button-margin">
                                     <div>
-                                        <img src="/image/admin/left_icon.png"
+                                        <img src="../../../../static/image/admin/left_icon.png"
                                             class="left-button">
                                     </div>
                                 </div>
@@ -156,7 +183,7 @@
                             <div class="">
                                 <div class="page-button-margin">
                                     <div>
-                                        <img src="/image/admin/right_icon.png"
+                                        <img src="../../../../static/image/admin/right_icon.png"
                                             class="right-button">
                                     </div>
                                 </div>
