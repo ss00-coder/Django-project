@@ -56,11 +56,14 @@ button {
 }
 
 .menu-bar .menu .menu-flex {
-	font-size: 14px;
+	font-size: 15px;
 	color: #fff;
 	display: flex;
+	height: 63px;
+	text-align: center;
 	justify-content: flex-start;
-	margin: 39px 45px 10px;
+	margin: 13px 45px 10px;
+	align-items: center;
 }
 
 .menus .select-menu {
