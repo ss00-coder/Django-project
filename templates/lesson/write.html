@@ -20,7 +20,7 @@
           <div>
             <div class="logo-wrapper">
               <a href="">
-                <svg viewBox="0 0 115 16" xmlns="http://www.w3.org/2000/svg" class="logo-image">
+                <!-- <svg viewBox="0 0 115 16" xmlns="http://www.w3.org/2000/svg" class="logo-image">
                   <path
                     fill-rule="evenodd"
                     clip-rule="evenodd"
@@ -29,7 +29,10 @@
                   <path
                     d="M21.96 15.796h9.232A15.592 15.592 0 0 0 .059 14.55c-.011.116-.019.234-.027.351v.105c-.013.21-.022.423-.022.637v.154h9.957c0-2.987-2.228-5.412-4.978-5.412a4.755 4.755 0 0 0-3.41 1.473c1.051-1.346 2.63-2.203 4.395-2.203 3.165 0 5.725 2.75 5.725 6.142h7.562v-.154c0-5.7-4.31-10.321-9.629-10.321a9.085 9.085 0 0 0-4.62 1.266 10.976 10.976 0 0 1 16.949 9.21v-.003Z"
                   ></path>
-                </svg>
+                </svg> -->
+                <!-- <img src="/static/image/white-logo.svg" alt=""> -->
+                <!-- <svg viewBox="0 0 115 16"></svg> -->
+                <img height="45px" class="logo-image" src="/static/image/white-logo.png" alt="">
               </a>
               <div class="line">|</div>
               <div class="my-page-text">
@@ -95,17 +98,19 @@
           <section class="info-wrapper">
             <div class="info">
               <div class="sub-title">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center">
                   <strong class="sub-title-text">게시판 선택</strong>
                 </div>
               </div>
               <div class="info-content">
                 <ul>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position:relative; display: flex;">
-                      <input type="radio" id="lesson" checked>
+                    <label for="lesson" style="position: relative; display: flex">
+                      <input type="radio" id="lesson" checked />
                       <div class="radio-button">
-                        <svg class="active" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="4"></circle></svg>
+                        <svg class="active" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="4" cy="4" r="4"></circle>
+                        </svg>
                       </div>
                       <div class="board-type">
                         <div class="board-type-text">과외 매칭</div>
@@ -113,10 +118,12 @@
                     </label>
                   </li>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position:relative; display: flex;">
-                      <input type="radio" id="lesson" checked>
+                    <label for="lesson" style="position: relative; display: flex">
+                      <input type="radio" id="lesson" checked />
                       <div class="radio-button">
-                        <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="4"></circle></svg>
+                        <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="4" cy="4" r="4"></circle>
+                        </svg>
                       </div>
                       <div class="board-type">
                         <div class="board-type-text">헬퍼스</div>
@@ -124,10 +131,12 @@
                     </label>
                   </li>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position:relative; display: flex;">
-                      <input type="radio" id="lesson" checked>
+                    <label for="lesson" style="position: relative; display: flex">
+                      <input type="radio" id="lesson" checked />
                       <div class="radio-button">
-                        <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="4"></circle></svg>
+                        <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="4" cy="4" r="4"></circle>
+                        </svg>
                       </div>
                       <div class="board-type">
                         <div class="board-type-text">이벤트</div>
@@ -137,7 +146,7 @@
                 </ul>
               </div>
               <div class="sub-title">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center">
                   <strong class="sub-title-text">태그</strong>
                 </div>
               </div>
@@ -146,29 +155,39 @@
                   <div style="width: 100%; margin-top: 24px">
                     <div>
                       <label class="tag-label" for="tag-input">
-                        <input placeholder="포스트의 키워드를 태그로 입력하세요." id="tag-input" type="text">
+                        <input
+                          placeholder="포스트의 키워드를 태그로 입력하세요."
+                          id="tag-input"
+                          type="text"
+                        />
                       </label>
                       <div class="tag-explain">
-                        <div class="tag-explain-text">최대 10개, 1개당 20자까지 입력할 수 있습니다.</div>
+                        <div class="tag-explain-text">
+                          최대 10개, 1개당 20자까지 입력할 수 있습니다.
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <ul style="display: flex; flex-wrap: wrap;">
+                <ul style="display: flex; flex-wrap: wrap">
                   <li class="tag-wrapper">
                     <span class="tag-text">태그 예시</span>
                     <button type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"></path></svg>
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"
+                        ></path>
+                      </svg>
                     </button>
                   </li>
                 </ul>
               </div>
               <div class="sub-title">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center">
                   <strong class="sub-title-text">파일 첨부</strong>
                 </div>
                 <label class="file-upload-label" for="file-upload">
-                  <input style="display: none;" type="file" id="file-upload">
+                  <input style="display: none" type="file" id="file-upload" />
                   업로드
                 </label>
               </div>
