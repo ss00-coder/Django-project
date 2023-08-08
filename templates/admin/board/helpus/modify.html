@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 헬퍼스 수정</title>
+    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal_modify.css">
+    <link rel="icon" href="../../../../static/image/logo/favicon.png">
+</head>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="../../../../static/image/admin/foreign-us.-logo.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>헬퍼스 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a>
+                                <img style="top: 2px;" src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>💞 헬퍼스 수정하기</span>
+                            </div>
+                            <div class="info-table">
+                                <form>
+                                    <div>
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
+                                               autocomplete="off">
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <textarea class="board-content" name="noticeContent"
+                                                  placeholder="내용을 입력해주세요."></textarea>
+                                    </div>
+                                    <hr>
+                                    <div class="btn-done-pos">
+                                        <button class="btn_done">변경</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+<script src="/js/admin/challenge_type.js">
+    let btn_type = $($('button.select_challenge_type')[0]);
+    btn_type.on('click', e => {
+        
+    });
+</script>
+
+</html>

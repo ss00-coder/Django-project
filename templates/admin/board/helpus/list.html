@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 다이어리 게시판 목록</title>
+    <title>관리자 페이지- 헬퍼스 목록</title>
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="../../../../static/css/admin/admin_board.css">
     <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal.css">
@@ -17,7 +17,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/logo.png">
+                    <img src="../../../../static/image/admin/foreign-us.-logo.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -25,7 +25,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>다이어리 게시판 관리</span>
+                    <span>헬퍼스 관리</span>
                 </div>
             </div>
         </div>
@@ -42,13 +42,20 @@
                             <button class="delete-button">선택 게시물 삭제</button>
                         </div>
                     </div>
-
+                    
+                    <!-- 검색 창 -->
+                    <div class="search-box-wrap">
+                        <input type="text" placeholder="검색어 입력" class="search-box">
+                        <button type="button" class="search-button">
+                            <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                        </button>
+                    </div>
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>다이어리 게시판 목록</span>
+                                <span>💞 헬퍼스 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -59,14 +66,14 @@
                                                 <input type="checkbox" id="allSelect">
                                             </th>
                                             <th>No</th>
-                                            <th>게시판 제목</th>
-                                            <th>작성자 명</th>
-                                            <th>작성 날짜</th>
+                                            <th>헬퍼스 제목</th>
+                                            <th>헬퍼 요청자</th>
+                                            <th>신청 날짜</th>
                                         </tr>
                                     </thead>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             1
@@ -85,10 +92,10 @@
                                     </tr>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
-                                            1
+                                            2
                                         </td>
                                         <td>
                                             <a href="">
@@ -104,7 +111,7 @@
                                     </tr>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             3
@@ -205,8 +212,8 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/checkbox.js"></script>
-<script src="/js/admin/board_proposal.js"></script>
-<script src="/js/admin/sidemenu.js"></script>
+<script src="../../../../static/js/admin/checkbox.js"></script>
+<script src="../../../../static/js/admin/board_proposal.js"></script>
+<script src="../../../../static/js/admin/sidemenu.js"></script>
 
 </html>

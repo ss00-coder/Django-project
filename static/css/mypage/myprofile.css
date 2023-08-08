@@ -659,21 +659,6 @@ p.mypage-grid-imgicon-explanation {
     grid-column-end: span 7;   
 }
 
-.mypage-grid-details-test {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:  darksalmon;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 20px;
-    width: 544px;
-    height: 350px;
-    border-radius: 8px;
-    border: 1px solid #e6e6e7;
-    background-color: bisque;
-}
-
 .mypage-grid-details-input {
     text-align: center;
     width: 544px;
@@ -683,6 +668,15 @@ p.mypage-grid-imgicon-explanation {
     outline: none;
 }
 
+
+.mypage-grid-details-input {
+    text-align: center;
+    width: 544px;
+    height: 350px;
+    border-radius: 8px;
+    border: 1px solid #e6e6e7;
+    outline: none;
+}
 
 .mypage-grid-sns {
     padding: 40px 0 40px 0;

@@ -14,7 +14,7 @@ hr {
 
 .board-info-box {
 	border: 0.0625rem solid #f2f2f2;
-	box-shadow: 11px 13px 11px -14px grey;
+	box-shadow: 11px 13px 11px -8px black;
 	background: #fff;
 	/* min-height: 500px; */
 }
@@ -43,14 +43,34 @@ hr {
 	padding: 20px 27px 15px;
 }
 
+
+
 .board-info-title-box {
 	font-size: 15px;
 	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	;
 }
 
 .select-name {
-	padding-top: 20px;
+	padding-top : 17px;
 	padding-left: 5px;
+}
+
+.select-name span {
+	color: white;
+	padding-top: 17px;
+	padding-left: 5px;
+}
+
+.logo-box{
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: 54px;
+	height: 49px;
+	width: 58px;
 }
 
 .container-margin {
@@ -107,11 +127,16 @@ textarea {
 	margin: 6px 0px;
 }
 
+.btn-done-pos{
+	display: flex;
+	justify-content: end;
+}
+
 .info-table button.btn_done {
 	font-family: 'GmarketSansMedium';
 	width: 100px;
 	height: 30px;
-	background-color: #4F6DF5;
+	background-color: #000000;
 	font-size: 15px;
 	font-weight: bold;
 	color: #fff;
@@ -244,3 +269,16 @@ input[type='date'] {
 .board_info span {
 	font-size: 12px;
 }
+
+.checkbox{
+	background-color: orange;
+}
+
+
+.modify-button-box {
+	font-size: 12px;
+	font-weight: 400;
+	position: relative;
+	cursor: pointer;
+}
+

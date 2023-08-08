@@ -43,7 +43,7 @@ button {
 	bottom: 0;
 	z-index: 99;
 	width: 250px;
-	background-color: #fb8d1f;
+	background-color: #000000;
 }
 
 .side-menu div ul li:hover:not(.active) {
@@ -56,11 +56,14 @@ button {
 }
 
 .menu-bar .menu .menu-flex {
-	font-size: 14px;
+	font-size: 15px;
 	color: #fff;
 	display: flex;
+	height: 63px;
+	text-align: center;
 	justify-content: flex-start;
-	margin: 39px 45px 10px;
+	margin: 13px 45px 10px;
+	align-items: center;
 }
 
 .menus .select-menu {
