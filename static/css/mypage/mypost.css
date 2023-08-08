@@ -379,3 +379,77 @@ body {
   background-color: #000000;
 }
 
+/* "mypost-grid-top-posts">
+  <ul class="mypost-grid-top-posts-items">
+    <li class="c">
+      <button
+        class="mypost-grid-top-posts-item-btn"
+        type="button"
+      >
+        <div style="display: flex">
+          <p class="mypost-grid-top-posts-title">헬퍼스</p>
+          <div class="mypost-grid-top-posts-count">
+            <p class="mypost-grid-top-posts-count-p">3</p> */
+
+.mypost-grid-top-posts {
+  margin: 26px 0 0 0;
+}
+
+.mypost-grid-top-posts-items {
+  border-color: rgba(0,0,0,.1);
+  display: flex;
+  height: 36px;
+  column-gap: 20px;
+  border-bottom-width: 1px;
+}
+
+.mypost-grid-top-posts-item {
+  position: relative;
+}
+
+.mypost-grid-top-posts-item-btn {
+  color: #b9b9bb;
+  fill: #b9b9bb;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  text-align: left;
+  position: relative;
+  height: 100%;
+  padding: 0 0 16px;
+}
+
+.mypost-grid-top-posts-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.mypost-grid-top-posts-count {
+  background-color: #f3f3f4;
+  margin: 0 0 0 8px;
+  border-radius: 25px;
+  padding: 2px 8px;
+}
+
+.mypost-grid-top-posts-count-p {
+  margin: 0;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+
+.set-text {
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.set-underline {
+  background-color: #1d1d1e;
+  position: absolute;
+  bottom: -1.5px;
+  height: 2px;
+  width: 100%;
+}
