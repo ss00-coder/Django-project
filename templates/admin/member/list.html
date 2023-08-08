@@ -32,6 +32,209 @@
         <div class="wrap">
 
             <!-- 사이드 바 -->
+            <div th:fragment="sidebar">
+                <div id="side-bar">
+                  <div class="side-menu">
+                    <div>
+                      <div class="menu-title-layout">
+                        <div class="menu-title">
+                          <div class="menu-name">MENU</div>
+                        </div>
+                      </div>
+                      <ul class="menu-bar">
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/notice_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a>
+                              <span>공지사항 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus2 menus" style="display: none">
+                            <li class="select-menu">
+                              <a>
+                                <span>공지사항 목록</span>
+                              </a>
+                            </li>
+                            <li class="select-menu">
+                              <a>
+                                <span>공지사항 작성</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/user_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a>
+                              <span>회원정보 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus2 menus" style="display: none">
+                            <li class="select-menu">
+                              <a>
+                                <span>회원 상세보기</span>
+                              </a>
+                            </li>
+                            <li class="select-menu">
+                              <a>
+                                <span>회원정보 수정/삭제</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+          
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/board_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a href="">
+                              <span>과외목록 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus1 menus" style="display: none">
+                            <!-- <li class="select-menu">
+                                          <a href="adminPage-boardList.jsp">
+                                              <span>전체 게시판</span>
+                                          </a>
+                                      </li> -->
+                            <li class="select-menu">
+                              <a>
+                                <span>과외 상세보기</span>
+                              </a>
+                            </li>
+                            <li class="select-menu">
+                              <a>
+                                <span>과외 수정/삭제</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+          
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/notice_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a>
+                              <span>헬퍼스 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus2 menus" style="display: none">
+                            <li class="select-menu">
+                              <a>
+                                <span>헬퍼스목록 상세보기</span>
+                              </a>
+                            </li>
+                            <li class="select-menu">
+                              <a>
+                                <span>헬퍼스목록 수정/삭제</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/notice_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a>
+                              <span>이벤트목록 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus2 menus" style="display: none">
+                            <li class="select-menu">
+                              <a>
+                                <span>이벤트 상세보기</span>
+                              </a>
+                            </li>
+                            <li class="select-menu">
+                              <a>
+                                <span>이벤트 수정/삭제</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li class="menu">
+                          <div class="menu-flex">
+                            <div>
+                              <img
+                                src="../../../../static/image/admin/notice_icon.png"
+                                class="icon"
+                              />
+                            </div>
+                            <a>
+                              <span>1:1문의 관리</span>
+                            </a>
+                            <div class="triangle-button">
+                              <img
+                                src="../../../../static/image/admin/arrow_icon.png"
+                                class="icon triangle-icon triangle"
+                              />
+                            </div>
+                          </div>
+                          <ul class="menus2 menus" style="display: none">
+                            <li class="select-menu">
+                              <a>
+                                <span>답변 작성</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <div th:replace="~{admin/side_bar :: sidebar}"></div>
 
             <div class="container">
