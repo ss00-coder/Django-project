@@ -129,7 +129,7 @@ header div.logo-wrapper {
   display: flex;
 }
 
-header svg.logo-image {
+header .logo-image {
   display: block;
   width: 96px;
   color: #fff;

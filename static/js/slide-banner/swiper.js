@@ -1,13 +1,13 @@
-
 var swiper = new Swiper(".mySwiper", {
-
   slidesPerView: 3,
   spaceBetween: 10,
   centeredSlides: true,
   loop: true,
+  autoplayDisableOnInteraction: false,
 
   autoplay: {
     delay: 4000,
+    disableOnInteraction: false,
   },
 
   pagination: {
@@ -29,16 +29,16 @@ var swiper = new Swiper(".mySwiper", {
           return number;
 
         case 5:
-          return number = 1;
+          return (number = 1);
 
         case 6:
-          return number = 2;
+          return (number = 2);
 
         case 7:
-          return number = 3;
+          return (number = 3);
 
         case 8:
-          return number = 4;
+          return (number = 4);
       }
     },
     formatFractionTotal: function (number) {
@@ -46,10 +46,16 @@ var swiper = new Swiper(".mySwiper", {
     },
 
     renderFraction: function (currentClass, totalClass) {
-      return '<span class="' + currentClass + '"></span>'
-        + "<span style='color: hsla(0,0%,100%,.8); font-weight: 400; font-size: 13px; line-height: 18px; margin-left: 2px'>/</span>"
-        + '<span class="' + totalClass + '"></span>';
-    }
+      return (
+        '<span class="' +
+        currentClass +
+        '"></span>' +
+        "<span style='color: hsla(0,0%,100%,.8); font-weight: 400; font-size: 13px; line-height: 18px; margin-left: 2px'>/</span>" +
+        '<span class="' +
+        totalClass +
+        '"></span>'
+      );
+    },
   },
 
   navigation: {
@@ -58,7 +64,7 @@ var swiper = new Swiper(".mySwiper", {
   },
 });
 
-var subswiper = new Swiper('.subSwiper', {
+var subswiper = new Swiper(".subSwiper", {
   slidesPerView: 5,
   spaceBetween: 10,
 
@@ -69,13 +75,17 @@ var subswiper = new Swiper('.subSwiper', {
 
   on: {
     slideChange: function () {
-      this.realIndex <= 0 ? $('.swiper-sub-button-prev').hide() : $('.swiper-sub-button-prev').css('display','flex');
-      this.realIndex >= 10 ? $('.swiper-sub-button-next').hide() : $('.swiper-sub-button-next').css('display','flex');
-    }
-  }
+      this.realIndex <= 0
+        ? $(".swiper-sub-button-prev").hide()
+        : $(".swiper-sub-button-prev").css("display", "flex");
+      this.realIndex >= 10
+        ? $(".swiper-sub-button-next").hide()
+        : $(".swiper-sub-button-next").css("display", "flex");
+    },
+  },
 });
 
-var thirdswiper = new Swiper('.thirdSwiper', {
+var thirdswiper = new Swiper(".thirdSwiper", {
   slidesPerView: 5,
   spaceBetween: 10,
 
@@ -86,13 +96,17 @@ var thirdswiper = new Swiper('.thirdSwiper', {
 
   on: {
     slideChange: function () {
-      this.realIndex <= 0 ? $('.swiper-third-button-prev').hide() : $('.swiper-third-button-prev').css('display','flex');
-      this.realIndex >= 10 ? $('.swiper-third-button-next').hide() : $('.swiper-third-button-next').css('display','flex');
-    }
-  }
+      this.realIndex <= 0
+        ? $(".swiper-third-button-prev").hide()
+        : $(".swiper-third-button-prev").css("display", "flex");
+      this.realIndex >= 10
+        ? $(".swiper-third-button-next").hide()
+        : $(".swiper-third-button-next").css("display", "flex");
+    },
+  },
 });
 
-var fourthswiper = new Swiper('.fourthSwiper', {
+var fourthswiper = new Swiper(".fourthSwiper", {
   slidesPerView: 5,
   spaceBetween: 10,
 
@@ -103,50 +117,40 @@ var fourthswiper = new Swiper('.fourthSwiper', {
 
   on: {
     slideChange: function () {
-      this.realIndex <= 0 ? $('.swiper-fourth-button-prev').hide() : $('.swiper-fourth-button-prev').css('display','flex');
-      this.realIndex >= 10 ? $('.swiper-fourth-button-next').hide() : $('.swiper-fourth-button-next').css('display','flex');
-    }
-  }
+      this.realIndex <= 0
+        ? $(".swiper-fourth-button-prev").hide()
+        : $(".swiper-fourth-button-prev").css("display", "flex");
+      this.realIndex >= 10
+        ? $(".swiper-fourth-button-next").hide()
+        : $(".swiper-fourth-button-next").css("display", "flex");
+    },
+  },
 });
-
-
 
 let subCount = 0;
 let thirdCount = 0;
 let fourthCount = 0;
 
-$('.swiper-sub-button-prev').on('click', () => {
-  subswiper.slideTo(subCount -=5 ,400,false)
-})
+$(".swiper-sub-button-prev").on("click", () => {
+  subswiper.slideTo((subCount -= 5), 400, false);
+});
 
-$('.swiper-sub-button-next').on('click', () => {
-  subswiper.slideTo(subCount +=5 ,400,false)
-})
+$(".swiper-sub-button-next").on("click", () => {
+  subswiper.slideTo((subCount += 5), 400, false);
+});
 
+$(".swiper-third-button-prev").on("click", () => {
+  thirdswiper.slideTo((thirdCount -= 5), 400, false);
+});
 
-$('.swiper-third-button-prev').on('click', () => {
-  thirdswiper.slideTo(thirdCount -=5 ,400,false)
-})
+$(".swiper-third-button-next").on("click", () => {
+  thirdswiper.slideTo((thirdCount += 5), 400, false);
+});
 
-$('.swiper-third-button-next').on('click', () => {
-  thirdswiper.slideTo(thirdCount +=5 ,400,false)
-})
+$(".swiper-fourth-button-prev").on("click", () => {
+  fourthswiper.slideTo((fourthCount -= 5), 400, false);
+});
 
-$('.swiper-fourth-button-prev').on('click', () => {
-  fourthswiper.slideTo(fourthCount -=5 ,400,false)
-})
-
-$('.swiper-fourth-button-next').on('click', () => {
-  fourthswiper.slideTo(fourthCount +=5 ,400,false)
-})
-
-
-
-
-
-
-
-
-
-
-
+$(".swiper-fourth-button-next").on("click", () => {
+  fourthswiper.slideTo((fourthCount += 5), 400, false);
+});
