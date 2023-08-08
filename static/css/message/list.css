@@ -396,6 +396,10 @@ div.main-content li.message {
   border-color: #f3f3f4;
 }
 
+div.main-content li.message:hover{
+  background-color: #fafafb;
+}
+
 div.main-content button.content-wrapper {
   text-align: left;
   width: 280px;

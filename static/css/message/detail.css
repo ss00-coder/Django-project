@@ -1,0 +1,320 @@
+body {
+  margin: 0;
+  line-height: inherit;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  background-color: transparent;
+  background-image: none;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: list-item;
+}
+
+[role='button'],
+button {
+  cursor: pointer;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.main-content {
+  overflow-x: auto;
+  flex-basis: 0px;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+div.main-content-grid {
+  padding-bottom: 64px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  row-gap: 0;
+  column-gap: 16px;
+  width: 944px;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.main-content div.content-wrapper {
+  grid-column: 1/-1;
+}
+
+div.main-content div.content-container {
+  z-index: 10;
+  top: 0;
+  position: sticky;
+  background-color: #fff;
+}
+
+div.main-content div.top-wrapper {
+  padding-top: 41px;
+  padding-bottom: 16px;
+  border-bottom-width: 1px;
+  grid-column: 1/-1;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 및 답장 버튼 */
+
+div.main-content div.title-wrapper {
+  justify-content: space-between;
+  display: flex;
+  padding-bottom: 26px;
+}
+
+div.main-content div.title-wrapper h3 {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 40px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+div.main-content div.title-wrapper button.to-list {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-style: solid;
+  border-width: 1px;
+  justify-content: center;
+  border-radius: 20px;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #333334;
+  fill: #333334;
+  background-color: #fff;
+}
+
+div.main-content div.title-wrapper button.write {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 20px;
+  justify-content: center;
+  height: 40px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #1d1d1e;
+}
+
+/* 작성자 및 시간 */
+div.main-content div.write-info-wrapper {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+div.main-content div.write-info {
+  white-space: nowrap;
+  column-gap: 10px;
+  align-items: center;
+  display: flex;
+}
+
+div.main-content div.write-info div.profile {
+  width: 34px;
+  height: 34px;
+  background: rgb(255, 255, 255);
+  border-radius: 9999px;
+  position: relative;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+div.main-content div.write-info div.profile img {
+  border-radius: 9999px;
+}
+
+div.main-content div.write-info a.writer {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333334;
+  fill: #333334;
+}
+
+div.main-content div.write-info div.time-wrapper {
+  align-items: center;
+  display: flex;
+  margin-top: 2px;
+}
+
+div.main-content div.write-info div.time {
+  align-items: center;
+  display: flex;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+div.main-content div.write-info div.time svg {
+  width: 8px;
+  height: 8px;
+  margin-left: 2px;
+  margin-right: 2px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+/* 내용 */
+div.main-content div.content-wrapper {
+  border-bottom-width: 1px;
+}
+
+div.main-content div.content {
+  padding: 32px 10px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+}
+
+div.main-content div.content p {
+  margin-bottom: 15px;
+}
+
+div.main-content div.image-wrapper {
+  margin: 0 0 24px 0;
+  width: 500px;
+  height: 500px;
+}
