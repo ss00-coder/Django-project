@@ -13,9 +13,74 @@
     <title>Document</title>
   </head>
   <body>
-    <div>
+    <div style="position: relative">
       <!-- 헤더 -->
       <header></header>
+      <!-- 사이드 바 -->
+      <div style="z-index: 10; position: absolute; right: 460px; top: 100px;">
+        <section class="writer-detail-info" style="position: fixed; background-color: #f3f3f44d; border: 1px solid #b9b9bb59; border-radius: 10px;">
+          <div>
+            <button class="writer-detail-profile">
+              <span class="writer-detail-profile-wrapper">
+                <img
+                  src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F58b04467-0a9c-4aaf-8986-716a09f9afa9%2FprofileImage%2Fef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
+                  alt=""
+                />
+              </span>
+            </button>
+          </div>
+          <div style="width: 260px;">
+            <div class="writer-introduce">
+              <button>글 작성자 이름임당~!</button>
+              <p>글 작성자 한줄소개임당~!!~!!!!</p>
+            </div>
+          </div>
+          <div class="writer-button-wrapper">
+            <div class="lesson">
+              <div>
+                <button type="button" class="lesson-button">
+                  <div class="lesson-text">
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="16px"
+                      width="16px"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"
+                      ></path>
+                    </svg>
+                    <div>과외 신청</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+            <div class="hosting">
+              <div>
+                <button type="button" class="hosting-button">
+                  <div class="hosting-text">
+                    <svg
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      height="16px"
+                      width="16px"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"
+                      ></path>
+                    </svg>
+                    <div>호스팅 신청</div>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       <!-- 메인 -->
       <div class="main-content">
         <main class="main">
@@ -72,16 +137,23 @@
                 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이
                 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~
                 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이
-                들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~
+                들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
+                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~
               </p>
               <p>&nbsp;</p>
-              <p>&nbsp;</p>
-            </div>
-            <div style="width: 380px">
-              <div style="height: 32px"></div>
             </div>
           </div>
-          <section class="writer-detail-info">
+          <!-- 글 작성자 -->
+          <!-- <section class="writer-detail-info">
             <div>
               <button class="writer-detail-profile">
                 <span class="writer-detail-profile-wrapper">
@@ -142,7 +214,7 @@
                 </div>
               </div>
             </div>
-          </section>
+          </section> -->
           <div style="border-top-width: 1px; border-color: #e6e6e7"></div>
           <div style="height: 28px"></div>
           <!-- 댓글 -->
@@ -343,6 +415,18 @@
                 </div>
               </li>
             </ul>
+            <div class="more-post-wrapper">
+              <button class="more-button" type="button">
+                더보기
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="more-icon">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="m20.023 11.886-7 7a.9.9 0 0 1-1.273-1.273l4.827-4.827H5.15a.9.9 0 0 1 0-1.8h11.427L11.75 6.16a.9.9 0 1 1 1.273-1.273l7 7Z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
           </div>
           <div style="height: 40px"></div>
           <div style="border-top-width: 1px; border-color: #e6e6e7"></div>
@@ -1122,7 +1206,7 @@
                       d="M8.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM10.667 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM13.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0Z"
                     ></path>
                   </svg>
-                  <span class="left-num">14</span>
+                  <span class="left-num">5</span>
                 </button>
               </div>
             </div>
