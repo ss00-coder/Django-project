@@ -183,6 +183,64 @@ body {
     flex-direction: column;
 }
 
+.side-nav-top-profile-icon {
+    margin: 0 0 12px 0;
+}
+
+.side-nav-top-profile-icon-btn {
+    position: relative;  
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 9999px;
+    width: 68px;
+    height: 68px;
+}
+
+.side-nav-top-profile-icon-img {
+    display: block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    inset: 0px;
+}
+
+.side-nav-top-profile-icon-img > img{
+    border-radius: 9999px;
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.side-nav-top-profile-icon-border {
+    border-color: rgba(0,0,0,.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    border-width: 1px;
+}
+
 .side-nav-top-nickname {
     margin: 0 0 12px 0;
     text-align: center;
