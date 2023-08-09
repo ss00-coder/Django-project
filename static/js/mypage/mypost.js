@@ -13,6 +13,7 @@ const $modal = $(".mypost-modal");
 const $cancel = $(".mypost-modal-no");
 const $agree = $(".mypost-modal-yes");
 const $post_list = $(".mypost-grid-items");
+const $post_list_next = $(".mypost-grid-items-next");
 
 $post_btn.on("click", function () {
   if (!$(this).attr("class").includes("set-text")) {
@@ -20,6 +21,7 @@ $post_btn.on("click", function () {
     $helpers.toggle();
     $event.toggle();
     $post_list.toggle();
+    $post_list_next.toggle();
     $.each($list_count, (i, list) => {
       if (
         $(list.parentElement.parentElement.parentElement)

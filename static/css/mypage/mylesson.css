@@ -47,7 +47,10 @@ html {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
-  font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-family: Pretendard, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
   height: 100%;
 }
 
@@ -87,7 +90,7 @@ body {
   align-items: center;
 }
 
-.header-logo-container>a>svg {
+.header-logo-container > a > svg {
   width: 96px;
   color: #fff;
   fill: #fff;
@@ -144,7 +147,7 @@ body {
   inset: 0px;
 }
 
-.header-profile-btn-span>img {
+.header-profile-btn-span > img {
   position: absolute;
   inset: 0px;
   box-sizing: border-box;
@@ -169,7 +172,6 @@ body {
   overflow: hidden;
 }
 
-
 .side-nav {
   flex-basis: 260px;
   border-width: 1px;
@@ -183,7 +185,7 @@ body {
   padding-top: 40px;
   margin: 0 32px;
   border-bottom-width: 1px;
-  border-color: rgba(0, 0, 0, .06);
+  border-color: rgba(0, 0, 0, 0.06);
 }
 
 .side-nav-top-flex {
@@ -220,7 +222,7 @@ body {
   inset: 0px;
 }
 
-.side-nav-top-profile-icon-img>img {
+.side-nav-top-profile-icon-img > img {
   border-radius: 9999px;
   position: absolute;
   inset: 0px;
@@ -240,7 +242,7 @@ body {
 }
 
 .side-nav-top-profile-icon-border {
-  border-color: rgba(0, 0, 0, .1);
+  border-color: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 0;
   left: 0;
@@ -269,7 +271,7 @@ body {
   border-width: 1px;
   border-radius: 16px;
   border-style: solid;
-  border-color: rgba(0, 0, 0, .1);
+  border-color: rgba(0, 0, 0, 0.1);
   position: relative;
   font-weight: 600;
   font-size: 14px;
@@ -280,7 +282,7 @@ body {
 }
 
 .side-nav-top-mypage-btn:hover {
-  background-color: rgba(0, 0, 0, .05);
+  background-color: rgba(0, 0, 0, 0.05);
   border-color: rgba(0, 0, 0, 0);
 }
 
@@ -290,7 +292,7 @@ body {
   justify-items: center;
 }
 
-.side-nav-top-mypage-btn-flex>svg {
+.side-nav-top-mypage-btn-flex > svg {
   flex-shrink: 0;
   margin-left: 4px;
 }
@@ -328,7 +330,7 @@ body {
   flex-grow: 1;
 }
 
-.side-nav-bottom-item-a>svg {
+.side-nav-bottom-item-a > svg {
   width: 24px;
   height: 24px;
   margin-right: 10px;
@@ -337,7 +339,7 @@ body {
   display: block;
 }
 
-.side-nav-bottom-item-a>span {
+.side-nav-bottom-item-a > span {
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
@@ -345,7 +347,7 @@ body {
   fill: #333334;
 }
 
-.side-nav-bottom-item-a>svg:last-child {
+.side-nav-bottom-item-a > svg:last-child {
   position: relative;
   left: 45px;
   color: #8a8a8b;
@@ -360,7 +362,7 @@ body {
   flex-grow: 1;
 }
 
-.side-nav-bottom-item-a-active>svg {
+.side-nav-bottom-item-a-active > svg {
   width: 24px;
   height: 24px;
   margin-right: 10px;
@@ -368,14 +370,13 @@ body {
   fill: #7e69fe;
 }
 
-.side-nav-bottom-item-a-active>span {
+.side-nav-bottom-item-a-active > span {
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
   color: #1d1d1e;
   fill: #1d1d1e;
 }
-
 
 /* 작성 글 목록 */
 .mypost {
@@ -398,7 +399,6 @@ body {
 .mypost-grid-container {
   grid-column: 1/-1;
 }
-
 
 .mypost-grid-top {
   position: sticky;
@@ -443,13 +443,12 @@ body {
   background-color: #000000;
 }
 
-
 .mypost-grid-top-posts {
   margin: 26px 0 0 0;
 }
 
 .mypost-grid-top-posts-items {
-  border-color: rgba(0, 0, 0, .1);
+  border-color: rgba(0, 0, 0, 0.1);
   display: flex;
   height: 36px;
   column-gap: 20px;
@@ -493,7 +492,6 @@ body {
   line-height: 16px;
 }
 
-
 .set-text {
   color: #1d1d1e;
   fill: #1d1d1e;
@@ -507,7 +505,6 @@ body {
   height: 2px;
   width: 100%;
 }
-
 
 .mypost-grid-top-posts-select {
   display: flex;
@@ -539,7 +536,7 @@ body {
 
 .mypost-grid-top-posts-select-upload-btn {
   background-color: #fff;
-  border-color: rgba(0, 0, 0, .1);
+  border-color: rgba(0, 0, 0, 0.1);
   display: flex;
   height: 32px;
   max-width: 164px;
@@ -549,7 +546,7 @@ body {
   padding: 8px 16px;
 }
 
-.mypost-grid-top-posts-select-upload-btn>span {
+.mypost-grid-top-posts-select-upload-btn > span {
   color: #333334;
   fill: #333334;
   font-weight: 500;
@@ -560,13 +557,12 @@ body {
   white-space: nowrap;
 }
 
-.mypost-grid-top-posts-select-upload-btn>svg {
+.mypost-grid-top-posts-select-upload-btn > svg {
   margin: 0 0 0 4px;
   width: 10px;
   height: 10px;
   flex-shrink: 0;
 }
-
 
 .mypost-grid-top-posts-select-upload-set-box {
   display: none;
@@ -578,14 +574,12 @@ body {
   max-width: 280px;
 }
 
-.mypost-grid-top-posts-select-upload-set-box>ul {
-  box-shadow: 0px 1px 0px rgba(0,0,0,.08),0px 2px 6px rgba(0,0,0,.16);
+.mypost-grid-top-posts-select-upload-set-box > ul {
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
   background-color: #fff;
   border-radius: 8px;
   padding: 8px;
 }
-
-
 
 .mypost-upload-set-box {
   background-color: #fff;
@@ -613,6 +607,13 @@ body {
   flex-direction: column;
 }
 
+.mypost-grid-items-next {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  display: none;
+}
+
 .mypost-grid-item {
   border-color: #f3f3f4;
   display: flex;
@@ -634,7 +635,7 @@ body {
   row-gap: 2px;
 }
 
-.mypost-grid-item-flex>div {
+.mypost-grid-item-flex > div {
   display: flex;
   flex-direction: row;
   gap: 2px;
@@ -650,7 +651,6 @@ body {
   margin: 0;
 }
 
-
 .mypost-grid-item-content {
   color: #8a8a8b;
   fill: #8a8a8b;
@@ -665,10 +665,34 @@ body {
 }
 
 .mypost-grid-item-info {
-  margin: 0 0 0 120px;
+  margin: 0 0 0 30px;
   display: flex;
   align-items: center;
-  column-gap: 40px;
+  column-gap: 30px;
+}
+
+.mypost-grid-item-info-type {
+  display: flex;
+  width: 56px;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 4px;
+}
+
+.mypost-grid-item-info-type-name {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin: 0;
+}
+
+.mypost-grid-item-info-type-set {
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0;
 }
 
 .mypost-grid-item-info-views {
@@ -694,7 +718,6 @@ body {
   line-height: 18px;
   margin: 0;
 }
-
 
 .mypost-grid-item-info-date {
   display: flex;
@@ -722,7 +745,7 @@ body {
   border-width: 1px;
 }
 
-.mypost-grid-item-edit-update-btn>svg {
+.mypost-grid-item-edit-update-btn > svg {
   color: #333334;
   fill: #333334;
   height: 20px;
@@ -741,7 +764,7 @@ body {
   border-width: 1px;
 }
 
-.mypost-grid-item-edit-delete-btn>svg {
+.mypost-grid-item-edit-delete-btn > svg {
   color: #333334;
   fill: #333334;
   width: 20px;
@@ -770,7 +793,7 @@ body {
   border-radius: 16px;
   border-width: 1px;
   padding: 32px;
-  box-shadow: 0px 1px 0px rgba(0,0,0,.08),0px 2px 6px rgba(0,0,0,.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
 }
 
 .mypost-modal-message {
@@ -844,7 +867,7 @@ body {
 }
 
 .mypost-modal-background {
-  background-color: rgba(0,0,0,.4);
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
   left: 0;
