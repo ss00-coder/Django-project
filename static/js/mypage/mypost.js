@@ -69,4 +69,3 @@ $(document).click((e) => {
     $modal.show();
   }
 });
-console.log("asd");
