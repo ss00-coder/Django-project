@@ -668,8 +668,6 @@ p.mypage-grid-imgicon-explanation {
     outline: none;
 }
 
-<<<<<<< HEAD
-
 .mypage-grid-details-input {
     text-align: center;
     width: 544px;
@@ -679,11 +677,6 @@ p.mypage-grid-imgicon-explanation {
     outline: none;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> 0f17b40917309c86879711d637729536b232f8b7
-=======
->>>>>>> 0f17b40917309c86879711d637729536b232f8b7
 .mypage-grid-sns {
     padding: 40px 0 40px 0;
     grid-column-start: 6;
@@ -783,12 +776,6 @@ p.mypage-grid-imgicon-explanation {
     font-size: 13px;
     line-height: 18px;
 }
-
-/* mypage-grid-thumbnail-bottom">
-                                        <div style="margin: 0 0 12px 0;">
-                                            <div>
-                                                <label class="mypage-grid-thumbnail-bottom-label"> */
-
 
 .mypage-grid-thumbnail-bottom {
     display: flex;
