@@ -1,0 +1,1113 @@
+/* lesson/detail.html */
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  border: 0 solid #e5e7eb;
+}
+
+html {
+  height: 100%;
+  line-height: 1.5;
+  tab-size: 4;
+  font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji,
+    Segoe UI Symbol, Noto Color Emoji;
+  display: block;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+  height: 100%;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+blockquote,
+dd,
+dl,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+pre {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+menu,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+embed,
+iframe,
+img,
+object,
+svg,
+video {
+  display: block;
+  vertical-align: middle;
+}
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+[role='button'],
+button {
+  cursor: pointer;
+}
+
+[type='button'],
+[type='reset'],
+[type='submit'],
+button {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* 메인 */
+div.main-content {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+main.main {
+  flex-direction: column;
+  max-width: 720px;
+  min-width: 320px;
+  width: 100%;
+  display: flex;
+  margin-left: 200px;
+  margin-right: auto;
+  position: relative;
+  background-color: #fff;
+}
+
+main h3.title {
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 34px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+main div.post-info {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+main div.info-left {
+  white-space: nowrap;
+  column-gap: 10px;
+  align-items: center;
+  display: flex;
+}
+
+main div.info-left div.profile-image {
+  width: 34px;
+  height: 34px;
+  background: url(https://steadio.imgix.net/profiles/58b04467-0a9c-4aaf-8986-716a09f9afa9/profileImage/ef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg?auto=format%2Ccompress&h=300&lossless=true&w=300)
+      center center / cover no-repeat,
+    rgb(255, 255, 255);
+  box-shadow: 0 0 #0000, 0 0 #0000, 0px -2px 20px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  flex-shrink: 0;
+  border-radius: 9999px;
+}
+
+main div.info-left a.writer {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18px;
+  color: #333334;
+  fill: #333334;
+}
+
+main div.info-left div.remain {
+  align-items: center;
+  display: flex;
+  margin-top: 2px;
+}
+
+main div.info-left svg.dot {
+  width: 8px;
+  height: 8px;
+  margin-left: 4px;
+  margin-right: 4px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+main div.info-left p.public {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+main div.info-left div.sub-info {
+  align-items: center;
+  display: flex;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+main div.info-right {
+  gap: 12px;
+  display: flex;
+}
+
+main div.message {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+main div.post-content {
+  padding-top: 32px;
+  border-top-width: 1px;
+  margin-top: 24px;
+  border-color: #f3f3f4;
+}
+
+main div.content-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  word-break: break-all;
+  color: #333334;
+  padding: 0;
+}
+
+main div.image-wrapper {
+  margin: 0 0 24px 0;
+}
+
+main div.image-wrapper img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 글 작성자 */
+section.writer-detail-info {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  /* border-top-width: 1px; */
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  border-color: #f3f3f4;
+}
+
+button.writer-detail-profile {
+  box-shadow: 0 0 #0000, 0 0 #0000, 0px -2px 20px rgba(0, 0, 0, 0.08);
+  border-width: 0.8px;
+  border-radius: 9999px;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  box-sizing: border-box;
+  position: relative;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+span.writer-detail-profile-wrapper {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+span.writer-detail-profile-wrapper img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+div.writer-introduce {
+  padding-left: 40px;
+  padding-right: 40px;
+  gap: 4px;
+  flex-direction: column;
+  display: flex;
+}
+
+div.writer-introduce button {
+  text-align: center;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+div.writer-introduce p {
+  text-align: center;
+  word-break: break-all;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+div.writer-button-wrapper {
+  white-space: nowrap;
+  gap: 8px;
+  align-items: center;
+  flex-direction: row;
+  display: flex;
+}
+
+div.writer-button-wrapper div.lesson {
+  height: 32px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+button.lesson-button {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #1d1d1e;
+}
+
+button.lesson-button .lesson-text {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+button.lesson-button .lesson-text svg {
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+div.hosting {
+  height: 32px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+button.hosting-button {
+  font-weight: 700;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-width: 1px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+div.hosting-text {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+div.hosting-text svg {
+  flex-shrink: 0;
+  margin-right: 4px;
+}
+
+/* 댓글 */
+main h4.comment-title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #333334;
+  fill: #333334;
+}
+
+main div.comment-write-wrapper {
+  border-width: 1px;
+  border-radius: 8px;
+  border-color: #e6e6e7;
+}
+
+main div.comment-write {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+  overflow: hidden;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  background-color: #fafafb;
+}
+
+main div.comment-write-content {
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+main div.comment-write-content p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+main button.login-button {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #7e69fe;
+}
+
+main button.comment-write-with-login {
+  padding: 12px;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+main div.comment-write-profile {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+main div.comment-write-profile span.profile-icon {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+main div.comment-write-profile span.profile-icon img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 9999px;
+}
+
+main span.comment-placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+/* 글작성 textarea */
+main div.comment-textarea-wrapper {
+  padding: 16px;
+}
+
+main div.comment-textarea-profile-wrapper {
+  gap: 10px;
+  display: flex;
+}
+
+main button.comment-textarea-profile {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+main span.icon-container {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+main span.icon-container img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 9999px;
+}
+
+main div.comment-textarea-name {
+  gap: 4px;
+  align-items: center;
+  display: flex;
+}
+
+main div.comment-textarea-name div.name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+main div.comment-textarea-container {
+  flex-direction: column;
+  height: 100%;
+  display: flex;
+}
+
+main label.comment-textarea-label {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+}
+
+main textarea#comment-content {
+  height: 174px;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 8px;
+  width: 100%;
+  max-height: 88px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #333334;
+  fill: #333334;
+  background-color: #fff;
+  resize: none;
+}
+
+main textarea#comment-content::placeholder {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+main div.comment-textarea-button-wrapper {
+  gap: 10px;
+  justify-content: flex-end;
+  display: flex;
+}
+
+main div.comment-textarea-button-wrapper button.cancel-button {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #333334;
+  fill: #333334;
+  background-color: #fff;
+}
+
+main div.comment-textarea-button-wrapper button.write-button {
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+  fill: #fff;
+  background-color: #1d1d1e;
+}
+
+/* 댓글들 */
+
+main ul li.comment-wrapper {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  border-top-width: 1px;
+  border-color: #f3f3f4;
+}
+
+main ul li.comment-wrapper:first-child {
+  padding-top: 0;
+  border-top-width: 0;
+  padding-bottom: 23px;
+  border-color: #f3f3f4;
+}
+
+main ul div.comment {
+  gap: 10px;
+  display: flex;
+}
+
+main ul div.comment-profile {
+  flex-shrink: 0;
+}
+
+main ul button.comment-profile-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+main ul span.profile-icon {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+main ul span.profile-icon img {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 9999px;
+}
+
+main ul div.comment-content {
+  width: 100%;
+}
+
+main ul div.comment-writer {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+main ul div.comment-writer-name {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+main ul div.comment-text {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 4px;
+  color: #333334;
+  fill: #333334;
+}
+
+main ul div.comment-info {
+  display: flex;
+  gap: 13px;
+}
+
+main ul div.comment-time {
+  display: flex;
+  align-items: center;
+}
+
+main ul span.time-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+main ul button.recomment-button {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+/* 포스트 */
+h4.board-title-wrapper {
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+h4.board-title-wrapper div.board-title {
+  white-space: nowrap;
+  display: flex;
+}
+
+h4.board-title-wrapper div.board-title span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+ul.post-wrapper {
+  margin-top: 28px;
+  row-gap: 1rem;
+  column-gap: 2.25rem;
+  display: grid;
+  margin-bottom: 20px;
+}
+
+ul.post-wrapper li.post:first-child {
+  padding-top: 8px;
+  border-width: 0;
+  padding-bottom: 0;
+  border-color: #f3f3f4;
+}
+
+ul.post-wrapper li.post {
+  padding-bottom: 0;
+  padding-top: 20px;
+  border-top-width: 1px;
+  border-color: #f3f3f4;
+}
+
+ul.post-wrapper button.post-link {
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+
+ul.post-wrapper div.post-container {
+  column-gap: 16px;
+  display: flex;
+}
+
+ul.post-wrapper div.post-text {
+  display: flex;
+  word-break: break-all;
+  width: 100%;
+  flex-direction: column;
+}
+
+ul.post-wrapper div.tags {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 4px;
+  align-items: center;
+  width: fit-content;
+  display: flex;
+  margin-bottom: 8px;
+  background-color: #f2f0fc;
+}
+
+ul.post-wrapper svg.tag-image {
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+ul.post-wrapper span.tag-text {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+
+ul.post-wrapper h2.post-title {
+  display: block;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 24px;
+  overflow: hidden;
+  word-break: break-word;
+  word-wrap: break-word;
+  color: #333334;
+  fill: #333334;
+}
+
+ul.post-wrapper p.post-content {
+  display: block;
+  margin-top: 6px;
+  word-break: break-word;
+  word-wrap: break-word;
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+  height: 36px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+ul.post-wrapper div.post-image {
+  width: 102px;
+  height: 102px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+ul.post-wrapper span.post-thumbnail {
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+ul.post-wrapper img.thumbnail-image {
+  position: absolute;
+  inset: 0px;
+  box-sizing: border-box;
+  padding: 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  width: 0px;
+  height: 0px;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 8px;
+}
+
+ul.post-wrapper div.post-writer {
+  align-items: center;
+  display: flex;
+  margin-top: 12px;
+}
+
+ul.post-wrapper div.writer-profile-image {
+  width: 18px;
+  height: 18px;
+  background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
+      center center / cover no-repeat,
+    rgb(255, 255, 255);
+  box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
+}
+
+ul.post-wrapper div.writer-info {
+  column-gap: 2px;
+  align-items: center;
+  display: flex;
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+ul.post-wrapper div.writer-name {
+  max-width: 100%;
+  overflow: hidden;
+  word-break: break-all;
+  color: #333334;
+  fill: #333334;
+}
+
+ul.post-wrapper svg.writer-line {
+  width: 8px;
+  height: 8px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+ul.post-wrapper span.write-info {
+  flex-shrink: 0;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+div.more-post-wrapper {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+div.more-post-wrapper button.more-button {
+  padding-left: 15px;
+  padding-right: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  display: flex;
+  position: relative;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #333334;
+  fill: #333334;
+  background-color: #fff;
+}
+
+div.more-post-wrapper svg.more-icon {
+  height: 16px;
+  margin-left: 4px;
+  color: #5b44ea;
+  fill: #5b44ea;
+}
+
+/* 푸터 */
+footer.post-footer {
+  display: block;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+footer div.post-footer-wrapper {
+  padding: 16px;
+  border-top-width: 1px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0px -2px 20px rgba(0, 0, 0, 0.08);
+}
+
+footer div.post-footer-container {
+  justify-content: space-between;
+  width: 1000px;
+  display: flex;
+}
+
+footer div.footer-left-wrapper {
+  display: flex;
+}
+
+footer div.footer-left {
+  gap: 10px;
+  align-items: center;
+  display: flex;
+}
+
+footer button.left-icon {
+  gap: 4px;
+  align-items: center;
+  display: flex;
+}
+
+footer svg.left-icon-image {
+  width: 24px;
+  height: 24px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+footer span.left-num {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
+footer div.footer-right-wrapper {
+  gap: 20px;
+  align-items: center;
+  display: flex;
+}
+
+footer svg.right-arrow-image {
+  width: 24px;
+  height: 24px;
+  color: #333334;
+  fill: #333334;
+}
+
+footer svg.right-list-image {
+  width: 24px;
+  height: 24px;
+  color: #333334;
+  fill: #333334;
+}
