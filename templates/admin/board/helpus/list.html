@@ -37,18 +37,22 @@
             <div class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
-                    <div class="delete-box-layout">
-                        <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
-                        </div>
-                    </div>
                     
                     <!-- 검색 창 -->
                     <div class="search-box-wrap">
-                        <input type="text" placeholder="검색어 입력" class="search-box">
-                        <button type="button" class="search-button">
-                            <img src="../../../../static/image/admin/search-icon-black.png" alt="">
-                        </button>
+                        <div class="search-container">
+                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            <button type="button" class="search-button">
+                                <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                            </button>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="delete-box-layout">
+                                <div class="delete-box">
+                                    <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">

@@ -32,17 +32,8 @@ table {
 
 .board-info-box {
 	border: 0.0625rem solid #f2f2f2;
-	box-shadow: 11px 11px 13px -8px black;
-  background: #fff;
-}
-
-.logo-box{
-	display: flex;
-	justify-content: center;
-	position: absolute;
-	left: 54px;
-	height: 49px;
-	width: 58px;
+    box-shadow: 11px 13px 13px -12px rgb(0, 0, 0);
+    background: #fff;
 }
 
 .info-title-box-flex {
@@ -54,7 +45,7 @@ table {
 .info-title-box {
 	width: 100%;
 	height: 55px;
-	background: #000000;;
+	background: #000000;
 	box-shadow: 11px 13px 11px -14px grey;
 }
 
@@ -63,7 +54,13 @@ table {
 	padding: 20px;
 }
 
+#allSelect{
+	accent-color: orange;
+}
 
+.memberCheckbox{
+	accent-color: orange;
+}
 
 .board-info-title-box {
 	padding: 20px 27px 0;
@@ -72,12 +69,12 @@ table {
 .board-info-title-box {
 	font-size: 15px;
 	font-weight: bold;
-	display: flex;
-	justify-content: space-between;
 }
 
+
+
 .select-name {
-	padding-top : 17px;
+	padding-top: 17px;
 	padding-left: 5px;
 }
 
@@ -101,7 +98,6 @@ table {
 	font-weight: bold;
 	color: white;
 }
-
 
 /* 검색창 */
 .search-box-wrap{
@@ -151,6 +147,15 @@ table {
 	margin-top: 50px;
 }
 
+.logo-box{
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	left: 54px;
+	height: 49px;
+	width: 58px;
+}
+
 .page-button-box {
 	display: flex;
 	justify-content:center;
@@ -159,7 +164,7 @@ table {
 .page-button-active {
 	width: 20px;
 	height: 20px;
-	background-color: #000000;
+	background-color: #818298;
 	color : #fff;	
 	border-radius: 2px;	
 }
@@ -248,10 +253,44 @@ div#paging-wrap {
     margin-bottom: 30px;
 }
 
-#allSelect{
-	accent-color: orange;
+.page-button-box-layout {
+	text-align: center;	
+	margin-top: 50px;
 }
 
-.memberCheckbox{
-	accent-color: orange;
+.page-button-box {
+	display: flex;
+	justify-content:center;
 }
+
+.page-button-active {
+	width: 20px;
+	height: 20px;
+	background-color: #000000;
+	color : #fff;	
+	border-radius: 2px;	
+}
+
+.page-button {
+	width: 20px;
+	cursor: pointer;
+} 
+
+.page-button-box {
+	font-size: 13px;
+}
+
+.page-button-margin {
+	margin:0 auto;
+}
+
+
+/* td.member_inactive hr {
+	border-bottom: 4px solid gray;
+}
+td.member_out hr {
+	border-bottom: 4px solid rgb(255, 48, 25);
+}
+td.member_active hr {
+	border-bottom: 4px solid green;
+} */

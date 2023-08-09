@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 공지사항 게시판 수정</title>
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal_modify.css">
+    <link rel="stylesheet" href="../../../../static/css/admin/notice/admin_notice_edit.css">
     <link rel="icon" href="../../../../static/image/logo/favicon.png">
 </head>
 
@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/logo.png">
+                    <img src="../../../../static//image/admin/foreign-us.-logo.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -49,18 +49,18 @@
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>공지사항 수정하기</span>
+                                <span>📢 공지사항 수정하기</span>
                             </div>
                             <div class="info-table">
                                 <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
                                     <div>
-                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목."
                                                autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
                                     <hr>
                                     <div>
                                         <textarea class="board-content" name="noticeContent"
-                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
+                                                  placeholder="수정할 내용." th:text="${noticeDTO.noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <div>
