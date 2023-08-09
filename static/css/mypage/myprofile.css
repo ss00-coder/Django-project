@@ -668,6 +668,7 @@ p.mypage-grid-imgicon-explanation {
     outline: none;
 }
 
+<<<<<<< HEAD
 
 .mypage-grid-details-input {
     text-align: center;
@@ -678,6 +679,8 @@ p.mypage-grid-imgicon-explanation {
     outline: none;
 }
 
+=======
+>>>>>>> 0f17b40917309c86879711d637729536b232f8b7
 .mypage-grid-sns {
     padding: 40px 0 40px 0;
     grid-column-start: 6;
