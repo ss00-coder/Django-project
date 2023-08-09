@@ -38,17 +38,21 @@
             <div class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
-                    <div class="delete-box-layout">
-                        <div class="delete-box">
-                            <button class="delete-button" style="font-size: 14px">선택 매칭 삭제</button>
-                        </div>
-                    </div>
                     <!-- 검색 창 -->
                     <div class="search-box-wrap">
-                        <input type="text" placeholder="검색어 입력" class="search-box">
-                        <button type="button" class="search-button">
-                            <img src="../../../../static/image/admin/search-icon-black.png" alt="">
-                        </button>
+                        <div class="search-container">
+                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            <button type="button" class="search-button">
+                                <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                            </button>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="delete-box-layout">
+                                <div class="delete-box">
+                                    <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 내용 섹션 -->
@@ -69,7 +73,9 @@
                                             <th>No</th>
                                             <th>언어</th>
                                             <th style="font-size: 14px;font-weight: bold">과외 선생님</th>
+                                            <th style="font-size: 14px;font-weight: bold">학생 이름</th>
                                             <th>과외 개시 날짜</th>
+                                            <th>결제 상태</th>
                                             <th>상태</th>
                                         </tr>
                                     </thead>
@@ -87,7 +93,15 @@
                                             </a>
                                         </td>
                                         <td>
-                                            2023.08.02 10:12
+                                            <a style="font-size: 15px;">
+                                                임수현
+                                            </a>
+                                        </td>
+                                        <td>
+                                            2023.08.09 10:12
+                                        </td>
+                                        <td>
+                                            결제완료
                                         </td>
                                         <td>
                                             진행중
@@ -107,7 +121,15 @@
                                             </a>
                                         </td>
                                         <td>
+                                            <a style="font-size: 15px;">
+                                                김보령
+                                            </a>
+                                        </td>
+                                        <td>
                                             2023.08.09 20:12
+                                        </td>
+                                        <td>
+                                            결제 대기중
                                         </td>
                                         <td>
                                             진행중
