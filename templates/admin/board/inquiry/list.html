@@ -8,17 +8,17 @@
     <title>관리자 페이지- 문의 게시판 목록</title>
     <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/admin_board.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal.css">
+    <!-- <link rel="stylesheet" href="../../../../static/css/admin/admin_board.css"> -->
+    <link rel="stylesheet" href="../../../../static/css/admin/inpuiry/admin_inpuiry_list.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
 
 <body>
     <div>
-        <div class="ikfo-title-box info-title-box-flex">
+        <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="/image/logo/logo.png">
+                    <img src="../../../../static/image/admin/foreign-us.-logo.png">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>문의 게시판 관리</span>
+                    <span>1:1 문의 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -38,18 +38,29 @@
             <div class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
-                    <div class="delete-box-layout">
-                        <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
-                        </div>
-                    </div>
 
+                       <!-- 검색 창 -->
+                    <div class="search-box-wrap">
+                        <div class="search-container">
+                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            <button type="button" class="search-button">
+                                <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                            </button>
+                        </div>
+                        <!-- <div class="buttons-container">
+                            <div class="delete-box-layout">
+                                <div class="delete-box">
+                                    <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>문의 게시판 목록</span>
+                                <span>📋 1:1 문의 게시판 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -69,7 +80,7 @@
                                     </thead>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             1
@@ -93,7 +104,7 @@
                                     </tr>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             2
@@ -117,7 +128,7 @@
                                     </tr>
                                     <tr>
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" name="check" class="memberCheckbox">
                                         </td>
                                         <td class="noticeId">
                                             3
@@ -223,8 +234,8 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/checkbox.js"></script>
-<script src="/js/admin/board_proposal.js"></script>
-<script src="/js/admin/sidemenu.js"></script>
+<script src="../../../../static/js/admin/checkbox.js"></script>
+<script src="../../../../static/js/admin/board_proposal.js"></script>
+<script src="../../../../static/js/admin/sidemenu.js"></script>
 
 </html>

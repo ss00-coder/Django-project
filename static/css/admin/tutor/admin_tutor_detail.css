@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
 .container {
-	width: 100%;
+	width: 1540px;
 	margin-top: 55px;
 }
 
 .info-flex {
 	display: flex;
 	justify-content: space-between;
+	margin-right: -145px;
+	margin-left: 63px;
 }
 
 .board-info-box-layout {
@@ -45,7 +47,6 @@
 .info-title-box {
 	width: 100%;
 	height: 55px;
-	border-radius: 3px;
 	background: #000000;
 	box-shadow: 11px 13px 11px -14px grey;
 }
@@ -115,6 +116,7 @@
 
 .prev-button-layout {
 	position: relative;
+	padding-left: 63px;
 }
 
 .prev-icon {

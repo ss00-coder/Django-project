@@ -51,6 +51,8 @@
 .board-info-title-box {
 	font-size: 15px;
 	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
 }
 
 .select-name {
@@ -137,12 +139,12 @@ div.margin span {
 	display: flex;
 	justify-content: space-between;
 }
-
+/* 
 .modify-button-box {
-	padding: 20px 27px 15px;
+	padding: 2px 27px 15px;
 	font-size: 12px;
     font-weight: 400;
-	position: relative;
+	position: relative; */
 }
 
 .gear-icon {
@@ -174,9 +176,10 @@ div.board_content {
 }
 
 .board-info-box {
-    width: 100%;
+		width: 616px;
+		height: 610px;
 		border: 0.0625rem solid #f2f2f2;
-    box-shadow: 11px -1px 16px -11px  black;
+    box-shadow: 11px 11px 13px -8px black;
     background: #fff;
 }
 
