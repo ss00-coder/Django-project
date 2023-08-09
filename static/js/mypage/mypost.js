@@ -69,3 +69,5 @@ $(document).click((e) => {
     $modal.show();
   }
 });
+
+
