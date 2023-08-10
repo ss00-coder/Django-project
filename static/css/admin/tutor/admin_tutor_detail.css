@@ -38,6 +38,16 @@
 	width: 58px;
 }
 
+.logo-box img {
+	filter: none !important;
+	width: 162px !important;
+	height: 30px;
+	margin-left: 54px;
+	margin-top: 12px;
+}
+
+
+
 .info-title-box-flex {
 	display: flex;
     position: fixed;
@@ -155,7 +165,7 @@ hr {
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
-	background-image:url(../../image/profile_icon.png);
+	background-image:url(../../../../static/image/profile_icon.png);
 	opacity: 20%;
 }
 
