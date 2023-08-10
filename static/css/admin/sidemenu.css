@@ -42,7 +42,7 @@ button {
 	top: 55px;
 	bottom: 0;
 	z-index: 99;
-	width: 250px;
+	width: 230px;
 	background-color: #000000;
 }
 
@@ -59,10 +59,10 @@ button {
 	font-size: 15px;
 	color: #fff;
 	display: flex;
-	height: 63px;
+	height: 40px;
 	text-align: center;
 	justify-content: flex-start;
-	margin: 13px 45px 10px;
+	margin: 13px 30px 10px;
 	align-items: center;
 }
 
@@ -115,16 +115,19 @@ button {
 
 .menu-title-layout {
 	margin: 8px 18px 0px 48px;
+	margin-top: 44px;
 }
+
+
 
 .menus2,
 .menu1 {
 	display: none;
 }
 
-.menu-name {
+.menu-name{
 	color: #fff;
-	font-size: 20px;
+	font-size: 18px;
 	margin-top: 12px;
 	font-weight: bold;
 }

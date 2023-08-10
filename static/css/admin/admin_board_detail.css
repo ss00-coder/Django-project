@@ -39,6 +39,14 @@
 	width: 58px;
 }
 
+.logo-box img {
+	filter: none !important;
+	width: 162px !important;
+	height: 30px;
+	margin-left: 54px;
+	margin-top: 12px;
+}
+
 .info-table {
 	margin: 0 auto;
 	padding: 10px 30px;
@@ -64,6 +72,11 @@
 	color: white;
 	padding-top: 17px;
 	padding-left: 5px;
+}
+
+
+.menu-title-layout{
+	margin-top: 44px;
 }
 
 
