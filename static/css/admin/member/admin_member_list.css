@@ -156,6 +156,14 @@ table {
 	width: 58px;
 }
 
+.logo-box img {
+	filter: none !important;
+	width: 162px !important;
+	height: 30px;
+	margin-left: 54px;
+	margin-top: 12px;
+}
+
 .page-button-box {
 	display: flex;
 	justify-content:center;
