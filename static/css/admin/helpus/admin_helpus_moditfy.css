@@ -9,16 +9,14 @@ hr {
 	margin-left: 250px;
 	margin-top: 55px;
 	display: flex;
-  justify-content: center;
+    justify-content: center;
 }
 
 .board-info-box {
 	border: 0.0625rem solid #f2f2f2;
-	box-shadow: 11px 11px 13px -8px black;
+	box-shadow: 11px 13px 11px -8px black;
 	background: #fff;
 	/* min-height: 500px; */
-	width: 618px;
-	height: 520px;
 }
 
 .info-title-box-flex {
@@ -89,6 +87,7 @@ hr {
 
 .board-info-box-layout {
 	margin-top: 30px;
+	width: 40vw;
 }
 
 .prev-button-layout {
@@ -98,6 +97,7 @@ hr {
 .prev-icon {
 	position: absolute;
 	width: 20px;
+	top: -2px;
 }
 
 .prev-title {
@@ -122,23 +122,18 @@ input[type=text] {
 textarea {
 	font-family: 'GmarketSansMedium';
 	overflow: hidden;
-	width: 558px;
+	width: 100%;
 	border: none;
 	outline: none;
-	height: 305px;
+	height: 200px;
 	font-size: 16px;
 	resize: none;
 }
 
 
-
 .info-table div {
 	margin: 6px 0px;
-	justify-content: right;
-	margin: 15px 0px;
-	display: flex;
 }
-
 
 .btn-done-pos{
 	display: flex;
@@ -258,7 +253,7 @@ div.file-image-box {
 	margin-top: 30px;
 }
 
-/* input[type='date']::before {
+input[type='date']::before {
 	content: attr(data-placeholder);
 	width: 100%;
 }
@@ -266,7 +261,7 @@ div.file-image-box {
 input[type='date']:focus::before,
 input[type='date']:valid::before {
 	display: none;
-} */
+}
 
 input[type='date'] {
 	border: none;

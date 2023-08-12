@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 문의 게시판 수정</title>
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/admin_board_proposal_modify.css">
+    <link rel="stylesheet" href="/static/css/admin/inpuiry/admin_inquiry_modify.css">
     <link rel="shortcut icon" href="../../../../static/image/logo/logo-color.png" type="image/x-icon">
 </head>
 
@@ -57,14 +57,14 @@
 								<input type="hidden" name="boardId" value="">
 								<input type="hidden" name="page" value="">
 								<div>
-									<input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요." autocomplete="off" value="이전 제목">
+									<input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요." autocomplete="off">
 								</div>
 								<hr>
 								<div>
-									<textarea class="board-content" name="boardContent" placeholder="내용을 입력해주세요.">이전 내용</textarea>
+									<textarea class="board-content" name="boardContent" placeholder="내용을 입력해주세요."></textarea>
 								</div>
 								<hr>
-								<div>
+								<div class="modify-button">
 									<button class="btn_done">수정 완료</button>
 								</div>
 							</form>	

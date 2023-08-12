@@ -35,7 +35,7 @@ hr {
 .info-table {
 	margin: 0 auto;
 	padding: 10px 30px;
-	min-height: 300px;
+	min-height: 400px;
 }
 
 .board-info-title-box {
@@ -253,7 +253,7 @@ div.file-image-box {
 	margin-top: 30px;
 }
 
-/* input[type='date']::before {
+input[type='date']::before {
 	content: attr(data-placeholder);
 	width: 100%;
 }
@@ -261,7 +261,7 @@ div.file-image-box {
 input[type='date']:focus::before,
 input[type='date']:valid::before {
 	display: none;
-} */
+}
 
 input[type='date'] {
 	border: none;
