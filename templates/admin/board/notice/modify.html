@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 공지사항 게시판 수정</title>
     <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/notice/admin_notice_edit.css">
+    <link rel="stylesheet" href="/static/css/admin/notice/admin_notice_modify.css">
     <link rel="shortcut icon" href="../../../../static/image/logo/logo-color.png" type="image/x-icon">
 </head>
 
@@ -38,10 +38,10 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a th:href="@{/admin/board/notice/list}">
-                                <img style="top: 2px;" src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
-                                <span class="prev-title">리스트로 돌아가기</span>
+                            <a>
+                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
                             </a>
+                            <a class="back-page">리스트로 돌아가기</a>
                         </div>
                     </div>
 
@@ -54,17 +54,33 @@
                             <div class="info-table">
                                 <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
                                     <div>
-                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목."
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="수정제목을 입력해주세요."
                                                autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
-                                    <hr>
-                                    <div>
-                                        <textarea class="board-content" name="noticeContent"
-                                                  placeholder="수정할 내용." th:text="${noticeDTO.noticeContent}"></textarea>
+                                    <!-- 사진첨부 -->
+                                    <div class="pic_file_wrap" style="display: inline-block;">
+                                        <label class="file_insert_label">
+                                            <input type="file" style="display:none;" class="file" multiple>
+                                            <div class="file-image-box">
+                                                <p style="font-weight: 100">📂사진첨부</p>
+                                            </div>
+                                        </label>
                                     </div>
                                     <hr>
+                                    <!-- 내용입력 -->
                                     <div>
-                                        <button class="btn_done">수정 완료</button>
+                                        <textarea class="board-content" name="noticeContent"
+                                                  placeholder="수정 할 내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
+                                    </div>
+                                    <hr>
+                                    <section class="img_wrapper_box">
+                                        <div class="img_ul_wrapper">
+                                            <ul class="img_ul">
+                                            </ul>
+                                        </div>
+                                    </section>
+                                    <div style="justify-content: right; display: flex;">
+                                        <button class="btn_done"> 변경</button>
                                     </div>
                                 </form>
 
@@ -77,11 +93,75 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/sidemenu.js"></script>
-<script src="/js/admin/challenge_type.js">
-    let btn_type = $($('button.select_challenge_type')[0]);
-    btn_type.on('click', e => {
-        
+<script src="../../../../static/js/admin/sidemenu.js"></script>
+<script>
+    // 이미지 파일
+    let inputFiles = [];
+    let $imgUl = $($('ul.img_ul')[0]);
+    let $lists;
+
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            $imgUl.empty();
+
+            reader.onload = (e) => {
+                if (index >= 3) {
+                    return;
+                }
+                let text = `
+                        <li class="img_list" id="li${index}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label id="label${index}" for="button${index}">
+                                        <button icon-position="0" color="white" fill="false" type="button"
+                                            class="pasing-button-1 pasing-no-select" id="button${index}">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="` + e.target.result + `" alt=""
+                                            class="inserted_img">
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                `;
+
+                $imgUl.append(text);
+                index++;
+                $('.img_ul>li').on('click', (e) => {
+                    console.log($(e.currentTarget));
+                    console.log("딜리트 버튼 눌림")
+                    $(e.currentTarget).remove();
+                });
+            }
+            reader.readAsDataURL(file);
+        });
     });
 </script>
 

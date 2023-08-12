@@ -8,30 +8,21 @@ hr {
 	width: 100%;
 	margin-left: 250px;
 	margin-top: 55px;
+	margin-bottom: 10px;
 	display: flex;
   justify-content: center;
 }
-@charset "UTF-8";
+
 
 hr {
 	margin: 12px 0;
 }
 
-.container {
-	width: 100%;
-	margin-left: 250px;
-	margin-top: 55px;
-	display: flex;
-  justify-content: center;
-}
 
 .board-info-box {
 	border: 0.0625rem solid #f2f2f2;
 	box-shadow: 11px 11px 13px -8px black;
 	background: #fff;
-	/* min-height: 500px; */
-	width: 618px;
-	height: 520px;
 }
 
 .info-title-box-flex {
@@ -137,12 +128,6 @@ textarea {
 
 
 
-.info-table div {
-	margin: 6px 0px;
-	justify-content: right;
-	margin: 15px 0px;
-	display: flex;
-}
 
 
 .btn-done-pos{
@@ -222,7 +207,7 @@ div.file-image-box {
 	font-family: 'GmarketSansMedium';
 	width: 100px;
 	height: 30px;
-	background-color: #4F6DF5;
+	background-color: #000000;
 	font-size: 15px;
 	font-weight: bold;
 	color: #fff;
@@ -237,10 +222,14 @@ div.file-image-box>img {
 	margin-top: 6px;
 	margin-right: 6px;
 	margin-left: 6px;
+	text-align: center;
+
 }
 
 div.file-image-box>p {
 	padding: 4px 0;
+	text-align: center;
+	width: 100%;
 }
 
 div.file_insert_wrapper {
@@ -301,14 +290,7 @@ input[type='date'] {
 }
 
 
-.board-info-box {
-	border: 0.0625rem solid #f2f2f2;
-	box-shadow: 11px 11px 13px -8px black;
-	background: #fff;
-	/* min-height: 500px; */
-	width: 618px;
-	height: 520px;
-}
+
 
 .info-title-box-flex {
 	display: flex;
@@ -422,10 +404,7 @@ textarea {
 
 
 .info-table div {
-	margin: 6px 0px;
-	justify-content: right;
-	margin: 15px 0px;
-	display: flex;
+	margin: 14px 0px;
 }
 
 
@@ -506,13 +485,14 @@ div.file-image-box {
 	font-family: 'GmarketSansMedium';
 	width: 100px;
 	height: 30px;
-	background-color: #4F6DF5;
+	background-color: #000000;
 	font-size: 15px;
 	font-weight: bold;
 	color: #fff;
 	border: none;
 	padding: 4px 0;
 	margin-bottom: 12px;
+	cursor: pointer;
 }
 
 div.file-image-box>img {
@@ -583,4 +563,5 @@ input[type='date'] {
 	position: relative;
 	cursor: pointer;
 }
+
 
