@@ -148,6 +148,8 @@ div.slide-banner-btns {
   column-gap: 12px;
 }
 
+
+
 .swiper-button-next,
 .swiper-button-prev {
   width: 40px;
@@ -559,6 +561,8 @@ div.recommend-post-refresh {
   justify-content: center;
   margin-top: 24px;
 }
+
+
 
 button.recommend-post-refresh-btn {
   width: 116px;
@@ -1134,4 +1138,23 @@ button.swiper-fourth-button-next>svg {
   height: 16px;
   color: #1d1d1e;
   fill: #1d1d1e;
+}
+
+@media screen and (max-width: 768px) {
+  #slide-banner {
+    margin: 0;
+  }
+  div.slide-banner-btns {
+    display: none;
+  }
+  button.recommend-post-refresh-btn {
+    width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 555px) {
+  button.swiper-slide-btn {
+    border-radius: 0px;
+  }
 }

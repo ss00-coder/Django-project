@@ -14,20 +14,20 @@ $(function () {
 
   // 탭 버튼 이벤트
   $tabBtn.click((e) => {
-      if (!$(e.currentTarget).attr('class').includes('active-tab')) {
-          $tabBtn.toggleClass("active-tab");
-          $('.tab-line').remove();
-          $(e.currentTarget).append('<div class="tab-line"></div>');
+    if (!$(e.currentTarget).attr('class').includes('active-tab')) {
+      $tabBtn.toggleClass("active-tab");
+      $('.tab-line').remove();
+      $(e.currentTarget).append('<div class="tab-line"></div>');
 
-          // 해당 작성글 전체 수 변경하는 이벤트
-          $totalNumber.text($(e.currentTarget).find('.tab-number').text());
-      }
+      // 해당 작성글 전체 수 변경하는 이벤트
+      $totalNumber.text($(e.currentTarget).find('.tab-number').text());
+    }
   })
 
   //모달창 이벤트
-  $deleteBtn.click(() => {$modal.show()});
-  $buttonCancel.click(() => {$modal.hide()})
-  $buttonAgree.click(() => {$modal.hide()})
+  $deleteBtn.click(() => { $modal.show() });
+  $buttonCancel.click(() => { $modal.hide() })
+  $buttonAgree.click(() => { $modal.hide() })
 });
 
 
