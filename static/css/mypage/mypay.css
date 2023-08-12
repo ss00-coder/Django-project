@@ -90,7 +90,7 @@ body {
   align-items: center;
 }
 
-.header-logo-container > a > svg {
+.header-logo-container > a > img {
   width: 96px;
   color: #fff;
   fill: #fff;
@@ -396,7 +396,7 @@ body {
   margin: 0 auto;
 }
 
-.content-wapper {
+.content-wrapper {
   grid-column: 1/-1;
 }
 
@@ -421,31 +421,6 @@ body {
   font-size: 28px;
   line-height: 40px;
   margin: 0;
-}
-
-.create-btn-size {
-  width: 88px;
-}
-
-.create-btn {
-  background-color: #1d1d1e;
-  color: #fff;
-  fill: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 16px;
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  padding: 0 16px;
-}
-
-.create-btn:hover {
-  background-color: #000000;
 }
 
 .tab-wrapper {
@@ -503,33 +478,22 @@ body {
   line-height: 16px;
 }
 
-.tab-line {     /* 여기까지함*/
+.tab-line {    
   width: 100%;
   height: 2px;
-  bottom: -1.5px;
+  bottom: 0px;
   position: absolute;
   background-color: #1d1d1e;
 }
 
-
-
-.grid-top-posts-item-helpers,
-.grid-top-posts-item-event {
-  background-color: #1d1d1e;
-  position: absolute;
-  bottom: -1.5px;
-  height: 2px;
-  width: 100%;
-}
-
-.grid-top-posts-select {
+.total-and-search-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 0;
 }
 
-.grid-top-posts-select-list {
+.total-text {
   color: #1d1d1e;
   fill: #1d1d1e;
   font-weight: 600;
@@ -537,7 +501,7 @@ body {
   line-height: 16px;
 }
 
-.grid-top-posts-select-count {
+.total-number {
   color: #5b44ea;
   fill: #5b44ea;
   font-weight: 600;
@@ -546,84 +510,57 @@ body {
   margin: 0 0 0 4px;
 }
 
-.grid-top-posts-select-upload {
-  position: relative;
-}
-
-.grid-top-posts-select-upload-btn {
-  background-color: #fff;
-  border-color: rgba(0, 0, 0, 0.1);
+.search {
   display: flex;
-  height: 32px;
-  max-width: 164px;
+  column-gap: 12px;
+}
+
+.search-wrapper {
+  width: 240px;
+}
+
+.search-label {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 16px;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
   border-width: 1px;
-  padding: 8px 16px;
+  border-radius: 20px;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-.grid-top-posts-select-upload-btn > span {
-  color: #333334;
-  fill: #333334;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.grid-top-posts-select-upload-btn > svg {
-  margin: 0 0 0 4px;
-  width: 10px;
-  height: 10px;
-  flex-shrink: 0;
-}
-
-.grid-top-posts-select-upload-set-box {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 42px;
-  z-index: 10;
-  min-width: 248px;
-  max-width: 280px;
-}
-
-.grid-top-posts-select-upload-set-box > ul {
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.upload-set-box {
-  background-color: #fff;
-  color: #1d1d1e;
-  fill: #1d1d1e;
+#search-input {
+  content: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  width: 100%;
   font-weight: 400;
   font-size: 14px;
-  line-height: 18px;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border-radius: 8px;
-  padding: 12px 20px;
-  text-align: left;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
 }
 
-.upload-set-box:hover {
-  background-color: #f1f1f1;
+.search-button {
+  margin-left: 10px;
+  height: 100%;
+}
+.search-button > svg {
+  width: 20px;
+  height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
 }
 
-.grid-items {
+.posts-wrapper {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.grid-item {
+.post {
   border-color: #f3f3f4;
   display: flex;
   align-items: center;
@@ -631,12 +568,12 @@ body {
   padding: 16px 8px;
 }
 
-.grid-item-btn {
+.post-content-wrapper {
   width: 280px;
   text-align: left;
 }
 
-.grid-item-flex {
+.post-content {
   color: #333334;
   fill: #333334;
   display: flex;
@@ -644,13 +581,13 @@ body {
   row-gap: 2px;
 }
 
-.grid-item-flex > div {
+.post-content > div {
   display: flex;
   flex-direction: row;
   gap: 2px;
 }
 
-.grid-item-title {
+.post-title {
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
@@ -660,7 +597,7 @@ body {
   margin: 0;
 }
 
-.grid-item-content {
+.post-content-text {
   color: #8a8a8b;
   fill: #8a8a8b;
   font-weight: 400;
@@ -673,29 +610,29 @@ body {
   margin: 0;
 }
 
-.grid-item-info {
-  margin: 0 0 0 120px;
+.info-wrapper {
+  margin: 0 0 0 355px;
   display: flex;
   align-items: center;
   column-gap: 40px;
 }
 
-.grid-item-info-views {
+.info {
   display: flex;
-  width: 56px;
+  width: 70px;
   flex-direction: column;
   align-items: flex-end;
   row-gap: 4px;
 }
 
-.grid-item-info-views-count {
+.info-content {
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   margin: 0;
 }
 
-.grid-item-info-views-text {
+.info-menu {
   color: #8a8a8b;
   fill: #8a8a8b;
   font-weight: 400;
@@ -704,7 +641,7 @@ body {
   margin: 0;
 }
 
-.grid-item-info-date {
+.info-date {
   display: flex;
   width: 88px;
   flex-direction: column;
@@ -712,14 +649,14 @@ body {
   row-gap: 4px;
 }
 
-.grid-item-edit {
+.edit-wrapper {
   margin: 0 0 0 auto;
   display: flex;
   align-items: center;
   column-gap: 12px;
 }
 
-.grid-item-edit-update-btn {
+.update-button {
   border-color: #e6e6e7;
   display: flex;
   width: 40px;
@@ -730,7 +667,7 @@ body {
   border-width: 1px;
 }
 
-.grid-item-edit-update-btn > svg {
+.update-button > svg {
   color: #333334;
   fill: #333334;
   height: 20px;
@@ -738,7 +675,7 @@ body {
   margin: 0;
 }
 
-.grid-item-edit-delete-btn {
+.delete-button {
   border-color: #e6e6e7;
   display: flex;
   width: 40px;
@@ -749,11 +686,102 @@ body {
   border-width: 1px;
 }
 
-.grid-item-edit-delete-btn > svg {
+.delete-button > svg {
   color: #333334;
   fill: #333334;
   width: 20px;
   height: 20px;
+}
+
+/* 페이징 */
+.paging-wrapper {
+  justify-content: center;
+  display: flex;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paging-wrapper ul li {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.paging-wrapper button.prev {
+  opacity: 0.3;
+  border-width: 1px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  border-color: #e6e6e7;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.paging-wrapper button.prev svg {
+  width: 16px;
+  height: 16px;
+}
+
+.paging-wrapper button.next {
+  opacity: 0.3;
+  border-width: 1px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  border-color: #e6e6e7;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.paging-wrapper button.next svg {
+  width: 16px;
+  height: 16px;
+}
+
+.paging-wrapper button.page {
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.paging-wrapper button.page-active {
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  background-color: #f3f3f4;
+}
+
+button.page-active span.page-number {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+button.page span.page-number {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
 }
 
 /* 작성 글 삭제 모달 */
@@ -761,7 +789,7 @@ body {
   display: none;
 }
 
-.modal-flex {
+.modal-wrapper {
   background-color: #fff;
   border-color: #e6e6e7;
   position: fixed;
@@ -801,7 +829,7 @@ body {
   margin: 0;
 }
 
-.modal-yes-or-no {
+.modal-choice-wraper {
   margin: 24px 0 0 0;
   display: flex;
   width: 100%;
@@ -809,7 +837,7 @@ body {
   justify-content: space-between;
 }
 
-.modal-no {
+.button-cancel {
   background-color: #f3f3f4;
   color: #333334;
   fill: #333334;
@@ -826,11 +854,11 @@ body {
   padding: 0 16px;
 }
 
-.modal-no:hover {
+.button-cancel:hover {
   background-color: #e6e6e7;
 }
 
-.modal-yes {
+.button-agree {
   background-color: #1d1d1e;
   color: #fff;
   fill: #fff;
@@ -847,7 +875,7 @@ body {
   padding: 0 16px;
 }
 
-.modal-yes:hover {
+.button-agree:hover {
   background-color: #000000;
 }
 
