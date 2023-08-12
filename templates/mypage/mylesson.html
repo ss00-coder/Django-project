@@ -117,7 +117,11 @@
               </li>
               <li class="side-nav-bottom-item">
                 <a class="side-nav-bottom-item-a" href="">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-[24px] w-[24px] mr-[10px] content_secondary"
+                  >
                     <path
                       d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z"
                     ></path>
@@ -132,7 +136,11 @@
               </li>
               <li class="side-nav-bottom-item">
                 <a class="side-nav-bottom-item-a" href="">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-[24px] w-[24px] mr-[10px] content_secondary"
+                  >
                     <path
                       d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z"
                     ></path>
@@ -147,7 +155,11 @@
               </li>
               <li class="side-nav-bottom-item">
                 <a class="side-nav-bottom-item-a" href="">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-[24px] w-[24px] mr-[10px] content_secondary"
+                  >
                     <path
                       fill-rule="evenodd"
                       clip-rule="evenodd"
@@ -191,140 +203,101 @@
               </li>
             </ul>
           </nav>
-          <div class="mypost">
-            <div class="mypost-grid">
-              <div class="mypost-grid-container">
-                <div class="mypost-grid-top">
-                  <header class="mypost-grid-top-header">
-                    <h1 class="mypost-grid-top-header-h1">과외 목록</h1>
-                    <div class="mypost-grid-top-create">
-                      <button class="mypost-grid-top-create-btn" type="button">
-                        작성
-                      </button>
+
+          <div class="main-content">
+            <div class="main-content-grid">
+              <div class="content-wrapper">
+                <!-- 상단 메뉴 -->
+                <div class="top-menu">
+                  <!-- 제목 및 작성 버튼 -->
+                  <header class="title-wrapper">
+                    <h1 class="title-text">과외 목록</h1>
+                    <div class="create-btn-size">
+                      <button class="create-btn" type="button">작성</button>
                     </div>
                   </header>
-                  <div class="mypost-grid-top-posts">
-                    <ul class="mypost-grid-top-posts-items">
-                      <li class="mypost-grid-top-posts-item">
-                        <button
-                          class="mypost-grid-top-posts-item-btn set-text"
-                          type="button"
-                        >
+                  <!-- 매칭, 후기 목록 탭 -->
+                  <div class="tab-wrapper">
+                    <ul class="tab-ul">
+                      <li class="tab-item">
+                        <button class="tab-item-btn active-tab" type="button">
                           <div style="display: flex">
-                            <p class="mypost-grid-top-posts-title">매칭</p>
-                            <div class="mypost-grid-top-posts-count">
-                              <p class="mypost-grid-top-posts-count-p">6</p>
+                            <p class="tab-title">매칭</p>
+                            <div class="tab-number-wrapper">
+                              <p class="tab-number">5</p>
                             </div>
                           </div>
+                          <div class="tab-line"></div>
                         </button>
-                        <div class="mypost-grid-top-posts-item-helpers"></div>
                       </li>
-                      <li class="mypost-grid-top-posts-item">
-                        <button
-                          class="mypost-grid-top-posts-item-btn"
-                          type="button"
-                        >
+                      <li class="tab-item">
+                        <button class="tab-item-btn" type="button">
                           <div style="display: flex">
-                            <p class="mypost-grid-top-posts-title">후기</p>
-                            <div class="mypost-grid-top-posts-count">
-                              <p class="mypost-grid-top-posts-count-p">2</p>
+                            <p class="tab-title">후기</p>
+                            <div class="tab-number-wrapper">
+                              <p class="tab-number">0</p>
                             </div>
                           </div>
                         </button>
-                        <div
-                          class="mypost-grid-top-posts-item-event"
-                          style="display: none"
-                        ></div>
                       </li>
                     </ul>
                   </div>
-                  <div class="mypost-grid-top-posts-select">
-                    <div>
-                      <span class="mypost-grid-top-posts-select-list"
-                        >전체</span
-                      >
-                      <span class="mypost-grid-top-posts-select-count">6</span>
+                  <!-- 글 개수, 검색창 -->
+                  <div class="total-and-search-wrapper">
+                    <div class="total">
+                      <span class="total-text">전체</span>
+                      <span class="total-number"></span>
                     </div>
-                    <div class="mypost-grid-top-posts-select-upload">
-                      <button class="mypost-grid-top-posts-select-upload-btn">
-                        <span class="mypost-grid-top-posts-select-upload-set"
-                          >최신순</span
-                        >
-                        <svg
-                          class="mypost-grid-top-posts-select-upload-svg"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M3.27 8.42a1.076 1.076 0 0 1 1.587-.13L12 14.832l7.143-6.544a1.076 1.076 0 0 1 1.586.13 1.26 1.26 0 0 1-.122 1.696L12 18l-8.607-7.885A1.26 1.26 0 0 1 3.27 8.42Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <div class="mypost-grid-top-posts-select-upload-set-box">
-                        <ul>
-                          <li>
-                            <button class="mypost-upload-set-box">
-                              최신순
-                            </button>
-                          </li>
-                          <li>
-                            <button class="mypost-upload-set-box">
-                              조회순
-                            </button>
-                          </li>
-                        </ul>
+                    <div class="search">
+                      <div class="search-wrapper">
+                        <label class="search-label" for="search-input">
+                          <input id="search-input" type="search" placeholder="제목 검색">
+                          <button class="search-button" type="button">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M15.83 16.561a7.8 7.8 0 1 1 1.233-1.312l3.465 3.465a.9.9 0 1 1-1.272 1.273L15.83 16.56Zm1.13-5.961a6.16 6.16 0 1 1-12.32 0 6.16 6.16 0 0 1 12.32 0Z"></path>
+                            </svg>
+                          </button>
+                        </label>
                       </div>
                     </div>
                   </div>
                 </div>
-                <ul class="mypost-grid-items">
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
+
+                <!-- 내용 리스트 -->
+                <ul class="posts-wrapper">
+                  <li class="post">
+                    <!-- 작성 글 -->
+                    <button class="post-content-wrapper">
+                      <div class="post-content">
                         <div>
-                          <p class="mypost-grid-item-title">테스트 제목3</p>
+                          <p class="post-title">테스트 제목</p>
                         </div>
-                        <p class="mypost-grid-item-content">테스트 내용3</p>
+                        <p class="post-content-text">테스트 내용</p>
                       </div>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
+                    <!-- 작성 정보 -->
+                    <div class="info-wrapper">
+                      <div class="info">
+                        <p class="info-content">홍길동</p>
+                        <p class="info-menu">선생님</p>
                       </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
+                      <div class="info">
+                        <p class="info-content">김철수</p>
+                        <p class="info-menu">학생</p>
                       </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
+                      <div class="info-date">
+                        <p class="info-content">2023/08/09</p>
+                        <p class="info-menu">작성일</p>
                       </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 중</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
+                      <div class="info">
+                        <p class="info-content">매칭 중</p>
+                        <p class="info-menu">상태</p>
                       </div>
                     </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
+                    <!-- 작성 수정 삭제 -->
+                    <div class="edit-wrapper">
+                      <button class="update-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -335,12 +308,8 @@
                           ></path>
                         </svg>
                       </button>
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
+                      <button class="delete-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -358,51 +327,39 @@
                       </button>
                     </div>
                   </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
+                  <li class="post">
+                    <!-- 작성 글 -->
+                    <button class="post-content-wrapper">
+                      <div class="post-content">
                         <div>
-                          <p class="mypost-grid-item-title">테스트 제목2</p>
+                          <p class="post-title">테스트 제목</p>
                         </div>
-                        <p class="mypost-grid-item-content">테스트 내용2</p>
+                        <p class="post-content-text">테스트 내용</p>
                       </div>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
+                    <!-- 작성 정보 -->
+                    <div class="info-wrapper">
+                      <div class="info">
+                        <p class="info-content">홍길동</p>
+                        <p class="info-menu">선생님</p>
                       </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
+                      <div class="info">
+                        <p class="info-content">김철수</p>
+                        <p class="info-menu">학생</p>
                       </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
+                      <div class="info-date">
+                        <p class="info-content">2023/08/09</p>
+                        <p class="info-menu">작성일</p>
                       </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 중</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
+                      <div class="info">
+                        <p class="info-content">매칭 중</p>
+                        <p class="info-menu">상태</p>
                       </div>
                     </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
+                    <!-- 작성 수정 삭제 -->
+                    <div class="edit-wrapper">
+                      <button class="update-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -413,13 +370,8 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
+                      <button class="delete-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -435,54 +387,41 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 2 -->
                     </div>
                   </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
+                  <li class="post">
+                    <!-- 작성 글 -->
+                    <button class="post-content-wrapper">
+                      <div class="post-content">
                         <div>
-                          <p class="mypost-grid-item-title">테스트 제목1</p>
+                          <p class="post-title">테스트 제목</p>
                         </div>
-                        <p class="mypost-grid-item-content">테스트 내용1</p>
+                        <p class="post-content-text">테스트 내용</p>
                       </div>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
+                    <!-- 작성 정보 -->
+                    <div class="info-wrapper">
+                      <div class="info">
+                        <p class="info-content">홍길동</p>
+                        <p class="info-menu">선생님</p>
                       </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
+                      <div class="info">
+                        <p class="info-content">김철수</p>
+                        <p class="info-menu">학생</p>
                       </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
+                      <div class="info-date">
+                        <p class="info-content">2023/08/09</p>
+                        <p class="info-menu">작성일</p>
                       </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 완료</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
+                      <div class="info">
+                        <p class="info-content">매칭 중</p>
+                        <p class="info-menu">상태</p>
                       </div>
                     </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
+                    <!-- 작성 수정 삭제 -->
+                    <div class="edit-wrapper">
+                      <button class="update-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -493,13 +432,8 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
+                      <button class="delete-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -515,54 +449,41 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 2 -->
                     </div>
                   </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
+                  <li class="post">
+                    <!-- 작성 글 -->
+                    <button class="post-content-wrapper">
+                      <div class="post-content">
                         <div>
-                          <p class="mypost-grid-item-title">테스트 제목1</p>
+                          <p class="post-title">테스트 제목</p>
                         </div>
-                        <p class="mypost-grid-item-content">테스트 내용1</p>
+                        <p class="post-content-text">테스트 내용</p>
                       </div>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
+                    <!-- 작성 정보 -->
+                    <div class="info-wrapper">
+                      <div class="info">
+                        <p class="info-content">홍길동</p>
+                        <p class="info-menu">선생님</p>
                       </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
+                      <div class="info">
+                        <p class="info-content">김철수</p>
+                        <p class="info-menu">학생</p>
                       </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
+                      <div class="info-date">
+                        <p class="info-content">2023/08/09</p>
+                        <p class="info-menu">작성일</p>
                       </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 완료</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
+                      <div class="info">
+                        <p class="info-content">매칭 중</p>
+                        <p class="info-menu">상태</p>
                       </div>
                     </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
+                    <!-- 작성 수정 삭제 -->
+                    <div class="edit-wrapper">
+                      <button class="update-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -573,13 +494,8 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
+                      <button class="delete-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -595,54 +511,41 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 2 -->
                     </div>
                   </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
+                  <li class="post">
+                    <!-- 작성 글 -->
+                    <button class="post-content-wrapper">
+                      <div class="post-content">
                         <div>
-                          <p class="mypost-grid-item-title">테스트 제목1</p>
+                          <p class="post-title">테스트 제목</p>
                         </div>
-                        <p class="mypost-grid-item-content">테스트 내용1</p>
+                        <p class="post-content-text">테스트 내용</p>
                       </div>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
+                    <!-- 작성 정보 -->
+                    <div class="info-wrapper">
+                      <div class="info">
+                        <p class="info-content">홍길동</p>
+                        <p class="info-menu">선생님</p>
                       </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
+                      <div class="info">
+                        <p class="info-content">김철수</p>
+                        <p class="info-menu">학생</p>
                       </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
+                      <div class="info-date">
+                        <p class="info-content">2023/08/09</p>
+                        <p class="info-menu">작성일</p>
                       </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 완료</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
+                      <div class="info">
+                        <p class="info-content">매칭 중</p>
+                        <p class="info-menu">상태</p>
                       </div>
                     </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
+                    <!-- 작성 수정 삭제 -->
+                    <div class="edit-wrapper">
+                      <button class="update-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -653,13 +556,8 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
+                      <button class="delete-button" type="button">
                         <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
                         >
@@ -675,258 +573,90 @@
                           ></path>
                         </svg>
                       </button>
-                      <!-- 2 -->
                     </div>
                   </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
-                        <div>
-                          <p class="mypost-grid-item-title">테스트 제목1</p>
-                        </div>
-                        <p class="mypost-grid-item-content">테스트 내용1</p>
-                      </div>
+                </ul>  
+                
+                <!-- 페이징 -->
+                <div class="paging-wrapper">
+                  <ul style="display: flex">
+                    <!-- 이전버튼 -->
+                    <button type="button" class="prev">
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z"></path>
+                      </svg>
                     </button>
-                    <div
-                      style="
-                        width: 140px;
-                        height: 36px;
-                        margin: 0 0 0 0px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">홍길동</p>
-                        <p class="mypost-grid-item-info-type-set">선생님</p>
-                      </div>
-                      <div class="mypost-grid-item-info-views">
-                        <p class="mypost-grid-item-info-views-count">김철수</p>
-                        <p class="mypost-grid-item-info-views-text">학생</p>
-                      </div>
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
-                      </div>
-                      <div class="mypost-grid-item-info-type">
-                        <p class="mypost-grid-item-info-type-name">매칭 완료</p>
-                        <p class="mypost-grid-item-info-type-set">상태</p>
-                      </div>
-                    </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"
-                          ></path>
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 2 -->
-                    </div>
-                  </li>
-                </ul>
-                <ul class="mypost-grid-items-next">
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
-                        <div>
-                          <p class="mypost-grid-item-title">
-                            과외 작성글 제목2
-                          </p>
-                        </div>
-                        <p class="mypost-grid-item-content">후기 내용 2</p>
-                      </div>
+                    <!-- 숫자 페이지 -->
+                    <li>
+                      <a href="">
+                        <button class="page-active" type="button">
+                          <span class="page-number">1</span>
+                        </button>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <button class="page" type="button">
+                          <span class="page-number">2</span>
+                        </button>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <button class="page" type="button">
+                          <span class="page-number">3</span>
+                        </button>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <button class="page" type="button">
+                          <span class="page-number">4</span>
+                        </button>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <button class="page" type="button">
+                          <span class="page-number">5</span>
+                        </button>
+                      </a>
+                    </li>
+                    <!-- 다음버튼 -->
+                    <button type="button" class="next">
+                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z"></path>
+                      </svg>
                     </button>
-                    <div
-                      style="
-                        width: 160px;
-                        height: 36px;
-                        margin: 0 0 0 235px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
-                      </div>
-                    </div>
+                  </ul>
+                </div>
 
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"
-                          ></path>
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 2 -->
-                    </div>
-                  </li>
-                  <li class="mypost-grid-item">
-                    <button class="mypost-grid-item-btn">
-                      <div class="mypost-grid-item-flex">
-                        <div>
-                          <p class="mypost-grid-item-title">
-                            과외 작성글 제목1
-                          </p>
-                        </div>
-                        <p class="mypost-grid-item-content">후기 내용 1</p>
-                      </div>
-                    </button>
-                    <div
-                      style="
-                        width: 160px;
-                        height: 36px;
-                        margin: 0 0 0 235px;
-                        position: relative;
-                      "
-                    ></div>
-                    <div class="mypost-grid-item-info">
-                      <div class="mypost-grid-item-info-date">
-                        <p class="mypost-grid-item-info-views-count">
-                          2023/08/09
-                        </p>
-                        <p class="mypost-grid-item-info-views-text">작성일</p>
-                      </div>
-                    </div>
-
-                    <div class="mypost-grid-item-edit">
-                      <button
-                        class="mypost-grid-item-edit-update-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-update-btn-svg"
-                          viewBox="0 0 20 20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 1 -->
-                      <button
-                        class="mypost-grid-item-edit-delete-btn"
-                        type="button"
-                      >
-                        <svg
-                          class="mypost-grid-item-edit-delete-btn-svg"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z"
-                          ></path>
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z"
-                          ></path>
-                        </svg>
-                      </button>
-                      <!-- 2 -->
-                    </div>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="mypost-modal">
-        <div class="mypost-modal-flex">
-          <h4 class="mypost-modal-message">포스트 삭제</h4>
-          <div class="mypost-modal-sub-message">
-            해당 포스트를 삭제하시겠습니까?
-          </div>
 
-          <div class="mypost-modal-yes-or-no">
+      <!-- 작성글 삭제 시 모달창 -->
+      <div class="modal">
+        <div class="modal-wrapper">
+          <h4 class="modal-message">포스트 삭제</h4>
+          <div class="modal-sub-message">해당 포스트를 삭제하시겠습니까?</div>
+
+          <div class="modal-choice-wraper">
             <div style="flex: 1 1 0%">
-              <button class="mypost-modal-no" type="button">취소</button>
+              <button class="button-cancel" type="button">취소</button>
             </div>
 
             <div style="flex: 1 1 0%; margin: 0 0 0 16px">
-              <button class="mypost-modal-yes" type="button">확인</button>
+              <button class="button-agree" type="button">확인</button>
             </div>
           </div>
         </div>
-        <div class="mypost-modal-background"></div>
+        <div class="modal-background"></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="../../static/js/mypage/mypost.js"></script>
+    <script src="../../static/js/mypage/mylesson.js"></script>
   </body>
 </html>
