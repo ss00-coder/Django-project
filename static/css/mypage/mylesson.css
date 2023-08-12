@@ -379,14 +379,14 @@ body {
 }
 
 /* 작성 글 목록 */
-.mypost {
+.main-content {
   overflow-x: auto;
   flex-basis: 0px;
   flex-grow: 1;
   flex-shrink: 0;
 }
 
-.mypost-grid {
+.main-content-grid {
   display: grid;
   row-gap: 0;
   column-gap: 16px;
@@ -396,25 +396,25 @@ body {
   margin: 0 auto;
 }
 
-.mypost-grid-container {
+.content-wrapper {
   grid-column: 1/-1;
 }
 
-.mypost-grid-top {
+.top-menu {
   position: sticky;
   top: 0;
   z-index: 10;
   background-color: #fff;
 }
 
-.mypost-grid-top-header {
+.title-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 40px 0 0 0;
 }
 
-.mypost-grid-top-header-h1 {
+.title-text {
   color: #1d1d1e;
   fill: #1d1d1e;
   font-weight: 700;
@@ -423,7 +423,11 @@ body {
   margin: 0;
 }
 
-.mypost-grid-top-create-btn {
+.create-btn-size {
+  width: 88px;
+}
+
+.create-btn {
   background-color: #1d1d1e;
   color: #fff;
   fill: #fff;
@@ -432,6 +436,7 @@ body {
   line-height: 16px;
   position: relative;
   display: flex;
+  width: 100%;
   height: 40px;
   align-items: center;
   justify-content: center;
@@ -439,15 +444,15 @@ body {
   padding: 0 16px;
 }
 
-.mypost-grid-top-create-btn:hover {
+.create-btn:hover {
   background-color: #000000;
 }
 
-.mypost-grid-top-posts {
+.tab-wrapper {
   margin: 26px 0 0 0;
 }
 
-.mypost-grid-top-posts-items {
+.tab-ul {
   border-color: rgba(0, 0, 0, 0.1);
   display: flex;
   height: 36px;
@@ -455,11 +460,11 @@ body {
   border-bottom-width: 1px;
 }
 
-.mypost-grid-top-posts-item {
+.tab-item {
   position: relative;
 }
 
-.mypost-grid-top-posts-item-btn {
+.tab-item-btn {
   color: #b9b9bb;
   fill: #b9b9bb;
   font-weight: 700;
@@ -471,49 +476,49 @@ body {
   padding: 0 0 16px;
 }
 
-.mypost-grid-top-posts-title {
+/* 활성화 중인 탭 */
+.active-tab {
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.tab-title {
   margin: 0;
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
 }
 
-.mypost-grid-top-posts-count {
+.tab-number-wrapper {
   background-color: #f3f3f4;
   margin: 0 0 0 8px;
   border-radius: 25px;
   padding: 2px 8px;
 }
 
-.mypost-grid-top-posts-count-p {
+.tab-number {
   margin: 0;
   font-weight: 700;
   font-size: 12px;
   line-height: 16px;
 }
 
-.set-text {
-  color: #1d1d1e;
-  fill: #1d1d1e;
-}
-
-.mypost-grid-top-posts-item-helpers,
-.mypost-grid-top-posts-item-event {
-  background-color: #1d1d1e;
-  position: absolute;
-  bottom: -1.5px;
-  height: 2px;
+.tab-line {    
   width: 100%;
+  height: 2px;
+  bottom: 0px;
+  position: absolute;
+  background-color: #1d1d1e;
 }
 
-.mypost-grid-top-posts-select {
+.total-and-search-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 12px 0;
 }
 
-.mypost-grid-top-posts-select-list {
+.total-text {
   color: #1d1d1e;
   fill: #1d1d1e;
   font-weight: 600;
@@ -521,7 +526,7 @@ body {
   line-height: 16px;
 }
 
-.mypost-grid-top-posts-select-count {
+.total-number {
   color: #5b44ea;
   fill: #5b44ea;
   font-weight: 600;
@@ -530,91 +535,57 @@ body {
   margin: 0 0 0 4px;
 }
 
-.mypost-grid-top-posts-select-upload {
-  position: relative;
-}
-
-.mypost-grid-top-posts-select-upload-btn {
-  background-color: #fff;
-  border-color: rgba(0, 0, 0, 0.1);
+.search {
   display: flex;
-  height: 32px;
-  max-width: 164px;
+  column-gap: 12px;
+}
+
+.search-wrapper {
+  width: 240px;
+}
+
+.search-label {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  border-radius: 16px;
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px;
   border-width: 1px;
-  padding: 8px 16px;
+  border-radius: 20px;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-.mypost-grid-top-posts-select-upload-btn > span {
-  color: #333334;
-  fill: #333334;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.mypost-grid-top-posts-select-upload-btn > svg {
-  margin: 0 0 0 4px;
-  width: 10px;
-  height: 10px;
-  flex-shrink: 0;
-}
-
-.mypost-grid-top-posts-select-upload-set-box {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 42px;
-  z-index: 10;
-  min-width: 248px;
-  max-width: 280px;
-}
-
-.mypost-grid-top-posts-select-upload-set-box > ul {
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.mypost-upload-set-box {
-  background-color: #fff;
-  color: #1d1d1e;
-  fill: #1d1d1e;
+#search-input {
+  content: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  width: 100%;
   font-weight: 400;
   font-size: 14px;
-  line-height: 18px;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  border-radius: 8px;
-  padding: 12px 20px;
-  text-align: left;
+  line-height: 20px;
+  color: #333334;
+  fill: #333334;
 }
 
-.mypost-upload-set-box:hover {
-  background-color: #f1f1f1;
+.search-button {
+  margin-left: 10px;
+  height: 100%;
+}
+.search-button > svg {
+  width: 20px;
+  height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
 }
 
-.mypost-grid-items {
+.posts-wrapper {
   margin-top: 8px;
   display: flex;
   flex-direction: column;
 }
 
-.mypost-grid-items-next {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  display: none;
-}
-
-.mypost-grid-item {
+.post {
   border-color: #f3f3f4;
   display: flex;
   align-items: center;
@@ -622,12 +593,12 @@ body {
   padding: 16px 8px;
 }
 
-.mypost-grid-item-btn {
+.post-content-wrapper {
   width: 280px;
   text-align: left;
 }
 
-.mypost-grid-item-flex {
+.post-content {
   color: #333334;
   fill: #333334;
   display: flex;
@@ -635,13 +606,13 @@ body {
   row-gap: 2px;
 }
 
-.mypost-grid-item-flex > div {
+.post-content > div {
   display: flex;
   flex-direction: row;
   gap: 2px;
 }
 
-.mypost-grid-item-title {
+.post-title {
   font-weight: 500;
   font-size: 15px;
   line-height: 20px;
@@ -651,7 +622,7 @@ body {
   margin: 0;
 }
 
-.mypost-grid-item-content {
+.post-content-text {
   color: #8a8a8b;
   fill: #8a8a8b;
   font-weight: 400;
@@ -664,29 +635,34 @@ body {
   margin: 0;
 }
 
-.mypost-grid-item-info {
-  margin: 0 0 0 30px;
+.info-wrapper {
+  margin: 0 0 0 126px;
   display: flex;
   align-items: center;
   column-gap: 30px;
 }
 
-.mypost-grid-item-info-type {
+.info {
   display: flex;
-  width: 56px;
+  width: 70px;
   flex-direction: column;
   align-items: flex-end;
   row-gap: 4px;
 }
 
-.mypost-grid-item-info-type-name {
+.info:last-child {
+  width: 52px;
+}
+
+
+.info-content {
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   margin: 0;
 }
 
-.mypost-grid-item-info-type-set {
+.info-menu {
   color: #8a8a8b;
   fill: #8a8a8b;
   font-weight: 400;
@@ -695,31 +671,7 @@ body {
   margin: 0;
 }
 
-.mypost-grid-item-info-views {
-  display: flex;
-  width: 56px;
-  flex-direction: column;
-  align-items: flex-end;
-  row-gap: 4px;
-}
-
-.mypost-grid-item-info-views-count {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  margin: 0;
-}
-
-.mypost-grid-item-info-views-text {
-  color: #8a8a8b;
-  fill: #8a8a8b;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-  margin: 0;
-}
-
-.mypost-grid-item-info-date {
+.info-date {
   display: flex;
   width: 88px;
   flex-direction: column;
@@ -727,14 +679,14 @@ body {
   row-gap: 4px;
 }
 
-.mypost-grid-item-edit {
+.edit-wrapper {
   margin: 0 0 0 auto;
   display: flex;
   align-items: center;
   column-gap: 12px;
 }
 
-.mypost-grid-item-edit-update-btn {
+.update-button {
   border-color: #e6e6e7;
   display: flex;
   width: 40px;
@@ -745,7 +697,7 @@ body {
   border-width: 1px;
 }
 
-.mypost-grid-item-edit-update-btn > svg {
+.update-button > svg {
   color: #333334;
   fill: #333334;
   height: 20px;
@@ -753,7 +705,7 @@ body {
   margin: 0;
 }
 
-.mypost-grid-item-edit-delete-btn {
+.delete-button {
   border-color: #e6e6e7;
   display: flex;
   width: 40px;
@@ -764,19 +716,110 @@ body {
   border-width: 1px;
 }
 
-.mypost-grid-item-edit-delete-btn > svg {
+.delete-button > svg {
   color: #333334;
   fill: #333334;
   width: 20px;
   height: 20px;
 }
 
+/* 페이징 */
+.paging-wrapper {
+  justify-content: center;
+  display: flex;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paging-wrapper ul li {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.paging-wrapper button.prev {
+  opacity: 0.3;
+  border-width: 1px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  border-color: #e6e6e7;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.paging-wrapper button.prev svg {
+  width: 16px;
+  height: 16px;
+}
+
+.paging-wrapper button.next {
+  opacity: 0.3;
+  border-width: 1px;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  border-color: #e6e6e7;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+paging-wrapper button.next svg {
+  width: 16px;
+  height: 16px;
+}
+
+.paging-wrapper button.page {
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.paging-wrapper button.page-active {
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+  background-color: #f3f3f4;
+}
+
+button.page-active span.page-number {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+button.page span.page-number {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: #8a8a8b;
+  fill: #8a8a8b;
+}
+
 /* 작성 글 삭제 모달 */
-.mypost-modal {
+.modal {
   display: none;
 }
 
-.mypost-modal-flex {
+.modal-wrapper {
   background-color: #fff;
   border-color: #e6e6e7;
   position: fixed;
@@ -796,7 +839,7 @@ body {
   box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08), 0px 2px 6px rgba(0, 0, 0, 0.16);
 }
 
-.mypost-modal-message {
+.modal-message {
   color: #1d1d1e;
   fill: #1d1d1e;
   font-weight: 700;
@@ -805,7 +848,7 @@ body {
   margin: 0 0 12px 0;
 }
 
-.mypost-modal-sub-message {
+.modal-sub-message {
   color: #333334;
   fill: #333334;
   font-weight: 400;
@@ -816,7 +859,7 @@ body {
   margin: 0;
 }
 
-.mypost-modal-yes-or-no {
+.modal-choice-wraper {
   margin: 24px 0 0 0;
   display: flex;
   width: 100%;
@@ -824,7 +867,7 @@ body {
   justify-content: space-between;
 }
 
-.mypost-modal-no {
+.button-cancel {
   background-color: #f3f3f4;
   color: #333334;
   fill: #333334;
@@ -841,11 +884,11 @@ body {
   padding: 0 16px;
 }
 
-.mypost-modal-no:hover {
+.button-cancel:hover {
   background-color: #e6e6e7;
 }
 
-.mypost-modal-yes {
+.button-agree {
   background-color: #1d1d1e;
   color: #fff;
   fill: #fff;
@@ -862,11 +905,11 @@ body {
   padding: 0 16px;
 }
 
-.mypost-modal-yes:hover {
+.button-agree:hover {
   background-color: #000000;
 }
 
-.mypost-modal-background {
+.modal-background {
   background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   top: 0;
