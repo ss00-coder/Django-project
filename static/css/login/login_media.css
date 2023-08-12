@@ -1,0 +1,16 @@
+@media (max-width: 1024px){
+  .left-full{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+  }
+
+  .left-head{
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .right-full{
+    display: none;
+  }
+}

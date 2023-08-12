@@ -32,6 +32,10 @@ hr {
 	box-shadow: 11px 13px 11px -14px grey;
 }
 
+.wrap{
+	margin-bottom: 50px;
+}
+
 .info-table {
 	margin: 0 auto;
 	padding: 10px 30px;
@@ -87,7 +91,7 @@ hr {
 
 .board-info-box-layout {
 	margin-top: 30px;
-	width: 40vw;
+	width: 618px;
 }
 
 .prev-button-layout {

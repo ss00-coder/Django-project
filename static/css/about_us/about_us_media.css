@@ -1,0 +1,184 @@
+
+/* =========================section 1================================================ */
+
+@media screen and (max-width: 768px)
+{.first-section {
+    padding-bottom: 80px;
+    padding-top: 96px;
+    padding-left: 156px;
+    padding-right: 156px;
+}}
+
+@media (max-width: 768px)
+{.head-sub-text {
+    max-width: 305px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+}}
+
+@media (max-width: 768px)
+{.head-text{
+    max-width: 400px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 56px;
+}}
+
+
+
+@media (max-width: 768px)
+{.show-boxes-wrap {
+  max-width: 100%;
+  margin-top: 64px;
+  grid-template-columns: repeat(1,minmax(0,1fr));
+}}
+
+
+@media (max-width: 768px)
+{.show-box-t {
+  margin-top: 40px;
+  align-items: center;
+}}
+
+
+
+
+@media (max-width: 768px)
+{.title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+}}
+
+@media (max-width: 768px)
+{.title-text {
+  text-align: center;
+  margin-top: 8px;
+}}
+
+@media (max-width: 768px)
+{.second-section-wrap {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  margin-top: 128px;
+}}
+
+@media (max-width: 768px)
+{.second-section-wrap {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  margin-top: 128px;
+}}
+
+@media (max-width: 768px){
+.title-for-2nd-section{
+  padding-left: 0;
+  padding-right: 0;
+  max-width: 488px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 44px;
+}}
+
+
+@media (max-width: 768px)
+{.category-icon-Wrap-for-2nd-section {
+    gap: 30px;
+    flex-direction: row;
+}}
+
+@media (max-width: 768px) {
+  .set-box2 {
+    grid-column-start: 1;
+  }
+}
+
+
+/*================section 3==================== */
+@media (max-width: 768px)
+{.third-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  padding-left: 156px;
+  padding-right: 156px;
+}}
+
+@media (max-width: 768px)
+{.content-head-title {
+  max-width: 478px;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 56px;
+}}
+
+
+@media (max-width: 768px)
+{.main-content-wrap-for-3rd {
+  column-gap: 32px;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}}
+
+
+@media (max-width: 768px)
+{.containers-for-3rd {
+  margin-top: 64px;
+}}
+
+
+@media (max-width: 768px)
+{.content-explain-title {
+  margin-top: 24px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+}}
+
+
+@media (max-width: 768px)
+{.content-explain {
+  margin-top: 8px;
+}}
+
+/* ====================제한========================== */
+@media (max-width: 768px)
+{.suggestion-wrap {
+  max-width: 100%;
+  margin-top: 64px;
+}}
+
+@media (max-width: 768px){
+.suggestion-wrap-body{
+  flex-direction: column;
+}
+
+.sgt-icon-wrap {
+  width: 48px;
+  height: 48px;
+}
+
+
+.sgt-icon-span {
+  box-sizing: border-box;
+}
+
+.suggestion-text-wrap{
+  margin-top: 12px;
+  text-align: center;
+}
+
+.suggestion-title{
+  line-height: 24px;
+}
+
+
+ .suggestion-text {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+
+.suggestion-btn-wrap{
+  margin-top: 12px;
+}
+}

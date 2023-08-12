@@ -86,9 +86,9 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   font-weight: 600;
   font-size: 14px;
   line-height: 16px;
-  color: #ffffff;
-  fill: #ffffff;
-  background-color: #000;
+  color: #000000;
+  fill: #000000;
+  background-color: #eeeeee;
 }
 
 .button-text-wrap{
@@ -103,7 +103,7 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
 }
 
 .left-main{
-  margin-top: 38px;
+  margin-top: 137px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 32px;
@@ -216,4 +216,10 @@ blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
   max-height: 100%;
   object-fit: cover;
   object-position: center center;
+}
+
+@media (min-width: 1023){
+  .right-full{
+    width: 45%;
+  }
 }
