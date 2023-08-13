@@ -244,7 +244,7 @@ div.file-image-box {
 
 .img_div>img {
 	/* width: 100px; */
-	max-height: 17vh;
+	max-height: 700px;
 }
 
 .inserted_img_section {
@@ -515,11 +515,6 @@ div.file_insert_wrapper {
 
 div.file-image-box {
 	display: flex;
-}
-
-.img_div>img {
-	/* width: 100px; */
-	max-height: 17vh;
 }
 
 .inserted_img_section {
