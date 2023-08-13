@@ -54,7 +54,7 @@
                             <div class="info-table">
                                 <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
                                     <div>
-                                        <input type="text" class="board-title" name="noticeTitle" placeholder="수정제목을 입력해주세요."
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
                                                autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
                                     <!-- 사진첨부 -->
@@ -70,7 +70,7 @@
                                     <!-- 내용입력 -->
                                     <div>
                                         <textarea class="board-content" name="noticeContent"
-                                                  placeholder="수정 할 내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
+                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <section class="img_wrapper_box">
