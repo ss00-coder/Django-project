@@ -294,3 +294,9 @@ input[type='date'] {
 	cursor: pointer;
 }
 
+
+.edit-button{
+	margin: 6px 0px;
+	display: flex;
+	justify-content: right;
+}

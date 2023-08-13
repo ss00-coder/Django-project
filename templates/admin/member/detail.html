@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지- 회원 정보 상세보기</title>
+    <link rel="stylesheet" href="../../../static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../../static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="../../../static/css/admin/member/admin_member_detail.css">
+    <link rel="shortcut icon" href="../../../../static/image/logo/logo-color.png" type="image/x-icon">
+</head>
+
+<body>
+    <div>
+        <div class="info-title-box info-title-box-flex">
+            <div class="logo-box-layout">
+                <div class="logo-box">
+                    <img src="../../../../static/image/logo/white.png">
+                </div>
+                <div class="logo-title">
+                    <span>Jar</span>
+                </div>
+            </div>
+            <div>
+                <div class="select-name">
+                    <span>회원정보 관리</span>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+
+            <!-- 사이드 바 -->
+            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+            <div class="container">
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a>
+                                <img src="../../../static/image/admin/prev_icon.png"
+                                    class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info-flex">
+                        <!-- 내용 섹션 -->
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box board-info-box-flex">
+                                <div class="board-info-title-box">
+                                    <span>👤 회원 정보</span>
+                                </div>
+                                <div class="modify-button-box">
+                                    <a>
+                                        <span>⚙️</span>
+                                        <a>수정</a>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="board-info-box">
+                                <div class="member-img-box">
+                                    <div class="member-img">
+                                    </div>
+                                    <div class="member-nickname-box">
+                                        <span>닉네임123</span>
+                                    </div>
+                                </div>
+                                <div class="member-info-box">
+                                    <div class="member-info-tag-box">
+                                        <span class="info-tag">이름</span>
+                                        <!-- 이름 -->
+                                        <div class="info">
+                                            <span>임수현</span>
+                                        </div>
+                                    </div>
+                                    <div class="member-info-tag-box">
+                                        <span class="info-tag">이메일</span>
+                                        <!-- 이메일 -->
+                                        <div class="info">
+                                            <span>lsh1234@gmail.com</span>
+                                        </div>
+                                    </div>
+                                    <div class="member-info-tag-box">
+                                        <span class="info-tag">핸드폰 번호</span>
+                                        <!-- 핸드폰 번호 -->
+                                        <div class="info">
+                                            <span>010-1234-1234</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="board-info-box-layout board-info-box-layout2">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>📋 활동 정보</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="member-info">
+                                <div class="info-margin">
+                                    <span class="info-tag">가입일</span>
+                                    <!-- 유저 가입날짜  -->
+                                    <h4>2023.08.09</h4>
+                                </div>
+                                <div class="info-margin margin">
+                                    <!-- 유저 작성한 것들  -->
+                                    <hr style="margin: 8px 0;">
+                                    <span class="info-tag">과외</span>
+                                    <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 과외</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-margin is-hidden">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 챌린지</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-margin margin">
+                                    <!-- 유저 작성한 것들  -->
+                                    <hr style="margin: 8px 0;">
+                                    <span class="info-tag">헬퍼스</span>
+                                    <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 헬퍼스</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-margin is-hidden">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 챌린지</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-margin margin">
+                                    <!-- 유저 작성한 것들  -->
+                                    <hr style="margin: 8px 0;">
+                                    <span class="info-tag">이벤트</span>
+                                    <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 이벤트</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-margin is-hidden">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>참여한 이벤트</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0회</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/admin/sidemenu.js"></script>
+</html>
