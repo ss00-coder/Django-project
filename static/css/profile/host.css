@@ -1,0 +1,641 @@
+html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: Pretendard, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  }
+  
+  body {
+    margin: 0;
+    line-height: inherit;
+  }
+  
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+  
+  [role=button],
+  button {
+    cursor: pointer;
+  }
+  
+  [type=button],
+  [type=reset],
+  [type=submit],
+  button {
+    -webkit-appearance: button;
+    background-color: transparent;
+    background-image: none;
+  }
+  
+  button,
+  select {
+    text-transform: none;
+  }
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  blockquote,
+  dd,
+  dl,
+  figure,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  p,
+  pre {
+    margin: 0;
+  }
+  
+  menu,
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .h-full {
+    height: 100%;
+  }
+  
+  #wrap {
+    min-height: 100%;
+  }
+  
+  /* 헤더 =================================================================*/
+  .header-wrap {
+    width: 100%;
+    height: 56px;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    position: fixed;
+  }
+  
+  .header-container {
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 58px;
+    background-color: transparent;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    z-index: 20;
+    left: 0;
+    top: 0;
+    position: fixed;
+  }
+  
+  .header-logo-box {
+    align-items: center;
+    display: flex;
+  }
+  
+  .logo_hidden {
+    display: block;
+    height: 24px;
+  }
+  
+  .logo_black {
+    display: none;
+    height: 24px;
+  }
+  
+  .profile_img {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+  }
+  
+  .relative {
+    position: relative;
+  }
+  
+  .img_button {
+    border-radius: 9999px;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    background-color: #e6e6e7;
+  }
+  
+  .img_button>span {
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    inset: 0px;
+  }
+  
+  .img_button>span>img {
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 9999px;
+  }
+  
+  /* 헤더 백그라운드 ============================================================*/
+  
+  .header-back-img-wrap {
+    width: 100%;
+    height: 148px;
+    position: relative;
+    background-color: #fff;
+  }
+  
+  .header-back-img-span {
+    box-sizing: border-box;
+    display: block;
+    overflow: hidden;
+    width: initial;
+    height: initial;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    inset: 0px;
+  }
+  
+  .header-back-img-span>img {
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  
+  .absolute {
+    background-color: rgba(0, 0, 0, .2);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  
+  .profile_info_box {
+    max-width: 500px;
+    margin-top: -44px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+  
+  .profile_info_box_padding {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .profile_info_box_frame {
+    padding-top: 105px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    position: relative;
+  }
+  
+  
+  .profile_img_center {
+    background: url(https://steadio.imgix.net/profiles/3f09374b-6fb1-4469-904a-5adfdd2c7d2a/profileImage/aefd83de-92a9-499a-a5f1-714b36f7dd94.png?auto=format%2Ccompress&h=300&lossless=true&w=300) center center / cover no-repeat, rgb(255, 255, 255);
+    border-width: 4px;
+    border-radius: 50%;
+    width: 88px;
+    height: 88px;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    top: 0;
+    position: absolute;
+    border-color: #fff;
+  }
+  
+  .profile_info {
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profile_info_title {
+    text-align: center;
+    margin-bottom: 6px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  /* .profile_info_num{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 12px;
+  } */
+  
+  .profile_info_text {
+    text-align: center;
+    word-break: break-all;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8a8a8b;
+    fill: #8a8a8b;
+  }
+  
+  .profile_buttons {
+    gap: 8px;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 24px;
+    margin-top: 14px;
+  }
+  
+  .to_pay_host {
+    height: 40px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  .payment {
+    margin-right: 8px;
+  }
+  
+  .button-p {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    display: flex;
+    position: relative;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    fill: #fff;
+    background-color: #1d1d1e;
+  }
+  
+  .hosting-btn {
+    border-width: 1px;
+    border-radius: 9999px;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    border-color: rgba(0, 0, 0, .1);
+    background-color: #fff;
+  }
+
+  .message-btn {
+    border-width: 1px;
+    border-radius: 9999px;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    border-color: rgba(0, 0, 0, .1);
+    background-color: #fff;
+  }
+  
+  .share_icon {
+    width: 16px;
+    height: 16px;
+    color: #333334;
+    fill: #333334;
+  }
+  
+  /* 메인 ================================================================= */
+  
+  #main {
+    flex-direction: column;
+    max-width: 720px;
+    min-width: 320px;
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    background-color: #fff;
+  }
+  
+  .main-wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .main-wrapper > h4 {   
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 20px;
+    color: #1d1d1e;
+    fill: #1d1d1e;
+  }
+
+  .map {
+    background-color: bisque;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 모달 */
+  .modal {
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 20;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    position: fixed;
+    display: none;
+  }
+  
+  .modal-wrapper {
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    z-index: 20;
+    width: 100%;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 27px;
+  }
+  
+  .modal-container {
+    overflow-y: scroll;
+    height: 80vh;
+  }
+  
+  .modal-title {
+    color: #1d1d1e;
+    fill: #1d1d1e;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .product-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+    max-width: 500px;
+    padding: 16px;
+  }
+  
+  
+  .product-container {
+    margin-bottom: 16px;
+  }
+  
+  .product-border {
+    border-color: #e6e6e7;
+    overflow: hidden;
+    border-radius: 16px;
+    border-width: 1px;
+  }
+  
+  .active-product {
+    border-color: #ed9838;
+  }
+  
+  .product-label {
+    display: block;
+    padding: 24px;
+  }
+  
+  .product-flex {
+    margin-bottom: 8px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .product-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #ed9838;
+    fill: #ed9838;
+  }
+  
+  .price-container {
+    color: #1d1d1e;
+    fill: #1d1d1e;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .price-content {
+    color: #1d1d1e;
+    fill: #1d1d1e;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 40px;
+  }
+  
+  .product-p {
+    color: #666667;
+    fill: #666667;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  
+  .product-check {
+    border-width: 1px;
+    display: flex;
+    height: 20px;
+    width: 20px;
+    flex-basis: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  .active-check {
+    background-color: #ed9838;
+    border-width: 0;
+  }
+  
+  .product-check-svg {
+    color: #b9b9bb;
+    fill: #b9b9bb;
+    height: 12px;
+    width: 12px;
+  }
+  
+  .active-check-svg {
+    color: #fff;
+    fill: #fff;
+  }
+  
+  
+  #select-product {
+    display: none;
+  }
+  
+  #product-untact {
+    display: none;
+  }
+  
+  .product-info {
+    margin-top: 16px;
+    border-top-width: 1px;
+    padding-top: 16px;
+  }
+  
+  .info-item {
+    color: #1d1d1e;
+    fill: #1d1d1e;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    word-break: break-all;
+  }
+  
+  .info-item>div>svg {
+    color: #ed9838;
+    fill: #ed9838;
+    margin-right: 9px;
+    height: 20px;
+    width: 20px;
+  }
+  
+  /* 결제 버튼 */
+  
+  .pay-wrapper {
+    padding: 20px;
+    transform: translateX(-50%);
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    left: 50%;
+    position: fixed;
+  }
+  
+  .pay-btn {
+    background-color: #1d1d1e;
+    color: #fff;
+    fill: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    position: relative;
+    display: flex;
+    height: 48px;
+    width: 100%;
+    min-width: 88px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 24px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* 모달 백그라운드 */
+  @media (min-width: 500px) {
+    .modal-background {
+      display: block;
+    }
+  }
+  
+  .modal-background {
+    background-color: rgba(0, 0, 0, .4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+  }
+  
+  
