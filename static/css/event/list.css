@@ -492,6 +492,10 @@ div.filter-modal button.category-apply {
   background-color: #1d1d1e;
 }
 
+main.app{
+  display: none;
+}
+
 /* 반응형 */
 @media (max-width: 768px) {
   main.web {
@@ -499,7 +503,7 @@ div.filter-modal button.category-apply {
   }
 
   main.app {
-    display: block !important;
+    display: block;
   }
 }
 
