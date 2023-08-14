@@ -1,0 +1,8 @@
+django~=4.2.3
+pillow
+PyMySQL
+mysqlclient
+django-model-utils~=4.3.1
+django-debug-toolbar~=4.1.0
+djangorestframework~=3.14.0
+requests
