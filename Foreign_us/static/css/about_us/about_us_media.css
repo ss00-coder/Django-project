@@ -140,13 +140,13 @@
 
 /* ====================제한========================== */
 @media (max-width: 768px)
-{.suggestion-wrap {
+{.suggestion_wrap {
   max-width: 100%;
   margin-top: 64px;
 }}
 
 @media (max-width: 768px){
-.suggestion-wrap-body{
+.suggestion_wrap_body{
   flex-direction: column;
 }
 
@@ -160,23 +160,23 @@
   box-sizing: border-box;
 }
 
-.suggestion-text-wrap{
+.suggestion_text_wrap{
   margin-top: 12px;
   text-align: center;
 }
 
-.suggestion-title{
+.suggestion_title{
   line-height: 24px;
 }
 
 
- .suggestion-text {
+ .suggestion_text {
   font-size: 14px;
   line-height: 20px;
 }
 
 
-.suggestion-btn-wrap{
+.suggestion_btn_wrap{
   margin-top: 12px;
 }
-}
+
