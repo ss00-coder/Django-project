@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 문의 게시판 목록</title>
-    <link rel="stylesheet" href="../../../../static/css/admin/admin_common.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="../../../../static/css/admin/inpuiry/admin_inpuiry_list.css">
-    <link rel="shortcut icon" href="../../../../static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/static/css/admin/inpuiry/admin_inpuiry_list.css">
+    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
 </head>
 
 <body>
@@ -155,35 +155,6 @@
                     </section>
 
                     <!-- 페이지 버튼 -->
-
-                    <!-- <section id="content-wrap">
-                        <ul></ul>
-                        <div id="paging-wrap">
-                            <c:if test="${prev}">
-                                <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${startPage - 1}'"
-                                    class="paging paging-move"><img
-                                        src="${pageContext.request.contextPath}/images/prev.png"
-                                        width="15px"></a>
-                            </c:if>
-                            <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                                <c:choose>
-                                    <c:when test="${i eq page}">
-                                        <a href="javascript:void(0)" class="paging paging-checked">
-                                            <c:out value="${i}" />
-                                        </a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${i}'"
-                                            class="paging">
-                                            <c:out value="${i}" />
-                                        </a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                            <div></div>
-                        </div>
-                    </section> -->
-
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
                             <!-- 페이지 번호 -->

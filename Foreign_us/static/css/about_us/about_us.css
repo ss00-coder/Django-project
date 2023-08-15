@@ -405,9 +405,9 @@ menu, ol, ul {
   color: #333334;
   fill: #333334;
 }
-
+/* section third================================================================*/
 .third-section{
-  padding-top: 128px;
+  padding-top: 60px;
   padding-bottom: 128px;
   padding-left: 0;
   padding-right: 0;
@@ -424,6 +424,57 @@ menu, ol, ul {
   }
 }
 
+/* 과외 헬퍼스 이벤트 탭 ---------------------------------------------------------------*/
+
+/* 헬퍼스 */
+.help_us {
+  display: none;
+}
+
+/* 이벤트 */
+.event {
+  display: none;
+}
+
+.main-title-buttons {
+  justify-content: space-around;
+  display: flex;
+  width: 650px;
+}
+
+.title-button {
+  border-bottom-width: 1px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 43px;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  border-color: #e6e6e7;
+  color: #000000;
+  fill: #b9b9bb;
+}
+
+.active-tab {
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.tab-line {
+  width: 100%;
+  height: 1.6px;
+  display: flex;
+  bottom: -1px;
+  left: 0;
+  position: absolute;
+  background-color: #333334;
+}
+
+/*-------------------------------------------------------------------------------------*/
 .content-head-title-3rd-section{
   justify-content: center;
   display: flex;
@@ -438,6 +489,7 @@ menu, ol, ul {
   word-break: keep-all;
   color: #1d1d1e;
   fill: #1d1d1e;
+  padding-top: 100px;
 }
 
 .main-content-wrap-for-3rd{
@@ -467,17 +519,17 @@ menu, ol, ul {
  }
 
 
-.suggestion-wrap-body{
+.suggestion_wrap_body{
   justify-content: space-between;
   flex-direction: row;
   background-color: rgb(247 246 255);
  }
 /* 적용안됨... */
-.suggestion-text-wrap{
+.suggestion_text_wrap{
   margin-left: 20px;
  }
 
- .suggestion-left-box{
+ .suggestion_left_box{
   align-items: center;
   display: flex;
 }
@@ -552,13 +604,13 @@ menu, ol, ul {
   padding: 40px;
 }
 
-.suggestion-wrap{
+.suggestion_wrap{
   margin-top: 80px;
   max-width: 100%;
   width: 100%;
 }
 
-.suggestion-wrap-body{
+.suggestion_wrap_body{
   padding-left: 48px;
   padding-right: 48px;
   padding: 32px;
@@ -614,13 +666,13 @@ menu, ol, ul {
   max-height: 100%;
 }
 
-.suggestion-text-wrap{
+.suggestion_text_wrap{
   text-align: left;
   margin-top: 0;
   margin-left: 20px;
 }
 
-.suggestion-title{
+.suggestion_title{
   font-weight: 700;
   font-size: 20px;
   line-height: 28px;
@@ -628,7 +680,7 @@ menu, ol, ul {
   fill: #1d1d1e;
 }
 
-.suggestion-text{
+.suggestion_text{
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -637,12 +689,12 @@ menu, ol, ul {
   fill: #666667;
 }
 
-.suggestion-btn-wrap{
+.suggestion_btn-wrap{
   margin-top: 0;
   display: block;
 }
 
-.suggestion-btn{
+.suggestion_btn{
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 20px;
