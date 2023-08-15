@@ -1,4 +1,4 @@
-/* lesson/detail.html */
+/* event/detail.html */
 *,
 :after,
 :before {
@@ -819,75 +819,53 @@ h4.board-title-wrapper div.board-title span {
   overflow-x: hidden;
 }
 
-ul.post-wrapper {
+.main ul.post-wrapper {
   margin-top: 28px;
   row-gap: 1rem;
   column-gap: 2.25rem;
   display: grid;
-  margin-bottom: 20px;
 }
 
-ul.post-wrapper li.post:first-child {
+.main ul.post-wrapper li.post:first-child {
   padding-top: 8px;
   border-width: 0;
   padding-bottom: 0;
   border-color: #f3f3f4;
 }
 
-ul.post-wrapper li.post {
+.main ul.post-wrapper li.post:last-child {
+  padding-top: 8px;
+  border-top-width: 1px;
+  padding-bottom: 30px;
+  border-color: #f3f3f4;
+}
+
+.main ul.post-wrapper li.post {
   padding-bottom: 0;
   padding-top: 20px;
   border-top-width: 1px;
   border-color: #f3f3f4;
 }
 
-ul.post-wrapper button.post-link {
+.main ul.post-wrapper button.post-link {
   text-align: left;
   width: 100%;
   display: block;
 }
 
-ul.post-wrapper div.post-container {
+.main ul.post-wrapper div.post-container {
   column-gap: 16px;
   display: flex;
 }
 
-ul.post-wrapper div.post-text {
+.main ul.post-wrapper div.post-text {
   display: flex;
   word-break: break-all;
   width: 100%;
   flex-direction: column;
 }
 
-ul.post-wrapper div.tags {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 4px;
-  align-items: center;
-  width: fit-content;
-  display: flex;
-  margin-bottom: 8px;
-  background-color: #f2f0fc;
-}
-
-ul.post-wrapper svg.tag-image {
-  width: 12px;
-  height: 12px;
-  margin-right: 2px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-ul.post-wrapper span.tag-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
-ul.post-wrapper h2.post-title {
+.main ul.post-wrapper h2.post-title {
   display: block;
   font-weight: 700;
   font-size: 17px;
@@ -897,25 +875,27 @@ ul.post-wrapper h2.post-title {
   word-wrap: break-word;
   color: #333334;
   fill: #333334;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-ul.post-wrapper p.post-content {
+.main ul.post-wrapper p.post-content {
   display: block;
   margin-top: 6px;
   word-break: break-word;
   word-wrap: break-word;
-  margin-bottom: 18px;
+  margin-bottom: 5px;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   color: #8a8a8b;
   fill: #8a8a8b;
-  height: 36px;
+  height: 54px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-ul.post-wrapper div.post-image {
+.main ul.post-wrapper div.post-image {
   width: 102px;
   height: 102px;
   border-radius: 8px;
@@ -923,7 +903,7 @@ ul.post-wrapper div.post-image {
   position: relative;
 }
 
-ul.post-wrapper span.post-thumbnail {
+.main ul.post-wrapper span.post-thumbnail {
   box-sizing: border-box;
   display: block;
   overflow: hidden;
@@ -938,7 +918,7 @@ ul.post-wrapper span.post-thumbnail {
   inset: 0px;
 }
 
-ul.post-wrapper img.thumbnail-image {
+.main ul.post-wrapper img.thumbnail-image {
   position: absolute;
   inset: 0px;
   box-sizing: border-box;
@@ -957,13 +937,13 @@ ul.post-wrapper img.thumbnail-image {
   border-radius: 8px;
 }
 
-ul.post-wrapper div.post-writer {
+.main ul.post-wrapper div.post-writer {
   align-items: center;
   display: flex;
   margin-top: 12px;
 }
 
-ul.post-wrapper div.writer-profile-image {
+.main ul.post-wrapper div.writer-profile-image {
   width: 18px;
   height: 18px;
   background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
@@ -972,7 +952,7 @@ ul.post-wrapper div.writer-profile-image {
   box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
 }
 
-ul.post-wrapper div.writer-info {
+.main ul.post-wrapper div.writer-info {
   column-gap: 2px;
   align-items: center;
   display: flex;
@@ -982,7 +962,7 @@ ul.post-wrapper div.writer-info {
   line-height: 18px;
 }
 
-ul.post-wrapper div.writer-name {
+.main ul.post-wrapper div.writer-name {
   max-width: 100%;
   overflow: hidden;
   word-break: break-all;
@@ -990,14 +970,14 @@ ul.post-wrapper div.writer-name {
   fill: #333334;
 }
 
-ul.post-wrapper svg.writer-line {
+.main ul.post-wrapper svg.writer-line {
   width: 8px;
   height: 8px;
   color: #b9b9bb;
   fill: #b9b9bb;
 }
 
-ul.post-wrapper span.write-info {
+.main ul.post-wrapper span.write-info {
   flex-shrink: 0;
   color: #8a8a8b;
   fill: #8a8a8b;
@@ -1080,16 +1060,24 @@ footer button.left-icon {
 footer svg.left-icon-image {
   width: 24px;
   height: 24px;
-  color: #b9b9bb;
-  fill: #b9b9bb;
+  color: #333334;
+  fill: #333334;
+}
+
+footer svg.heart{
+  display: none;
+}
+
+footer svg.heart.active{
+  display: block;
 }
 
 footer span.left-num {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #8a8a8b;
-  fill: #8a8a8b;
+  color: #333334;
+  fill: #333334;
 }
 
 footer div.footer-right-wrapper {
@@ -1112,25 +1100,21 @@ footer svg.right-list-image {
   fill: #333334;
 }
 
-main.mid-app {
-  display: none;
-}
-
-main.app {
+div.writer-fade {
   display: none;
 }
 
 @media (max-width: 1420px) {
-  main.web {
+  main.main {
+    margin-left: auto;
+  }
+
+  div.writer-show {
     display: none;
   }
 
-  main.mid-app {
+  div.writer-fade {
     display: block;
-  }
-
-  main.main {
-    margin-left: auto;
   }
 
   footer div.post-footer-container {
@@ -1139,216 +1123,28 @@ main.app {
 }
 
 @media (max-width: 768px) {
-  main.mid-app {
-    display: none;
-  }
-
-  main.app {
-    display: block !important;
-  }
-
-  main.main {
-    margin-left: auto;
-  }
-
-  footer div.post-footer-container {
-    width: 750px;
-  }
-
-  .app {
+  .web {
     min-width: 450px;
   }
 
   /* 글 목록 */
-  .app ul.post-wrapper {
-    row-gap: 1rem;
-    column-gap: 2.25rem;
-    display: grid;
+  .main ul.post-wrapper {
     margin-top: 20px;
   }
 
-  .app li.post:first-child {
-    padding-top: 8px;
-    border-width: 0;
-    padding-bottom: 0;
-    border-color: #f3f3f4;
-  }
-
-  .app li.post {
-    padding-bottom: 0;
-    padding-top: 20px;
-    border-top-width: 1px;
-    border-color: #f3f3f4;
-  }
-
-  .app li.post button.post-link {
-    text-align: left;
-    width: 100%;
-    display: block;
-  }
-
-  .app li.post div.post-container {
-    column-gap: 16px;
-    display: flex;
-  }
-
-  .app li.post div.post-text {
-    word-break: break-all;
-    width: 100%;
-    height: 73px;
-  }
-
-  .app li.post div.tags {
-    padding-top: 4px;
-    padding-bottom: 4px;
-    padding-left: 6px;
-    padding-right: 6px;
-    border-radius: 4px;
-    align-items: center;
-    width: fit-content;
-    display: flex;
-    margin-bottom: 8px;
-    background-color: #f2f0fc;
-  }
-
-  .app li.post div.tags svg.tag-image {
-    width: 12px;
-    height: 12px;
-    margin-right: 2px;
-    color: #5b44ea;
-    fill: #5b44ea;
-  }
-
-  .app li.post span.tag-text {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #5b44ea;
-    fill: #5b44ea;
-  }
-
-  .app li.post h2.post-title {
-    overflow: hidden;
-    word-break: break-word;
-    word-wrap: break-word;
-    display: block;
-    font-weight: 700;
+  .main li.post h2.post-title {
     font-size: 16px;
     line-height: 22px;
-    color: #333334;
-    fill: #333334;
-    /* height: 22px; */
   }
 
-  .app li.post p.post-content {
-    overflow: hidden;
+  .main li.post p.post-content {
     margin-top: 4px;
-    display: block;
-    word-break: break-word;
-    word-wrap: break-word;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 18px;
-    color: #8a8a8b;
-    fill: #8a8a8b;
-    margin-bottom: 18px;
-    text-overflow: ellipsis;
-    height: 42px;
+    margin-bottom: 0px;
+    height: 36px;
   }
 
-  .app li.post div.post-image {
-    border-radius: 8px;
-    flex-shrink: 0;
+  .main li.post div.post-image {
     width: 72px;
     height: 72px;
-    position: relative;
-  }
-
-  .app li.post span.post-thumbnail {
-    box-sizing: border-box;
-    display: block;
-    overflow: hidden;
-    width: initial;
-    height: initial;
-    background: none;
-    opacity: 1;
-    border: 0px;
-    margin: 0px;
-    padding: 0px;
-    position: absolute;
-    inset: 0px;
-  }
-
-  .app li.post span.post-thumbnail img {
-    position: absolute;
-    inset: 0px;
-    box-sizing: border-box;
-    padding: 0px;
-    border: none;
-    margin: auto;
-    display: block;
-    width: 0px;
-    height: 0px;
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 8px;
-  }
-
-  /* 글 작성자 */
-  .app li.post div.post-writer {
-    align-items: center;
-    display: flex;
-    margin-top: 12px;
-  }
-
-  .app li.post div.writer-profile-image {
-    width: 18px;
-    height: 18px;
-    background: url(https://steadio.imgix.net/profiles/4dd13d81-1b4b-4e3f-b2e5-d98949d7ba50/profileImage/2f6a8146-d4fa-42b4-b753-175a6637ff66.jpg?auto=format%2Ccompress&h=300&lossless=true&w=300)
-        center center / cover no-repeat,
-      rgb(255, 255, 255);
-    box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000),
-      inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-    border-radius: 9999px;
-    flex-shrink: 0;
-    position: relative;
-  }
-
-  .app li.post div.writer-info {
-    column-gap: 2px;
-    align-items: center;
-    display: flex;
-    margin-left: 6px;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 18px;
-  }
-
-  .app li.post span.writer-name {
-    overflow: hidden;
-    display: block;
-    word-break: break-all;
-    max-width: 115px;
-    color: #333334;
-    fill: #333334;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  .app li.post svg.writer-line {
-    width: 8px;
-    height: 8px;
-    color: #b9b9bb;
-    fill: #b9b9bb;
-  }
-
-  .app li.post span.write-info {
-    flex-shrink: 0;
-    color: #8a8a8b;
-    fill: #8a8a8b;
   }
 }

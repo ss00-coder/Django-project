@@ -233,35 +233,6 @@ main.main {
   flex-direction: column;
 }
 
-.main ul.post-wrapper div.tags {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 4px;
-  align-items: center;
-  width: fit-content;
-  display: flex;
-  margin-bottom: 8px;
-  background-color: #f2f0fc;
-}
-
-.main ul.post-wrapper svg.tag-image {
-  width: 12px;
-  height: 12px;
-  margin-right: 2px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
-.main ul.post-wrapper span.tag-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
 .main ul.post-wrapper h2.post-title {
   display: block;
   font-weight: 700;
@@ -526,17 +497,5 @@ div.filter-modal button.category-apply {
   .main li.post div.post-image {
     width: 72px;
     height: 72px;
-  }
-
-  /* 글 작성자 */
-  .main li.post span.writer-name {
-    overflow: hidden;
-    display: block;
-    word-break: break-all;
-    max-width: 115px;
-    color: #333334;
-    fill: #333334;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 }
