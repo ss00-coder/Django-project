@@ -124,13 +124,13 @@ main.main {
   display: flex;
 }
 
-.main div.filter label.order-label-active {
+.main div.filter label.order-label:first-child {
   padding-left: 0;
   padding-right: 12px;
   position: relative;
 }
 
-.main div.filter label.order-label-nonactive {
+.main div.filter label.order-label {
   padding-left: 12px;
   padding-right: 12px;
   position: relative;
@@ -146,7 +146,7 @@ main.main {
   position: absolute;
 }
 
-.main div.filter span.order-text-active {
+.main div.filter label.order-label.active span.order-text {
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
@@ -154,7 +154,7 @@ main.main {
   fill: #1d1d1e;
 }
 
-.main div.filter span.order-text-nonactive {
+.main div.filter label.order-label span.order-text {
   font-weight: 400;
   font-size: 15px;
   line-height: 20px;
@@ -233,35 +233,6 @@ main.main {
   flex-direction: column;
 }
 
-.main ul.post-wrapper div.tags {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 4px;
-  align-items: center;
-  width: fit-content;
-  display: flex;
-  margin-bottom: 8px;
-  background-color: #f2f0fc;
-}
-
-.main ul.post-wrapper svg.tag-image {
-  width: 12px;
-  height: 12px;
-  margin-right: 2px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
-.main ul.post-wrapper span.tag-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
 .main ul.post-wrapper h2.post-title {
   display: block;
   font-weight: 700;
@@ -273,7 +244,7 @@ main.main {
   color: #333334;
   fill: #333334;
   text-overflow: ellipsis;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 .main ul.post-wrapper p.post-content {
@@ -281,13 +252,13 @@ main.main {
   margin-top: 6px;
   word-break: break-word;
   word-wrap: break-word;
-  margin-bottom: 18px;
+  margin-bottom: 5px;
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
   color: #8a8a8b;
   fill: #8a8a8b;
-  height: 36px;
+  height: 54px;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -453,6 +424,9 @@ div.filter-modal label.category-tag {
   border-radius: 33px;
   cursor: pointer;
   position: relative;
+}
+
+div.filter-modal label.category-tag.active{
   border-color: #7e69fe;
 }
 
@@ -492,310 +466,36 @@ div.filter-modal button.category-apply {
   background-color: #1d1d1e;
 }
 
-main.app{
-  display: none;
-}
-
 /* 반응형 */
 @media (max-width: 768px) {
-  main.web {
-    display: none;
+  main.main {
+    padding-left: 16px;
+    padding-right: 16px;
+    min-width: 400px;
   }
 
-  main.app {
-    display: block;
+  .main .filter {
+    padding-top: 26px;
   }
-}
 
-.app {
-  padding-left: 16px;
-  padding-right: 16px;
-  flex-direction: column;
-  max-width: 720px;
-  min-width: 350px;
-  min-height: 100vh;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  background-color: #fff;
-}
+  /* 글 목록 */
+  .main ul.post-wrapper {
+    margin-top: 20px;
+  }
 
-.app .filter {
-  padding-bottom: 14px;
-  padding-top: 26px;
-  border-bottom-width: 1px;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  border-color: #e6e6e7;
-}
+  .main li.post h2.post-title {
+    font-size: 16px;
+    line-height: 22px;
+  }
 
-.app .order {
-  align-items: center;
-  display: flex;
-}
+  .main li.post p.post-content {
+    margin-top: 4px;
+    margin-bottom: 0px;
+    height: 36px;
+  }
 
-.app .order-label-active {
-  padding-left: 0;
-  padding-right: 12px;
-  position: relative;
-}
-
-.app .order-input {
-  opacity: 0;
-  cursor: pointer;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-}
-
-.app .order-text-active {
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 20px;
-  color: #1d1d1e;
-  fill: #1d1d1e;
-}
-
-.app .order-line {
-  border-left-width: 2px;
-  overflow: hidden;
-  flex-grow: 0;
-  width: 2px;
-  height: 16px;
-  display: flex;
-  border-color: #e6e6e7;
-}
-
-.app .order-label-nonactive {
-  padding-left: 12px;
-  padding-right: 12px;
-  position: relative;
-}
-
-.app .order-text-nonactive {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
-  color: #8a8a8b;
-  fill: #8a8a8b;
-}
-
-.app .filter-button {
-  gap: 6px;
-  align-items: center;
-  display: flex;
-  background-color: transparent;
-  background-image: none;
-}
-
-.app .filter-button svg.filter-image {
-  width: 24px;
-  width: 24px;
-  color: #666667;
-  fill: #666667;
-}
-
-.app .filter-text {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
-  color: #333334;
-  fill: #333334;
-}
-
-/* 글 목록 */
-.app ul.post-wrapper {
-  row-gap: 1rem;
-  column-gap: 2.25rem;
-  display: grid;
-  margin-top: 20px;
-}
-
-.app li.post:first-child {
-  padding-top: 8px;
-  border-width: 0;
-  padding-bottom: 0;
-  border-color: #f3f3f4;
-}
-
-.app li.post {
-  padding-bottom: 0;
-  padding-top: 20px;
-  border-top-width: 1px;
-  border-color: #f3f3f4;
-}
-
-.app li.post button.post-link {
-  text-align: left;
-  width: 100%;
-  display: block;
-}
-
-.app li.post div.post-container {
-  column-gap: 16px;
-  display: flex;
-}
-
-.app li.post div.post-text {
-  word-break: break-all;
-  width: 100%;
-  height: 73px;
-}
-
-.app li.post div.tags {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 6px;
-  padding-right: 6px;
-  border-radius: 4px;
-  align-items: center;
-  width: fit-content;
-  display: flex;
-  margin-bottom: 8px;
-  background-color: #f2f0fc;
-}
-
-.app li.post div.tags svg.tag-image {
-  width: 12px;
-  height: 12px;
-  margin-right: 2px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
-.app li.post span.tag-text {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
-  color: #5b44ea;
-  fill: #5b44ea;
-}
-
-.app li.post h2.post-title {
-  overflow: hidden;
-  word-break: break-word;
-  word-wrap: break-word;
-  display: block;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 22px;
-  color: #333334;
-  fill: #333334;
-  /* height: 22px; */
-}
-
-.app li.post p.post-content {
-  overflow: hidden;
-  margin-top: 4px;
-  display: block;
-  word-break: break-word;
-  word-wrap: break-word;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: #8a8a8b;
-  fill: #8a8a8b;
-  margin-bottom: 18px;
-  text-overflow: ellipsis;
-  height: 36px;
-}
-
-.app li.post div.post-image {
-  border-radius: 8px;
-  flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-  position: relative;
-}
-
-.app li.post span.post-thumbnail {
-  box-sizing: border-box;
-  display: block;
-  overflow: hidden;
-  width: initial;
-  height: initial;
-  background: none;
-  opacity: 1;
-  border: 0px;
-  margin: 0px;
-  padding: 0px;
-  position: absolute;
-  inset: 0px;
-}
-
-.app li.post span.post-thumbnail img {
-  position: absolute;
-  inset: 0px;
-  box-sizing: border-box;
-  padding: 0px;
-  border: none;
-  margin: auto;
-  display: block;
-  width: 0px;
-  height: 0px;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  border-radius: 8px;
-}
-
-/* 글 작성자 */
-.app li.post div.post-writer {
-  align-items: center;
-  display: flex;
-  margin-top: 12px;
-}
-
-.app li.post div.writer-profile-image {
-  width: 18px;
-  height: 18px;
-  background: url(https://steadio.imgix.net/profiles/4dd13d81-1b4b-4e3f-b2e5-d98949d7ba50/profileImage/2f6a8146-d4fa-42b4-b753-175a6637ff66.jpg?auto=format%2Ccompress&h=300&lossless=true&w=300)
-      center center / cover no-repeat,
-    rgb(255, 255, 255);
-  box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000),
-    inset 0 0 0 1px rgba(0, 0, 0, 0.1);
-  border-radius: 9999px;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.app li.post div.writer-info {
-  column-gap: 2px;
-  align-items: center;
-  display: flex;
-  margin-left: 6px;
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.app li.post span.writer-name {
-  overflow: hidden;
-  display: block;
-  word-break: break-all;
-  max-width: 115px;
-  color: #333334;
-  fill: #333334;
-  text-overflow: ellipsis;
-  white-space:nowrap;
-}
-
-.app li.post svg.writer-line {
-  width: 8px;
-  height: 8px;
-  color: #b9b9bb;
-  fill: #b9b9bb;
-}
-
-.app li.post span.write-info {
-  flex-shrink: 0;
-  color: #8a8a8b;
-  fill: #8a8a8b;
+  .main li.post div.post-image {
+    width: 72px;
+    height: 72px;
+  }
 }

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/lesson/write.css" />
-    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../static/css/lesson/write.css" />
+    <link rel="shortcut icon" href="../../static/image/logo/logo-color.png" type="image/x-icon">
     <link
       rel="stylesheet"
       type="text/css"
@@ -21,7 +21,7 @@
           <div>
             <div class="logo-wrapper">
               <a href="">
-                <img class="logo-image" src="/static/image/logo/white.png" alt="">
+                <img class="logo-image" src="../../static/image/logo/white.png" alt="">
               </a>
               <div class="line">|</div>
               <div class="my-page-text">
@@ -33,7 +33,7 @@
             <div style="position: relative">
               <button class="profile-modal-button">
                 <span class="profile-image">
-                  <img src="/static/image/profile_icon.png" alt="" />
+                  <img src="../../static/image/profile_icon.png" alt="" />
                 </span>
               </button>
             </div>
@@ -108,7 +108,7 @@
                   </li>
                   <li class="board-type-wrapper">
                     <label for="lesson" style="position: relative; display: flex">
-                      <input type="radio" id="lesson" checked />
+                      <input type="radio" id="lesson"/>
                       <div class="radio-button">
                         <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="4" cy="4" r="4"></circle>
@@ -121,7 +121,7 @@
                   </li>
                   <li class="board-type-wrapper">
                     <label for="lesson" style="position: relative; display: flex">
-                      <input type="radio" id="lesson" checked />
+                      <input type="radio" id="lesson"/>
                       <div class="radio-button">
                         <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="4" cy="4" r="4"></circle>
@@ -145,6 +145,7 @@
                     <div>
                       <label class="tag-label" for="tag-input">
                         <input
+                          onkeyup="enterkey()"
                           placeholder="포스트의 키워드를 태그로 입력하세요."
                           id="tag-input"
                           type="text"
@@ -158,17 +159,17 @@
                     </div>
                   </div>
                 </div>
-                <ul style="display: flex; flex-wrap: wrap">
-                  <li class="tag-wrapper">
+                <ul class="tag-ul" style="display: flex; flex-wrap: wrap">
+                  <!-- <li class="tag-wrapper">
                     <span class="tag-text">태그 예시</span>
-                    <button type="button">
+                    <button onclick="removeTag(this)" type="button">
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"
                         ></path>
                       </svg>
                     </button>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
               <div class="sub-title">
@@ -196,29 +197,5 @@
     src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"
   ></script>
-
-  <script>
-    tinymce.init({
-      selector: 'textarea#image-tools',
-      height: 474,
-      plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table paste imagetools wordcount',
-      ],
-      toolbar:
-        'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      content_style:
-        'body { font-family:Helvetica,Arial,sans-serif; font-size:16px; font-weight: 400; }',
-      content_style: `.mce-content-body[data-mce-placeholder]:not(.mce-visualblocks)::before {
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 16px;
-          color: #c0b9bb;
-          fill: #c0b9bb;
-        }
-        `,
-      placeholder: '내용을 입력해주세요.',
-    });
-  </script>
+  <script src="../../static/js/lesson/write.js"></script>
 </html>
