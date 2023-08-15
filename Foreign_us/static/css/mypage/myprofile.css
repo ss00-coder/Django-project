@@ -660,22 +660,13 @@ p.mypage-grid-imgicon-explanation {
     grid-column-end: span 7;   
 }
 
-.mypage-grid-details-input {
-    text-align: center;
+.mypage-grid-details-textarea {
     width: 544px;
     height: 350px;
     border-radius: 8px;
     border: 1px solid #e6e6e7;
     outline: none;
-}
-
-.mypage-grid-details-input {
-    text-align: center;
-    width: 544px;
-    height: 350px;
-    border-radius: 8px;
-    border: 1px solid #e6e6e7;
-    outline: none;
+    resize: none;
 }
 
 .mypage-grid-sns {
