@@ -637,6 +637,11 @@ ul {
   border-color: #e6e6e7;
 }
 
+.icons > a {
+  display: flex;
+}
+
+
 .icons>a>.icon {
   width: 24px;
   height: 24px;
