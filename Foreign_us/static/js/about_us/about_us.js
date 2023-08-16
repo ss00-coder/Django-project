@@ -1,4 +1,5 @@
- $(function () {
+
+$(function () {
 
      const $tabBtn = $('.title-button');
      const $tutor = $('.tutor');
