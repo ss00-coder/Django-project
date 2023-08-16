@@ -455,8 +455,8 @@ menu, ol, ul {
   font-size: 15px;
   line-height: 20px;
   border-color: #e6e6e7;
-  color: #000000;
-  fill: #b9b9bb;
+  color: #b9b9bb;
+  fill: #000000;
 }
 
 .active-tab {
