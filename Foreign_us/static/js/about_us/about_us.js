@@ -2,7 +2,7 @@
 $(function () {
 
      const $tabBtn = $('.title-button');
-     const $tutor = $('.tutor');
+     const $tutor = $('.lesson');
      const $help_us = $('.help_us');
      const $event = $('.event');
      const $suggestion_wrap = $('.suggestion_wrap');

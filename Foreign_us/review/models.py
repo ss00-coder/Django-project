@@ -7,6 +7,7 @@ from member.models import Member
 # Create your models here.
 class Review(Post):
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
+    reviewed_member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE, related_name='reviewed_member')
 
     class Meta:
         db_table = 'tbl_review'
