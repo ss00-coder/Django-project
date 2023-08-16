@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
-    <link rel="stylesheet" href="../../static/css/header/header.css" />
+    <link rel="stylesheet" href="{% static 'css/header/header.css' %}" />
 </head>
 <body>
   <header id="headers">
     <div class="main-header">
       <a class="main-header-logo">
-        <img src="../../static/image/logo/back.png">
+        <img src="{% static 'image/logo/black.png' %} ">
       </a>
       <div class="main-header-select">
         <div class="main-header-select-flex">
