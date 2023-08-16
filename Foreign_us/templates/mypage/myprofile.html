@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html id="html" lang="ko">
 
@@ -6,10 +8,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>foreing-us 폴인어스</title>
-  <link rel="shortcut icon" href="../../static/image/logo/logo-color.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %} " type="image/x-icon">
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
-  <link rel="stylesheet" href="../../static/css/mypage/myprofile.css" />
+  <link rel="stylesheet" href="{% static 'css/mypage/myprofile.css' %} " />
 </head>
 
 <body>
@@ -19,7 +21,7 @@
         <div class="header-logo">
           <div class="header-logo-container">
             <a href="">
-              <img style="margin-bottom: 0 !important;" src="../../static/image/logo/white.png" alt="">
+              <img style="margin-bottom: 0 !important;" src="{% static 'image/logo/white.png' %} " alt="">
             </a>
             <div class="header-logo-line">|</div>
             <div class="header-logo-teacherStudio">
@@ -372,7 +374,7 @@
     </div>
   </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="../../static/js/mypage/myprofile.js"></script>
+<script src="{% static 'js/mypage/myprofile.js' %} "></script>
 </body>
 
 </html>

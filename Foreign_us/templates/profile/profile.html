@@ -1,13 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" class="h-full">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"/>
-    <link rel="stylesheet" href="../../static/css/profile/profile.css">
+    <link rel="stylesheet" href="{% static 'css/profile/profile.css' %} ">
     <title>foreign-us 폴인어스</title>
 </head>
 
@@ -19,8 +21,8 @@
             <div>
                 <div class="header-logo-box">
                     <a href="">
-                        <img class="logo_hidden" src="../../static/image/logo/white.png">
-                        <img class="logo_black" src="../../static/image/logo/black.png">
+                        <img class="logo_hidden" src="{% static 'image/logo/white.png' %} ">
+                        <img class="logo_black" src="{% static 'image/logo/black.png' %} ">
                     </a>
                 </div>
             </div>
@@ -447,6 +449,7 @@
                         </div>
                     </div>
 
+
                     <!-- 결제 버튼 -->
                     <div class="pay-wrapper">
                         <button class="pay-btn">
@@ -461,7 +464,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="../../static/js/profile/profile.js"></script>
+<script src="{% static 'js/profile/profile.js' %} "></script>
 </body>
 
 </html>
