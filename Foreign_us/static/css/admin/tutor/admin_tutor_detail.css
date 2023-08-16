@@ -191,6 +191,17 @@ hr {
 	color: #c1c1c1;
 }
 
+.review-btn {
+	width: 70px;
+	height: 40px;
+	background-color: #030303;
+	color: #ffffff;
+	font-size: 16px;
+	margin-right: 20px;
+	margin-top: 60px;
+}
+
+
 .info span {
 	font-size: 13px;
 	font-weight: bold;
@@ -236,3 +247,4 @@ div.margin span {
 .gear-icon {
 	width: 10px;	
 }
+

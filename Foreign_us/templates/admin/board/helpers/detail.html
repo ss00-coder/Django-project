@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -6,10 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 헬퍼스 상세보기</title>
-    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="/static/css/admin/helpus/admin_helpus_detail.css">
-    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/admin/helpus/admin_helpus_detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
 <style>
     .img_wrapper_box {
@@ -70,7 +69,7 @@
         <div class="wrap">
 
             <!-- 사이드 바 -->
-            <div th:replace="~{admin/side_bar :: sidebar}"></div>
+           {% include "admin/side_bar.html" %}
 
             <div class="container">
                 <div class="container-margin">
@@ -180,7 +179,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/sidemenu.js"></script>
+<script src="{%  static 'js/admin/sidemenu.js'%}"></script>
 <!-- <script>
     $(document).ready(() => {
         $("#header").load("../../main/header.html");
