@@ -79,9 +79,7 @@ $(function () {
     });
 
     // 모달창 클릭 이벤트
-    $lessonBtn.click(() => { $modal.show() 
-        
-    });
+    $lessonBtn.click(() => { $modal.show()});
     $modalBackground.click(() => { $modal.hide() });
     $payBtn.click(() => { $modal.hide() });
 

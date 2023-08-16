@@ -180,8 +180,8 @@
             <div class="mypage-grid-imgicon">
               <div class="mypage-grid-imgicon-flex">
                 <div class="mypage-grid-imgicon-icon">
-                  <span>
-                    <img
+                  <span class="Thumbnail">
+                    <img class="profile-img"
                       src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Favatar_default.png%3Fauto%3Dformat%252Ccompress%26lossless%3Dtrue%26w%3D300%26h%3D300&w=2048&q=100" />
                   </span>
                 </div>
@@ -189,7 +189,7 @@
                   <div style="margin-bottom: 14px">
                     <button class="mypage-grid-img-text-btn" type="button">
                       이미지 업로드
-                      <input class="mypage-grid-img-text-input" type="file" accept="image/png,image/jpeg,image/jpg" />
+                      <input class="mypage-grid-img-text-input" type="file" accept="image/*" onchange="setprofile(event)" />
                     </button>
                   </div>
                   <p class="mypage-grid-imgicon-explanation">
@@ -227,7 +227,7 @@
                 <div style="margin-bottom: 8px">
                   <button class="mypage-grid-img-text-btn" type="button">
                     이미지 업로드
-                    <input class="mypage-grid-img-text-input" type="file" accept="image/png,image/jpeg,image/jpg" />
+                    <input class="mypage-grid-img-text-input" type="file" accept="image/*"/>
                   </button>
                 </div>
                 <p>
@@ -237,6 +237,30 @@
                 </p>
               </div>
             </div>
+            <hr style="
+                  width: 100%;
+                  border-top-width: 1px;
+                  border-color: #f3f3f4;
+                  grid-column: 1/-1;
+                " />
+            <div class="mypage-grid-img-text">
+              <div>
+                <div class="mypage-grid-img-text-item-flex">
+                  <strong>주소 입력</strong>
+                </div>
+                <span class="mypage-grid-img-text-span">호스팅 주소를 입력해주세요. (선택)</span>
+              </div>
+            </div>
+            <div class="mypage-grid-introduce">
+              <div>
+                <label class="mypage-grid-introduce-label">
+                  <input type="text" value="" placeholder="주소를 입력해주세요." />
+                </label>
+                <div class="mypage-grid-introduce-count">
+                </div>
+              </div>
+            </div>
+
             <hr style="
                   width: 100%;
                   border-top-width: 1px;
@@ -265,7 +289,6 @@
                   <input type="text" value="" placeholder="한 줄 소개를 입력해주세요." />
                 </label>
                 <div class="mypage-grid-introduce-count">
-                  <div style="margin-left: auto">0/50</div>
                 </div>
               </div>
             </div>
@@ -348,6 +371,8 @@
       </div>
     </div>
   </div>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="../../static/js/mypage/myprofile.js"></script>
 </body>
 
 </html>
