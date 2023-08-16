@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -9,9 +10,10 @@
   <link rel="stylesheet" type="text/css"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-  <link rel="stylesheet" href="/static/css/main/main.css" />
-  <link rel="stylesheet" href="/static/css/header/header.css" />
-  <link rel="stylesheet" href="/static/css/footer/footer.css" />
+
+  <link rel="stylesheet" href="{% static 'css/main/main.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/header/header.css' %}"/>
+  <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}"/>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
     <header id="headers">
       <div class="main-header">
         <a class="main-header-logo">
-          <img src="../../static/image/logo/black.png">
+          <img src="{% static 'image/logo/black.png' %} ">
         </a>
         <div class="main-header-select">
           <div class="main-header-select-flex">
@@ -1515,7 +1517,7 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script src="../../static/js/slide-banner/swiper.js"></script>
+  <script src="{% static 'js/slide-banner/swiper.js' %} "></script>
 </body>
 
 </html>
