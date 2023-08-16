@@ -9,7 +9,7 @@ hr {
 	margin-left: 250px;
 	margin-top: 55px;
 	display: flex;
-  justify-content: center;
+    justify-content: center;
 }
 
 .board-info-box {
@@ -133,7 +133,6 @@ textarea {
 
 .info-table div {
 	margin: 6px 0px;
-  
 }
 
 .btn-done-pos{
@@ -289,9 +288,5 @@ input[type='date'] {
 	font-weight: 400;
 	position: relative;
 	cursor: pointer;
-}
-
-.board_content{
-	height: 300px;
 }
 
