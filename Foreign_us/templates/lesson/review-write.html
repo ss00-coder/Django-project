@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/lesson/write.css" />
-    <link rel="shortcut icon" href="../../static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/lesson/write.css' %}" />
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %}" type="image/x-icon">
     <link
       rel="stylesheet"
       type="text/css"
@@ -148,5 +149,5 @@
     src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
     referrerpolicy="origin"
   ></script>
-  <script src="/static/js/lesson/write.js"></script>
+  <script src="{% static 'js/lesson/write.js' %}"></script>
 </html>
