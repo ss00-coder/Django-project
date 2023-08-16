@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../static/css/lesson/detail.css" />
-    <link rel="shortcut icon" href="../../static/image/logo/logo-color.png" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/lesson/detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %}" type="image/x-icon">
     <link
       rel="stylesheet"
       type="text/css"
@@ -16,10 +17,10 @@
   <body>
     <div style="position: relative">
       <!-- 헤더 -->
-      <header></header>
+      {% include "header/header.html" %}
       <main class="web">
         <!-- 사이드 바 (글 작성자 정보) -->
-        <div class="writer-show" style="z-index: 10; position: absolute; right: 460px; top: 100px">
+        <div class="writer-show" style="z-index: 10; position: absolute; right: 460px; top: 150px">
           <section
             class="writer-detail-info"
             style="
@@ -1182,5 +1183,5 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="../../static/js/lesson/detail.js"></script>
+  <script src="{% static 'js/lesson/detail.js' %}"></script>
 </html>
