@@ -7,6 +7,9 @@ from member.models import Member
 # Create your models here.
 class Event(Post):
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
+    event_location = models.CharField(max_length=500, null=False, blank=False)
+    event_latitude = models.FloatField(null=False, blank=False)
+    event_longitude = models.FloatField(null=False, blank=False)
 
     class Meta:
         db_table = 'tbl_event'

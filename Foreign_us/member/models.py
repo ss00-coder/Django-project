@@ -17,6 +17,8 @@ class Member(Period):
     member_intro_detail = models.TextField(blank=False, null=False)
     member_type = models.CharField(max_length=1, blank=False, null=False, choices=MEMBER_TYPE, default='Y')
     member_address = models.CharField(max_length=500, null=True)
+    member_latitude = models.FloatField(null=True, blank=True)
+    member_longitude = models.FloatField(null=True, blank=True)
 
     class Meta:
         db_table = "tbl_member"

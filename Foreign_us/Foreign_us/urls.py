@@ -18,17 +18,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
+
+from Foreign_us.views import MainView, AboutUsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('member/', include('member.urls')),
-    # path('lesson/', include('lesson.urls')),
-    # path('review/', include('review.urls')),
-    # path('event/', include('event.urls')),
-    # path('helpers/', include('helpers.urls')),
-    # path('notice/', include('notice.urls')),
-    # path('message/', include('message.urls')),
-    # path('payment/', include('payment.urls')),
+    path('mypage/', include('mypage.urls')),
+    path('profile/', include('profilepage.urls')),
+    path('lesson/', include('lesson.urls')),
+    path('event/', include('event.urls')),
+    path('helpers/', include('helpers.urls')),
+    path('notice/', include('notice.urls')),
+    path('administrator/', include('administrator.urls')),
+    path('', MainView.as_view()),
+    path('about-us/', TemplateView.as_view()),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
