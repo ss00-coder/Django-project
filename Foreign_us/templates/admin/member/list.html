@@ -1,14 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 회원 정보 목록</title>
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="/static/css/admin/member/admin_member_list.css">
-    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/admin/member/admin_member_list.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                    <img src="{% static 'static/image/logo/white.png' %}">
                 </div>
                 <!-- <div class="logo-title">
                     <span>Jar</span>
@@ -30,6 +30,8 @@
         </div>
         <div class="wrap">
 
+            <!-- 사이드 바 -->
+           {% include "admin/side_bar.html" %}
 
             <div class="container">
                 <div class="container-margin">
@@ -39,7 +41,7 @@
                         <div class="search-container">
                             <input type="text" placeholder="검색어 입력" class="search-box">
                             <button type="button" class="search-button">
-                                <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                                <img src="{% static 'image/admin/search-icon-black.png' %}" alt="">
                             </button>
                         </div>
                         <div class="buttons-container">
@@ -81,7 +83,7 @@
                                         <td>
                                             1
                                         </td>
-                                        <td class="member_type is_active" th:text="${memberDTO.memberStatus}">
+                                        <td class="member_type is_active">
                                             일반회원
                                             <hr>
                                         </td>
@@ -109,7 +111,7 @@
                                     <div class="">
                                         <div class="page-button-margin">
                                             <div>
-                                                <img src="../../../../static/image/admin/left_icon.png"
+                                                <img src="{% static 'image/admin/left_icon.png' %}"
                                                     class="left-button">
                                             </div>
                                         </div>
@@ -138,7 +140,7 @@
                                     <div class="">
                                         <div class="page-button-margin">
                                             <div>
-                                                <img src="../../../../static/image/admin/right_icon.png"
+                                                <img src="{%  static 'image/admin/right_icon.png' %}"
                                                     class="right-button">
                                             </div>
                                         </div>
@@ -154,10 +156,10 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../../../static/js/admin/board_proposal.js"></script>
-<script src="../../../static/js/admin/checkbox.js"></script>
-<script src="../../../static/js/admin/page.js"></script>
-<script src="../../../static/js/admin/sidemenu.js"></script>
+<script src="{%  static 'js/admin/board_proposal.js' %}"></script>
+<script src="{%  static 'js/admin/checkbox.js' %}"></script>
+<script src="{%  static 'js/admin/page.js' %}"></script>
+<script src="{%  static 'js/admin/sidemenu.js' %}"></script>
 <script>
     const memberId = '${memberDTO.id}';
 

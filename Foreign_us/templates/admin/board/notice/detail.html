@@ -1,14 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 공지사항 게시판 상세보기</title>
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="/static/css/admin/notice/admin_notice_detail.css">
-    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/admin/notice/admin_notice_detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
+</head>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                  <img src="../../../../static/image/logo/white.png">
+                  <img src="{% static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -30,8 +31,8 @@
         </div>
         <div class="wrap">
 
-            <!-- 사이드 바 -->
-            
+               <!-- 사이드 바 -->
+       {% include "admin/side_bar.html" %}
 
             <div class="container">
                 <div class="container-margin">
@@ -39,7 +40,7 @@
                     <div class="prev-button-layout">
                         <div>
                             <a>
-                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                                <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
                             </a>
                             <span class="prev-title">리스트로 돌아가기</span>
                         </div>
@@ -96,5 +97,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/admin/sidemenu.js"></script>
+<script src="{% static 'js/admin/sidemenu.js' %}"></script>
 </html>

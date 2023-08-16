@@ -1,13 +1,13 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>관리자 페이지- 과외 매칭 상세보기</title>
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css" />
-    <link rel="stylesheet" href="/static/css/admin/tutor/admin_tutor_detail.css"/>
-    <link rel="shortcut icon" href="/static/image/logo/logo-color.png" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/admin/tutor/admin_tutor_detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
   </head>
 
   <body>
@@ -15,7 +15,7 @@
       <div class="info-title-box info-title-box-flex">
         <div class="logo-box-layout">
           <div class="logo-box">
-            <img src="../../../../static/image/logo/white.png">
+            <img src="{% static 'image/logo/white.png'%}">
             <span></span>
           </div>
           <div class="logo-title">
@@ -29,175 +29,9 @@
         </div>
       </div>
       <div class="wrap">
-        <!-- 사이드 바 -->
-        <div th:fragment="sidebar">
-          <div id="side-bar">
-            <div class="side-menu">
-              <div>
-                <div class="menu-title-layout">
-                  <div class="menu-title">
-                    <div class="menu-name">MENU</div>
-                  </div>
-                </div>
-                <ul class="menu-bar">
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a>
-                        <span>📢 공지사항 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus2 menus" style="display: none">
-                      <li class="select-menu">
-                        <a>
-                          <span>공지사항 목록</span>
-                        </a>
-                      </li>
-                      <li class="select-menu">
-                        <a>
-                          <span>공지사항 작성</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a>
-                        <span>👤 회원정보 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus2 menus" style="display: none">
-                      <li class="select-menu">
-                        <a>
-                          <span>회원 상세보기</span>
-                        </a>
-                      </li>
-                      <li class="select-menu">
-                        <a>
-                          <span>회원정보 수정/삭제</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-    
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a href="">
-                        <span>✏️ 과외목록 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus1 menus" style="display: none">
-                      <!-- <li class="select-menu">
-                                    <a href="adminPage-boardList.jsp">
-                                        <span>전체 게시판</span>
-                                    </a>
-                                </li> -->
-                      <li class="select-menu">
-                        <a>
-                          <span>과외 상세보기</span>
-                        </a>
-                      </li>
-                      <li class="select-menu">
-                        <a>
-                          <span>과외 수정/삭제</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-    
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a>
-                        <span>💞 헬퍼스 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus2 menus" style="display: none">
-                      <li class="select-menu">
-                        <a>
-                          <span>헬퍼스목록 상세보기</span>
-                        </a>
-                      </li>
-                      <li class="select-menu">
-                        <a>
-                          <span>헬퍼스목록 수정/삭제</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a>
-                        <span>🎉 이벤트목록 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus2 menus" style="display: none">
-                      <li class="select-menu">
-                        <a>
-                          <span>이벤트 상세보기</span>
-                        </a>
-                      </li>
-                      <li class="select-menu">
-                        <a>
-                          <span>이벤트 수정/삭제</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="menu">
-                    <div class="menu-flex">
-                      <a>
-                        <span>📩 1:1문의 관리</span>
-                      </a>
-                      <div class="triangle-button">
-                        <img
-                          src="../../../../static/image/admin/arrow_icon.png"
-                          class="icon triangle-icon triangle"
-                        />
-                      </div>
-                    </div>
-                    <ul class="menus2 menus" style="display: none">
-                      <li class="select-menu">
-                        <a>
-                          <span>답변 작성</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div th:replace="~{admin/side_bar :: sidebar}"></div>
+
+              <!-- 사이드 바 -->
+       {% include "admin/side_bar.html" %}
 
         <div class="container">
           <div class="container-margin">
@@ -206,7 +40,7 @@
               <div>
                 <a>
                   <img
-                    src="../../../../static/image/admin/prev_icon.png"
+                    src="{% static 'image/admin/prev_icon.png'%}"
                     class="prev-icon"
                   />
                   <span class="prev-title">리스트로 돌아가기</span>
@@ -252,6 +86,9 @@
                       </div>
                     </div>
                   </div>
+                  <div style="display: flex; justify-content: end">
+                    <button class="review-btn" type="button">후기</button>
+                  </div>
                 </div>
               </section>
 
@@ -292,6 +129,9 @@
                         <span>강남구 삼성동</span>
                       </div>
                     </div>
+                  </div>
+                  <div style="display: flex; justify-content: end">
+                    <button class="review-btn" type="button">후기</button>
                   </div>
                 </div>
               </section>
@@ -374,5 +214,5 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script src="../../../../static/js/admin/sidemenu.js"></script>
+  <script src="{% static 'js/admin/sidemenu.js'%}"></script>
 </html>
