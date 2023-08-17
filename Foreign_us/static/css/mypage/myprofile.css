@@ -583,6 +583,8 @@ p.mypage-grid-imgicon-explanation {
 }
 
 .mypage-grid-cover-item {
+    display: block;
+    overflow: hidden;
     background-color: #fafafb;
     border-color: #e6e6e7;
     position: relative;
@@ -596,6 +598,7 @@ p.mypage-grid-imgicon-explanation {
 }
 
 .mypage-grid-cover-item > svg {
+    display: block;
     width: 48px;
     height: 48px;
     border-radius: 8px;
@@ -820,3 +823,4 @@ p.mypage-grid-imgicon-explanation {
     color: #b9b9bb;
     fill: #b9b9bb;
 }
+
