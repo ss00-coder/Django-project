@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-es2@i(jn(5fw^3eqhgrp&n=r)159jd%0hti$vev$m%5$(^o4zf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -95,7 +95,7 @@ DATABASES = {
         # 비밀번호
         "PASSWORD": "1234",
         # MySQL 서버가 실행 중인 서버 IP 또는 도메인
-        "HOST": "127.0.0.1",
+        "HOST": "52.78.119.10",
         # 포트번호
         "PORT": "3306"
     }

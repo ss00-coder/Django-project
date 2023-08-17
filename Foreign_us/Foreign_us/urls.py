@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 from Foreign_us.views import MainView, AboutUsView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('member/', include('member.urls')),
     path('mypage/', include('mypage.urls')),
     path('profile/', include('profilepage.urls')),
