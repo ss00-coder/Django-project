@@ -1,8 +1,10 @@
+import math
+
 from django.db.models import F
 from django.shortcuts import render
 from django.views import View
 
-from lesson.models import Lesson
+from lesson.models import Lesson, LessonLike
 from member.models import Member
 
 
@@ -26,21 +28,44 @@ class MyProfileView(View):
     #     Member.objects.create(member_email=member_email, member_password=member_password, member_name=member_name,
     #                           member_age=member_age, member_birth=member_birth)
     #     # 이동할 urls 경로를 작성한다.
-    #     return redirect('/member/login')
+    #     return redirect('/member/myprofile')
 
 
 class MyLessonView(View):
-    def get(self, request):
-        five_lessons =Lesson.objects.all()[0:5]
-        print(five_lessons)
+    def get(self, request, page=1):
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        total = Lesson.objects.all().count()
+        print(total)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        print(startPage)
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1 // 5)
+        if endPage == 0:
+            endPage = 1
+        lessons = Lesson.objects.all().order_by('-id')
+        like_list = []
+        for lesson in lessons:
+            likes = LessonLike.objects.all().filter(lesson_id=lesson).count()
+            like_list.append(likes)
+
+        lessons = list(Lesson.objects.all().order_by('-id'))[offset:limit]
+        likes = like_list[offset:limit]
+        combine_like = zip(lessons,likes)
 
         context = {
-            "lessons" : five_lessons
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'total': total,
+            'combine_like': combine_like
         }
-
         return render(request, 'mypage/mylesson.html', context)
-
-
 
 class MyLessonReviewView(View):
     def get(self, request):
