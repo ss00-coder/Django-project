@@ -8,6 +8,7 @@ app_name = 'mypage'
 urlpatterns = [
     path('profile/', MyProfileView.as_view(), name='myprofile'),
     path('lesson/', MyLessonView.as_view(), name='mylesson'),
+    path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson'),
     path('lesson-review/', MyLessonReviewView.as_view(), name='mylesson-review'),
     path('helpers/', MyHelpersView.as_view(), name='myhelpers'),
     path('event/', MyEventView.as_view(), name='myevent'),
