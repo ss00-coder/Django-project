@@ -39,23 +39,22 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
+                            <a href="{% url 'admin:board-notice-list' page=page %}">
                                 <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
                             </a>
-                            <span class="prev-title">리스트로 돌아가기</span>
                         </div>
                     </div>
                     <div class="section_wrapper is-flex">
                     <!-- 내용 섹션 -->
                         <section class="board-info-box-layout">
-
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
                                     <span>📢 공지사항 상세보기</span>
                                     <div class="modify-button-box">
-                                        <a>
+                                        <a href="{% url 'admin:board-notice-modify' post_id=post.id page=page %}">
                                             <span>⚙️</span>
-                                            <a>수정</a>
+                                            <span>수정</span>
                                         </a>
                                     </div>
                                 </div>
@@ -64,26 +63,29 @@
                                         <span class="span-bold">제목 :</span>
                                         <!-- 제목  -->
                                         <span>[공지]
-                                            공지 제목
+                                            {{ post.post_title }}
                                         </span>
                                     </div>
                                     <div class="info-member">
                                         <span class="span-bold">작성 날짜 :</span>
                                         <!-- 작성 날짜  -->
                                         <span>
-                                            2023-08-09
+                                            {{ post.created_date|date:"Y-m-d" }}
                                         </span>
                                     </div>
                                     <hr>
                                     <div class="info-text-area">
                                         <div><!-- 게시판 내용 -->
-                                            게시판 내용
+                                            {{ post.post_content }}
                                         </div>
                                     </div>
                                     <hr>
                                     <section class="img_wrapper_box">
                                         <div class="img_ul_wrapper">
                                             <ul class="img_ul">
+                                                {% for post_file in post_files %}
+                                                    <img style="display:block; margin: 0 auto" width="400px" src="/upload/{{ post_file.image }}">
+                                                {% endfor %}
                                             </ul>
                                         </div>
                                     </section>

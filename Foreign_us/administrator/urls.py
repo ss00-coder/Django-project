@@ -16,13 +16,14 @@ urlpatterns = [
     path('board/helpers/list/', BoardHelpersListView.as_view(), name='board-helpers-list'),
     path('board/helpers/detail/', BoardHelpersDetailView.as_view(), name='board-helpers-detail'),
     # 레슨
-    path('board/lesson/list/', BoardLessonListView.as_view(), name='board-helpers-list'),
-    path('board/lesson/detail/', BoardLessonDetailView.as_view(), name='board-helpers-detail'),
+    path('board/lesson/list/', BoardLessonListView.as_view(), name='board-lesson-list'),
+    path('board/lesson/detail/', BoardLessonDetailView.as_view(), name='board-lesson-detail'),
     # 공지사항
-    path('board/notice/list/', BoardNoticeListView.as_view(), name='board-notice-list'),
-    path('board/notice/detail/', BoardNoticeDetailView.as_view(), name='board-notice-detail'),
-    path('board/notice/write/', BoardNoticeWriteView.as_view(), name='board-notice-write'),
-    path('board/notice/modify/', BoardNoticeModifyView.as_view(), name='board-notice-modify'),
+    path('board/notice/list/', BoardNoticeListView.as_view(), name='board-notice-list-init'),
+    path('board/notice/list/<int:page>/', BoardNoticeListView.as_view(), name='board-notice-list'),
+    path('board/notice/detail/<int:post_id>/<int:page>/', BoardNoticeDetailView.as_view(), name='board-notice-detail'),
+    path('board/notice/write/<int:page>/', BoardNoticeWriteView.as_view(), name='board-notice-write'),
+    path('board/notice/modify/<int:post_id>/<int:page>/', BoardNoticeModifyView.as_view(), name='board-notice-modify'),
     # 문의사항
     path('board/inquiry/list/', BoardInquiryListView.as_view(), name='board-inquiry-list'),
     path('board/inquiry/detail/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail'),

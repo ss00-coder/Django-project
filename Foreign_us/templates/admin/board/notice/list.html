@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,6 @@
     <link rel="stylesheet" href="{% static 'css/admin/notice/admin_notice_list.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
-
 <body>
     <div>
         <div class="info-title-box info-title-box-flex">
@@ -35,23 +33,6 @@
 
             <div class="container">
                 <div class="container-margin">
-                    <!-- 헤더 -->
-
-                    <!-- <div class="update-button-flex">
-                        <div class="delete-box-layout ">
-                            <div class="delete-box">
-                                <button class="register-button">
-                                    <a th:href="@{write}">공지사항 등록</a>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="delete-box-layout">
-                            <div class="delete-box">
-                                <button class="deleteButton delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
-                            </div>
-                        </div>
-                    </div> -->
-                    
                     <!-- 검색창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
@@ -64,7 +45,7 @@
                             <div class="delete-box-layout ">
                                 <div class="delete-box">
                                     <button class="register-button">
-                                        <a th:href="@{write}">공지사항 등록</a>
+                                        <a href="{% url 'admin:board-notice-write' page=page %}">공지사항 등록</a>
                                     </button>
                                 </div>
                             </div>
@@ -78,12 +59,10 @@
   
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
-
                         <div class="board-info-box">
                             <div class="board-info-title-box">
                                 <span>📢 공지사항 목록</span>
                             </div>
-
                             <div class="info-table">
                                 <table>
                                     <thead>
@@ -97,94 +76,73 @@
                                             <th>수정 날짜</th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>공지사항 제목</td>
-                                        <td>
-                                            <a>
-                                                2023.08.09 10:12
-                                            </a>
-                                        </td>
-                                        <td>
-                                            2023.08.09 10:12
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        {% for post in posts %}
+                                            <tr>
+                                                <td class="checkbox-line">
+                                                    <label>
+                                                        <input type="checkbox" name="check" class="memberCheckbox">
+                                                    </label>
+                                                </td>
+                                                <td class="noticeId">
+                                                    {{ post.id }}
+                                                </td>
+                                                <td><a href="{% url 'admin:board-notice-detail' post_id=post.id page=page %}">{{ post.post_title }}
+                                                </a></td>
+                                                <td>
+                                                    {{ post.created_date|date:"Y-m-d" }}
+                                                </td>
+                                                <td>
+                                                    {{ post.updated_date|date:"Y-m-d" }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </section>
 
                     <!-- 페이지 버튼 -->
-
-                    <!-- <section id="content-wrap">
-		                <ul></ul>
-		                <div id="paging-wrap">
-		                	<c:if test="${prev}">
-			                    <a href="javascript:location.href='${pageContext.request.contextPath}/adminNoticeList.admin?page=${startPage - 1}'" class="paging paging-move"><img src="${pageContext.request.contextPath}/images/prev.png" width="15px"></a>
-		                	</c:if>
-		                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-		                    	<c:choose>
-		                    		<c:when test="${i eq page}">
-					                    <a href="javascript:void(0)" class="paging paging-checked"><c:out value="${i}"/></a>
-		                    		</c:when>
-		                    		<c:otherwise>
-					                    <a href="javascript:location.href='${pageContext.request.contextPath}/adminNoticeList.admin?page=${i}'" class="paging"><c:out value="${i}"/></a>
-		                    		</c:otherwise>
-		                    	</c:choose>
-		                    </c:forEach>
-		                    <c:if test="${next}">
-		                    	<a href="javascript:location.href='${pageContext.request.contextPath}/adminNoticeList.admin?page=${endPage + 1}'" class="paging paging-move"><img src="${pageContext.request.contextPath}/images/next.png" width="15px"></a>
-		                    </c:if>
-		                    <div></div>
-		                </div>
-	            	</section> -->
-
-
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{% static 'image/admin/left_icon.png'%}"
-                                            class="left-button">
+                            {% if startPage > 1 %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-notice-list' page=startPage|add:-1 %}">
+                                                <img src="{% static 'image/admin/left_icon.png'%}"
+                                                class="left-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
+                            {% endif %}
+                            {% for i in "x"|rjust:5 %}
+                                {% if forloop.counter0|add:startPage <= realEnd%}
+                                    <div class="page-button">
+                                        <div class="page-button-margin">
+                                            <div>
+                                                <a href="{% url 'admin:board-notice-list' page=forloop.counter0|add:startPage %}">
+                                                    <span>{{ forloop.counter0|add:startPage}}</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            {% if endPage < realEnd %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-notice-list' page=endPage|add:1 %}">
+                                                <img src="{% static 'image/admin/right_icon.png'%}"
+                                                class="right-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{% static 'image/admin/right_icon.png'%}"
-                                            class="right-button">
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 페이지 버튼 끝 -->
@@ -194,92 +152,8 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="{%  static 'js/admin/page.js'%}"></script>
-<script src="{%  static 'js/admin/checkbox.js'%}"></script>
-<script src="{%  static 'js/admin/board_proposal.js'%}"></script>
-<script src="{%  static 'js/admin/sidemenu.js'%}"></script>
-<script>
-
-    const noticeId = '${noticeDTO.noticeId}';
-
-    //페이지 번호 링크로 가져오는 코드
-    let $pageForm = $("form[name='pageForm']");
-
-    $("a.changePage").on("click", function (e) {
-        e.preventDefault();
-        $pageForm.find("input[name='page']").val($(this).attr("href"));
-        $pageForm.submit();
-    });
-
-
-
-    function getSelectedNoticeIds() {
-        const noticeIds = [];
-        $(".noticeCheckbox:checked").each(function() {
-            noticeIds.push($(this).val());
-        });
-        return noticeIds;
-    }
-
-    function deleteNotices(noticeIds) {
-        $.ajax({
-            url: "/admin/board/notice/delete",
-            type: "DELETE",
-            contentType: "application/json",
-            data: JSON.stringify(noticeIds),
-            traditional: true,
-            success: function() {
-                location.reload();
-            },
-            error: function() {
-                alert("게시물 삭제에 실패했습니다.");
-            }
-        });
-    }
-
-
-    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
-    $(document).ready(function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const currentPage = parseInt(urlParams.get('page'));
-
-        if (currentPage) {
-            $('.page-button').each(function(index, element) {
-                if (parseInt($(element).text()) === currentPage) {
-                    $(element).addClass('page-button-active');
-                } else {
-                    $(element).removeClass('page-button-active');
-                }
-            });
-        }
-    });
-
-
-    $(document).ready(function() {
-        // 삭제 버튼 클릭 이벤트 핸들러
-        $("#deleteButton").on("click", function() {
-            const checkedItems = $(".noticeCheckbox:checked");
-            const noticeIds = [];
-            checkedItems.each(function() {
-                noticeIds.push($(this).val());
-            });
-
-            if (noticeIds.length > 0) {
-                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
-                    deleteNotices(noticeIds);
-                }
-            } else {
-                alert("삭제할 게시물을 선택해주세요.");
-            }
-        });
-    });
-
-
-
-
-
-
-
-</script>
-
+{#<script src="{%  static 'js/admin/page.js'%}"></script>#}
+{#<script src="{%  static 'js/admin/checkbox.js'%}"></script>#}
+{#<script src="{%  static 'js/admin/board_proposal.js'%}"></script>#}
+{#<script src="{%  static 'js/admin/sidemenu.js'%}"></script>#}
 </html>
