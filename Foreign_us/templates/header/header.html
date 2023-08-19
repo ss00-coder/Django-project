@@ -6,45 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>header</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
-    <link rel="stylesheet" href="{% static 'css/header/header.css' %}" />
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"/>
+    <link rel="stylesheet" href="{% static 'css/header/header.css' %}"/>
 </head>
 <body>
-  <header id="headers">
+<header id="headers">
     <div class="main-header">
-      <a class="main-header-logo">
-        <img src="{% static 'image/logo/black.png' %} ">
-      </a>
-      <div class="main-header-select">
-        <div class="main-header-select-flex">
-          <div class="main-header-login">
-            <button class="main-header-login-btn" type="button">로그인</button>
-          </div>
-          <div class="main-header-sigup">
-            <button class="main-header-sigup-btn">헬퍼스 시작하기</button>
-          </div>
+        <a class="main-header-logo">
+            <img src="{% static 'image/logo/black.png' %} ">
+        </a>
+        <div class="main-header-select">
+            <div class="main-header-select-flex">
+                {% if request.session.session_key %}
+                    <div class="main-header-login">
+                        <button class="main-header-login-btn" type="button"
+                                onclick="location.href='/member/logout/'">로그아웃
+                        </button>
+                    </div>
+                    <div class="main-header-sigup">
+                        <button class="main-header-sigup-btn">헬퍼스 스튜디오</button>
+                    </div>
+                {% else %}
+                    <div class="main-header-login">
+                        <button class="main-header-login-btn" type="button"
+                                onclick="location.href='/member/login/'">로그인
+                        </button>
+                    </div>
+                    <div class="main-header-sigup">
+                        <button class="main-header-sigup-btn">헬퍼스 시작하기</button>
+                    </div>
+                {% endif %}
+            </div>
         </div>
-      </div>
     </div>
     <div class="sub-header">
-      <ul class="sub-header-items">
-        <li class="sub-header-item">
-          <button class="sub-header-item-content sub-header-item-active" type="button">홈</button>
-        </li>
-        <li class="sub-header-item">
-          <button class="sub-header-item-content" type="button">과외 매칭</button>
-        </li>
-        <li class="sub-header-item">
-          <button class="sub-header-item-content" type="button">헬퍼스</button>
-        </li>
-        <li class="sub-header-item">
-          <button class="sub-header-item-content" type="button">이벤트</button>
-        </li>
-        <li class="sub-header-item">
-          <button class="sub-header-item-content" type="button">공지사항</button>
-        </li>
-      </ul>
+        <ul class="sub-header-items">
+            <li class="sub-header-item">
+                <button class="sub-header-item-content sub-header-item-active" type="button">홈</button>
+            </li>
+            <li class="sub-header-item">
+                <button class="sub-header-item-content" type="button">과외 매칭</button>
+            </li>
+            <li class="sub-header-item">
+                <button class="sub-header-item-content" type="button">헬퍼스</button>
+            </li>
+            <li class="sub-header-item">
+                <button class="sub-header-item-content" type="button">이벤트</button>
+            </li>
+            <li class="sub-header-item">
+                <button class="sub-header-item-content" type="button">공지사항</button>
+            </li>
+        </ul>
     </div>
-  </header>
+</header>
 </body>
 </html>
