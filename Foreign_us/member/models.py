@@ -20,6 +20,7 @@ class Member(Period):
     member_latitude = models.FloatField(null=True, blank=True)
     member_longitude = models.FloatField(null=True, blank=True)
 
+
     class Meta:
         db_table = "tbl_member"
 
