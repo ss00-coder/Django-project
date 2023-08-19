@@ -145,7 +145,7 @@ class EventLike(TestCase):
         EventLike(member_id=1, event_id=18),
         EventLike(member_id=1, event_id=35),
         EventLike(member_id=1, event_id=30),
-        EventLike(member_id=1, event_id=28),gi
+        EventLike(member_id=1, event_id=28),
         EventLike(member_id=1, event_id=19),
         EventLike(member_id=1, event_id=35),
         EventLike(member_id=1, event_id=33)
