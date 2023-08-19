@@ -1,9 +1,12 @@
 import math
 
+from django.contrib.admin import helpers
 from django.db.models import F
 from django.shortcuts import render
 from django.views import View
 
+from event.models import Event, EventLike
+from helpers.models import Helpers, HelpersLike
 from lesson.models import Lesson, LessonLike
 from member.models import Member
 
@@ -17,11 +20,10 @@ class MyProfileView(View):
         # member = Member.objects.get(member_email=email)
         member = Member.objects.filter(member_nickname='짱구')
         # print(member[0].member_nickname)  // 이건 필터
-        nicknames = {'nickname':member[0].member_nickname}
+        nicknames = {'nickname': member[0].member_nickname}
         # print(nicknames)
         # print(nicknames)
         return render(request, 'mypage/myprofile.html', nicknames)
-
 
     # def post(self, request, *args, **kwargs):
     #     token, member_email, member_nickname, member_birth = request.POST.values()
@@ -44,9 +46,11 @@ class MyLessonView(View):
         print(startPage)
         realEnd = math.ceil(total / size)
         endPage = realEnd if endPage > realEnd else endPage
-        pageUnit = (page - 1 // 5)
+        pageUnit = (page - 1) // 5
         if endPage == 0:
             endPage = 1
+
+        # 좋아요
         lessons = Lesson.objects.all().order_by('-id')
         like_list = []
         for lesson in lessons:
@@ -55,7 +59,7 @@ class MyLessonView(View):
 
         lessons = list(Lesson.objects.all().order_by('-id'))[offset:limit]
         likes = like_list[offset:limit]
-        combine_like = zip(lessons,likes)
+        combine_like = zip(lessons, likes)
 
         context = {
             'startPage': startPage,
@@ -67,19 +71,89 @@ class MyLessonView(View):
         }
         return render(request, 'mypage/mylesson.html', context)
 
+
 class MyLessonReviewView(View):
     def get(self, request):
         return render(request, 'mypage/mylesson-review.html')
 
 
 class MyHelpersView(View):
-    def get(self, request):
-        return render(request, 'mypage/myhelpers.html')
+    def get(self, request, page=1):
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        total = Helpers.objects.all().count()
+        print(total)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        print(startPage)
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
+        # 좋아요
+        helperses = Helpers.objects.all().order_by('-id')
+        like_list = []
+        for helpers in helperses:
+            likes = HelpersLike.objects.all().filter(helpers_id=helpers).count()
+            like_list.append(likes)
+
+        helperses = list(Helpers.objects.all().order_by('-id'))[offset:limit]
+        likes = like_list[offset:limit]
+        combine_like = zip(helperses, likes)
+
+        context = {
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'total': total,
+            'combine_like': combine_like
+        }
+
+        return render(request, 'mypage/myhelpers.html', context)
 
 
 class MyEventView(View):
-    def get(self, request):
-        return render(request, 'mypage/myevent.html')
+    def get(self, request, page=1):
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        total = Event.objects.all().count()
+        print(total)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        print(startPage)
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
+        # 좋아요
+        events = Event.objects.all().order_by('-id')
+        like_list = []
+        for event in events:
+            likes = EventLike.objects.all().filter(event_id=event).count()
+            like_list.append(likes)
+
+        events = list(Event.objects.all().order_by('-id'))[offset:limit]
+        likes = like_list[offset:limit]
+        combine_like = zip(events, likes)
+
+        context = {
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'total': total,
+            'combine_like': combine_like
+        }
+        return render(request, 'mypage/myevent.html', context)
 
 
 class MyMessageListView(View):

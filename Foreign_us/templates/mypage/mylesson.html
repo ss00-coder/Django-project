@@ -226,8 +226,8 @@
               <!-- 내용 리스트 -->
               <ul class="posts-wrapper">
                 <!-- 작성 글 -->
-                  {% for lesson, like in combine_like %}
-                  <li class="post">
+                {% for lesson, like in combine_like %}
+                <li class="post">
                   <button class="post-content-wrapper">
                     <div class="post-content">
                       <div>
@@ -247,7 +247,7 @@
                       <p class="info-menu">조회수</p>
                     </div>
                     <div class="info-date">
-                      <p class="info-content">{{ lesson.created_date }}</p>
+                      <p class="info-content">{{ lesson.created_date|date:"Y-m-d" }}</p>
                       <p class="info-menu">게시일</p>
                     </div>
                   </div>
@@ -272,10 +272,7 @@
                     </button>
                   </div>
                 </li>
-                  {% endfor %}
-
-
-
+                {% endfor %}
               </ul>
 
            <!-- 페이징 -->

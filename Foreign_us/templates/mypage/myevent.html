@@ -183,7 +183,7 @@
                         <div style="display: flex">
                           <p class="tab-title">게시완료</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">5</p>
+                            <p class="tab-number">{{ total }}</p>
                           </div>
                         </div>
                         <div class="tab-line"></div>
@@ -227,27 +227,28 @@
               <!-- 내용 리스트 -->
               <ul class="posts-wrapper">
                 <!-- 작성 글 -->
+                {% for event, like in combine_like %}
                 <li class="post">
                   <button class="post-content-wrapper">
                     <div class="post-content">
                       <div>
-                        <p class="post-title">테스트 제목</p>
+                        <p class="post-title">{{ event.post_title }}</p>
                       </div>
-                      <p class="post-content-text">테스트 내용</p>
+                      <p class="post-content-text">{{ event.post_content }}</p>
                     </div>
                   </button>
                   <!-- 작성 정보 -->
                   <div class="info-wrapper">
                     <div class="info">
-                      <p class="info-content">9999</p>
+                      <p class="info-content">{{ like }}</p>
                       <p class="info-menu">좋아요</p>
                     </div>
                     <div class="info">
-                      <p class="info-content">9999</p>
+                      <p class="info-content">{{ event.post_view_count }}</p>
                       <p class="info-menu">조회수</p>
                     </div>
                     <div class="info-date">
-                      <p class="info-content">2023/08/09</p>
+                      <p class="info-content">{{ event.created_date|date:"Y-m-d" }}</p>
                       <p class="info-menu">게시일</p>
                     </div>
                   </div>
@@ -272,243 +273,50 @@
                     </button>
                   </div>
                 </li>
-                <li class="post">
-                  <button class="post-content-wrapper">
-                    <div class="post-content">
-                      <div>
-                        <p class="post-title">테스트 제목</p>
-                      </div>
-                      <p class="post-content-text">테스트 내용</p>
-                    </div>
-                  </button>
-                  <!-- 작성 정보 -->
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">좋아요</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">조회수</p>
-                    </div>
-                    <div class="info-date">
-                      <p class="info-content">2023/08/09</p>
-                      <p class="info-menu">게시일</p>
-                    </div>
-                  </div>
-                  <!-- 작성 수정 삭제 -->
-                  <div class="edit-wrapper">
-                    <button class="update-button" type="button">
-                      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z">
-                        </path>
-                      </svg>
-                    </button>
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <button class="post-content-wrapper">
-                    <div class="post-content">
-                      <div>
-                        <p class="post-title">테스트 제목</p>
-                      </div>
-                      <p class="post-content-text">테스트 내용</p>
-                    </div>
-                  </button>
-                  <!-- 작성 정보 -->
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">좋아요</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">조회수</p>
-                    </div>
-                    <div class="info-date">
-                      <p class="info-content">2023/08/09</p>
-                      <p class="info-menu">게시일</p>
-                    </div>
-                  </div>
-                  <!-- 작성 수정 삭제 -->
-                  <div class="edit-wrapper">
-                    <button class="update-button" type="button">
-                      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z">
-                        </path>
-                      </svg>
-                    </button>
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <button class="post-content-wrapper">
-                    <div class="post-content">
-                      <div>
-                        <p class="post-title">테스트 제목</p>
-                      </div>
-                      <p class="post-content-text">테스트 내용</p>
-                    </div>
-                  </button>
-                  <!-- 작성 정보 -->
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">좋아요</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">조회수</p>
-                    </div>
-                    <div class="info-date">
-                      <p class="info-content">2023/08/09</p>
-                      <p class="info-menu">게시일</p>
-                    </div>
-                  </div>
-                  <!-- 작성 수정 삭제 -->
-                  <div class="edit-wrapper">
-                    <button class="update-button" type="button">
-                      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z">
-                        </path>
-                      </svg>
-                    </button>
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <button class="post-content-wrapper">
-                    <div class="post-content">
-                      <div>
-                        <p class="post-title">테스트 제목</p>
-                      </div>
-                      <p class="post-content-text">테스트 내용</p>
-                    </div>
-                  </button>
-                  <!-- 작성 정보 -->
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">좋아요</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">9999</p>
-                      <p class="info-menu">조회수</p>
-                    </div>
-                    <div class="info-date">
-                      <p class="info-content">2023/08/09</p>
-                      <p class="info-menu">게시일</p>
-                    </div>
-                  </div>
-                  <!-- 작성 수정 삭제 -->
-                  <div class="edit-wrapper">
-                    <button class="update-button" type="button">
-                      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z">
-                        </path>
-                      </svg>
-                    </button>
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
+                {% endfor %}
               </ul>
 
               <!-- 페이징 -->
-              <div class="paging-wrapper">
-                <ul style="display: flex">
-                  <!-- 이전버튼 -->
-                  <button type="button" class="prev">
+            <div class="paging-wrapper">
+              <ul  style="display: flex">
+              <!-- 이전버튼 -->
+              {% if startPage > 1 %}
+                  <a href="{% url 'mypage:myevent' page=startPage|add:-1 %}" class="a-prev">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
                       </path>
                     </svg>
-                  </button>
-                  <!-- 숫자 페이지 -->
-                  <li>
-                    <a href="">
-                      <button class="page-active" type="button">
-                        <span class="page-number">1</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">2</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">3</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">4</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">5</span>
-                      </button>
-                    </a>
-                  </li>
-                  <!-- 다음버튼 -->
-                  <button type="button" class="next">
+                  </a>
+              {% endif %}
+              <!-- 페이지 번호 -->
+              {% for i in "x"|rjust:5 %}
+                  {% if forloop.counter0|add:startPage <= realEnd%}
+                     <li>
+                         <a href="{% url 'mypage:myevent' page=forloop.counter0|add:startPage %}" class="page">
+                           {% if page ==  forloop.counter0|add:startPage %}
+                               <button  class="page-active" type="button">
+                                 <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                               </button>
+                           {% else %}
+                               <button class="page" type="button">
+                                 <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                               </button>
+                           {% endif %}
+                         </a>
+                     </li>
+                  {% endif %}
+              {% endfor %}
+             <!-- 다음버튼 -->
+              {% if endPage < realEnd %}
+                  <a href="{% url 'mypage:myevent' page=endPage|add:1 %}" class="a-next">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
                       </path>
                     </svg>
-                  </button>
+                  </a>
+                {% endif %}
                 </ul>
               </div>
 
