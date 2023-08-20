@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +9,12 @@
     <link rel="stylesheet" href="{% static 'css/admin/notice/admin_notice_write.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
-
 <body>
     <div>
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                    <img src="{% static 'image/logo/white.png'%}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -38,10 +36,10 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
-                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                            <a href="{% url 'admin:board-notice-list-init' %}">
+                                <img src="{% static 'image/admin/prev_icon.png'%}" class="prev-icon">
+                                <a href="{% url 'admin:board-notice-list-init' %}" class="back-page">리스트로 돌아가기</a>
                             </a>
-                            <a class="back-page">리스트로 돌아가기</a>
                         </div>
                     </div>
 
@@ -52,15 +50,16 @@
                                 <span>📢 공지사항 작성하기</span>
                             </div>
                             <div class="info-table">
-                                <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
+                                <form action="{% url 'admin:board-notice-write' page=page %}" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                     <div>
-                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
-                                               autocomplete="off" th:value="${noticeDTO.noticeTitle}">
+                                        <input type="text" class="board-title" name="post_title" placeholder="제목을 입력해주세요."
+                                               autocomplete="off">
                                     </div>
                                     <!-- 사진첨부 -->
                                     <div class="pic_file_wrap" style="display: inline-block;">
                                         <label class="file_insert_label">
-                                            <input type="file" style="display:none;" class="file" multiple>
+                                            <input type="file" name="file" style="display:none;" class="file" multiple>
                                             <div class="file-image-box">
                                                 <p style="font-weight: 100">📂사진첨부</p>
                                             </div>
@@ -69,8 +68,8 @@
                                     <hr>
                                     <!-- 내용입력 -->
                                     <div>
-                                        <textarea class="board-content" name="noticeContent"
-                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
+                                        <textarea class="board-content" name="post_content"
+                                                  placeholder="내용을 입력해주세요."></textarea>
                                     </div>
                                     <hr>
                                     <section class="img_wrapper_box">
@@ -80,7 +79,7 @@
                                         </div>
                                     </section>
                                     <div style="justify-content: right; display: flex;">
-                                        <button class="btn_done"> 완료</button>
+                                        <button type="submit" class="btn_done"> 완료</button>
                                     </div>
                                 </form>
 
@@ -93,7 +92,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="../../../../static/js/admin/sidemenu.js"></script>
+<script src="{% static 'js/admin/sidemenu.js' %}"></script>
 <script>
     // 이미지 파일
     let inputFiles = [];
@@ -144,7 +143,7 @@
                                 </header>
                                 <article class="img_wrapper">
                                     <div class="img_div">
-                                        <img src="` + e.target.result + `" alt=""
+                                        <img width="400px" src="` + e.target.result + `" alt=""
                                             class="inserted_img">
                                     </div>
                                 </article>

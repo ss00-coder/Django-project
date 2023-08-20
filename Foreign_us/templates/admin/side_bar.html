@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -8,11 +9,10 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css" />
+    <link rel="stylesheet" href="{% static 'css/admin/sidemenu.css' %}" />
   </head>
   <body>
     <!-- 사이드 바 -->
-    <div th:fragment="sidebar">
       <div id="side-bar">
         <div class="side-menu">
           <div>
@@ -24,24 +24,22 @@
             <ul class="menu-bar">
               <li class="menu">
                 <div class="menu-flex">
-                  <a>
-                    <span>📢 공지사항 관리</span>
-                  </a>
+                  <span>📢 공지사항 관리</span>
                   <div class="triangle-button">
                     <img
-                      src="../../../../static/image/admin/arrow_icon.png"
+                      src="{% static 'image/admin/arrow_icon.png' %}"
                       class="icon triangle-icon triangle"
                     />
                   </div>
                 </div>
                 <ul class="menus2 menus" style="display: none">
                   <li class="select-menu">
-                    <a>
+                    <a href="{% url 'admin:board-notice-list-init' %}">
                       <span>공지사항 목록</span>
                     </a>
                   </li>
                   <li class="select-menu">
-                    <a>
+                    <a href="{% url 'admin:board-notice-write' page=page %}">
                       <span>공지사항 작성</span>
                     </a>
                   </li>
@@ -49,138 +47,142 @@
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a>
+                  <a href="{% url 'admin:list-init' %}">
                     <span>👤 회원정보 관리</span>
                   </a>
-                  <div class="triangle-button">
-                    <img
-                      src="../../../../static/image/admin/arrow_icon.png"
-                      class="icon triangle-icon triangle"
-                    />
-                  </div>
+{#                  <div class="triangle-button">#}
+{#                    <img#}
+{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
+{#                      class="icon triangle-icon triangle"#}
+{#                    />#}
+{#                  </div>#}
                 </div>
-                <ul class="menus2 menus" style="display: none">
-                  <li class="select-menu">
-                    <a>
-                      <span>회원 상세보기</span>
-                    </a>
-                  </li>
-                  <li class="select-menu">
-                    <a>
-                      <span>회원정보 수정/삭제</span>
-                    </a>
-                  </li>
-                </ul>
+{#                <ul class="menus2 menus" style="display: none">#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:detail' %}">#}
+{#                      <span>회원 상세보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:modify' %}">#}
+{#                      <span>회원정보 수정/삭제</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
               </li>
 
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="">
+                  <a href="{% url 'admin:board-lesson-list-init' %}">
                     <span>✏️ 과외목록 관리</span>
                   </a>
-                  <div class="triangle-button">
-                    <img
-                      src="../../../../static/image/admin/arrow_icon.png"
-                      class="icon triangle-icon triangle"
-                    />
-                  </div>
+{#                  <div class="triangle-button">#}
+{#                    <img#}
+{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
+{#                      class="icon triangle-icon triangle"#}
+{#                    />#}
+{#                  </div>#}
                 </div>
-                <ul class="menus1 menus" style="display: none">
-                  <!-- <li class="select-menu">
-                                <a href="adminPage-boardList.jsp">
-                                    <span>전체 게시판</span>
-                                </a>
-                            </li> -->
-                  <li class="select-menu">
-                    <a>
-                      <span>과외 상세보기</span>
-                    </a>
-                  </li>
-                  <li class="select-menu">
-                    <a>
-                      <span>과외 수정/삭제</span>
-                    </a>
-                  </li>
-                </ul>
+{#                <ul class="menus1 menus" style="display: none">#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-lesson-list' %}">#}
+{#                        <span>과외 목록보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-lesson-detail' %}">#}
+{#                      <span>과외 상세보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-lesson-modify' %}">#}
+{#                      <span>과외 수정/삭제</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
               </li>
 
               <li class="menu">
                 <div class="menu-flex">
-                  <a>
+                  <a href="{% url 'admin:board-helpers-list-init' %}">
                     <span>💞 헬퍼스 관리</span>
                   </a>
-                  <div class="triangle-button">
-                    <img
-                      src="../../../../static/image/admin/arrow_icon.png"
-                      class="icon triangle-icon triangle"
-                    />
-                  </div>
+{#                  <div class="triangle-button">#}
+{#                    <img#}
+{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
+{#                      class="icon triangle-icon triangle"#}
+{#                    />#}
+{#                  </div>#}
                 </div>
-                <ul class="menus2 menus" style="display: none">
-                  <li class="select-menu">
-                    <a>
-                      <span>헬퍼스목록 상세보기</span>
-                    </a>
-                  </li>
-                  <li class="select-menu">
-                    <a>
-                      <span>헬퍼스목록 수정/삭제</span>
-                    </a>
-                  </li>
-                </ul>
+{#                <ul class="menus2 menus" style="display: none">#}
+{#                    <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-helpers-list' %}">#}
+{#                      <span>헬퍼스 목록보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-helpers-detail' %}">#}
+{#                      <span>헬퍼스 상세보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a>#}
+{#                      <span>헬퍼스목록 수정/삭제</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a>
+                  <a href="{% url 'admin:board-event-list-init' %}">
                     <span>🎉 이벤트목록 관리</span>
                   </a>
-                  <div class="triangle-button">
-                    <img
-                      src="../../../../static/image/admin/arrow_icon.png"
-                      class="icon triangle-icon triangle"
-                    />
-                  </div>
+{#                  <div class="triangle-button">#}
+{#                    <img#}
+{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
+{#                      class="icon triangle-icon triangle"#}
+{#                    />#}
+{#                  </div>#}
                 </div>
-                <ul class="menus2 menus" style="display: none">
-                  <li class="select-menu">
-                    <a>
-                      <span>이벤트 상세보기</span>
-                    </a>
-                  </li>
-                  <li class="select-menu">
-                    <a>
-                      <span>이벤트 수정/삭제</span>
-                    </a>
-                  </li>
-                </ul>
+{#                <ul class="menus2 menus" style="display: none">#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-event-list' %}">#}
+{#                      <span>이벤트 목록</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-event-detail' %}">#}
+{#                      <span>이벤트 상세보기</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a>
+                  <a href="{% url 'admin:board-inquiry-list-init' %}">
                     <span>📩 쪽지 관리</span>
                   </a>
-                  <div class="triangle-button">
-                    <img
-                      src="../../../../static/image/admin/arrow_icon.png"
-                      class="icon triangle-icon triangle"
-                    />
-                  </div>
+{#                  <div class="triangle-button">#}
+{#                    <img#}
+{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
+{#                      class="icon triangle-icon triangle"#}
+{#                    />#}
+{#                  </div>#}
                 </div>
-                <ul class="menus2 menus" style="display: none">
-                  <li class="select-menu">
-                    <a>
-                      <span>답변 작성</span>
-                    </a>
-                  </li>
-                </ul>
+{#                <ul class="menus2 menus" style="display: none">#}
+{#                  <li class="select-menu">#}
+{#                    <a href="{% url 'admin:board-inquiry-write' %}">#}
+{#                      <span>답변 작성</span>#}
+{#                    </a>#}
+{#                  </li>#}
+{#                </ul>#}
               </li>
             </ul>
           </div>
         </div>
       </div>
-    </div>
     <!-- 사이드 바 끝-->
   </body>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script src="../../static/js/admin/sidemenu.js"></script>
+  <script src="{% static 'js/admin/sidemenu.js' %}"></script>
 </html>
