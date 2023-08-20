@@ -23,6 +23,7 @@ class Post(Period):
     class Meta:
         abstract = True
 
+
 class Message(Period):
     MESSAGE_STATUS = [
         ('Y', '읽음'),

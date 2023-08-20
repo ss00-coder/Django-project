@@ -1,12 +1,15 @@
 import os
 import django
+from _multiprocessing import send
 from django.db.models import Q, Count
 from django.test import TestCase
 
+from Foreign_us.models import Message
 from event.models import Event, EventLike
 from helpers.models import HelpersLike
 from lesson.models import Lesson, LessonLike
 from member.models import Member
+from message.models import ReceiveMessage, SendMessage
 
 # Create your tests here.
 
@@ -112,6 +115,7 @@ class HelpersLike(TestCase):
     #     HelpersLike(member_id=1, helpers_id=4)
     # ])
 
+
 class Event(TestCase):
     pass
     # Event.objects.bulk_create([
@@ -129,24 +133,60 @@ class Event(TestCase):
     #     Event(post_title='이벤트12', post_content='이벤트에요12', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
     # ])
 
+
 class EventLike(TestCase):
-    EventLike.objects.bulk_create([
-        EventLike(member_id=1, event_id=36),
-        EventLike(member_id=1, event_id=34),
-        EventLike(member_id=1, event_id=25),
-        EventLike(member_id=1, event_id=30),
-        EventLike(member_id=1, event_id=33),
-        EventLike(member_id=2, event_id=27),
-        EventLike(member_id=2, event_id=22),
-        EventLike(member_id=2, event_id=26),
-        EventLike(member_id=2, event_id=15),
-        EventLike(member_id=2, event_id=13),
-        EventLike(member_id=2, event_id=19),
-        EventLike(member_id=1, event_id=18),
-        EventLike(member_id=1, event_id=35),
-        EventLike(member_id=1, event_id=30),
-        EventLike(member_id=1, event_id=28),
-        EventLike(member_id=1, event_id=19),
-        EventLike(member_id=1, event_id=35),
-        EventLike(member_id=1, event_id=33)
-    ])
+    pass
+    # EventLike.objects.bulk_create([
+    #     EventLike(member_id=1, event_id=36),
+    #     EventLike(member_id=1, event_id=34),
+    #     EventLike(member_id=1, event_id=25),
+    #     EventLike(member_id=1, event_id=30),
+    #     EventLike(member_id=1, event_id=33),
+    #     EventLike(member_id=2, event_id=27),
+    #     EventLike(member_id=2, event_id=22),
+    #     EventLike(member_id=2, event_id=26),
+    #     EventLike(member_id=2, event_id=15),
+    #     EventLike(member_id=2, event_id=13),
+    #     EventLike(member_id=2, event_id=19),
+    #     EventLike(member_id=1, event_id=18),
+    #     EventLike(member_id=1, event_id=35),
+    #     EventLike(member_id=1, event_id=30),
+    #     EventLike(member_id=1, event_id=28),
+    #     EventLike(member_id=1, event_id=19),
+    #     EventLike(member_id=1, event_id=35),
+    #     EventLike(member_id=1, event_id=33)
+    # ])
+
+
+class SendMessage(TestCase):
+    pass
+    # SendMessage.objects.bulk_create([
+    #     SendMessage(message_title='쪽지 제목1', message_content='쪽지 내용1', message_status='N', receive_member_id=1, member_id=3),
+    #     SendMessage(message_title='쪽지 제목2', message_content='쪽지 내용2', message_status='N', receive_member_id=1, member_id=2),
+    #     SendMessage(message_title='쪽지 제목3', message_content='쪽지 내용3', message_status='N', receive_member_id=1, member_id=1),
+    #     SendMessage(message_title='쪽지 제목4', message_content='쪽지 내용4', message_status='N', receive_member_id=1, member_id=1),
+    #     SendMessage(message_title='쪽지 제목5', message_content='쪽지 내용5', message_status='N', receive_member_id=1, member_id=5),
+    #     SendMessage(message_title='쪽지 제목6', message_content='쪽지 내용6', message_status='N', receive_member_id=1, member_id=4),
+    #     SendMessage(message_title='쪽지 제목7', message_content='쪽지 내용7', message_status='N', receive_member_id=1, member_id=2),
+    #     SendMessage(message_title='쪽지 제목8', message_content='쪽지 내용8', message_status='N', receive_member_id=1, member_id=2),
+    #     SendMessage(message_title='쪽지 제목9', message_content='쪽지 내용9', message_status='N', receive_member_id=1, member_id=3),
+    #     SendMessage(message_title='쪽지 제목10', message_content='쪽지 내용10', message_status='N', receive_member_id=1, member_id=2),
+    #     SendMessage(message_title='쪽지 제목11', message_content='쪽지 내용11', message_status='N', receive_member_id=1, member_id=4)
+    # ])
+
+
+class ReceiveMessage(TestCase):
+    pass
+    # ReceiveMessage.objects.bulk_create([
+    #     ReceiveMessage(message_title='쪽지 제목1', message_content='쪽지 내용1', message_status='N', send_member_id=3, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목2', message_content='쪽지 내용2', message_status='N', send_member_id=2, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목3', message_content='쪽지 내용3', message_status='N', send_member_id=1,  member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목4', message_content='쪽지 내용4', message_status='N', send_member_id=4, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목5', message_content='쪽지 내용5', message_status='N', send_member_id=3, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목6', message_content='쪽지 내용6', message_status='N', send_member_id=2, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목7', message_content='쪽지 내용7', message_status='N', send_member_id=1, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목8', message_content='쪽지 내용8', message_status='N', send_member_id=2, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목9', message_content='쪽지 내용9', message_status='N', send_member_id=4, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목10', message_content='쪽지 내용10', message_status='N', send_member_id=1, member_id=1),
+    #     ReceiveMessage(message_title='쪽지 제목11', message_content='쪽지 내용11', message_status='N', send_member_id=3, member_id=1)
+    # ])

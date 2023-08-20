@@ -185,7 +185,7 @@
                         <div style="display: flex">
                           <p class="text">받은쪽지</p>
                           <div class="number-wrapper">
-                            <p class="number">1</p>
+                            <p class="number">{{ total }}</p>
                           </div>
                         </div>
                       </button>
@@ -230,13 +230,14 @@
               </div>
               <!-- 쪽지들 -->
               <ul class="message-wrapper">
+                {% for receive_message in receive_messages %}
                 <li class="message">
                   <button class="content-wrapper">
                     <div class="content">
                       <div class="title">
-                        <p>쪽지 제목이 들어갑니당</p>
+                        <p>{{ receive_message.message_title }}</p>
                       </div>
-                      <p class="content-text">쪽지 내용이 들어갑니당~!</p>
+                      <p class="content-text">{{ receive_message.message_content }}</p>
                     </div>
                   </button>
                   <div class="file-wrapper">
@@ -246,19 +247,19 @@
                   </div>
                   <div class="info-wrapper">
                     <div class="info">
-                      <p class="info-content">티라미수</p>
+                      <p class="info-content">{{ receive_message.send_member.member_nickname }}</p>
                       <p class="info-menu">발신인</p>
                     </div>
                     <div class="info">
-                      <p class="info-content">읽지않음</p>
+                      <p class="info-content">{{ receive_message.message_status }}</p>
                       <p class="info-menu">조회</p>
                     </div>
                     <div class="info">
-                      <p class="info-content">13:38</p>
+                      <p class="info-content">{{ receive_message.created_date|time:"H:i" }}</p>
                       <p class="info-menu">발신시간</p>
                     </div>
                     <div class="info">
-                      <p class="info-content">2023/08/08</p>
+                      <p class="info-content">{{ receive_message.created_date|date:"Y-m-d" }}</p>
                       <p class="info-menu">발신일</p>
                     </div>
                   </div>
@@ -275,243 +276,50 @@
                     </button>
                   </div>
                 </li>
-                <li class="message">
-                  <button class="content-wrapper">
-                    <div class="content">
-                      <div class="title">
-                        <p>쪽지 제목이 들어갑니당</p>
-                      </div>
-                      <p class="content-text">쪽지 내용이 들어갑니당~!</p>
-                    </div>
-                  </button>
-                  <div class="file-wrapper">
-                    <span class="file">
-                      <img src="/static/image/cake.jpg" alt="" />
-                    </span>
-                  </div>
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">티라미수</p>
-                      <p class="info-menu">발신인</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">읽지않음</p>
-                      <p class="info-menu">조회</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">13:38</p>
-                      <p class="info-menu">발신시간</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">2023/08/08</p>
-                      <p class="info-menu">발신일</p>
-                    </div>
-                  </div>
-                  <div class="delete-wrapper">
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="message">
-                  <button class="content-wrapper">
-                    <div class="content">
-                      <div class="title">
-                        <p>쪽지 제목이 들어갑니당</p>
-                      </div>
-                      <p class="content-text">쪽지 내용이 들어갑니당~!</p>
-                    </div>
-                  </button>
-                  <div class="file-wrapper">
-                    <span class="file">
-                      <img src="/static/image/cake.jpg" alt="" />
-                    </span>
-                  </div>
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">티라미수</p>
-                      <p class="info-menu">발신인</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">읽지않음</p>
-                      <p class="info-menu">조회</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">13:38</p>
-                      <p class="info-menu">발신시간</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">2023/08/08</p>
-                      <p class="info-menu">발신일</p>
-                    </div>
-                  </div>
-                  <div class="delete-wrapper">
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="message">
-                  <button class="content-wrapper">
-                    <div class="content">
-                      <div class="title">
-                        <p>쪽지 제목이 들어갑니당</p>
-                      </div>
-                      <p class="content-text">쪽지 내용이 들어갑니당~!</p>
-                    </div>
-                  </button>
-                  <div class="file-wrapper">
-                    <span class="file">
-                      <img src="/static/image/cake.jpg" alt="" />
-                    </span>
-                  </div>
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">티라미수</p>
-                      <p class="info-menu">발신인</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">읽지않음</p>
-                      <p class="info-menu">조회</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">13:38</p>
-                      <p class="info-menu">발신시간</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">2023/08/08</p>
-                      <p class="info-menu">발신일</p>
-                    </div>
-                  </div>
-                  <div class="delete-wrapper">
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
-                <li class="message">
-                  <button class="content-wrapper">
-                    <div class="content">
-                      <div class="title">
-                        <p>쪽지 제목이 들어갑니당</p>
-                      </div>
-                      <p class="content-text">쪽지 내용이 들어갑니당~!</p>
-                    </div>
-                  </button>
-                  <div class="file-wrapper">
-                    <span class="file">
-                      <img src="/static/image/cake.jpg" alt="" />
-                    </span>
-                  </div>
-                  <div class="info-wrapper">
-                    <div class="info">
-                      <p class="info-content">티라미수</p>
-                      <p class="info-menu">발신인</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">읽지않음</p>
-                      <p class="info-menu">조회</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">13:38</p>
-                      <p class="info-menu">발신시간</p>
-                    </div>
-                    <div class="info">
-                      <p class="info-content">2023/08/08</p>
-                      <p class="info-menu">발신일</p>
-                    </div>
-                  </div>
-                  <div class="delete-wrapper">
-                    <button class="delete-button" type="button">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                        </path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
-                        </path>
-                      </svg>
-                    </button>
-                  </div>
-                </li>
+                {% endfor %}
               </ul>
               <!-- 페이징 -->
               <div class="paging-wrapper">
-                <ul style="display: flex">
+                  <ul  style="display: flex">
                   <!-- 이전버튼 -->
-                  <button type="button" class="prev">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
-                      </path>
-                    </svg>
-                  </button>
-                  <!-- 숫자 페이지 -->
-                  <li>
-                    <a href="">
-                      <button class="page-active" type="button">
-                        <span class="page-number">1</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">2</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">3</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">4</span>
-                      </button>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <button class="page" type="button">
-                        <span class="page-number">5</span>
-                      </button>
-                    </a>
-                  </li>
-                  <!-- 다음버튼 -->
-                  <button type="button" class="next">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
-                      </path>
-                    </svg>
-                  </button>
-                </ul>
+                  {% if startPage > 1 %}
+                      <a href="{% url 'mypage:message-list' page=startPage|add:-1 %}" class="a-prev">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                          </path>
+                        </svg>
+                      </a>
+                  {% endif %}
+                  <!-- 페이지 번호 -->
+                  {% for i in "x"|rjust:5 %}
+                      {% if forloop.counter0|add:startPage <= realEnd%}
+                         <li>
+                             <a href="{% url 'mypage:message-list' page=forloop.counter0|add:startPage %}" class="page">
+                               {% if page ==  forloop.counter0|add:startPage %}
+                                   <button  class="page-active" type="button">
+                                     <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                                   </button>
+                               {% else %}
+                                   <button class="page" type="button">
+                                     <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                                   </button>
+                               {% endif %}
+                             </a>
+                         </li>
+                      {% endif %}
+                  {% endfor %}
+                 <!-- 다음버튼 -->
+                  {% if endPage < realEnd %}
+                      <a href="{% url 'mypage:message-list' page=endPage|add:1 %}" class="a-next">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                          </path>
+                        </svg>
+                      </a>
+                  {% endif %}
+                  </ul>
               </div>
             </div>
           </div>

@@ -16,6 +16,7 @@ urlpatterns = [
     path('event/', MyEventView.as_view(), name='myevent'),
     path('event/<int:page>/', MyEventView.as_view(), name='myevent'),
     path('message-list/', MyMessageListView.as_view(), name='message-list'),
+    path('message-list/<int:page>', MyMessageListView.as_view(), name='message-list'),
     path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     path('pay/', MyPayView.as_view(), name='mypay'),
