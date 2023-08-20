@@ -10,7 +10,7 @@ from event.models import Event, EventLike
 from helpers.models import Helpers, HelpersLike
 from lesson.models import Lesson, LessonLike
 from member.models import Member
-from message.models import ReceiveMessage
+from message.models import ReceiveMessage, SendMessage
 
 
 # Create your views here.
@@ -175,16 +175,19 @@ class MyMessageListView(View):
         if endPage == 0:
             endPage = 1
 
-        receive_messages = ReceiveMessage.objects.all().order_by('-id')
-        nicknames = []
-        for receive_message in receive_messages:
-            member_nickname = ReceiveMessage.objects.annotate(sender_nickname=F('send_member_id__member_nickname')).values('sender_nickname')
-            nicknames.append(member_nickname)
-            print(member_nickname)
-
-        receive_messages = list(ReceiveMessage.objects.all().order_by('-id'))[offset:limit]
-        member_nickname = nicknames[offset:limit]
-        combine_nickname = zip(receive_messages, member_nickname)
+        # receive_messages = ReceiveMessage.objects.all().order_by('-id')
+        #
+        # nicknames = []
+        # for message in receive_messages:
+        #     send_member_id = message.send_member_id
+        #     member = Member.objects.get(id=send_member_id)
+        #     nicknames.append(member.member_nickname)
+        #     print(nicknames)
+        #
+        #     receive_messages = list(ReceiveMessage.objects.all().order_by('-id'))[offset:limit]
+        #     member = nicknames[offset:limit]
+        #     combine_message = zip(receive_messages, member)
+        receive_messages = ReceiveMessage.objects.select_related('send_member').order_by('-id')[offset:limit]
 
         context = {
             'startPage': startPage,
@@ -192,9 +195,8 @@ class MyMessageListView(View):
             'page': page,
             'realEnd': realEnd,
             'total': total,
-            'receive_messages': receive_messages,
-            'member_nickname': member_nickname,
-            'combine_nickname': combine_nickname
+            'receive_messages': receive_messages
+
         }
         return render(request, 'message/list.html', context)
 
