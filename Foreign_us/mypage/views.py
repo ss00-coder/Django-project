@@ -5,10 +5,12 @@ from django.db.models import F
 from django.shortcuts import render
 from django.views import View
 
+from Foreign_us.models import Message
 from event.models import Event, EventLike
 from helpers.models import Helpers, HelpersLike
 from lesson.models import Lesson, LessonLike
 from member.models import Member
+from message.models import ReceiveMessage
 
 
 # Create your views here.
@@ -157,8 +159,44 @@ class MyEventView(View):
 
 
 class MyMessageListView(View):
-    def get(self, request):
-        return render(request, 'message/list.html')
+    def get(self, request, page=1):
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        total = ReceiveMessage.objects.all().count()
+        print(total)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        print(startPage)
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
+        receive_messages = ReceiveMessage.objects.all().order_by('-id')
+        nicknames = []
+        for receive_message in receive_messages:
+            member_nickname = ReceiveMessage.objects.annotate(sender_nickname=F('send_member_id__member_nickname')).values('sender_nickname')
+            nicknames.append(member_nickname)
+            print(member_nickname)
+
+        receive_messages = list(ReceiveMessage.objects.all().order_by('-id'))[offset:limit]
+        member_nickname = nicknames[offset:limit]
+        combine_nickname = zip(receive_messages, member_nickname)
+
+        context = {
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'total': total,
+            'receive_messages': receive_messages,
+            'member_nickname': member_nickname,
+            'combine_nickname': combine_nickname
+        }
+        return render(request, 'message/list.html', context)
 
 
 class MyMessageDetailView(View):

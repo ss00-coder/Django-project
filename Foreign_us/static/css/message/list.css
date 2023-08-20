@@ -525,21 +525,20 @@ div.main-content button.delete-button svg {
 }
 
 /* 페이징 */
-div.main-content div.paging-wrapper {
+.paging-wrapper {
   justify-content: center;
   display: flex;
-  /* margin-bottom: 10px; */
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
 }
 
-div.main-content div.paging-wrapper ul li {
+.paging-wrapper ul li {
   margin-left: 8px;
   margin-right: 8px;
 }
 
-div.main-content div.paging-wrapper button.prev {
+a.a-prev {
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;
@@ -553,12 +552,12 @@ div.main-content div.paging-wrapper button.prev {
   fill: #1d1d1e;
 }
 
-div.main-content div.paging-wrapper button.prev svg {
+a.a-prev svg{
   width: 16px;
   height: 16px;
 }
 
-div.main-content div.paging-wrapper button.next {
+a.a-next{
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;
@@ -572,12 +571,17 @@ div.main-content div.paging-wrapper button.next {
   fill: #1d1d1e;
 }
 
-div.main-content div.paging-wrapper button.next svg {
+a.a-next svg{
   width: 16px;
   height: 16px;
 }
 
-div.main-content div.paging-wrapper button.page {
+.paging-wrapper button.next svg {
+  width: 16px;
+  height: 16px;
+}
+
+.paging-wrapper button.page {
   border-radius: 9999px;
   justify-content: center;
   align-items: center;
@@ -588,7 +592,7 @@ div.main-content div.paging-wrapper button.page {
   fill: #1d1d1e;
 }
 
-div.main-content div.paging-wrapper button.page-active {
+.paging-wrapper button.page-active {
   border-radius: 9999px;
   justify-content: center;
   align-items: center;
@@ -600,7 +604,7 @@ div.main-content div.paging-wrapper button.page-active {
   background-color: #f3f3f4;
 }
 
-div.main-content button.page-active span.page-number {
+button.page-active span.page-number {
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
@@ -608,13 +612,14 @@ div.main-content button.page-active span.page-number {
   fill: #1d1d1e;
 }
 
-div.main-content button.page span.page-number {
+button.page span.page-number {
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
   color: #8a8a8b;
   fill: #8a8a8b;
 }
+
 
 /* 삭제 모달 */
 div.delete-modal-wrapper {
