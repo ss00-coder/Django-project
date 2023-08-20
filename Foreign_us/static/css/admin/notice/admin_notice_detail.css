@@ -40,7 +40,7 @@ hr {
 
 .info-text-area{
 	margin: 0 auto;
-	min-height: 350px;
+	/*min-height: 350px;*/
 }
 .info-text-box{
 	margin: 0 auto;

@@ -7,8 +7,7 @@ $(".triangle-button").each((i, e) => {
     
     $dom.on("click", function(e) {
        e.preventDefault();
-       console.log($menus);
-       
+
        if(checkSlide){
           $dom.removeClass("triangle-acitve");
           $menus.slideUp();

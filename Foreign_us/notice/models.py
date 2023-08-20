@@ -8,6 +8,9 @@ from member.models import Member
 class Notice(Post):
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
 
+
+    def get_absolute_url(self, page):
+        return f"/administrator/board/notice/detail/{self.id}/{page}"
     class Meta:
         db_table = 'tbl_notice'
 
