@@ -36,7 +36,11 @@
                     <!-- 검색창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
-                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% if keyword == None %}
+                                <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% else %}
+                                <input value="{{ keyword }}" type="text" placeholder="검색어 입력" class="search-box">
+                            {% endif %}
                             <button type="button" class="search-button">
                                 <img src="{% static 'image/admin/search-icon-black.png'%}" alt="">
                             </button>
@@ -80,14 +84,10 @@
                                         {% for post in posts %}
                                             <tr>
                                                 <td class="checkbox-line">
-                                                    <label>
-                                                        <input type="checkbox" name="check" class="memberCheckbox">
-                                                    </label>
+                                                    <input type="checkbox" name="check" class="memberCheckbox">
                                                 </td>
-                                                <td class="noticeId">
-                                                    {{ post.id }}
-                                                </td>
-                                                <td><a href="{% url 'admin:board-notice-detail' post_id=post.id page=page %}">{{ post.post_title }}
+                                                <td class="noticeId">{{ post.id }}</td>
+                                                <td><a href="{% url 'admin:board-notice-detail' keyword=keyword post_id=post.id page=page %}">{{ post.post_title }}
                                                 </a></td>
                                                 <td>
                                                     {{ post.created_date|date:"Y-m-d" }}
@@ -110,7 +110,7 @@
                                 <div class="">
                                     <div class="page-button-margin">
                                         <div>
-                                            <a href="{% url 'admin:board-notice-list' page=startPage|add:-1 %}">
+                                            <a href="{% url 'admin:board-notice-list-page' keyword=keyword page=startPage|add:-1 %}">
                                                 <img src="{% static 'image/admin/left_icon.png'%}"
                                                 class="left-button">
                                             </a>
@@ -119,23 +119,35 @@
                                 </div>
                             {% endif %}
                             {% for i in "x"|rjust:5 %}
-                                {% if forloop.counter0|add:startPage <= realEnd%}
-                                    <div class="page-button">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <a href="{% url 'admin:board-notice-list' page=forloop.counter0|add:startPage %}">
-                                                    <span>{{ forloop.counter0|add:startPage}}</span>
-                                                </a>
+                                {% if forloop.counter0|add:startPage <= realEnd %}
+                                    {% if forloop.counter0|add:startPage == page %}
+                                        <div class="page-button page-button-active">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-notice-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    {% else %}
+                                        <div class="page-button">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-notice-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                             {% if endPage < realEnd %}
                                 <div class="">
                                     <div class="page-button-margin">
                                         <div>
-                                            <a href="{% url 'admin:board-notice-list' page=endPage|add:1 %}">
+                                            <a href="{% url 'admin:board-notice-list-page' keyword=keyword page=endPage|add:1 %}">
                                                 <img src="{% static 'image/admin/right_icon.png'%}"
                                                 class="right-button">
                                             </a>
@@ -153,7 +165,10 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 {#<script src="{%  static 'js/admin/page.js'%}"></script>#}
-{#<script src="{%  static 'js/admin/checkbox.js'%}"></script>#}
-{#<script src="{%  static 'js/admin/board_proposal.js'%}"></script>#}
+<script src="{%  static 'js/admin/checkbox.js'%}"></script>
+<script src="{%  static 'js/admin/board_proposal.js'%}"></script>
 {#<script src="{%  static 'js/admin/sidemenu.js'%}"></script>#}
+<script>
+    let page = {{ page }}
+</script>
 </html>

@@ -28,8 +28,19 @@ class AdminTest(TestCase):
     #         post_content=f'공지사항 내용{i+1}',
     #         member=member
     #     )
-    post = Notice.objects.filter(id=314).get()
-    prevFiles = ['notice/2023/08/18/cute-girl_5ulLRGB.jpg']
+
+    # Notice.objects.create(
+    #     post_title=f'공지사항 제목',
+    #     post_content=f'공지사항 내용',
+    #     member=Member.objects.filter(member_type='A').get()
+    # )
+
+    notice = Notice.objects.filter(id=316).get()
+    # print(notice.post_content)
+    notice.post_title="수정된 공지사항 제목"
+    notice.save()
+    # post = Notice.objects.filter(id=314).get()
+    # prevFiles = ['notice/2023/08/18/cute-girl_5ulLRGB.jpg']
     # NoticeFile.objects.exclude(image__in=prevFiles).delete()
-    NoticeFile.objects.filter(Q(notice=post) & ~Q(image__in=prevFiles)).delete()
+    # NoticeFile.objects.filter(Q(notice=post) & ~Q(image__in=prevFiles)).delete()
     pass

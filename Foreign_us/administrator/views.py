@@ -4,6 +4,7 @@ import os
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework.views import APIView
 
 from member.models import Member
 from notice.models import Notice, NoticeFile
@@ -12,47 +13,55 @@ from notice.models import Notice, NoticeFile
 # Create your views here.
 # 이벤트 목록
 class BoardEventListView(View):
-    def get(self, request):
-        return render(request, 'admin/board/event/list.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/event/list.html', {'page': page})
 
 
 # 이벤트 조회
 class BoardEventDetailView(View):
-    def get(self, request):
-        return render(request, 'admin/board/event/detail.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/event/detail.html', {'page': page})
 
 
 # 헬퍼스 목록
 class BoardHelpersListView(View):
-    def get(self, request):
-        return render(request, 'admin/board/helpers/list.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/helpers/list.html', {'page': page})
 
 
 # 헬퍼스 조회
 class BoardHelpersDetailView(View):
-    def get(self, request):
-        return render(request, 'admin/board/helpers/detail.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/helpers/detail.html', {'page': page})
 
 
 # 과외 목록
 class BoardLessonListView(View):
-    def get(self, request):
-        return render(request, 'admin/board/lesson/list.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/lesson/list.html', {'page': page})
 
 
 # 과외 조회
 class BoardLessonDetailView(View):
-    def get(self, request):
-        return render(request, 'admin/board/lesson/detail.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/lesson/detail.html', {'page': page})
 
 
 # 공지사항 목록
 class BoardNoticeListView(View):
-    def get(self, request, page=1):
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            posts = Notice.objects.filter(Q(post_title__contains=keyword)|Q(post_content__contains=keyword)).order_by('-id').all()
+        else:
+            posts = Notice.objects.order_by('-id').all()
+
         size = 7
         offset = (page - 1) * size
         limit = page * size
-        total = Notice.objects.all().count()
+        total = len(posts)
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -62,33 +71,38 @@ class BoardNoticeListView(View):
             endPage = 1
 
         context = {
-            'posts': list(Notice.objects.order_by('-id').all())[offset:limit],
+            'posts': list(posts)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
+            'keyword': keyword
         }
         return render(request, 'admin/board/notice/list.html', context)
 
 
 # 공지사항 조회
 class BoardNoticeDetailView(View):
-    def get(self, request, post_id, page):
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
         post = Notice.objects.get(id=post_id)
         context = {
             'post': post,
             'post_files': list(post.noticefile_set.all()),
-            'page': page
+            'page': page,
+            'keyword': keyword
         }
         return render(request, 'admin/board/notice/detail.html', context)
 
 
 # 공지사항 쓰기
 class BoardNoticeWriteView(View):
-    def get(self, request, page):
+    def get(self, request, page=1):
         return render(request, 'admin/board/notice/write.html', {'page': page})
 
-    def post(self, request, page):
+    def post(self, request, page=1):
         datas = request.POST
         files = request.FILES
 
@@ -108,67 +122,76 @@ class BoardNoticeWriteView(View):
 
 # 공지사항 수정
 class BoardNoticeModifyView(View):
-    def get(self, request, post_id, page):
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
         post = Notice.objects.get(id=post_id)
         context = {
             'post': post,
             'post_files': list(post.noticefile_set.all()),
-            'page': page
+            'page': page,
+            'keyword': keyword
         }
         return render(request, 'admin/board/notice/modify.html', context)
 
-
-    def post(self, request, post_id, page):
+    def post(self, request, post_id, page=1):
         datas = request.POST
         files = request.FILES
 
-        post_data = {
-            'post_title': datas['post_title'],
-            'post_content': datas['post_content']
-        }
+        post = Notice.objects.get(id=post_id)
+        post.post_title = datas['post_title']
+        post.post_content = datas['post_content']
+        post.save()
 
-        Notice.objects.filter(id=post_id).update(**post_data)
-        post = Notice.objects.filter(id=post_id).get()
         if 'file_name' in datas:
             prevFiles = dict(datas)['file_name']
             NoticeFile.objects.filter(Q(notice=post) & ~Q(image__in=prevFiles)).delete()
+
         for file in files.getlist('file'):
             NoticeFile.objects.create(notice=post, image=file)
         return redirect(post.get_absolute_url(page))
 
 
+# 공지사항 삭제
+class BoardNoticeDeleteAPI(APIView):
+    def post(self, request):
+        post_ids = request.data['post_ids']
+        NoticeFile.objects.filter(notice_id__in=post_ids).delete()
+        Notice.objects.filter(id__in=post_ids).delete()
+        return redirect('admin:board-notice-list-init')
+
+
 # 문의 목록
 class BoardInquiryListView(View):
-    def get(self, request):
-        return render(request, 'admin/board/inquiry/list.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/inquiry/list.html', {'page': page})
 
 
 # 문의 조회
 class BoardInquiryDetailView(View):
-    def get(self, request):
-        return render(request, 'admin/board/inquiry/detail.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/inquiry/detail.html', {'page': page})
 
 
 # 문의 쓰기
 class BoardInquiryWriteView(View):
-    def get(self, request):
-        return render(request, 'admin/board/inquiry/answer.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/board/inquiry/answer.html', {'page': page})
 
 
 # 회원 목록
 class MemberListView(View):
-    def get(self, request):
-        return render(request, 'admin/member/list.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/member/list.html', {'page': page})
 
 
 # 회원 조회
 class MemberDetailView(View):
-    def get(self, request):
-        return render(request, 'admin/member/detail.html')
+    def get(self, request, page=1):
+        return render(request, 'admin/member/detail.html', {'page': page})
 
 
 # 회원 수정
 class MemberModifyView(View):
-    def get(self, request):
-        return render(request, 'admin/member/modify.html')
-
+    def get(self, request, page=1):
+        return render(request, 'admin/member/modify.html', {'page': page})

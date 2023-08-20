@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -47,7 +47,7 @@
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:list' %}">
+                  <a href="{% url 'admin:list-init' %}">
                     <span>👤 회원정보 관리</span>
                   </a>
 {#                  <div class="triangle-button">#}
@@ -73,7 +73,7 @@
 
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:board-lesson-list' %}">
+                  <a href="{% url 'admin:board-lesson-list-init' %}">
                     <span>✏️ 과외목록 관리</span>
                   </a>
 {#                  <div class="triangle-button">#}
@@ -104,7 +104,7 @@
 
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:board-helpers-list' %}">
+                  <a href="{% url 'admin:board-helpers-list-init' %}">
                     <span>💞 헬퍼스 관리</span>
                   </a>
 {#                  <div class="triangle-button">#}
@@ -134,7 +134,7 @@
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:board-event-list' %}">
+                  <a href="{% url 'admin:board-event-list-init' %}">
                     <span>🎉 이벤트목록 관리</span>
                   </a>
 {#                  <div class="triangle-button">#}
@@ -159,7 +159,7 @@
               </li>
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:board-inquiry-list' %}">
+                  <a href="{% url 'admin:board-inquiry-list-init' %}">
                     <span>📩 쪽지 관리</span>
                   </a>
 {#                  <div class="triangle-button">#}

@@ -38,10 +38,10 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
+                            <a href="{% url 'admin:board-notice-list-init' %}">
                                 <img src="{% static 'image/admin/prev_icon.png'%}" class="prev-icon">
                             </a>
-                            <a class="back-page">리스트로 돌아가기</a>
+                            <a href="{% url 'admin:board-notice-list-init' %}" class="back-page">리스트로 돌아가기</a>
                         </div>
                     </div>
 
@@ -184,8 +184,6 @@
                 $imgUl.append(text);
                 index++;
                 $('.img_ul>li').on('click', (e) => {
-                    console.log($(e.currentTarget));
-                    console.log("딜리트 버튼 눌림")
                     $(e.currentTarget).remove();
                 });
             }
@@ -194,8 +192,6 @@
     });
 
     $('.img_ul>li').on('click', (e) => {
-        console.log($(e.currentTarget));
-        console.log("딜리트 버튼 눌림")
         $(e.currentTarget).remove();
     });
 </script>
