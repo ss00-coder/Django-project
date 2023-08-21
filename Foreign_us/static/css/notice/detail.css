@@ -874,16 +874,24 @@ footer button.left-icon {
 footer svg.left-icon-image {
   width: 24px;
   height: 24px;
-  color: #b9b9bb;
-  fill: #b9b9bb;
+  color: #333334;
+  fill: #333334;
+}
+
+footer svg.heart{
+  display: none;
+}
+
+footer svg.heart.active{
+  display: block;
 }
 
 footer span.left-num {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #8a8a8b;
-  fill: #8a8a8b;
+  color: #333334;
+  fill: #333334;
 }
 
 footer div.footer-right-wrapper {
@@ -904,4 +912,26 @@ footer svg.right-list-image {
   height: 24px;
   color: #333334;
   fill: #333334;
+}
+
+div.writer-fade {
+  display: none;
+}
+
+@media (max-width: 1420px) {
+  main.main {
+    margin-left: auto;
+  }
+
+  div.writer-show {
+    display: none;
+  }
+
+  div.writer-fade {
+    display: block;
+  }
+
+  footer div.post-footer-container {
+    width: 750px;
+  }
 }
