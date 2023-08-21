@@ -109,7 +109,7 @@ class BoardNoticeWriteView(View):
         files = request.FILES
 
         datas = {
-            'member_id': Member.objects.filter(member_type='A').get().id,
+            'member_id': Member.objects.filter(member_email=request.session['member_email']).get().id,
             'post_title': datas['post_title'],
             'post_content': datas['post_content']
         }
@@ -164,7 +164,7 @@ class BoardNoticeDeleteAPI(APIView):
         post_ids = request.data['post_ids']
         NoticeFile.objects.filter(notice_id__in=post_ids).delete()
         Notice.objects.filter(id__in=post_ids).delete()
-        return redirect('admin:board-notice-list-init')
+        # return redirect('admin:board-notice-list-init')
 
 
 # 문의 목록
