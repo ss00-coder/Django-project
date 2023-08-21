@@ -129,12 +129,13 @@
     let $imgUl = $($('ul.img_ul')[0]);
     let $lists;
 
-
     $(".file").change((e) => {
         let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
         let index = 0;
         let files = e.target.files;
         let filesArr = Array.prototype.slice.call(files);
+        $imgUl.empty();
+        $imgUl.innerHTML = "";
 
         inputFiles = [];
 
@@ -146,12 +147,12 @@
             inputFiles.push(file);
 
             var reader = new FileReader();
-            $imgUl.empty();
 
             reader.onload = (e) => {
-                if (index >= 3) {
-                    return;
-                }
+                // if (index >= 3) {
+                //    return;
+                //}
+                //$imgUl.empty();
                 let text = `
                         <li class="img_list" id="li${index}">
                             <div class="img_box_wrapper">
