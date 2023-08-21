@@ -2,7 +2,7 @@ from django.urls import path
 
 from mypage import views
 from mypage.views import MyProfileView, MyLessonView, MyLessonReviewView, MyHelpersView, MyEventView, MyMessageListView, \
-    MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView
+    MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView, MyHelpersDeleteView
 
 app_name = 'mypage'
 
@@ -14,8 +14,11 @@ urlpatterns = [
     path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson'),
     path('lesson-review/', MyLessonReviewView.as_view(), name='mylesson-review'),
     # 헬퍼스
-    path('helpers/', MyHelpersView.as_view(), name='myhelpers'),
-    path('helpers/<int:page>/', MyHelpersView.as_view(), name='myhelpers'),
+    path('helpers/', MyHelpersView.as_view(), name='myhelpers_init'),
+    path('helpers/<int:page>/', MyHelpersView.as_view(), name='myhelpers_page'),
+    path('helpers/<str:keyword>/', MyHelpersView.as_view(), name='myhelpers_find'),
+    path('helpers/delete/<int:helpers_id>/', MyHelpersDeleteView.as_view(), name='myhelpers_delete'),
+    path('helpers/<str:keyword>/<int:page>/', MyHelpersView.as_view(), name='myhelpers_list'),
     # 이벤트
     path('event/', MyEventView.as_view(), name='myevent_init'),
     path('event/<int:page>/', MyEventView.as_view(), name='myevent_page'),

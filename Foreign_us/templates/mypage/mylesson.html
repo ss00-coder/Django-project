@@ -51,7 +51,7 @@
                   <span class="side-nav-top-profile-icon-border"></span>
                 </button>
               </div>
-              <h2 class="side-nav-top-nickname">{{nickname}}</h2>
+              <h2 class="side-nav-top-nickname">{{member_nickname}}</h2>
               <a class="side-nav-top-mypage" href="">
                 <button class="side-nav-top-mypage-btn" type="button">
                   <div class="side-nav-top-mypage-btn-flex">
@@ -108,7 +108,7 @@
               </a>
             </li>
             <li class="side-nav-bottom-item">
-              <a class="side-nav-bottom-item-a" href="{% url 'mypage:myhelpers' %}">
+              <a class="side-nav-bottom-item-a" href="{% url 'mypage:myhelpers_init' %}">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z">
@@ -121,7 +121,7 @@
               </a>
             </li>
             <li class="side-nav-bottom-item">
-              <a class="side-nav-bottom-item-a" href="{% url 'mypage:myevent' %}">
+              <a class="side-nav-bottom-item-a" href="{% url 'mypage:myevent_init' %}">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z">

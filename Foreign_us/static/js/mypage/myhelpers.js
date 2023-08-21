@@ -24,12 +24,33 @@ $(function () {
         }
     })
 
+globalThis.helpersId;
+
     //모달창 이벤트
-    $deleteBtn.click(() => { $modal.show() });
+    $deleteBtn.click(function(){
+        globalThis.helpersId = this.id
+        // console.log(this.id);
+        $modal.show();
+    });
+
+
     $buttonCancel.click(() => { $modal.hide() })
-    $buttonAgree.click(() => { $modal.hide() })
+    $buttonAgree.click(function ()  {
+        console.log(helpersId)
+        $modal.hide()
+        location.href=`/mypage/helpers/delete/${globalThis.helpersId}/`
+    })
 });
 
+//검색창
+$(".search-button svg").on('click', ()=>{
+	keyword = $("#search-input").val();
+	location.href = keyword === "" ? "/mypage/helpers/" : `/mypage/helpers/${keyword}/`;
+})
 
 
+const $createBtn = $('.create-btn');
 
+    $createBtn.click(() => {
+        location.href=`/helpers/write/`
+    })

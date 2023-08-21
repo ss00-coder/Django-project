@@ -378,6 +378,29 @@ body {
   fill: #1d1d1e;
 }
 
+/* 쪽지 사진 */
+/*.post div.file-wrapper {*/
+/*  width: 36px;*/
+/*  height: 36px;*/
+/*  margin-left: 40px;*/
+/*  position: relative;*/
+/*}*/
+
+/*.file-wrapper span.file {*/
+/*  box-sizing: border-box;*/
+/*  display: block;*/
+/*  overflow: hidden;*/
+/*  width: initial;*/
+/*  height: initial;*/
+/*  background: none;*/
+/*  opacity: 1;*/
+/*  border: 0px;*/
+/*  margin: 0px;*/
+/*  padding: 0px;*/
+/*  position: absolute;*/
+/*  inset: 0px;*/
+/*}*/
+
 /* 작성 글 목록 */
 .main-content {
   overflow-x: auto;
@@ -474,6 +497,24 @@ body {
   position: relative;
   height: 100%;
   padding: 0 0 16px;
+}
+
+/* 작성 글 목록 */
+.main-content {
+  overflow-x: auto;
+  flex-basis: 0px;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.main-content-grid {
+  display: grid;
+  row-gap: 0;
+  column-gap: 16px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  width: 944px;
+  padding-bottom: 64px;
+  margin: 0 auto;
 }
 
 /* 활성화 중인 탭 */
@@ -636,7 +677,7 @@ body {
 }
 
 .info-wrapper {
-  margin: 0 0 0 222px;
+  margin: 0 0 0 165px;
   display: flex;
   align-items: center;
   column-gap: 30px;
@@ -756,7 +797,7 @@ a.a-prev svg{
   height: 16px;
 }
 
-a.a-next{
+a .a-next{
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;
@@ -923,3 +964,4 @@ button.page span.page-number {
   width: 100%;
   height: 100%;
 }
+
