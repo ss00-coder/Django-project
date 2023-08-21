@@ -6,8 +6,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 
 from Foreign_us.models import Message
-from event.models import Event, EventLike
-from helpers.models import Helpers, HelpersLike
+from event.models import Event, EventLike, EventFile
+from helpers.models import Helpers, HelpersLike, HelpersFile
 from lesson.models import Lesson, LessonLike
 from member.models import Member
 from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, SendMessageFile
@@ -67,6 +67,7 @@ class MyLessonView(View):
 
         lessons = list(Lesson.objects.all().order_by('-id'))[offset:limit]
         likes = like_list[offset:limit]
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         combine_like = zip(lessons, likes)
 
         context = {
@@ -75,7 +76,8 @@ class MyLessonView(View):
             'page': page,
             'realEnd': realEnd,
             'total': total,
-            'combine_like': combine_like
+            'combine_like': combine_like,
+            'member_nickname': member_nickname
         }
         return render(request, 'mypage/mylesson.html', context)
 
@@ -87,8 +89,8 @@ class MyLessonReviewView(View):
 
 
 class MyHelpersView(View):
-    def get(self, request, page=1):
-        print(4)
+    def get(self, request, keyword=None, page=1):
+
         size = 5
         offset = (page - 1) * size
         limit = page * size
@@ -102,27 +104,50 @@ class MyHelpersView(View):
         if endPage == 0:
             endPage = 1
 
-        # 좋아요
-        helperses = Helpers.objects.all().order_by('-id')
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            print(keyword)
+            helperses = Helpers.objects.filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+        else:
+            helperses = Helpers.objects.order_by('-id').all()
+
         like_list = []
+        image_list = []
         for helpers in helperses:
             likes = HelpersLike.objects.all().filter(helpers_id=helpers).count()
             like_list.append(likes)
+            helpers_file = HelpersFile.objects.all().filter(helpers_id=helpers)
+            image_list.append(helpers_file)
 
-        helperses = list(Helpers.objects.all().order_by('-id'))[offset:limit]
         likes = like_list[offset:limit]
-        combine_like = zip(helperses, likes)
+        helpers_files = image_list[offset:limit]
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        combine_like = zip(helperses, likes, helpers_files)
+        # print(event_file)
 
         context = {
+            'events': list(helperses)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
             'total': total,
-            'combine_like': combine_like
+            'combine_like': combine_like,
+            'keyword': keyword,
+            'member_nickname': member_nickname
         }
 
         return render(request, 'mypage/myhelpers.html', context)
+
+
+class MyHelpersDeleteView(View):
+    print(6)
+    def get(self, request, helpers_id):
+        print("helpers_id")
+        Helpers.objects.get(id=helpers_id).delete()
+        return redirect('mypage:myhelpers_init')
 
 
 class MyEventView(View):
@@ -152,12 +177,18 @@ class MyEventView(View):
             events = Event.objects.order_by('-id').all()
 
         like_list = []
+        image_list = []
         for event in events:
             likes = EventLike.objects.all().filter(event_id=event).count()
             like_list.append(likes)
+            event_files = EventFile.objects.all().filter(event_id=event)
+            image_list.append(event_files)
 
         likes = like_list[offset:limit]
-        combine_like = zip(events, likes)
+        event_files = image_list[offset:limit]
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        combine_like = zip(events, likes, event_files)
+        # print(event_file)
 
         context = {
             'events': list(events)[offset:limit],
@@ -167,7 +198,8 @@ class MyEventView(View):
             'realEnd': realEnd,
             'total': total,
             'combine_like': combine_like,
-            'keyword': keyword
+            'keyword': keyword,
+            'member_nickname': member_nickname
         }
 
         return render(request, 'mypage/myevent.html', context)

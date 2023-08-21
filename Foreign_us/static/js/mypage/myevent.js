@@ -49,3 +49,8 @@ $(".search-button svg").on('click', ()=>{
 })
 
 
+const $createBtn = $('.create-btn');
+
+    $createBtn.click(() => {
+        location.href=`/event/write/`
+    })
