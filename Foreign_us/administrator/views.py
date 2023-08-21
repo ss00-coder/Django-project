@@ -147,9 +147,13 @@ class BoardNoticeModifyView(View):
 
         if 'file_name' in datas:
             prevFiles = dict(datas)['file_name']
+            print(prevFiles)
             NoticeFile.objects.filter(Q(notice=post) & ~Q(image__in=prevFiles)).delete()
+        else:
+            NoticeFile.objects.filter(notice=post).delete()
 
         for file in files.getlist('file'):
+            print(file)
             NoticeFile.objects.create(notice=post, image=file)
         return redirect(post.get_absolute_url(page))
 

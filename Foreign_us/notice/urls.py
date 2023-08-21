@@ -9,5 +9,5 @@ app_name = 'notice'
 urlpatterns = [
     path('list/', NoticeListView.as_view(), name='list-init'),
     path('list/<int:page>', NoticeListAPI.as_view(), name='list'),
-    path('detail/', NoticeDetailView.as_view(), name='detail'),
+    path('detail/<int:post_id>', NoticeDetailView.as_view(), name='detail'),
 ]
