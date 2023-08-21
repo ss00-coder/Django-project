@@ -8,7 +8,7 @@ let page = 1;
 getList();
 
 function getList(){
-    fetch(`http://localhost:10000/notice/list/${page}`)
+    fetch(`/notice/list/${page}`)
         .then((response) => response.json())
         .then((posts)=>{
             console.log(posts);
