@@ -25,6 +25,7 @@ urlpatterns = [
     path('board/notice/list/', BoardNoticeListView.as_view(), name='board-notice-list-init'),
     path('board/notice/list/<str:keyword>/', BoardNoticeListView.as_view(), name='board-notice-list'),
     path('board/notice/list/<str:keyword>/<int:page>/', BoardNoticeListView.as_view(), name='board-notice-list-page'),
+    path('board/notice/detail/<int:post_id>/<int:page>/', BoardNoticeDetailView.as_view(), name='board-notice-detail-init'),
     path('board/notice/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardNoticeDetailView.as_view(), name='board-notice-detail'),
     path('board/notice/write/<int:page>/', BoardNoticeWriteView.as_view(), name='board-notice-write'),
     path('board/notice/modify/<int:post_id>/<int:page>/', BoardNoticeModifyView.as_view(), name='board-notice-modify'),
