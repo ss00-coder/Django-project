@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from member.models import Member
-from notice.models import Notice, NoticeFile, NoticeReply
+from notice.models import Notice, NoticeFile, NoticeReply, NoticeLike
 from notice.serializers import NoticeSerializer, NoticeReplySerializer
 
 
@@ -63,8 +63,10 @@ class NoticeDetailView(View):
             'post': post,
             'post_files': list(post.noticefile_set.all()),
             'writer': post.member,
-            'member': Member.objects.get(member_email=request.session['member_email'])
         }
+
+        if 'member_email' in request.session:
+            context['member'] = Member.objects.get(member_email=request.session['member_email'])
 
         return render(request, 'notice/detail.html', context)
 
@@ -123,7 +125,34 @@ class NoticeReplyDeleteAPI(APIView):
         NoticeReply.objects.filter(id=id).delete()
         return Response('success')
 
+
+class NoticeLikeAddAPI(APIView):
     def post(self, request):
         datas = request.data
-        NoticeReply.objects.get(id=datas['id']).delete()
+        datas = {
+            'notice': Notice.objects.get(id=datas['id']),
+            'member': Member.objects.get(member_email=request.session['member_email']),
+        }
+        NoticeLike.objects.create(**datas)
         return Response('success')
+
+
+class NoticeLikeDeleteAPI(APIView):
+    def post(self, request):
+        datas = request.data
+        member = Member.objects.get(member_email=request.session['member_email'])
+        NoticeLike.objects.filter(notice_id=datas['id'], member=member).delete()
+        return Response('success')
+
+
+class NoticeLikeCountAPI(APIView):
+    def get(self, request, id):
+        return Response(NoticeLike.objects.filter(notice_id=id).count())
+
+
+class NoticeLikeExistAPI(APIView):
+    def get(self, request, id):
+        # datas = request.data
+        member = Member.objects.get(member_email=request.session['member_email'])
+        check = NoticeLike.objects.filter(notice_id=id, member=member).exists()
+        return Response(check)
