@@ -99,8 +99,10 @@ class BoardNoticeDetailView(View):
 
 # 공지사항 쓰기
 class BoardNoticeWriteView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/notice/write.html', {'page': page})
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+        return render(request, 'admin/board/notice/write.html', {'page': page, 'keyword': keyword})
 
     def post(self, request, page=1):
         datas = request.POST
