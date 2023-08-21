@@ -52,7 +52,7 @@
                   <span class="side-nav-top-profile-icon-border"></span>
                 </button>
               </div>
-              <h2 class="side-nav-top-nickname">닉네임1</h2>
+              <h2 class="side-nav-top-nickname">{{nickname}}</h2>
               <a class="side-nav-top-mypage" href="">
                 <button class="side-nav-top-mypage-btn" type="button">
                   <div class="side-nav-top-mypage-btn-flex">
@@ -208,9 +208,14 @@
                     <span class="total-number"></span>
                   </div>
                   <div class="search">
+
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
-                        <input id="search-input" type="search" placeholder="제목 검색">
+                        {% if keyword == None %}
+                        <input id="search-input" type="search" placeholder="검색어 입력">
+                        {% else %}
+                        <input value="{{ keyword }}" id="search-input" type="search" placeholder="검색어 입력">
+                        {% endif %}
                         <button class="search-button" type="button">
                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -346,7 +351,7 @@
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <script src="{% static 'js/mypage/myhelpers.js' %}"></script>
+  <script src="{% static 'js/mypage/myevent.js' %}"></script>
 </body>
 
 </html>

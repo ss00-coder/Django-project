@@ -30,6 +30,12 @@ $(function () {
     $buttonAgree.click(() => { $modal.hide() })
 });
 
+//검색창
+$(".search-button svg").on('click', ()=>{
+	keyword = $("#search-input").val();
+    console.log(keyword)
+	location.href = keyword === "" ? "/mypage/event/" : `/mypage/event/${keyword}/`;
+})
 
 
 

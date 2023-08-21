@@ -1,8 +1,8 @@
 import math
 
 from django.contrib.admin import helpers
-from django.db.models import F
-from django.shortcuts import render
+from django.db.models import F, Q
+from django.shortcuts import render, redirect
 from django.views import View
 
 from Foreign_us.models import Message
@@ -17,15 +17,19 @@ from message.models import ReceiveMessage, SendMessage
 class MyProfileView(View):
     # 프로필 사이드바 닉네임
     def get(self, request):
-        # email = request.session['member_email'] #(멤버이메일값)
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        print(member_nickname)#(멤버이메일값)
         # print(Member.objects.annotate(email=F('member_email')).values('member_nickname'))
         # member = Member.objects.get(member_email=email)
-        member = Member.objects.filter(member_nickname='짱구')
+        # member = Member.objects.filter(member_nickname='짱구')
         # print(member[0].member_nickname)  // 이건 필터
-        nicknames = {'nickname': member[0].member_nickname}
+        # nicknames = {'nickname': member[0].member_nickname}
         # print(nicknames)
         # print(nicknames)
-        return render(request, 'mypage/myprofile.html', nicknames)
+        context = {
+            'member_nickname': member_nickname
+        }
+        return render(request, 'mypage/myprofile.html', context)
 
     # def post(self, request, *args, **kwargs):
     #     token, member_email, member_nickname, member_birth = request.POST.values()
@@ -120,7 +124,8 @@ class MyHelpersView(View):
 
 
 class MyEventView(View):
-    def get(self, request, page=1):
+    def get(self, request, keyword=None, page=1):
+
         size = 5
         offset = (page - 1) * size
         limit = page * size
@@ -136,24 +141,30 @@ class MyEventView(View):
         if endPage == 0:
             endPage = 1
 
-        # 좋아요
-        events = Event.objects.all().order_by('-id')
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            events = Event.objects.filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+        else:
+            events = Event.objects.order_by('-id').all()
         like_list = []
         for event in events:
             likes = EventLike.objects.all().filter(event_id=event).count()
             like_list.append(likes)
 
-        events = list(Event.objects.all().order_by('-id'))[offset:limit]
         likes = like_list[offset:limit]
         combine_like = zip(events, likes)
 
         context = {
+            'events': list(events)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
             'total': total,
-            'combine_like': combine_like
+            'combine_like': combine_like,
+            'keyword': keyword
         }
         return render(request, 'mypage/myevent.html', context)
 
@@ -209,6 +220,31 @@ class MyMessageDetailView(View):
 class MyMessageWriteView(View):
     def get(self, request):
         return render(request, 'message/write.html')
+
+    def post(self, request):
+        datas = request.POST
+        files = request.FILES
+        print(files)
+
+        # receive_datas = {
+        #     'message_title': datas['message_title'],
+        #     'message_content': datas['message_content'],
+        #     'message_status': 'N',
+        #     'send_member_id': Member.objects.get(member_email=datas['receive_email']).id,
+        #     'member_id': Member.objects.get(member_email=request.session['member_email']).id,
+        # }
+        #
+        # Send_datas = {
+        #     'message_title': datas['message_title'],
+        #     'message_content': datas['message_content'],
+        #     'message_status': 'N',
+        #     'member_id': Member.objects.get(member_email=datas['receive_email']).id,
+        #     'receive_member_id': Member.objects.get(member_email=request.session['member_email']).id,
+        # }
+
+        # ReceiveMessage.objects.create(**receive_datas)
+        # SendMessage.objects.create(**Send_datas)
+        return redirect('mypage:message-list')
 
 
 class MyPayView(View):
