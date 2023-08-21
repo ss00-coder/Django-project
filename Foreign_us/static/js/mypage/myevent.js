@@ -24,18 +24,28 @@ $(function () {
         }
     })
 
+    globalThis.eventId;
+
     //모달창 이벤트
-    $deleteBtn.click(() => { $modal.show() });
+    $deleteBtn.click(function(){
+        globalThis.eventId = this.id
+        // console.log(this.id);
+        $modal.show();
+    });
+
+
     $buttonCancel.click(() => { $modal.hide() })
-    $buttonAgree.click(() => { $modal.hide() })
+    $buttonAgree.click(function ()  {
+        console.log(eventId)
+        $modal.hide()
+        location.href=`/mypage/event/delete/${globalThis.eventId}/`
+    })
 });
 
 //검색창
 $(".search-button svg").on('click', ()=>{
 	keyword = $("#search-input").val();
-    console.log(keyword)
 	location.href = keyword === "" ? "/mypage/event/" : `/mypage/event/${keyword}/`;
 })
-
 
 

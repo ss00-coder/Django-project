@@ -8,8 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>foreign-us 폴인어스</title>
   <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %} " type="image/x-icon">
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
   <link rel="stylesheet" href="{% static 'css/mypage/myhelpers.css' %}" />
 </head>
 
@@ -266,7 +265,7 @@
                         </path>
                       </svg>
                     </button>
-                    <button class="delete-button" type="button">
+                    <button id="{{ event.id }}" class="delete-button" type="button">
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
@@ -286,7 +285,7 @@
               <ul  style="display: flex">
               <!-- 이전버튼 -->
               {% if startPage > 1 %}
-                  <a href="{% url 'mypage:myevent' page=startPage|add:-1 %}" class="a-prev">
+                  <a href="{% url 'mypage:myevent_page' page=startPage|add:-1 %}" class="a-prev">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
@@ -298,7 +297,7 @@
               {% for i in "x"|rjust:5 %}
                   {% if forloop.counter0|add:startPage <= realEnd%}
                      <li>
-                         <a href="{% url 'mypage:myevent' page=forloop.counter0|add:startPage %}" class="page">
+                         <a href="{% url 'mypage:myevent_page' page=forloop.counter0|add:startPage %}" class="page">
                            {% if page ==  forloop.counter0|add:startPage %}
                                <button  class="page-active" type="button">
                                  <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
@@ -314,7 +313,7 @@
               {% endfor %}
              <!-- 다음버튼 -->
               {% if endPage < realEnd %}
-                  <a href="{% url 'mypage:myevent' page=endPage|add:1 %}" class="a-next">
+                  <a href="{% url 'mypage:myevent_page' page=endPage|add:1 %}" class="a-next">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">

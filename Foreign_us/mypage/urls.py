@@ -2,7 +2,7 @@ from django.urls import path
 
 from mypage import views
 from mypage.views import MyProfileView, MyLessonView, MyLessonReviewView, MyHelpersView, MyEventView, MyMessageListView, \
-    MyMessageDetailView, MyMessageWriteView, MyPayView
+    MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView
 
 app_name = 'mypage'
 
@@ -17,10 +17,11 @@ urlpatterns = [
     path('helpers/', MyHelpersView.as_view(), name='myhelpers'),
     path('helpers/<int:page>/', MyHelpersView.as_view(), name='myhelpers'),
     # 이벤트
-    path('event/', MyEventView.as_view(), name='myevent'),
-    path('event/<int:page>/', MyEventView.as_view(), name='myevent'),
-    path('event/<str:keyword>/', MyEventView.as_view(), name='myevent'),
-    path('event/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent'),
+    path('event/', MyEventView.as_view(), name='myevent_init'),
+    path('event/<int:page>/', MyEventView.as_view(), name='myevent_page'),
+    path('event/<str:keyword>/', MyEventView.as_view(), name='myevent_find'),
+    path('event/delete/<int:event_id>/', MyEventDeleteView.as_view(), name='myevent_delete'),
+    path('event/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent_list'),
     # 쪽지
     path('message-list/', MyMessageListView.as_view(), name='message-list'),
     path('message-list/<int:page>', MyMessageListView.as_view(), name='message-list'),

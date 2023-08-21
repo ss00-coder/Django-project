@@ -10,13 +10,14 @@ from event.models import Event, EventLike
 from helpers.models import Helpers, HelpersLike
 from lesson.models import Lesson, LessonLike
 from member.models import Member
-from message.models import ReceiveMessage, SendMessage
+from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, SendMessageFile
 
 
 # Create your views here.
 class MyProfileView(View):
     # 프로필 사이드바 닉네임
     def get(self, request):
+        print(1)
         member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         print(member_nickname)#(멤버이메일값)
         # print(Member.objects.annotate(email=F('member_email')).values('member_nickname'))
@@ -41,6 +42,7 @@ class MyProfileView(View):
 
 class MyLessonView(View):
     def get(self, request, page=1):
+        print(2)
         size = 5
         offset = (page - 1) * size
         limit = page * size
@@ -80,20 +82,20 @@ class MyLessonView(View):
 
 class MyLessonReviewView(View):
     def get(self, request):
+        print(3)
         return render(request, 'mypage/mylesson-review.html')
 
 
 class MyHelpersView(View):
     def get(self, request, page=1):
+        print(4)
         size = 5
         offset = (page - 1) * size
         limit = page * size
         total = Helpers.objects.all().count()
-        print(total)
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
-        print(startPage)
         realEnd = math.ceil(total / size)
         endPage = realEnd if endPage > realEnd else endPage
         pageUnit = (page - 1) // 5
@@ -125,7 +127,7 @@ class MyHelpersView(View):
 
 class MyEventView(View):
     def get(self, request, keyword=None, page=1):
-
+        print(5)
         size = 5
         offset = (page - 1) * size
         limit = page * size
@@ -134,7 +136,6 @@ class MyEventView(View):
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
-        print(startPage)
         realEnd = math.ceil(total / size)
         endPage = realEnd if endPage > realEnd else endPage
         pageUnit = (page - 1) // 5
@@ -145,9 +146,11 @@ class MyEventView(View):
             keyword = None
 
         if keyword:
+            print(keyword)
             events = Event.objects.filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
             events = Event.objects.order_by('-id').all()
+
         like_list = []
         for event in events:
             likes = EventLike.objects.all().filter(event_id=event).count()
@@ -166,10 +169,19 @@ class MyEventView(View):
             'combine_like': combine_like,
             'keyword': keyword
         }
+
         return render(request, 'mypage/myevent.html', context)
 
 
+class MyEventDeleteView(View):
+    print(6)
+    def get(self, request, event_id):
+        Event.objects.get(id=event_id).delete()
+        return redirect('mypage:myevent_init')
+
+
 class MyMessageListView(View):
+    print(7)
     def get(self, request, page=1):
         size = 5
         offset = (page - 1) * size
@@ -213,6 +225,7 @@ class MyMessageListView(View):
 
 
 class MyMessageDetailView(View):
+    print(8)
     def get(self, request):
         return render(request, 'message/detail.html')
 
@@ -224,29 +237,39 @@ class MyMessageWriteView(View):
     def post(self, request):
         datas = request.POST
         files = request.FILES
-        print(files)
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
+        send_member_id = Member.objects.get(member_email=datas['receive_email']).id
 
-        # receive_datas = {
-        #     'message_title': datas['message_title'],
-        #     'message_content': datas['message_content'],
-        #     'message_status': 'N',
-        #     'send_member_id': Member.objects.get(member_email=datas['receive_email']).id,
-        #     'member_id': Member.objects.get(member_email=request.session['member_email']).id,
-        # }
-        #
-        # Send_datas = {
-        #     'message_title': datas['message_title'],
-        #     'message_content': datas['message_content'],
-        #     'message_status': 'N',
-        #     'member_id': Member.objects.get(member_email=datas['receive_email']).id,
-        #     'receive_member_id': Member.objects.get(member_email=request.session['member_email']).id,
-        # }
+        receive_datas = {
+            'message_title': datas['message_title'],
+            'message_content': datas['message_content'],
+            'message_status': 'N',
+            'send_member_id': Member.objects.get(member_email=datas['receive_email']).id,
+            'member_id': Member.objects.get(member_email=request.session['member_email']).id,
+        }
 
-        # ReceiveMessage.objects.create(**receive_datas)
-        # SendMessage.objects.create(**Send_datas)
+        Send_datas = {
+            'message_title': datas['message_title'],
+            'message_content': datas['message_content'],
+            'message_status': 'N',
+            'member_id': Member.objects.get(member_email=datas['receive_email']).id,
+            'receive_member_id': Member.objects.get(member_email=request.session['member_email']).id,
+        }
+
+        ReceiveMessage.objects.create(**receive_datas)
+        SendMessage.objects.create(**Send_datas)
+
+        if files:
+            for file in files.getlist('message_file'):
+                # print(member_id)
+                # print(send_member_id)
+                ReceiveMessageFile.objects.create(image=file, receive_message_id=member_id)
+                SendMessageFile.objects.create(image=file, send_message_id=send_member_id)
+
         return redirect('mypage:message-list')
 
 
 class MyPayView(View):
     def get(self, request):
+        print(11)
         return render(request, 'mypage/mypay.html')
