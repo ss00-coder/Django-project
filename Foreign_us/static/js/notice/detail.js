@@ -14,17 +14,6 @@ $('button.cancel-button').on('click', () => {
   $('.comment-textarea-wrapper').hide();
 });
 
-$(".heart").each((i, heart) => {
-  $(heart).on('click', () => {
-    $(".heart").removeClass("active");
-    if(i==0){
-      $(".heart").eq(1).addClass("active");
-    } else {
-      $(".heart").eq(0).addClass("active");
-    }
-  })
-})
-
 /* 댓글 */
 let page = 1;
 const replyService = (function(){
@@ -163,6 +152,8 @@ const view = (function(){
 
 
 replyService.getList().then(view.showList);
+getLikeCount();
+checkLike();
 
 $(".write-button").on("click", () => {
     const reply_content = document.getElementById("comment-content").value;
@@ -215,6 +206,61 @@ function deleteReply(button){
     replyService.remove(id);
     location.reload();
 }
+
+// 좋아요 추가
+// 좋아요 삭제
+$(".heart").each((i, heart) => {
+  $(heart).on('click', () => {
+    if(!member){return;}
+    $(".heart").removeClass("active");
+    if(i==0){
+      $(".heart").eq(1).addClass("active");
+      fetch("/notice/likes/add/", {
+            method: 'post',
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            body: JSON.stringify({id: post_id})
+      }).then(()=>getLikeCount())
+    } else {
+      $(".heart").eq(0).addClass("active");
+      fetch("/notice/likes/delete/", {
+            method: 'post',
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            body: JSON.stringify({id: post_id})
+      }).then(()=>getLikeCount())
+    }
+  })
+})
+// 좋아요 갯수
+function getLikeCount(){
+    let id = post_id;
+    fetch(`/notice/likes/count/${id}`, {
+            method: 'get',
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+    }).then((response) => response.json())
+    .then((count)=>{
+        $(".like-num").text(count);
+    })
+}
+
+//좋아요 유무
+function checkLike(){
+    if(!member){
+        return;
+    }
+    fetch(`/notice/likes/exist/${post_id}`, {
+        method: 'get',
+        headers: {'Content-Type': 'application/json; charset=utf-8'},
+    }).then((response)=> response.json())
+        .then((check) => {
+            $(".heart").removeClass("active");
+            if(check){
+                $(".heart").eq(1).addClass("active");
+            }else{
+                $(".heart").eq(0).addClass("active");
+            }
+        })
+}
+
 
 //작성시간 함수
 function elapsedTime(date) {
