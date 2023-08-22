@@ -25,7 +25,9 @@
                         </button>
                     </div>
                     <div class="main-header-sigup">
-                        <button class="main-header-sigup-btn">헬퍼스 스튜디오</button>
+                        <button class="main-header-sigup-btn"
+                                onclick="location.href='/mypage/profile/'">헬퍼스 스튜디오
+                        </button>
                     </div>
                 {% else %}
                     <div class="main-header-login">
@@ -34,7 +36,9 @@
                         </button>
                     </div>
                     <div class="main-header-sigup">
-                        <button class="main-header-sigup-btn">헬퍼스 시작하기</button>
+                        <button class="main-header-sigup-btn"
+                                onclick="location.href='/member/login/'">헬퍼스 시작하기
+                        </button>
                     </div>
                 {% endif %}
             </div>
@@ -43,22 +47,29 @@
     <div class="sub-header">
         <ul class="sub-header-items">
             <li class="sub-header-item">
-                <button class="sub-header-item-content sub-header-item-active" type="button">홈</button>
+                <button class="sub-header-item-content side-home" type="button"
+                        onclick="location.href='/'">홈</button>
             </li>
             <li class="sub-header-item">
-                <button class="sub-header-item-content" type="button">과외 매칭</button>
+                <button class="sub-header-item-content side-lesson" type="button"
+                        onclick="location.href='/lesson/list'">과외 매칭</button>
             </li>
             <li class="sub-header-item">
-                <button class="sub-header-item-content" type="button">헬퍼스</button>
+                <button class="sub-header-item-content side-helpers" type="button"
+                        onclick="location.href='/helpers/list'">헬퍼스</button>
             </li>
             <li class="sub-header-item">
-                <button class="sub-header-item-content" type="button">이벤트</button>
+                <button class="sub-header-item-content side-event" type="button"
+                        onclick="location.href='/event/list'">이벤트</button>
             </li>
             <li class="sub-header-item">
-                <button class="sub-header-item-content" type="button">공지사항</button>
+                <button class="sub-header-item-content side-notice" type="button"
+                        onclick="location.href='/notice/list'">공지사항</button>
             </li>
         </ul>
     </div>
 </header>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="{% static '/js/header/header.js'%}"></script>
 </body>
 </html>
