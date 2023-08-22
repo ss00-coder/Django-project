@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                    <img src="{%  static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -38,8 +38,8 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
-                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                            <a href="{% url 'admin:board-event-list-page' page=page keyword=keyword %}">
+                                <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
                         </div>
@@ -50,38 +50,47 @@
                         <div class="board-info-box">
                             <div class="board-info-title-box" style="position: relative">
                                 <span>🎉이벤트 상세보기</span>
-                                <div class="modify-button-box">
-                                    <a>
-                                        <span>⚙️</span>
-                                        <a>수정</a>
-                                    </a>
-                                </div>
+{#                                <div class="modify-button-box">#}
+{#                                    <a>#}
+{#                                        <span>⚙️</span>#}
+{#                                        <a>수정</a>#}
+{#                                    </a>#}
+{#                                </div>#}
                             </div>
                             <hr>
                             <div class="info-table">
                                 <div class="board_title">
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
-                                    <span>이벤트 제목</span>
+                                    <span>{{ post.post_title }}</span>
                                 </div>
                                 <hr>
                                 <div class="board_title">
                                     <span class="span-bold">주소 :</span>
                                     <!-- 제목  -->
-                                    <span>이벤트 주소</span>
+                                    <span>{{ post.event_location }}</span>
                                 </div>
                                 <hr>
                                 <div class="board_content">
                                     <!-- 게시판 내용 -->
-                                    이벤트 소개
+                                    {{ post.post_content }}
                                 </div>
-                                <hr>
                                 <section class="img_wrapper_box">
                                     <div class="img_ul_wrapper">
                                         <ul class="img_ul">
+                                            {% for post_file in post_files %}
+                                                <img style="display:block; margin: 0 auto" width="400px" src="/upload/{{ post_file.image }}">
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </section>
+                                <hr>
+                                <div style="display: flex; flex-direction: row-reverse">
+{#                                        <button class="btn_done btn_selection">채택</button>#}
+                                    <label for="" style="display: inline-block; height: 30px; width: fit-content; padding: 2px 10px; background-color: black; color: white;">
+                                        <a href="#">게시글 보러가기</a>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </section>

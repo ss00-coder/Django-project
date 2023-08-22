@@ -1,13 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 이벤트 목록</title>
-    <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="{% static 'css/admin/event/admin_event_list.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
@@ -17,7 +15,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                    <img src="{%  static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -25,7 +23,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>이벤트 목록 관리</span>
+                    <span>이벤트 관리</span>
                 </div>
             </div>
         </div>
@@ -42,7 +40,7 @@
                         <div class="search-container">
                             <input type="text" placeholder="검색어 입력" class="search-box">
                             <button type="button" class="search-button">
-                                <img src="../../../../static/image/admin/search-icon-black.png" alt="">
+                                <img src="{%  static 'image/admin/search-icon-black.png' %}">
                             </button>
                         </div>
                         <div class="buttons-container">
@@ -71,105 +69,93 @@
                                             <th>No</th>
                                             <th>주최자</th>
                                             <th style="font-size: 14px;font-weight: bold">이벤트 제목</th>
+                                            <th>장소</th>
                                             <th>작성 날짜</th>
+                                            <th>수정 날짜</th>
                                             <th>상태</th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>임희수</td>
-                                        <td>
-                                            <a style="font-size: 15px;">
-                                                이벤트 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            2023.08.09 10:12
-                                        </td>
-                                        <td>
-                                            진행전
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        {% for post in posts %}
+                                            <tr>
+                                                <td class="checkbox-line">
+                                                    <input type="checkbox" name="check" class="memberCheckbox">
+                                                </td>
+                                                <td class="noticeId">{{ post.id }}</td>
+                                                <td>{{ post.member.member_nickname }}</td>
+                                                <td><a href="{% url 'admin:board-event-detail' keyword=keyword post_id=post.id page=page %}">{{ post.post_title }}
+                                                </a></td>
+                                                <td style="display: inline-block; width: 60px; height: 45px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
+                                                    {{ post.event_location }}
+                                                </td>
+                                                <td>
+                                                    {{ post.created_date|date:"Y-m-d" }}
+                                                </td>
+                                                <td>
+                                                    {{ post.updated_date|date:"Y-m-d" }}
+                                                </td>
+                                                <td>
+                                                    {{ post.get_post_status_display }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                     </section>
-
-                    <!-- 페이지 버튼 -->
-
-                    <!-- <section id="content-wrap">
-                        <ul></ul>
-                        <div id="paging-wrap">
-                            <c:if test="${prev}">
-                                <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${startPage - 1}'"
-                                    class="paging paging-move"><img
-                                        src="${pageContext.request.contextPath}/images/prev.png"
-                                        width="15px"></a>
-                            </c:if>
-                            <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                                <c:choose>
-                                    <c:when test="${i eq page}">
-                                        <a href="javascript:void(0)" class="paging paging-checked">
-                                            <c:out value="${i}" />
-                                        </a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="javascript:location.href='${pageContext.request.contextPath}/adminFreeBoardList.admin?page=${i}'"
-                                            class="paging">
-                                            <c:out value="${i}" />
-                                        </a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:forEach>
-                            <div></div>
-                        </div>
-                    </section> -->
-
+                    <!-- 페이징 -->
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="../../../../static/image/admin/left_icon.png"
-                                            class="left-button">
+                            {% if startPage > 1 %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-event-list-page' keyword=keyword page=startPage|add:-1 %}">
+                                                <img src="{% static 'image/admin/left_icon.png'%}"
+                                                class="left-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
+                            {% endif %}
+                            {% for i in "x"|rjust:5 %}
+                                {% if forloop.counter0|add:startPage <= realEnd %}
+                                    {% if forloop.counter0|add:startPage == page %}
+                                        <div class="page-button page-button-active">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-event-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="page-button">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-event-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if endPage < realEnd %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-event-list-page' keyword=keyword page=endPage|add:1 %}">
+                                                <img src="{% static 'image/admin/right_icon.png'%}"
+                                                class="right-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="../../../../static/image/admin/right_icon.png"
-                                            class="right-button">
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 페이지 버튼 끝 -->
@@ -180,7 +166,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="{%  static 'js/admin/checkbox.js'%}"></script>
-<script src="{%  static 'js/admin/board_proposal.js'%}"></script>
-<script src="{%  static 'js/admin/sidemenu.js'%}"></script>
-
+<script src="{%  static 'js/admin/board_proposal_event.js'%}"></script>
+{#<script src="{%  static 'js/admin/sidemenu.js'%}"></script>#}
+<script>
+    let page = {{ page }}
+</script>
 </html>

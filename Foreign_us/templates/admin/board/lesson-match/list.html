@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 문의 게시판 목록</title>
-    <link rel="stylesheet" href="{% static 'css/admin/inquiry/admin_inquiry_list.css' %}"/>
+    <title>관리자 페이지- 과외 매칭 목록</title>
+    <link rel="stylesheet" href="{% static 'css/admin/tutor/admin_tutor_list.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
 
@@ -15,7 +15,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="{%  static 'image/logo/white.png'%}">
+                    <img src="{%  static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -23,41 +23,41 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>1:1 문의 게시판 관리</span>
+                    <span>과외 매칭 관리</span>
                 </div>
             </div>
         </div>
         <div class="wrap">
 
-            <!-- 사이드 바 -->
-           {% include "admin/side_bar.html" %}
+              <!-- 사이드 바 -->
+       {% include "admin/side_bar.html" %}
 
             <div class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
-
-                       <!-- 검색 창 -->
+                    <!-- 검색 창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
                             <input type="text" placeholder="검색어 입력" class="search-box">
                             <button type="button" class="search-button">
-                                <img src="{%  static 'image/admin/search-icon-black.png'%}" alt="">
+                                <img src="{% static 'image/admin/search-icon-black.png' %}" alt="">
                             </button>
                         </div>
-                        <!-- <div class="buttons-container">
+                        <div class="buttons-container">
                             <div class="delete-box-layout">
                                 <div class="delete-box">
                                     <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
+
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>📋 1:1 문의 게시판 목록</span>
+                                <span>✏️ 과외 매칭 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -68,11 +68,11 @@
                                                 <input type="checkbox" id="allSelect">
                                             </th>
                                             <th>No</th>
-                                            <!-- <th>카테고리</th> -->
-                                            <th>게시판 제목</th>
-                                            <th>작성자 명</th>
-                                            <th>작성 날짜</th>
-                                            <th>답변</th>
+                                            <th>과외종류</th>
+                                            <th style="font-size: 14px;font-weight: bold">과외 선생님</th>
+                                            <th style="font-size: 14px;font-weight: bold">학생</th>
+                                            <th>결제 상태</th>
+                                            <th>상태</th>
                                         </tr>
                                     </thead>
                                     <tr>
@@ -82,21 +82,22 @@
                                         <td class="noticeId">
                                             1
                                         </td>
-                                        <!-- <td>자유 게시판</td> -->
+                                        <td>대면</td>
                                         <td>
-                                            <a href="">
-                                                게시판 제목
+                                            <a style="font-size: 15px;">
+                                                닉네임
                                             </a>
                                         </td>
                                         <td>
-                                            닉네임
+                                            <a style="font-size: 15px;">
+                                                닉네임
+                                            </a>
                                         </td>
                                         <td>
-                                            2023.04.23 10:55
+                                            결제완료
                                         </td>
-                                        <td class="is_answer is_warning">
-                                            미답변
-                                            <hr>
+                                        <td>
+                                            종료
                                         </td>
                                     </tr>
                                     <tr>
@@ -106,60 +107,36 @@
                                         <td class="noticeId">
                                             2
                                         </td>
-                                        <!-- <td>자유 게시판</td> -->
+                                        <td>비대면</td>
                                         <td>
-                                            <a href="">
-                                                게시판 제목
+                                            <a style="font-size: 15px;">
+                                                닉네임
                                             </a>
                                         </td>
                                         <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_warning">
-                                            미답변
-                                            <hr>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            3
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
+                                            <a style="font-size: 15px;">
+                                                닉네임
                                             </a>
                                         </td>
                                         <td>
-                                            닉네임
+                                            결제 대기중
                                         </td>
                                         <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_active">
-                                            답변완료
-                                            <hr>
+                                            진행중
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                     </section>
-
-                    <!-- 페이지 버튼 -->
+                    <!-- 페이징 -->
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
                             <!-- 페이지 번호 -->
                             <div class="">
                                 <div class="page-button-margin">
                                     <div>
-                                        <img src="{%  static 'image/admin/left_icon.png'%}"
+                                        <img src="{% static 'image/admin/left_icon.png' %}"
                                             class="left-button">
                                     </div>
                                 </div>
@@ -188,7 +165,7 @@
                             <div class="">
                                 <div class="page-button-margin">
                                     <div>
-                                        <img src="{%  static 'image/admin/right_icon.png'%}"
+                                        <img src="{% static 'image/admin/right_icon.png' %}"
                                             class="right-button">
                                     </div>
                                 </div>
@@ -202,8 +179,8 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="{%  static 'js/admin/checkbox.js'%}"></script>
-<script src="{%  static 'js/admin/board_proposal.js'%}"></script>
-{#<script src="{%  static 'js/admin/sidemenu.js'%}"></script>#}
+<script src="{%  static 'js/admin/checkbox.js' %}"></script>
+<script src="{%  static 'js/admin/board_proposal.js' %}"></script>
+<script src="{%  static 'js/admin/sidemenu.js' %}"></script>
 
 </html>

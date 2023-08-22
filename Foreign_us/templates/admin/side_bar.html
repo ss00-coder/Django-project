@@ -48,58 +48,33 @@
               <li class="menu">
                 <div class="menu-flex">
                   <a href="{% url 'admin:list-init' %}">
-                    <span>👤 회원정보 관리</span>
+                    <span>👤 회원 관리</span>
                   </a>
-{#                  <div class="triangle-button">#}
-{#                    <img#}
-{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
-{#                      class="icon triangle-icon triangle"#}
-{#                    />#}
-{#                  </div>#}
                 </div>
-{#                <ul class="menus2 menus" style="display: none">#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:detail' %}">#}
-{#                      <span>회원 상세보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:modify' %}">#}
-{#                      <span>회원정보 수정/삭제</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </ul>#}
               </li>
 
               <li class="menu">
                 <div class="menu-flex">
-                  <a href="{% url 'admin:board-lesson-list-init' %}">
-                    <span>✏️ 과외목록 관리</span>
-                  </a>
-{#                  <div class="triangle-button">#}
-{#                    <img#}
-{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
-{#                      class="icon triangle-icon triangle"#}
-{#                    />#}
-{#                  </div>#}
+                  <span>✏️ 과외 관리</span>
+                  <div class="triangle-button">
+                    <img
+                      src="{% static 'image/admin/arrow_icon.png' %}"
+                      class="icon triangle-icon triangle"
+                    />
+                  </div>
                 </div>
-{#                <ul class="menus1 menus" style="display: none">#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-lesson-list' %}">#}
-{#                        <span>과외 목록보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-lesson-detail' %}">#}
-{#                      <span>과외 상세보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-lesson-modify' %}">#}
-{#                      <span>과외 수정/삭제</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </ul>#}
+                <ul class="menus1 menus" style="display: none">
+                  <li class="select-menu">
+                    <a href="{% url 'admin:board-lesson-list-init' %}">
+                        <span>과외 목록보기</span>
+                    </a>
+                  </li>
+                  <li class="select-menu">
+                    <a href="{% url 'admin:board-lesson-match-list-init' %}">
+                      <span>과외 매칭 목록보기</span>
+                    </a>
+                  </li>
+                </ul>
               </li>
 
               <li class="menu">
@@ -107,75 +82,21 @@
                   <a href="{% url 'admin:board-helpers-list-init' %}">
                     <span>💞 헬퍼스 관리</span>
                   </a>
-{#                  <div class="triangle-button">#}
-{#                    <img#}
-{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
-{#                      class="icon triangle-icon triangle"#}
-{#                    />#}
-{#                  </div>#}
                 </div>
-{#                <ul class="menus2 menus" style="display: none">#}
-{#                    <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-helpers-list' %}">#}
-{#                      <span>헬퍼스 목록보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-helpers-detail' %}">#}
-{#                      <span>헬퍼스 상세보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a>#}
-{#                      <span>헬퍼스목록 수정/삭제</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </ul>#}
               </li>
               <li class="menu">
                 <div class="menu-flex">
                   <a href="{% url 'admin:board-event-list-init' %}">
-                    <span>🎉 이벤트목록 관리</span>
+                    <span>🎉 이벤트 관리</span>
                   </a>
-{#                  <div class="triangle-button">#}
-{#                    <img#}
-{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
-{#                      class="icon triangle-icon triangle"#}
-{#                    />#}
-{#                  </div>#}
                 </div>
-{#                <ul class="menus2 menus" style="display: none">#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-event-list' %}">#}
-{#                      <span>이벤트 목록</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-event-detail' %}">#}
-{#                      <span>이벤트 상세보기</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </ul>#}
               </li>
               <li class="menu">
                 <div class="menu-flex">
                   <a href="{% url 'admin:board-inquiry-list-init' %}">
                     <span>📩 쪽지 관리</span>
                   </a>
-{#                  <div class="triangle-button">#}
-{#                    <img#}
-{#                      src="{% static 'image/admin/arrow_icon.png' %}"#}
-{#                      class="icon triangle-icon triangle"#}
-{#                    />#}
-{#                  </div>#}
                 </div>
-{#                <ul class="menus2 menus" style="display: none">#}
-{#                  <li class="select-menu">#}
-{#                    <a href="{% url 'admin:board-inquiry-write' %}">#}
-{#                      <span>답변 작성</span>#}
-{#                    </a>#}
-{#                  </li>#}
-{#                </ul>#}
               </li>
             </ul>
           </div>
