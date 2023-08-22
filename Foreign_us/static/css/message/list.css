@@ -230,6 +230,42 @@ div.main-content div.tab-wrapper li {
   position: relative;
 }
 
+/* non-active */
+button.message-tab {
+  text-align: left;
+  padding-bottom: 16px;
+  height: 100%;
+  display: block;
+  position: relative;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #b9b9bb;
+  fill: #b9b9bb;
+}
+
+div.main-content button.message-tab p.text {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+div.main-content button.message-tab div.number-wrapper {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 25px;
+  margin-left: 8px;
+  background-color: #f3f3f4;
+}
+
+div.main-content button.message-tab p.number {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
 /* active */
 div.main-content div.tab-wrapper button.active-tab {
   text-align: left;
@@ -272,42 +308,6 @@ div.main-content div.button-line {
   bottom: -1.5px;
   position: absolute;
   background-color: #1d1d1e;
-}
-
-/* non-active */
-div.main-content div.tab-wrapper button.non-active-tab {
-  text-align: left;
-  padding-bottom: 16px;
-  height: 100%;
-  display: block;
-  position: relative;
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 20px;
-  color: #b9b9bb;
-  fill: #b9b9bb;
-}
-
-div.main-content button.non-active-tab p.text {
-  font-weight: 700;
-  font-size: 15px;
-  line-height: 20px;
-}
-
-div.main-content button.non-active-tab div.number-wrapper {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  border-radius: 25px;
-  margin-left: 8px;
-  background-color: #f3f3f4;
-}
-
-div.main-content button.non-active-tab p.number {
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
 }
 
 /* 글 개수, 검색창 */
