@@ -151,13 +151,13 @@ class MyHelpersDeleteView(View):
 
 
 class MyEventView(View):
-    def get(self, request, keyword=None, page=1):
+    def get(self, request, keyword=None, page=1, status='Y'):
+
         print(5)
         size = 5
         offset = (page - 1) * size
         limit = page * size
         total = Event.objects.all().count()
-        print(total)
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -171,10 +171,10 @@ class MyEventView(View):
             keyword = None
 
         if keyword:
-            print(keyword)
-            events = Event.objects.filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            events = Event.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
-            events = Event.objects.order_by('-id').all()
+            events = Event.objects.filter(post_status=status).order_by('-id').all()
+        print(events)
 
         like_list = []
         image_list = []
@@ -189,7 +189,7 @@ class MyEventView(View):
         member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         combine_like = zip(events, likes, event_files)
         # print(event_file)
-
+        print(status)
         context = {
             'events': list(events)[offset:limit],
             'startPage': startPage,
@@ -199,7 +199,8 @@ class MyEventView(View):
             'total': total,
             'combine_like': combine_like,
             'keyword': keyword,
-            'member_nickname': member_nickname
+            'member_nickname': member_nickname,
+            'status': status
         }
 
         return render(request, 'mypage/myevent.html', context)
@@ -225,11 +226,12 @@ class MyMessageListView(View):
         size = 5
         offset = (page - 1) * size
         limit = page * size
-        total = ReceiveMessage.objects.all().count()
+        current_total = len(receive_messages)
+        real_total = ReceiveMessage.objects.count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
-        realEnd = math.ceil(total / size)
+        realEnd = math.ceil(current_total / size)
         endPage = realEnd if endPage > realEnd else endPage
         pageUnit = (page - 1 // 5) + 1
         if endPage == 0:
@@ -241,6 +243,8 @@ class MyMessageListView(View):
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
+            'current_total': current_total,
+            'real_total': real_total,
             'keyword': keyword,
         }
         return render(request, 'message/list.html', context)
@@ -293,5 +297,4 @@ class MyMessageWriteView(View):
 
 class MyPayView(View):
     def get(self, request):
-        print(11)
         return render(request, 'mypage/mypay.html')

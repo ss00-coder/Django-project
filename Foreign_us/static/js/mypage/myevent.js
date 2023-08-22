@@ -54,3 +54,23 @@ const $createBtn = $('.create-btn');
     $createBtn.click(() => {
         location.href=`/event/write/`
     })
+
+let status = 'Y';
+// $(".tab-item-btn").each((i, tab)=>{
+//     $(tab).on('click', ()=>{
+//         status = i === 0 ? 'Y' : 'N';
+//         location.href = `/mypage/event/tab/${status}`;
+//     })
+// })
+
+if(status_view === 'N'){
+    $(".tab-item-btn").eq(0).removeClass("active-tab");
+    $(".tab-item-btn").eq(1).addClass("active-tab");
+    $('.tab-line').remove();
+    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+}
+
+//     .on('click', ()=>{
+// 	location.href = `/mypage/event/${status}`;
+// })
+// console.log($status);

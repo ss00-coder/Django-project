@@ -117,20 +117,25 @@ class HelpersLike(TestCase):
 
 
 class Event(TestCase):
+    # status = "N"
+    # keyword = "이벤트"
+    # events = Event.objects.filter(post_status=status).filter(
+    #     Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').values('post_status')
+    # print(events)
     pass
     # Event.objects.bulk_create([
-    #     Event(post_title='이벤트1', post_content='이벤트에요1', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트2', post_content='이벤트에요2', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트3', post_content='이벤트에요3', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트4', post_content='이벤트에요4', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트5', post_content='이벤트에요5', member_id=16, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트6', post_content='이벤트에요6', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트7', post_content='이벤트에요7', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트8', post_content='이벤트에요8', member_id=4, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트9', post_content='이벤트에요9', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트10', post_content='이벤트에요10', member_id=12, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트11', post_content='이벤트에요11', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트12', post_content='이벤트에요12', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트15', post_content='이벤트에요10', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트16', post_content='이벤트에요20', post_status='Y', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트17', post_content='이벤트에요30', post_status='Y', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트18', post_content='이벤트에요40', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트19', post_content='이벤트에요50', post_status='Y', member_id=16, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트20', post_content='이벤트에요60', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트21', post_content='이벤트에요70', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트22', post_content='이벤트에요80', post_status='Y', member_id=4, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트23', post_content='이벤트에요90', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트10', post_content='이벤트에요100', post_status='Y', member_id=12, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트11', post_content='이벤트에요110', post_status='N', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트12', post_content='이벤트에요120', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
     # ])
 
 
