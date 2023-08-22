@@ -23,17 +23,15 @@ urlpatterns = [
     path('event/', MyEventView.as_view(), name='myevent_init'),
     path('event/<int:page>/', MyEventView.as_view(), name='myevent_page'),
     path('event/<str:keyword>/', MyEventView.as_view(), name='myevent_find'),
+    path('event/tab/<str:status>/', MyEventView.as_view(), name='myevent_status'),
     path('event/delete/<int:event_id>/', MyEventDeleteView.as_view(), name='myevent_delete'),
     path('event/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent_list'),
     # 쪽지
-    path('message-list/', MyMessageListView.as_view(), name='message-list'),
-    path('message-list/<int:page>', MyMessageListView.as_view(), name='message-list'),
-    path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
-    path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
-# 테스트
     path('message-list/', MyMessageListView.as_view(), name='message-list-init'),
     path('message-list/<str:keyword>/', MyMessageListView.as_view(), name='message-list'),
     path('message-list/<str:keyword>/<int:page>', MyMessageListView.as_view(), name='message-list-page'),
+    path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
+    path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
 ]
