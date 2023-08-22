@@ -206,52 +206,42 @@ class MyEventView(View):
 
 
 class MyEventDeleteView(View):
-    print(6)
     def get(self, request, event_id):
         Event.objects.get(id=event_id).delete()
         return redirect('mypage:myevent_init')
 
 
 class MyMessageListView(View):
-    print(7)
-    def get(self, request, page=1):
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            receive_messages = ReceiveMessage.objects.filter(
+                Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
+        else:
+            receive_messages = ReceiveMessage.objects.order_by('-id').all()
+
         size = 5
         offset = (page - 1) * size
         limit = page * size
         total = ReceiveMessage.objects.all().count()
-        print(total)
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
-        print(startPage)
         realEnd = math.ceil(total / size)
         endPage = realEnd if endPage > realEnd else endPage
-        pageUnit = (page - 1) // 5
+        pageUnit = (page - 1 // 5) + 1
         if endPage == 0:
             endPage = 1
 
-        # receive_messages = ReceiveMessage.objects.all().order_by('-id')
-        #
-        # nicknames = []
-        # for message in receive_messages:
-        #     send_member_id = message.send_member_id
-        #     member = Member.objects.get(id=send_member_id)
-        #     nicknames.append(member.member_nickname)
-        #     print(nicknames)
-        #
-        #     receive_messages = list(ReceiveMessage.objects.all().order_by('-id'))[offset:limit]
-        #     member = nicknames[offset:limit]
-        #     combine_message = zip(receive_messages, member)
-        receive_messages = ReceiveMessage.objects.select_related('send_member').order_by('-id')[offset:limit]
-
         context = {
+            'receive_messages': list(receive_messages)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'total': total,
-            'receive_messages': receive_messages
-
+            'keyword': keyword,
         }
         return render(request, 'message/list.html', context)
 
