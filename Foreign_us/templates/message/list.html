@@ -248,7 +248,7 @@
                         </a>
                     </li>
                     <li class="side-nav-bottom-item">
-                        <a class="side-nav-bottom-item-a" href="{% url 'mypage:myevent' %}">
+                        <a class="side-nav-bottom-item-a" href="{% url 'mypage:myevent_init' %}">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z">
@@ -339,8 +339,13 @@
                                     <div>
                                         <div style="width: 240px">
                                             <label class="search-label" for="search-input">
-                                                <input id="search-input" type="search" placeholder="쪽지 검색"/>
-                                                <button class="search-button" type="button">
+                                                {% if keyword == None %}
+                                                    <input id="search-input" type="text" placeholder="쪽지 검색"/>
+                                                {% else %}
+                                                    <input id="search-input" value="{{ keyword }}" type="text"
+                                                           placeholder="쪽지 검색" />
+                                                {% endif %}
+                                                <button class="search-button" type="button" onclick="location.href='mypage/message-list/{{ keyword }}/{{ page }}'">
                                                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" clip-rule="evenodd"
                                                               d="M15.83 16.561a7.8 7.8 0 1 1 1.233-1.312l3.465 3.465a.9.9 0 1 1-1.272 1.273L15.83 16.56Zm1.13-5.961a6.16 6.16 0 1 1-12.32 0 6.16 6.16 0 0 1 12.32 0Z">
@@ -401,12 +406,12 @@
                                         </button>
                                     </div>
                                 </li>
-                            <script>
-                                for(var i = 0; i <= 5; i++) {
-                                    document.getElementsByClassName('content-text').item(i).innerText =
-                                        document.getElementsByClassName('content-text').item(i).innerText.replace(/<[^>]*>?/g, '')
-                                }
-                            </script>
+                                {#                                <script>#}
+                                {#                                    for (var i = 0; i <=5 ; i++) {#}
+                                {#                                        document.getElementsByClassName('content-text').item(i).innerText =#}
+                                {#                                            document.getElementsByClassName('content-text').item(i).innerText.replace(/<[^>]*>?/g, '')#}
+                                {#                                    }#}
+                                {#                                </script>#}
                             {% endfor %}
                         </ul>
                         <!-- 페이징 -->
@@ -414,7 +419,8 @@
                             <ul style="display: flex">
                                 <!-- 이전버튼 -->
                                 {% if startPage > 1 %}
-                                    <a href="{% url 'mypage:message-list' page=startPage|add:-1 %}" class="a-prev">
+                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=startPage|add:-1 %}"
+                                       class="a-prev">
                                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                   d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
@@ -426,7 +432,7 @@
                                 {% for i in "x"|rjust:5 %}
                                     {% if forloop.counter0|add:startPage <= realEnd %}
                                         <li>
-                                            <a href="{% url 'mypage:message-list' page=forloop.counter0|add:startPage %}"
+                                            <a href="{% url 'mypage:message-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
                                                class="page">
                                                 {% if page ==  forloop.counter0|add:startPage %}
                                                     <button class="page-active" type="button">
@@ -443,7 +449,8 @@
                                 {% endfor %}
                                 <!-- 다음버튼 -->
                                 {% if endPage < realEnd %}
-                                    <a href="{% url 'mypage:message-list' page=endPage|add:1 %}" class="a-next">
+                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=endPage|add:1 %}"
+                                       class="a-next">
                                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                   d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
@@ -458,32 +465,35 @@
             </div>
         </div>
     </div>
-    <div class="delete-modal-wrapper">
-        <div class="delete-modal">
-            <h4>쪽지 삭제</h4>
-            <div class="modal-text">해당 쪽지를 삭제하시겠습니까?</div>
-            <div class="button-wrapper">
-                <div class="cancel">
-                    <button type="button">취소</button>
+    <div class="modal">
+        <div class="modal-wrapper">
+            <h4 class="modal-message">쪽지 삭제</h4>
+            <div class="modal-sub-message">해당 쪽지를 삭제하시겠습니까?</div>
+            <div class="modal-choice-wraper">
+                <div style="flex: 1 1 0%">
+                    <button class="button-cancel" type="button">취소</button>
                 </div>
-                <div class="delete">
-                    <button type="button">확인</button>
+                <div style="flex: 1 1 0%; margin: 0 0 0 16px">
+                    <button class="button-agree" type="button" value="삭제">확인</button>
                 </div>
             </div>
         </div>
-        <div class="dimmed"></div>
+        <div class="modal-background"></div>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $(".delete-modal-wrapper").hide();
-    $(".delete-wrapper").on("click", () => {
-        $(".delete-modal-wrapper").show();
+    $('.delete-button').click(() => {
+        $('.modal').show()
     });
-    $(".dimmed").on("click", () => {
-        $(".delete-modal-wrapper").hide();
-    });
+    $('.button-cancel').click(() => {
+        $('.modal').hide()
+    })
+    $('.button-agree').click(() => {
+        $('.modal').hide()
+    })
+    console.log(document.getElementsByClassName('message'))
 </script>
 
 </html>
