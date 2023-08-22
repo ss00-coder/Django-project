@@ -178,22 +178,22 @@
                 <div class="tab-wrapper">
                   <ul class="tab-ul">
                     <li class="tab-item">
-                      <button class="tab-item-btn active-tab" type="button">
+                      <button onclick="location.href='{% url 'mypage:myhelpers_status' status='Y' %}'" class="tab-item-btn active-tab" type="button">
                         <div style="display: flex">
                           <p class="tab-title">게시완료</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">{{ total }}</p>
+                            <p class="tab-number">{{ saved_event }}</p>
                           </div>
                         </div>
                         <div class="tab-line"></div>
                       </button>
                     </li>
                     <li class="tab-item">
-                      <button class="tab-item-btn" type="button">
+                      <button onclick="location.href='{% url 'mypage:myhelpers_status' status='N' %}'" class="tab-item-btn" type="button">
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">0</p>
+                            <p class="tab-number">{{ temp_event }}</p>
                           </div>
                         </div>
                       </button>
@@ -204,12 +204,16 @@
                 <div class="total-and-search-wrapper">
                   <div class="total">
                     <span class="total-text">전체</span>
-                    <span class="total-number"></span>
+                    <span class="total-number">{{ current_count }}</span>
                   </div>
                   <div class="search">
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
+                        {% if keyword == None %}
                         <input id="search-input" type="search" placeholder="제목 검색">
+                        {% else %}
+                        <input value="{{ keyword }}" id="search-input" type="search" placeholder="검색어 입력">
+                        {% endif %}
                         <button class="search-button" type="button">
                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -350,8 +354,12 @@
       <div class="modal-background"></div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-  <script src="{% static 'js/mypage/myhelpers.js' %} "></script>
+<script>
+  const status_view = "{{ status }}"
+
+</script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="{% static 'js/mypage/myhelpers.js' %} "></script>
 </body>
 
 </html>

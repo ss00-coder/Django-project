@@ -797,7 +797,7 @@ a.a-prev svg{
   height: 16px;
 }
 
-a .a-next{
+a.a-next{
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;

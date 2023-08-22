@@ -10,7 +10,7 @@ $(function () {
     const $buttonAgree = $('.button-agree');
 
     // 해당 작성글 전체 수 최초 값 설정
-    $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
+    // $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
 
     // 탭 버튼 이벤트
     $tabBtn.click((e) => {
@@ -20,7 +20,7 @@ $(function () {
             $(e.currentTarget).append('<div class="tab-line"></div>');
 
             // 해당 작성글 전체 수 변경하는 이벤트
-            $totalNumber.text($(e.currentTarget).find('.tab-number').text());
+            // $totalNumber.text($(e.currentTarget).find('.tab-number').text());
         }
     })
 
@@ -54,3 +54,12 @@ const $createBtn = $('.create-btn');
     $createBtn.click(() => {
         location.href=`/helpers/write/`
     })
+
+let status = 'Y';
+
+if(status_view === 'N') {
+    $(".tab-item-btn").eq(0).removeClass("active-tab");
+    $(".tab-item-btn").eq(1).addClass("active-tab");
+    $('.tab-line').remove();
+    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+}

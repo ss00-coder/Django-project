@@ -2,7 +2,8 @@ from django.urls import path
 
 from mypage import views
 from mypage.views import MyProfileView, MyLessonView, MyLessonReviewView, MyHelpersView, MyEventView, MyMessageListView, \
-    MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView, MyHelpersDeleteView
+    MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView, MyHelpersDeleteView, MyMessageSendListView, \
+    MyMessageDeleteView, MyMessageSendDeleteView
 
 app_name = 'mypage'
 
@@ -17,6 +18,7 @@ urlpatterns = [
     path('helpers/', MyHelpersView.as_view(), name='myhelpers_init'),
     path('helpers/<int:page>/', MyHelpersView.as_view(), name='myhelpers_page'),
     path('helpers/<str:keyword>/', MyHelpersView.as_view(), name='myhelpers_find'),
+    path('helpers/tab/<str:status>/', MyHelpersView.as_view(), name='myhelpers_status'),
     path('helpers/delete/<int:helpers_id>/', MyHelpersDeleteView.as_view(), name='myhelpers_delete'),
     path('helpers/<str:keyword>/<int:page>/', MyHelpersView.as_view(), name='myhelpers_list'),
     # 이벤트
@@ -30,6 +32,11 @@ urlpatterns = [
     path('message-list/', MyMessageListView.as_view(), name='message-list-init'),
     path('message-list/<str:keyword>/', MyMessageListView.as_view(), name='message-list'),
     path('message-list/<str:keyword>/<int:page>', MyMessageListView.as_view(), name='message-list-page'),
+    path('message-send-list/', MyMessageSendListView.as_view(), name='message-send-list-init'),
+    path('message-send-list/<str:keyword>/', MyMessageSendListView.as_view(), name='message-send-list'),
+    path('message-send-list/<str:keyword>/<int:page>', MyMessageSendListView.as_view(), name='message-send-list-page'),
+    path('message/delete/<int:id>', MyMessageDeleteView.as_view(), name='message-delete'),
+    path('message/send/delete/<int:id>', MyMessageSendDeleteView.as_view(), name='message-send-delete'),
     path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     # 결제
