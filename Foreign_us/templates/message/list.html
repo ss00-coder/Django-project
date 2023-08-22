@@ -20,7 +20,7 @@
         <header id="header">
             <div class="header-logo">
                 <div class="header-logo-container">
-                    <a href="">
+                    <a href="/">
                         <img src="{% static 'image/logo/white.png' %}" alt="">
                     </a>
                     <div class="header-logo-line">|</div>
@@ -51,8 +51,8 @@
                                 <span class="side-nav-top-profile-icon-border"></span>
                             </button>
                         </div>
-                        <h2 class="side-nav-top-nickname">닉네임1</h2>
-                        <a class="side-nav-top-mypage" href="">
+                        <h2 class="side-nav-top-nickname">{{ member_nickname }}</h2>
+                        <a class="side-nav-top-mypage" href="/profile/">
                             <button class="side-nav-top-mypage-btn" type="button">
                                 <div class="side-nav-top-mypage-btn-flex">
                                     <div>내 프로필</div>
@@ -179,28 +179,51 @@
                             <!-- 받은 쪽지, 보낸 쪽지 탭-->
                             <div class="tab-wrapper">
                                 <ul>
-                                    <li>
-                                        <button type="button" class="active-tab">
-                                            <div style="display: flex">
-                                                <p class="text">보낸쪽지</p>
-                                                <div class="number-wrapper">
-                                                    <p class="number">{{ real_total }}</p>
+                                    {% if type == 'receive' %}
+                                        <li>
+                                            <button type="button" class="message-tab active-tab">
+                                                <div style="display: flex">
+                                                    <p class="text">보낸쪽지</p>
+                                                    <div class="number-wrapper">
+                                                        <p class="number">{{ receive_total }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </button>
-                                        <div class="button-line"></div>
-                                    </li>
-                                    <li>
-                                        <button type="button" class="non-active-tab">
-                                            <div style="display: flex">
-                                                <p class="text">받은쪽지</p>
-                                                <div class="number-wrapper">
-                                                    <p class="number">0</p>
+                                            </button>
+                                            <div class="button-line"></div>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="message-tab">
+                                                <div style="display: flex">
+                                                    <p class="text">받은쪽지</p>
+                                                    <div class="number-wrapper">
+                                                        <p class="number">{{ send_total }}</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </button>
-                                        <div class="button-line" style="display: none"></div>
-                                    </li>
+                                            </button>
+                                        </li>
+                                    {% elif type == 'send' %}
+                                        <li>
+                                            <button type="button" class="message-tab">
+                                                <div style="display: flex">
+                                                    <p class="text">보낸쪽지</p>
+                                                    <div class="number-wrapper">
+                                                        <p class="number">{{ receive_total }}</p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="message-tab active-tab">
+                                                <div style="display: flex">
+                                                    <p class="text">받은쪽지</p>
+                                                    <div class="number-wrapper">
+                                                        <p class="number">{{ send_total }}</p>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                            <div class="button-line"></div>
+                                        </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                             <!-- 글 개수, 검색창 -->
@@ -232,125 +255,247 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 쪽지들 -->
-                        <ul class="message-wrapper">
-                            {% for receive_message in receive_messages %}
-                                <li class="message">
-                                    <button class="content-wrapper">
-                                        <div class="content">
-                                            <div class="title">
-                                                <p>{{ receive_message.message_title }}</p>
+                        {% if type == 'receive' %}
+                            <!-- 쪽지들 -->
+                            <ul class="message-wrapper">
+                                {% for receive_message in receive_messages %}
+                                    <li class="message">
+                                        <button class="content-wrapper">
+                                            <div class="content">
+                                                <div class="title">
+                                                    <p>{{ receive_message.message_title }}</p>
+                                                </div>
+                                                <p class="content-text">{{ receive_message.message_content }}</p>
                                             </div>
-                                            <p class="content-text">{{ receive_message.message_content }}</p>
+                                        </button>
+                                        <div class="file-wrapper">
+                                            <span class="file">
+                                                <img src="/static/image/cake.jpg" alt=""/>
+                                            </span>
                                         </div>
-                                    </button>
-                                    <div class="file-wrapper">
-                                        <span class="file">
-                                            <img src="/static/image/cake.jpg" alt=""/>
-                                        </span>
-                                    </div>
-                                    <div class="info-wrapper">
-                                        <div class="info">
-                                            <p class="info-content">{{ receive_message.send_member.member_nickname }}</p>
-                                            <p class="info-menu">발신인</p>
+                                        <div class="info-wrapper">
+                                            <div class="info">
+                                                <p class="info-content">{{ receive_message.send_member.member_nickname }}</p>
+                                                <p class="info-menu">발신인</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ receive_message.message_status }}</p>
+                                                <p class="info-menu">조회</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ receive_message.created_date|time:"H:i" }}</p>
+                                                <p class="info-menu">발신시간</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ receive_message.created_date|date:"Y-m-d" }}</p>
+                                                <p class="info-menu">발신일</p>
+                                            </div>
                                         </div>
-                                        <div class="info">
-                                            <p class="info-content">{{ receive_message.message_status }}</p>
-                                            <p class="info-menu">조회</p>
+                                        <div class="delete-wrapper">
+                                            <button class="delete-button" type="button" value="{{ receive_message.id }}">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
+                                                    </path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
+                                                    </path>
+                                                </svg>
+                                            </button>
                                         </div>
-                                        <div class="info">
-                                            <p class="info-content">{{ receive_message.created_date|time:"H:i" }}</p>
-                                            <p class="info-menu">발신시간</p>
-                                        </div>
-                                        <div class="info">
-                                            <p class="info-content">{{ receive_message.created_date|date:"Y-m-d" }}</p>
-                                            <p class="info-menu">발신일</p>
-                                        </div>
-                                    </div>
-                                    <div class="delete-wrapper">
-                                        <button class="delete-button" type="button">
+                                    </li>
+                                    <script>
+                                        for(var i = 0; i < {{ current_total }}; i++) {
+                                            document.getElementsByClassName('content-text').item(i).innerText =
+                                                    document.getElementsByClassName('content-text').item(i).innerText.replace(/<[^>]*>?/g, '');
+                                        }
+                                    </script>
+                                {% endfor %}
+                            </ul>
+                            <!-- 페이징 -->
+                            <div class="paging-wrapper">
+                                <ul style="display: flex">
+                                    <!-- 이전버튼 -->
+                                    {% if startPage > 1 %}
+                                        <a href="{% url 'mypage:message-list-page' keyword=keyword page=startPage|add:-1 %}"
+                                           class="a-prev">
                                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
-                                                      d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
-                                                </path>
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                      d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
+                                                      d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
                                                 </path>
                                             </svg>
-                                        </button>
-                                    </div>
-                                </li>
-                                <script>
-                                    for(var i = 0; i < {{ current_total }}; i++) {
-                                        document.getElementsByClassName('content-text').item(i).innerText =
-                                                document.getElementsByClassName('content-text').item(i).innerText.replace(/<[^>]*>?/g, '');
-                                    }
-                                </script>
-                            {% endfor %}
-                        </ul>
-                        <!-- 페이징 -->
-                        <div class="paging-wrapper">
-                            <ul style="display: flex">
-                                <!-- 이전버튼 -->
-                                {% if startPage > 1 %}
-                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=startPage|add:-1 %}"
-                                       class="a-prev">
-                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                {% endif %}
-                                <!-- 페이지 번호 -->
-                                {% for i in "x"|rjust:5 %}
-                                    {% if forloop.counter0|add:startPage <= realEnd %}
-                                        {% if forloop.counter0|add:startPage == page %}
-                                            <li>
-                                                <a href="{% url 'mypage:message-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
-                                                   class="page">
-                                                    {% if page ==  forloop.counter0|add:startPage %}
-                                                        <button class="page-active" type="button">
-                                                            <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
-                                                        </button>
-                                                    {% else %}
-                                                        <button class="page" type="button">
-                                                            <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
-                                                        </button>
-                                                    {% endif %}
-                                                </a>
-                                            </li>
-                                        {% else %}
-                                            <li>
-                                                <a href="{% url 'mypage:message-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
-                                                   class="page">
-                                                    {% if page ==  forloop.counter0|add:startPage %}
-                                                        <button class="page-active" type="button">
-                                                            <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
-                                                        </button>
-                                                    {% else %}
-                                                        <button class="page" type="button">
-                                                            <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
-                                                        </button>
-                                                    {% endif %}
-                                                </a>
-                                            </li>
-                                        {% endif %}
+                                        </a>
                                     {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for i in "x"|rjust:5 %}
+                                        {% if forloop.counter0|add:startPage <= realEnd %}
+                                            {% if forloop.counter0|add:startPage == page %}
+                                                <li>
+                                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
+                                                       class="page">
+                                                        {% if page ==  forloop.counter0|add:startPage %}
+                                                            <button class="page-active" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="page" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
+                                                       class="page">
+                                                        {% if page ==  forloop.counter0|add:startPage %}
+                                                            <button class="page-active" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="page" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음버튼 -->
+                                    {% if endPage < realEnd %}
+                                        <a href="{% url 'mypage:message-list-page' keyword=keyword page=endPage|add:1 %}"
+                                           class="a-next">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% elif type == 'send' %}
+                            <!-- 쪽지들 -->
+                            <ul class="message-wrapper">
+                                {% for send_message in send_messages %}
+                                    <li class="message">
+                                        <button class="content-wrapper">
+                                            <div class="content">
+                                                <div class="title">
+                                                    <p>{{ send_message.message_title }}</p>
+                                                </div>
+                                                <p class="content-text">{{ send_message.message_content }}</p>
+                                            </div>
+                                        </button>
+                                        <div class="file-wrapper">
+                                            <span class="file">
+                                                <img src="/static/image/cake.jpg" alt=""/>
+                                            </span>
+                                        </div>
+                                        <div class="info-wrapper">
+                                            <div class="info">
+                                                <p class="info-content">{{ send_message.receive_member.member_nickname }}</p>
+                                                <p class="info-menu">수신인</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ send_message.message_status }}</p>
+                                                <p class="info-menu">조회</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ send_message.created_date|time:"H:i" }}</p>
+                                                <p class="info-menu">수신시간</p>
+                                            </div>
+                                            <div class="info">
+                                                <p class="info-content">{{ send_message.created_date|date:"Y-m-d" }}</p>
+                                                <p class="info-menu">수신일</p>
+                                            </div>
+                                        </div>
+                                        <div class="delete-wrapper">
+                                            <button class="delete-button" type="button" value="{{ send_message.id }}">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
+                                                    </path>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                          d="M9.6 3.8h4.6c.22 0 .4.178.4.4v1.4H9.2V4.2c0-.222.179-.4.4-.4Zm-2 .4a2 2 0 0 1 2-2h4.6a2 2 0 0 1 2 2v1.4h3.5a.8.8 0 0 1 0 1.6H19v10.4a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V7.2h-.7a.8.8 0 1 1 0-1.6h3.3V4.2Zm-1 3h10.8v10.4A2.4 2.4 0 0 1 15 20H9a2.4 2.4 0 0 1-2.4-2.4V7.2Z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </li>
+                                    <script>
+                                        for(var i = 0; i < {{ current_total }}; i++) {
+                                            document.getElementsByClassName('content-text').item(i).innerText =
+                                                    document.getElementsByClassName('content-text').item(i).innerText.replace(/<[^>]*>?/g, '');
+                                        }
+                                    </script>
                                 {% endfor %}
-                                <!-- 다음버튼 -->
-                                {% if endPage < realEnd %}
-                                    <a href="{% url 'mypage:message-list-page' keyword=keyword page=endPage|add:1 %}"
-                                       class="a-next">
-                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                  d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
-                                            </path>
-                                        </svg>
-                                    </a>
-                                {% endif %}
                             </ul>
-                        </div>
+                            <!-- 페이징 -->
+                            <div class="paging-wrapper">
+                                <ul style="display: flex">
+                                    <!-- 이전버튼 -->
+                                    {% if startPage > 1 %}
+                                        <a href="{% url 'mypage:message-send-list-page' keyword=keyword page=startPage|add:-1 %}"
+                                           class="a-prev">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    {% endif %}
+                                    <!-- 페이지 번호 -->
+                                    {% for i in "x"|rjust:5 %}
+                                        {% if forloop.counter0|add:startPage <= realEnd %}
+                                            {% if forloop.counter0|add:startPage == page %}
+                                                <li>
+                                                    <a href="{% url 'mypage:message-send-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
+                                                       class="page">
+                                                        {% if page ==  forloop.counter0|add:startPage %}
+                                                            <button class="page-active" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="page" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% else %}
+                                                <li>
+                                                    <a href="{% url 'mypage:message-send-list-page' keyword=keyword page=forloop.counter0|add:startPage %}"
+                                                       class="page">
+                                                        {% if page ==  forloop.counter0|add:startPage %}
+                                                            <button class="page-active" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% else %}
+                                                            <button class="page" type="button">
+                                                                <span class="page-number">{{ forloop.counter0|add:startPage }}</span>
+                                                            </button>
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    <!-- 다음버튼 -->
+                                    {% if endPage < realEnd %}
+                                        <a href="{% url 'mypage:message-send-list-page' keyword=keyword page=endPage|add:1 %}"
+                                           class="a-next">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                      d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -375,25 +520,50 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    $('.delete-button').click(() => {
+    //메세지 탭 클릭시
+    $('.message-tab').click((e) => {
+        if (!$(e.currentTarget).attr('class').includes('active-tab')) {
+            if ('{{ type }}' == 'receive') {
+                location.href='/mypage/message-send-list';
+            }else { location.href='/mypage/message-list'; }
+        }
+    })
+
+    //쪽지 삭제 버튼 클릭시
+    $('.delete-button').click((e) => {
         $('.modal').show()
+
+        $('.button-agree').click(() => {
+            '{{ type }}' === 'receive' ?
+                location.href=`/mypage/message/delete/${$(e.currentTarget).val().trim()}` :
+                location.href=`/mypage/message/send/delete/${$(e.currentTarget).val().trim()}`
+            $('.modal').hide()
+        })
     });
+
     $('.button-cancel').click(() => {
         $('.modal').hide()
     })
-    $('.button-agree').click(() => {
-        $('.modal').hide()
-    })
 
+    //검색 이벤트
     $(".search-button").click(() => {
+        if ('{{ type }}' === 'receive') {
+            keyword = $("#search-input").val();
+            location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
+        }
         keyword = $("#search-input").val();
-        location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
+            location.href = keyword === "" ? "/mypage/message-send-list/" : `/mypage/message-send-list/${keyword}/`;
+
     })
 
     $("#search-input").keydown((e) => {
         if(e.keyCode == 13 || e.which == 13) {
+            if ('{{ type }}' === 'receive') {
+                keyword = $("#search-input").val();
+                location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
+            }
             keyword = $("#search-input").val();
-            location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
+            location.href = keyword === "" ? "/mypage/message-send-list/" : `/mypage/message-send-list/${keyword}/`;
         }
     })
 </script>
