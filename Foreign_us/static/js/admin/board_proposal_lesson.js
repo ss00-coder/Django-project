@@ -15,14 +15,14 @@ $deleteButton.on("click", function (e) {
 	if (postIdArr) {
 		confirm(postIdArr + "번을 삭제하시겠습니까?");
 	} else {
-		confirm("공지사항 게시글을 선택해주세요.");
+		confirm("과외 게시글을 선택해주세요.");
 	}
-	adminNoticeService.remove(postIdArr);
+	adminLessonService.remove(postIdArr);
 });
 
-const adminNoticeService = (function () {
+const adminLessonService = (function () {
 	function remove(postIdArr) {
-		fetch("/administrator/board/notice/delete/", {
+		fetch("/administrator/board/lesson/delete/", {
 			method: 'post',
 			headers: {'Content-Type': 'application/json; charset=utf-8'},
 			body: JSON.stringify({post_ids: postIdArr})
@@ -38,5 +38,5 @@ const adminNoticeService = (function () {
 // 검색
 $(".search-button img").on('click', ()=>{
 	keyword = $(".search-box").val();
-	location.href = keyword === "" ? "/administrator/board/notice/list/" : `/administrator/board/notice/list/${keyword}/`;
+	location.href = keyword === "" ? "/administrator/board/lesson/list/" : `/administrator/board/lesson/list/${keyword}/`;
 })

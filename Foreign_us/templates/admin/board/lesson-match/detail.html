@@ -1,0 +1,218 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>관리자 페이지- 과외 매칭 상세보기</title>
+    <link rel="stylesheet" href="{% static 'css/admin/tutor/admin_tutor_detail.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
+  </head>
+
+  <body>
+    <div>
+      <div class="info-title-box info-title-box-flex">
+        <div class="logo-box-layout">
+          <div class="logo-box">
+            <img src="{%  static 'image/logo/white.png' %}">
+            <span></span>
+          </div>
+          <div class="logo-title">
+            <span>Jar</span>
+          </div>
+        </div>
+        <div>
+          <div class="select-name">
+            <span>과외 매칭 관리</span>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+
+              <!-- 사이드 바 -->
+       {% include "admin/side_bar.html" %}
+
+        <div class="container">
+          <div class="container-margin">
+            <!-- 헤더 -->
+            <div class="prev-button-layout">
+              <div>
+                <a>
+                  <img
+                    src="{% static 'image/admin/prev_icon.png'%}"
+                    class="prev-icon"
+                  />
+                  <span class="prev-title">리스트로 돌아가기</span>
+                </a>
+              </div>
+            </div>
+            <div class="info-flex">
+            <!-- 선생님 정보 -->
+              <section class="board-info-box-layout">
+                <div class="board-info-box board-info-box-flex">
+                  <div class="board-info-title-box">
+                    <span>👩‍🏫 선생님 정보</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="board-info-box">
+                  <div class="member-img-box">
+                    <div class="member-img"></div>
+                    <div class="member-nickname-box">
+                      <span>닉네임123</span>
+                    </div>
+                  </div>
+                  <div class="member-info-box">
+              <!-- 이름 -->
+                <!-- <div class="member-info-tag-box">
+                      <span class="info-tag">이름</span>
+                      <div class="info">
+                        <span>임희수</span>
+                      </div>
+                    </div> -->
+                    <div class="member-info-tag-box">
+                      <span class="info-tag">이메일</span>
+                      <!-- 이메일 -->
+                      <div class="info">
+                        <span>lhs1234@gmail.com</span>
+                      </div>
+                    </div>
+                    <div class="member-info-tag-box">
+                      <span class="info-tag">주소</span>
+                      <!-- 주소 -->
+                      <div class="info">
+                        <span>강남구 역삼동</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: end">
+                    <button class="review-btn" type="button">후기</button>
+                  </div>
+                </div>
+              </section>
+
+         <!-- 학생 정보 -->
+              <section class="board-info-box-layout">
+                <div class="board-info-box board-info-box-flex">
+                  <div class="board-info-title-box">
+                    <span>🙋‍♂️ 학생 정보</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="board-info-box">
+                  <div class="member-img-box">
+                    <div class="member-img"></div>
+                    <div class="member-nickname-box">
+                      <span>닉네임123</span>
+                    </div>
+                  </div>
+                  <div class="member-info-box">
+                 <!-- 이름 -->
+               <!-- <div class="member-info-tag-box">
+                      <span class="info-tag">이름</span>
+                      <div class="info">
+                        <span>장동혁</span>
+                      </div>
+                    </div>-->
+                    <div class="member-info-tag-box">
+                      <span class="info-tag">이메일</span>
+                      <!-- 이메일 -->
+                      <div class="info">
+                        <span>jdh1234@gmail.com</span>
+                      </div>
+                    </div>
+                    <div class="member-info-tag-box">
+                      <span class="info-tag">주소</span>
+                      <!-- 주소 -->
+                      <div class="info">
+                        <span>강남구 삼성동</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; justify-content: end">
+                    <button class="review-btn" type="button">후기</button>
+                  </div>
+                </div>
+              </section>
+
+           <!-- 활동 정보 -->
+              <section class="board-info-box-layout board-info-box-layout2">
+                <div class="board-info-box">
+                  <div class="board-info-title-box">
+                    <span>📋 활동 정보</span>
+                  </div>
+                </div>
+                <hr />
+                <div class="member-info">
+                  <div class="info-margin">
+                    <span class="info-tag">과외 시작일</span>
+                    <h4>2023.01.01</h4>
+                  </div>
+                  <div class="info-margin margin">
+                    <hr style="margin: 8px 0" />
+                    <span class="info-tag">과외</span>
+                    <div class="info-margin">
+                      <div class="write-count-box">
+                        <div>
+                          <span>참여 횟수:</span>
+                        </div>
+                        <div class="count">
+                          <span>3회</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-margin">
+                      <div class="write-count-box">
+                        <div>
+                          <span>과외 종류:</span>
+                        </div>
+                        <div class="count">
+                          <span>대면</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="info-margin margin">
+                    <!-- 유저 작성한 것들  -->
+                    <hr style="margin: 8px 0" />
+                    <span class="info-tag">내용</span>
+                    <div class="info-margin">
+                      <div class="write-count-box">
+                        <div>
+                          <span>언어:</span>
+                        </div>
+                        <div class="count">
+                          <span>영어</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="info-margin margin">
+                    <!-- 유저 작성한 것들  -->
+                    <hr style="margin: 8px 0" />
+                    <span class="info-tag">결제</span>
+                    <div class="info-margin">
+                      <div class="write-count-box">
+                        <div>
+                          <span>결제 상태:</span>
+                        </div>
+                        <div class="count">
+                          <span>결제 완료</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src="{% static 'js/admin/sidemenu.js'%}"></script>
+</html>

@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +15,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="{%  static 'image/logo/white.png">
+                    <img src="{%  static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -24,7 +23,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>과외 매칭 관리</span>
+                    <span>과외 목록 관리</span>
                 </div>
             </div>
         </div>
@@ -58,7 +57,7 @@
 
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>✏️ 과외 매칭 목록</span>
+                                <span>✏️ 과외 목록</span>
                             </div>
 
                             <div class="info-table">
@@ -69,63 +68,35 @@
                                                 <input type="checkbox" id="allSelect">
                                             </th>
                                             <th>No</th>
-                                            <th>과외종류</th>
-                                            <th style="font-size: 14px;font-weight: bold">과외 선생님</th>
-                                            <th style="font-size: 14px;font-weight: bold">학생</th>
-                                            <th>결제 상태</th>
+                                            <th>과외글 제목</th>
+                                            <th>작성자</th>
+                                            <th>작성 날짜</th>
+                                            <th>수정 날짜</th>
                                             <th>상태</th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>대면</td>
-                                        <td>
-                                            <a style="font-size: 15px;">
-                                                닉네임
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a style="font-size: 15px;">
-                                                닉네임
-                                            </a>
-                                        </td>
-                                        <td>
-                                            결제완료
-                                        </td>
-                                        <td>
-                                            종료
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            2
-                                        </td>
-                                        <td>비대면</td>
-                                        <td>
-                                            <a style="font-size: 15px;">
-                                                닉네임
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a style="font-size: 15px;">
-                                                닉네임
-                                            </a>
-                                        </td>
-                                        <td>
-                                            결제 대기중
-                                        </td>
-                                        <td>
-                                            진행중
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        {% for post in posts %}
+                                            <tr>
+                                                <td class="checkbox-line">
+                                                    <input type="checkbox" name="check" class="memberCheckbox">
+                                                </td>
+                                                <td class="noticeId">{{ post.id }}</td>
+                                                <td><a href="{% url 'admin:board-lesson-detail' keyword=keyword post_id=post.id page=page %}">{{ post.post_title }}
+                                                </a></td>
+                                                <td>{{ post.member.member_nickname }}</td>
+                                                <td>
+                                                    {{ post.created_date|date:"Y-m-d" }}
+                                                </td>
+                                                <td>
+                                                    {{ post.updated_date|date:"Y-m-d" }}
+                                                </td>
+                                                <td>
+                                                    {{ post.get_post_status_display }}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -133,44 +104,55 @@
                     <!-- 페이징 -->
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{% static 'image/admin/left_icon.png' %}"
-                                            class="left-button">
+                            {% if startPage > 1 %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-lesson-list-page' keyword=keyword page=startPage|add:-1 %}">
+                                                <img src="{% static 'image/admin/left_icon.png'%}"
+                                                class="left-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
+                            {% endif %}
+                            {% for i in "x"|rjust:5 %}
+                                {% if forloop.counter0|add:startPage <= realEnd %}
+                                    {% if forloop.counter0|add:startPage == page %}
+                                        <div class="page-button page-button-active">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-lesson-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="page-button">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-lesson-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if endPage < realEnd %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-lesson-list-page' keyword=keyword page=endPage|add:1 %}">
+                                                <img src="{% static 'image/admin/right_icon.png'%}"
+                                                class="right-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{% static 'image/admin/right_icon.png' %}"
-                                            class="right-button">
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 페이지 버튼 끝 -->
@@ -181,7 +163,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="{%  static 'js/admin/checkbox.js' %}"></script>
-<script src="{%  static 'js/admin/board_proposal.js' %}"></script>
-<script src="{%  static 'js/admin/sidemenu.js' %}"></script>
-
+<script src="{%  static 'js/admin/board_proposal_lesson.js' %}"></script>
+{#<script src="{%  static 'js/admin/sidemenu.js' %}"></script>#}
+<script>
+    let page = {{ page }}
+</script>
 </html>

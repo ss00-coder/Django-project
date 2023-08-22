@@ -4,23 +4,38 @@ from django.views.generic import TemplateView
 from administrator.views import BoardEventListView, BoardEventDetailView, BoardHelpersListView, BoardHelpersDetailView, \
     BoardLessonListView, BoardLessonDetailView, BoardNoticeListView, BoardNoticeDetailView, BoardNoticeWriteView, \
     BoardNoticeModifyView, BoardInquiryListView, BoardInquiryDetailView, BoardInquiryWriteView, MemberListView, \
-    MemberDetailView, MemberModifyView, BoardNoticeDeleteAPI
+    MemberDetailView, MemberModifyView, BoardNoticeDeleteAPI, \
+    BoardLessonMatchListView, BoardLessonMatchDetailView, BoardEventDeleteAPI, BoardHelpersDeleteAPI, \
+    BoardLessonDeleteAPI
 
 app_name = 'admin'
 
 urlpatterns = [
     # 이벤트
     path('board/event/list/', BoardEventListView.as_view(), name='board-event-list-init'),
-    path('board/event/list/<int:page>/', BoardEventListView.as_view(), name='board-event-list'),
-    path('board/event/detail/', BoardEventDetailView.as_view(), name='board-event-detail'),
+    path('board/event/list/<str:keyword>/', BoardEventListView.as_view(), name='board-event-list'),
+    path('board/event/list/<str:keyword>/<int:page>/', BoardEventListView.as_view(), name='board-event-list-page'),
+    path('board/event/detail/<int:post_id>/<int:page>/', BoardEventDetailView.as_view(), name='board-event-detail-init'),
+    path('board/event/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardEventDetailView.as_view(), name='board-event-detail'),
+    path('board/event/delete/', BoardEventDeleteAPI.as_view(), name='board-event-delete'),
     # 헬퍼스
     path('board/helpers/list/', BoardHelpersListView.as_view(), name='board-helpers-list-init'),
-    path('board/helpers/list/<int:page>/', BoardHelpersListView.as_view(), name='board-helpers-list'),
-    path('board/helpers/detail/', BoardHelpersDetailView.as_view(), name='board-helpers-detail'),
-    # 레슨
+    path('board/helpers/list/<str:keyword>/', BoardHelpersListView.as_view(), name='board-helpers-list'),
+    path('board/helpers/list/<str:keyword>/<int:page>/', BoardHelpersListView.as_view(), name='board-helpers-list-page'),
+    path('board/helpers/detail/<int:post_id>/<int:page>/', BoardHelpersDetailView.as_view(), name='board-helpers-detail-init'),
+    path('board/helpers/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardHelpersDetailView.as_view(), name='board-helpers-detail'),
+    path('board/helpers/delete/', BoardHelpersDeleteAPI.as_view(), name='board-helpers-delete'),
+    # 과외
     path('board/lesson/list/', BoardLessonListView.as_view(), name='board-lesson-list-init'),
-    path('board/lesson/list/<int:page>/', BoardLessonListView.as_view(), name='board-lesson-list'),
-    path('board/lesson/detail/', BoardLessonDetailView.as_view(), name='board-lesson-detail'),
+    path('board/lesson/list/<str:keyword>/', BoardLessonListView.as_view(), name='board-lesson-list'),
+    path('board/lesson/list/<str:keyword>/<int:page>/', BoardLessonListView.as_view(), name='board-lesson-list-page'),
+    path('board/lesson/detail/<int:post_id>/<int:page>/', BoardLessonDetailView.as_view(), name='board-lesson-detail-init'),
+    path('board/lesson/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardLessonDetailView.as_view(), name='board-lesson-detail'),
+    path('board/lesson/delete/', BoardLessonDeleteAPI.as_view(), name='board-lesson-delete'),
+    # 과외 매칭
+    path('board/lesson-match/list/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list-init'),
+    path('board/lesson-match/list/<int:page>/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list'),
+    path('board/lesson-match/detail/', BoardLessonMatchDetailView.as_view(), name='board-lesson-match-detail'),
     # 공지사항
     path('board/notice/list/', BoardNoticeListView.as_view(), name='board-notice-list-init'),
     path('board/notice/list/<str:keyword>/', BoardNoticeListView.as_view(), name='board-notice-list'),
