@@ -10,7 +10,7 @@ $(function () {
     const $buttonAgree = $('.button-agree');
 
     // 해당 작성글 전체 수 최초 값 설정
-    $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
+    // $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
 
     // 탭 버튼 이벤트
     $tabBtn.click((e) => {
@@ -20,7 +20,7 @@ $(function () {
             $(e.currentTarget).append('<div class="tab-line"></div>');
 
             // 해당 작성글 전체 수 변경하는 이벤트
-            $totalNumber.text($(e.currentTarget).find('.tab-number').text());
+            // $totalNumber.text($(e.currentTarget).find('.tab-number').text());
         }
     })
 
@@ -33,7 +33,7 @@ $(function () {
         $modal.show();
     });
 
-
+// 삭제 버튼
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
         console.log(eventId)

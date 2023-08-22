@@ -6,7 +6,7 @@ from django.test import TestCase
 
 from Foreign_us.models import Message
 from event.models import Event, EventLike
-from helpers.models import HelpersLike
+from helpers.models import HelpersLike, Helpers
 from lesson.models import Lesson, LessonLike
 from member.models import Member
 from message.models import ReceiveMessage, SendMessage
@@ -75,21 +75,32 @@ class LessonLike(TestCase):
 
 
 class Helpers(TestCase):
-    pass
-    # Helpers.objects.bulk_create([
-    #     Helpers(post_title='도움1', post_content='도와주세요1', member_id=1),
-    #     Helpers(post_title='도움2', post_content='도와주세요2', member_id=2),
-    #     Helpers(post_title='도움3', post_content='도와주세요3', member_id=3),
-    #     Helpers(post_title='도움4', post_content='도와주세요4', member_id=3),
-    #     Helpers(post_title='도움5', post_content='도와주세요5', member_id=16),
-    #     Helpers(post_title='도움6', post_content='도와주세요6', member_id=5),
-    #     Helpers(post_title='도움7', post_content='도와주세요7', member_id=1),
-    #     Helpers(post_title='도움8', post_content='도와주세요8', member_id=4),
-    #     Helpers(post_title='도움9', post_content='도와주세요9', member_id=5),
-    #     Helpers(post_title='도움10', post_content='도와주세요10', member_id=12),
-    #     Helpers(post_title='도움11', post_content='도와주세요11', member_id=3),
-    #     Helpers(post_title='도움12', post_content='도와주세요12', member_id=1),
-    # ])
+      Helpers.objects.bulk_create([
+        Helpers(post_title='도움1', post_content='도와주세요1', post_status='N', member_id=1),
+        Helpers(post_title='도움2', post_content='도와주세요2', post_status='Y',member_id=2),
+        Helpers(post_title='도움3', post_content='도와주세요3', post_status='Y',member_id=3),
+        Helpers(post_title='도움4', post_content='도와주세요4', post_status='Y',member_id=3),
+        Helpers(post_title='도움5', post_content='도와주세요5', post_status='N',member_id=16),
+        Helpers(post_title='도움6', post_content='도와주세요6', post_status='Y',member_id=5),
+        Helpers(post_title='도움7', post_content='도와주세요7', post_status='Y',member_id=1),
+        Helpers(post_title='도움8', post_content='도와주세요8', post_status='N',member_id=4),
+        Helpers(post_title='도움9', post_content='도와주세요9', post_status='Y',member_id=5),
+        Helpers(post_title='도움10', post_content='도와주세요10', post_status='N',member_id=12),
+        Helpers(post_title='도움11', post_content='도와주세요11', post_status='N',member_id=3),
+        Helpers(post_title='도움12', post_content='도와주세요12', post_status='Y',member_id=1),
+        Helpers(post_title='도움1', post_content='도와주세요1', post_status='N', member_id=1),
+        Helpers(post_title='도움2', post_content='도와주세요2', post_status='Y',member_id=2),
+        Helpers(post_title='도움3', post_content='도와주세요3', post_status='Y',member_id=3),
+        Helpers(post_title='도움4', post_content='도와주세요4', post_status='Y',member_id=3),
+        Helpers(post_title='도움5', post_content='도와주세요5', post_status='N',member_id=16),
+        Helpers(post_title='도움6', post_content='도와주세요6', post_status='Y',member_id=5),
+        Helpers(post_title='도움7', post_content='도와주세요7', post_status='Y',member_id=1),
+        Helpers(post_title='도움8', post_content='도와주세요8', post_status='N',member_id=4),
+        Helpers(post_title='도움9', post_content='도와주세요9', post_status='Y',member_id=5),
+        Helpers(post_title='도움10', post_content='도와주세요10', post_status='N',member_id=12),
+        Helpers(post_title='도움11', post_content='도와주세요11', post_status='N',member_id=3),
+        Helpers(post_title='도움12', post_content='도와주세요12', post_status='Y',member_id=1),
+    ])
 
 
 class HelpersLike(TestCase):
@@ -117,12 +128,13 @@ class HelpersLike(TestCase):
 
 
 class Event(TestCase):
+    pass
     # status = "N"
     # keyword = "이벤트"
     # events = Event.objects.filter(post_status=status).filter(
     #     Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').values('post_status')
     # print(events)
-    pass
+
     # Event.objects.bulk_create([
     #     Event(post_title='이벤트15', post_content='이벤트에요10', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
     #     Event(post_title='이벤트16', post_content='이벤트에요20', post_status='Y', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),

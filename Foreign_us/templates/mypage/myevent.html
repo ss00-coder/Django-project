@@ -182,7 +182,7 @@
                         <div style="display: flex">
                           <p class="tab-title">게시완료</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">{{ total }}</p>
+                            <p class="tab-number">{{ saved_event }}</p>
                           </div>
                         </div>
                         <div class="tab-line"></div>
@@ -193,7 +193,7 @@
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">0</p>
+                            <p class="tab-number">{{ temp_event }}</p>
                           </div>
                         </div>
                       </button>
@@ -204,7 +204,7 @@
                 <div class="total-and-search-wrapper">
                   <div class="total">
                     <span class="total-text">전체</span>
-                    <span class="total-number"></span>
+                    <span class="total-number">{{ current_count }}</span>
                   </div>
                   <div class="search">
 
@@ -363,6 +363,14 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
 <script src="{% static 'js/mypage/myevent.js' %}"></script>
+  <script>
+      {#event_post = `{{ events }}`;#}
+      {#console.log(event_post)#}
+      // event_post.forEach(event => {
+      //    console.log(event.post_title);
+      // })
+      {#console.log(`{{ events.post_title }}`);#}
+  </script>
 </body>
 
 </html>
