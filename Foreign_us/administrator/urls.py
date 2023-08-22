@@ -4,9 +4,10 @@ from django.views.generic import TemplateView
 from administrator.views import BoardEventListView, BoardEventDetailView, BoardHelpersListView, BoardHelpersDetailView, \
     BoardLessonListView, BoardLessonDetailView, BoardNoticeListView, BoardNoticeDetailView, BoardNoticeWriteView, \
     BoardNoticeModifyView, BoardInquiryListView, BoardInquiryDetailView, BoardInquiryWriteView, MemberListView, \
-    MemberDetailView, MemberModifyView, BoardNoticeDeleteAPI, \
+    MemberDetailView, BoardNoticeDeleteAPI, \
     BoardLessonMatchListView, BoardLessonMatchDetailView, BoardEventDeleteAPI, BoardHelpersDeleteAPI, \
-    BoardLessonDeleteAPI
+    BoardLessonDeleteAPI, BoardLessonMatchDeleteAPI, BoardLessonReviewDetailView, BoardLessonReviewExistAPI, \
+    MemberDeleteAPI
 
 app_name = 'admin'
 
@@ -34,8 +35,15 @@ urlpatterns = [
     path('board/lesson/delete/', BoardLessonDeleteAPI.as_view(), name='board-lesson-delete'),
     # 과외 매칭
     path('board/lesson-match/list/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list-init'),
-    path('board/lesson-match/list/<int:page>/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list'),
-    path('board/lesson-match/detail/', BoardLessonMatchDetailView.as_view(), name='board-lesson-match-detail'),
+    path('board/lesson-match/list/<str:keyword>/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list'),
+    path('board/lesson-match/list/<str:keyword>/<int:page>/', BoardLessonMatchListView.as_view(), name='board-lesson-match-list-page'),
+    path('board/lesson-match/detail/<int:post_id>/<int:page>/', BoardLessonMatchDetailView.as_view(), name='board-lesson-match-detail-init'),
+    path('board/lesson-match/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardLessonMatchDetailView.as_view(), name='board-lesson-match-detail'),
+    path('board/lesson-match/delete/', BoardLessonMatchDeleteAPI.as_view(), name='board-lesson-match-delete'),
+    # 과외 매칭 후기
+    path('board/lesson-review/detail/<int:post_id>/<int:page>/', BoardLessonReviewDetailView.as_view(), name='board-lesson-review-detail-init'),
+    path('board/lesson-review/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardLessonReviewDetailView.as_view(), name='board-lesson-review-detail'),
+    path('board/lesson-review/exist/<int:member_id>/<int:reviewed_member_id>/', BoardLessonReviewExistAPI.as_view(), name='exist'),
     # 공지사항
     path('board/notice/list/', BoardNoticeListView.as_view(), name='board-notice-list-init'),
     path('board/notice/list/<str:keyword>/', BoardNoticeListView.as_view(), name='board-notice-list'),
@@ -51,8 +59,11 @@ urlpatterns = [
     path('board/inquiry/detail/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail'),
     path('board/inquiry/write/', BoardInquiryWriteView.as_view(), name='board-inquiry-write'),
     # 회원 관리
-    path('member/list/', MemberListView.as_view(), name='list-init'),
-    path('member/list/<int:page>/', MemberListView.as_view(), name='list'),
-    path('member/detail/', MemberDetailView.as_view(), name='detail'),
-    path('member/modify/', MemberModifyView.as_view(), name='modify'),
+    path('member/list/', MemberListView.as_view(), name='member-list-init'),
+    path('member/list/<str:keyword>/', MemberListView.as_view(), name='member-list'),
+    path('member/list/<str:keyword>/<int:page>/', MemberListView.as_view(), name='member-list-page'),
+    path('member/detail/<int:member_id>/<int:page>/', MemberDetailView.as_view(), name='member-detail-init'),
+    path('member/detail/<str:keyword>/<int:member_id>/<int:page>/', MemberDetailView.as_view(), name='member-detail'),
+    path('member/delete/', MemberDeleteAPI.as_view(), name='member-delete'),
+    # path('member/modify/', MemberModifyView.as_view(), name='modify'),
 ]

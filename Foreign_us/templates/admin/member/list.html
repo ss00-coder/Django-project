@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="{% static 'static/image/logo/white.png' %}">
+                    <img src="{% static 'image/logo/white.png' %}">
                 </div>
                 <!-- <div class="logo-title">
                     <span>Jar</span>
@@ -24,7 +24,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>회원정보 관리</span>
+                    <span>회원 정보 관리</span>
                 </div>
             </div>
         </div>
@@ -39,15 +39,19 @@
                     <!-- 검색 창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
-                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% if keyword == None %}
+                                <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% else %}
+                                <input value="{{ keyword }}" type="text" placeholder="검색어 입력" class="search-box">
+                            {% endif %}
                             <button type="button" class="search-button">
-                                <img src="{% static 'image/admin/search-icon-black.png' %}" alt="">
+                                <img src="{% static 'image/admin/search-icon-black.png'%}" alt="">
                             </button>
                         </div>
                         <div class="buttons-container">
                             <div class="delete-box-layout">
                                 <div class="delete-box">
-                                    <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
+                                    <button class="deleteButton delete-button" onclick="deleteNotices(getSelectedNoticeIds())">회원 탈퇴</button>
                                 </div>
                             </div>
                         </div>
@@ -69,33 +73,35 @@
                                                 <input type="checkbox" id="allSelect">
                                             </th>
                                             <th>No</th>
-                                            <th>회원상태</th>
+                                            <th>회원 상태</th>
                                             <th>이메일</th>
                                             <th>닉네임</th>
                                             <th>주소</th>
                                             <th>가입 날짜</th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" class="memberCheckbox" name="check">
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td class="member_type is_active">
-                                            일반회원
-                                            <hr>
-                                        </td>
-                                        <td>
-                                            <a>
-                                                ljs1234@gmail.com
-                                            </a>
-                                        </td>
-                                        <td>유니콘</td>
-                                        <td>강남구 역삼동</td>
-                                        <td>2023/08/09</td>
-                                    </tr>
+                                    <tbody>
+                                        {% for member in members %}
+                                            <tr>
+                                                <td class="checkbox-line">
+                                                    <input type="checkbox" class="memberCheckbox" name="check">
+                                                </td>
+                                                <td>{{ member.id }}</td>
+                                                <td class="member_type is_active">
+                                                    {{ member.get_member_type_display }}
+                                                </td>
+                                                <td><a href="{% url 'admin:member-detail' keyword=keyword member_id=member.id page=page %}">{{ member.member_email }}
+                                                </a></td>
+                                                <td>{{ member.member_nickname }}</td>
+                                                {% if member.member_address %}
+                                                  <td>{{ member.member_address }}</td>
+                                                {% else %}
+                                                  <td>주소 비공개</td>
+                                                {% endif %}
+                                                <td>{{ member.created_date|date:"Y-m-d H:i" }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -104,49 +110,55 @@
                     <!-- 페이지 버튼 -->
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="page-button-box-layout">
-                                <div class="page-button-box">
-                                    <!-- 페이지 번호 -->
-                                    <div class="">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <img src="{% static 'image/admin/left_icon.png' %}"
-                                                    class="left-button">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="page-button-active page-button">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <span>1</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="page-button">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <span>2</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="page-button">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <span>3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="">
-                                        <div class="page-button-margin">
-                                            <div>
-                                                <img src="{%  static 'image/admin/right_icon.png' %}"
-                                                    class="right-button">
-                                            </div>
+                            {% if startPage > 1 %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:member-list-page' keyword=keyword page=startPage|add:-1 %}">
+                                                <img src="{% static 'image/admin/left_icon.png'%}"
+                                                class="left-button">
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            {% endif %}
+                            {% for i in "x"|rjust:5 %}
+                                {% if forloop.counter0|add:startPage <= realEnd %}
+                                    {% if forloop.counter0|add:startPage == page %}
+                                        <div class="page-button page-button-active">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:member-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="page-button">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:member-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if endPage < realEnd %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:member-list-page' keyword=keyword page=endPage|add:1 %}">
+                                                <img src="{% static 'image/admin/right_icon.png'%}"
+                                                class="right-button">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 페이지 버튼 끝 -->
@@ -156,12 +168,12 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="{%  static 'js/admin/board_proposal.js' %}"></script>
 <script src="{%  static 'js/admin/checkbox.js' %}"></script>
-<script src="{%  static 'js/admin/page.js' %}"></script>
-<script src="{%  static 'js/admin/sidemenu.js' %}"></script>
+<script src="{%  static 'js/admin/board_proposal_member.js' %}"></script>
+{#<script src="{%  static 'js/admin/page.js' %}"></script>#}
+{#<script src="{%  static 'js/admin/sidemenu.js' %}"></script>#}
 <script>
-    const memberId = '${memberDTO.id}';
+    {% comment %}const memberId = '${memberDTO.id}';
 
     function getSelectedMemberIds() {
         const memberIds = [];
@@ -185,9 +197,9 @@
                 alert("게시물 삭제에 실패했습니다.");
             }
         });
-    }
+    }{% endcomment %}
 
-
+{% comment %}
     /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
     $(document).ready(function() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -231,6 +243,6 @@
         e.preventDefault();
         $pageForm.find("input[name='page']").val($(this).attr("href"));
         $pageForm.submit();
-    });
+    });{% endcomment %}
 </script>
 </html>

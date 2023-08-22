@@ -14,16 +14,16 @@ $deleteButton.on("click", function (e) {
 	})
 	if (postIdArr) {
 		if(confirm(postIdArr + "번을 결제 취소하시겠습니까?")){
-			adminHelpersService.remove(postIdArr);
+			adminLessonMatchService.remove(postIdArr);
 		}
 	} else {
-		confirm("헬퍼스 게시글을 선택해주세요.");
+		confirm("과외 매칭을 선택해주세요.");
 	}
 });
 
-const adminHelpersService = (function () {
+const adminLessonMatchService = (function () {
 	function remove(postIdArr) {
-		fetch("/administrator/board/helpers/delete/", {
+		fetch("/administrator/board/lesson-match/delete/", {
 			method: 'post',
 			headers: {'Content-Type': 'application/json; charset=utf-8'},
 			body: JSON.stringify({post_ids: postIdArr})
@@ -39,5 +39,5 @@ const adminHelpersService = (function () {
 // 검색
 $(".search-button img").on('click', ()=>{
 	keyword = $(".search-box").val();
-	location.href = keyword === "" ? "/administrator/board/helpers/list/" : `/administrator/board/helpers/list/${keyword}/`;
+	location.href = keyword === "" ? "/administrator/board/lesson-match/list/" : `/administrator/board/lesson-match/list/${keyword}/`;
 })

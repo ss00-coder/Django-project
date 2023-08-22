@@ -90,10 +90,10 @@
                                                 <td><a href="{% url 'admin:board-notice-detail' keyword=keyword post_id=post.id page=page %}">{{ post.post_title }}
                                                 </a></td>
                                                 <td>
-                                                    {{ post.created_date|date:"Y-m-d" }}
+                                                    {{ post.created_date|date:"Y-m-d H:i" }}
                                                 </td>
                                                 <td>
-                                                    {{ post.updated_date|date:"Y-m-d" }}
+                                                    {{ post.updated_date|date:"Y-m-d H:i" }}
                                                 </td>
                                             </tr>
                                         {% endfor %}

@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                    <img src="{%  static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -33,14 +33,13 @@
             <!-- 사이드 바 -->
            {% include "admin/side_bar.html" %}
 
-            <div class="container">
+            <div style="margin-left: 204px;" class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
-                                <img src="../../../static/image/admin/prev_icon.png"
-                                    class="prev-icon">
+                            <a href="{% url 'admin:board-lesson-list-page' page=page keyword=keyword %}">
+                                <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
                         </div>
@@ -65,23 +64,35 @@
                                     <div class="member-img">
                                     </div>
                                     <div class="member-nickname-box">
-                                        <span>닉네임123</span>
+                                        <span>{{ member.member_nickname }}</span>
                                     </div>
                                 </div>
-                                <div class="member-info-box">
+                                <div class="member-info-box" style="margin-bottom: 20px; margin-right: 20px">
                                     <div class="member-info-tag-box">
                                         <span class="info-tag">이메일</span>
                                         <!-- 이메일 -->
                                         <div class="info">
-                                            <span>lsh1234@gmail.com</span>
+                                            <span>{{ member.member_email }}</span>
                                         </div>
                                     </div>
-                                    <div class="member-info-tag-box">
+                                    <div class="member-info-tag-box" style="margin-top: 60px">
+                                        <hr style="margin-bottom: 5px" >
                                         <span class="info-tag">주소</span>
                                         <!-- 핸드폰 번호 -->
                                         <div class="info">
-                                            <span>강남구 역삼동</span>
+                                            {% if member.member_address %}
+                                              <span>{{ member.member_address }}</span>
+                                            {% else %}
+                                              <span>주소 비공개</span>
+                                            {% endif %}
                                         </div>
+                                    </div>
+{#                                    <hr>#}
+                                    <div style="margin-top: 110px; margin-right: 0; display: flex; flex-direction: row-reverse">
+{#                                        <button class="btn_done btn_selection">채택</button>#}
+                                        <label for="" style="display: inline-block; height: 30px; width: fit-content; padding: 2px 10px; background-color: black; color: white;">
+                                            <a href="#">프로필 페이지로</a>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +108,21 @@
                                 <div class="info-margin">
                                     <span class="info-tag">가입일</span>
                                     <!-- 유저 가입날짜  -->
-                                    <h4>2023.08.09</h4>
+                                    <h4>{{ member.created_date|date:"Y-m-d H:i" }}</h4>
                                 </div>
                                 <div class="info-margin margin">
                                     <!-- 유저 작성한 것들  -->
                                     <hr style="margin: 8px 0;">
                                     <span class="info-tag">과외</span>
                                     <div class="info-margin">
+                                        <div class="write-count-box">
+                                            <div>
+                                                <span>작성한 과외 게시글</span>
+                                            </div>
+                                            <div class="count">
+                                                <span>0개</span>
+                                            </div>
+                                        </div>
                                         <div class="write-count-box">
                                             <div>
                                                 <span>참여한 과외</span>
@@ -122,7 +141,7 @@
                                     <div class="info-margin">
                                         <div class="write-count-box">
                                             <div>
-                                                <span>참여한 헬퍼스</span>
+                                                <span>작성한 헬퍼스 게시글</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>
@@ -131,14 +150,14 @@
                                     </div>
 
                                 </div>
-                                <div class="info-margin margin">
+                                <div style="margin-bottom: 80px" class="info-margin margin">
                                     <!-- 유저 작성한 것들  -->
                                     <hr style="margin: 8px 0;">
                                     <span class="info-tag">이벤트</span>
                                     <div class="info-margin">
                                         <div class="write-count-box">
                                             <div>
-                                                <span>참여한 이벤트</span>
+                                                <span>작성한 이벤트 게시글</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>

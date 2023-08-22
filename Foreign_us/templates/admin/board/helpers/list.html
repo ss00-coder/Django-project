@@ -39,9 +39,13 @@
                     <!-- 검색 창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
-                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% if keyword == None %}
+                                <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% else %}
+                                <input value="{{ keyword }}" type="text" placeholder="검색어 입력" class="search-box">
+                            {% endif %}
                             <button type="button" class="search-button">
-                                <img src="{% static 'image/admin/search-icon-black.png' %}" alt="">
+                                <img src="{% static 'image/admin/search-icon-black.png'%}" alt="">
                             </button>
                         </div>
                         <div class="buttons-container">
@@ -90,10 +94,10 @@
                                                     {{ post.member.member_nickname }}
                                                 </td>
                                                 <td>
-                                                    {{ post.created_date|date:"Y-m-d" }}
+                                                    {{ post.created_date|date:"Y-m-d H:i" }}
                                                 </td>
                                                 <td>
-                                                    {{ post.updated_date|date:"Y-m-d" }}
+                                                    {{ post.updated_date|date:"Y-m-d H:i" }}
                                                 </td>
                                                 <td>
                                                     {{ post.get_post_status_display }}

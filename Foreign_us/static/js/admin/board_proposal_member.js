@@ -4,29 +4,29 @@ const $deleteButton = $(".delete-button");
 
 
 $deleteButton.on("click", function (e) {
-	let postIdArr = [];
+	let memberIdArr = [];
 
 	$checkBoxs.each((i, checkBox) => {
 		id = $(checkBox).parent().siblings(".noticeId").text()
 		if ($(checkBox).prop("checked") && id!=='') {
-			postIdArr.push(id);
+			memberIdArr.push(id);
 		}
 	})
-	if (postIdArr) {
-		if(confirm(postIdArr + "번을 결제 취소하시겠습니까?")){
-			adminHelpersService.remove(postIdArr);
+	if (memberIdArr) {
+		if(confirm(memberIdArr + "번을 탈퇴 회원으로 변경하시겠습니까?")){
+			adminMemberService.remove(memberIdArr);
 		}
 	} else {
-		confirm("헬퍼스 게시글을 선택해주세요.");
+		confirm("탈퇴시킬 회원을 선택해주세요.");
 	}
 });
 
-const adminHelpersService = (function () {
-	function remove(postIdArr) {
-		fetch("/administrator/board/helpers/delete/", {
+const adminMemberService = (function () {
+	function remove(memberIdArr) {
+		fetch("/administrator/member/delete/", {
 			method: 'post',
 			headers: {'Content-Type': 'application/json; charset=utf-8'},
-			body: JSON.stringify({post_ids: postIdArr})
+			body: JSON.stringify({member_ids: memberIdArr})
 		}).then(()=>{
 			location.reload();
 		});
@@ -39,5 +39,5 @@ const adminHelpersService = (function () {
 // 검색
 $(".search-button img").on('click', ()=>{
 	keyword = $(".search-box").val();
-	location.href = keyword === "" ? "/administrator/board/helpers/list/" : `/administrator/board/helpers/list/${keyword}/`;
+	location.href = keyword === "" ? "/administrator/member/list/" : `/administrator/member/list/${keyword}/`;
 })
