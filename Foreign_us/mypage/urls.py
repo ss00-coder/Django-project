@@ -30,6 +30,10 @@ urlpatterns = [
     path('message-list/<int:page>', MyMessageListView.as_view(), name='message-list'),
     path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
+# 테스트
+    path('message-list/', MyMessageListView.as_view(), name='message-list-init'),
+    path('message-list/<str:keyword>/', MyMessageListView.as_view(), name='message-list'),
+    path('message-list/<str:keyword>/<int:page>', MyMessageListView.as_view(), name='message-list-page'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
 ]
