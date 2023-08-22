@@ -13,11 +13,12 @@ $deleteButton.on("click", function (e) {
 		}
 	})
 	if (postIdArr) {
-		confirm(postIdArr + "번을 삭제하시겠습니까?");
+		if(confirm(postIdArr + "번을 결제 취소하시겠습니까?")){
+			adminEventService.remove(postIdArr);
+		}
 	} else {
 		confirm("이벤트 게시글을 선택해주세요.");
 	}
-	adminEventService.remove(postIdArr);
 });
 
 const adminEventService = (function () {

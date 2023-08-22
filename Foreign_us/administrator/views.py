@@ -4,6 +4,7 @@ import os
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views import View
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from event.models import Event, EventFile
@@ -11,6 +12,9 @@ from helpers.models import Helpers, HelpersFile
 from lesson.models import Lesson, LessonFile
 from member.models import Member
 from notice.models import Notice, NoticeFile
+from payment.models import Payment
+from review.models import Review
+from review.serializers import ReviewSerializer
 
 
 # Create your views here.
@@ -191,14 +195,82 @@ class BoardLessonDeleteAPI(APIView):
 
 # 과외 매칭 목록
 class BoardLessonMatchListView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/lesson-match/list.html', {'page': page})
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            posts = Payment.objects.filter(Q(teacher__member_nickname__contains=keyword) | Q(member__member_nickname__contains=keyword)).order_by('-id').all()
+        else:
+            posts = Payment.objects.order_by('-id').all()
+
+        size = 7
+        offset = (page - 1) * size
+        limit = page * size
+        total = len(posts)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        if endPage == 0:
+            endPage = 1
+
+        context = {
+            'posts': list(posts)[offset:limit],
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'keyword': keyword
+        }
+        return render(request, 'admin/board/lesson-match/list.html', context)
 
 
 # 과외 매칭 조회
 class BoardLessonMatchDetailView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/lesson-match/detail.html', {'page': page})
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        post = Payment.objects.get(id=post_id)
+        context = {
+            'post': post,
+            'page': page,
+            'keyword': keyword
+        }
+        return render(request, 'admin/board/lesson-match/detail.html', context)
+
+
+# 과외 매칭 결제 취소
+class BoardLessonMatchDeleteAPI(APIView):
+    def post(self, request):
+        post_ids = request.data['post_ids']
+        Payment.objects.filter(id__in=post_ids).update(pay_status="N")
+
+
+# 과외 매칭 후기 유무
+class BoardLessonReviewExistAPI(APIView):
+    def get(self, request, member_id, reviewed_member_id):
+        # datas = request.data
+        review = Review.objects.filter(member_id=member_id, reviewed_member_id=reviewed_member_id).order_by('-id').first()
+        # return Response(review)
+        return Response(ReviewSerializer(review, many=False).data)
+
+# 과외 매칭 후기 조회
+class BoardLessonReviewDetailView(View):
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        post = Review.objects.get(id=post_id)
+        context = {
+            'post': post,
+            'post_files': list(post.reviewfile_set.all()),
+            'page': page,
+            'keyword': keyword
+        }
+        return render(request, 'admin/board/lesson-match/review_detail.html', context)
 
 
 # 공지사항 목록
@@ -341,17 +413,65 @@ class BoardInquiryWriteView(View):
 
 # 회원 목록
 class MemberListView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/member/list.html', {'page': page})
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            members = Member.objects.filter(Q(member_nickname__contains=keyword) | Q(member_email__contains=keyword)).order_by(
+                '-id').all()
+        else:
+            members = Member.objects.order_by('-id').all()
+
+        size = 7
+        offset = (page - 1) * size
+        limit = page * size
+        total = len(members)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        if endPage == 0:
+            endPage = 1
+
+        context = {
+            'members': list(members)[offset:limit],
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'keyword': keyword
+        }
+        return render(request, 'admin/member/list.html', context)
 
 
 # 회원 조회
 class MemberDetailView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/member/detail.html', {'page': page})
+    def get(self, request, member_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        member = Member.objects.get(id=member_id)
+        context = {
+            'member': member,
+            'post_files': list(member.memberfile_set.all()),
+            'page': page,
+            'keyword': keyword
+        }
+        return render(request, 'admin/member/detail.html', context)
+
+
+# 회원 삭제(탈퇴회원)
+class MemberDeleteAPI(APIView):
+    def post(self, request):
+        member_ids = request.data['member_ids']
+            Member.objects.filter(id__in=member_ids).update(member_type="N")
+        # member.member_type = 'N'
+        # member.save()
 
 
 # 회원 수정
-class MemberModifyView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/member/modify.html', {'page': page})
+# class MemberModifyView(View):
+#     def get(self, request, page=1):
+#         return render(request, 'admin/member/modify.html', {'page': page})

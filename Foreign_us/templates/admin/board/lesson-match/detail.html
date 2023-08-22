@@ -38,12 +38,9 @@
             <!-- 헤더 -->
             <div class="prev-button-layout">
               <div>
-                <a>
-                  <img
-                    src="{% static 'image/admin/prev_icon.png'%}"
-                    class="prev-icon"
-                  />
-                  <span class="prev-title">리스트로 돌아가기</span>
+                <a href="{% url 'admin:board-lesson-match-list-page' page=page keyword=keyword %}">
+                    <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
+                    <span class="prev-title">리스트로 돌아가기</span>
                 </a>
               </div>
             </div>
@@ -60,7 +57,7 @@
                   <div class="member-img-box">
                     <div class="member-img"></div>
                     <div class="member-nickname-box">
-                      <span>닉네임123</span>
+                      <span>{{ post.teacher.member_nickname }}</span>
                     </div>
                   </div>
                   <div class="member-info-box">
@@ -75,19 +72,27 @@
                       <span class="info-tag">이메일</span>
                       <!-- 이메일 -->
                       <div class="info">
-                        <span>lhs1234@gmail.com</span>
+                        <span>{{ post.teacher.member_email }}</span>
                       </div>
                     </div>
                     <div class="member-info-tag-box">
                       <span class="info-tag">주소</span>
                       <!-- 주소 -->
                       <div class="info">
-                        <span>강남구 역삼동</span>
+                        {% if post.teacher.member_address %}
+                          <span>{{ post.teacher.member_address }}</span>
+                        {% else %}
+                          <span>주소 비공개</span>
+                        {% endif %}
                       </div>
                     </div>
                   </div>
-                  <div style="display: flex; justify-content: end">
-                    <button class="review-btn" type="button">후기</button>
+                  <div id="teacher-review" style="display: flex; justify-content: end">
+{#                    <button style="margin-top: 106px;" class="review-btn" type="button">#}
+{#                        <a href="{% url 'admin:board-lesson-review-detail' keyword=keyword post_id=post.id page=page %}">#}
+{#                            후기#}
+{#                        </a>#}
+{#                    </button>#}
                   </div>
                 </div>
               </section>
@@ -104,7 +109,7 @@
                   <div class="member-img-box">
                     <div class="member-img"></div>
                     <div class="member-nickname-box">
-                      <span>닉네임123</span>
+                      <span>{{ post.member.member_nickname }}</span>
                     </div>
                   </div>
                   <div class="member-info-box">
@@ -119,19 +124,27 @@
                       <span class="info-tag">이메일</span>
                       <!-- 이메일 -->
                       <div class="info">
-                        <span>jdh1234@gmail.com</span>
+                        <span>{{ post.member.member_email }}</span>
                       </div>
                     </div>
                     <div class="member-info-tag-box">
                       <span class="info-tag">주소</span>
                       <!-- 주소 -->
                       <div class="info">
-                        <span>강남구 삼성동</span>
+                        {% if post.member.member_address %}
+                          <span>{{ post.member.member_address }}</span>
+                        {% else %}
+                          <span>주소 비공개</span>
+                        {% endif %}
                       </div>
                     </div>
                   </div>
-                  <div style="display: flex; justify-content: end">
-                    <button class="review-btn" type="button">후기</button>
+                  <div id="student-review" style="display: flex; justify-content: end">
+{#                    <button style="margin-top: 106px;" class="review-btn" type="button">#}
+{#                        <a href="{% url 'admin:board-lesson-review-detail' keyword=keyword post_id=post.id page=page %}">#}
+{#                            후기#}
+{#                        </a>#}
+{#                    </button>#}
                   </div>
                 </div>
               </section>
@@ -146,21 +159,21 @@
                 <hr />
                 <div class="member-info">
                   <div class="info-margin">
-                    <span class="info-tag">과외 시작일</span>
-                    <h4>2023.01.01</h4>
+                    <span class="info-tag">과외 결제일</span>
+                    <h4>{{ post.created_date|date:"Y-m-d H:i" }}</h4>
                   </div>
-                  <div class="info-margin margin">
+                  <div class="info-margin margin" style="margin-top: 70px">
                     <hr style="margin: 8px 0" />
                     <span class="info-tag">과외</span>
                     <div class="info-margin">
-                      <div class="write-count-box">
-                        <div>
-                          <span>참여 횟수:</span>
-                        </div>
-                        <div class="count">
-                          <span>3회</span>
-                        </div>
-                      </div>
+{#                      <div class="write-count-box">#}
+{#                        <div>#}
+{#                          <span>참여 횟수:</span>#}
+{#                        </div>#}
+{#                        <div class="count">#}
+{#                          <span>3회</span>#}
+{#                        </div>#}
+{#                      </div>#}
                     </div>
                     <div class="info-margin">
                       <div class="write-count-box">
@@ -168,29 +181,14 @@
                           <span>과외 종류:</span>
                         </div>
                         <div class="count">
-                          <span>대면</span>
+                          <span>{{ post.get_lesson_type_display }}</span>
                         </div>
                       </div>
                     </div>
 
                   </div>
 
-                  <div class="info-margin margin">
-                    <!-- 유저 작성한 것들  -->
-                    <hr style="margin: 8px 0" />
-                    <span class="info-tag">내용</span>
-                    <div class="info-margin">
-                      <div class="write-count-box">
-                        <div>
-                          <span>언어:</span>
-                        </div>
-                        <div class="count">
-                          <span>영어</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="info-margin margin">
+                  <div class="info-margin margin" style="margin: 70px 0 50px">
                     <!-- 유저 작성한 것들  -->
                     <hr style="margin: 8px 0" />
                     <span class="info-tag">결제</span>
@@ -200,11 +198,29 @@
                           <span>결제 상태:</span>
                         </div>
                         <div class="count">
-                          <span>결제 완료</span>
+                          <span>{{ post.get_pay_status_display }}</span>
                         </div>
                       </div>
                     </div>
                   </div>
+{#                  <div class="info-margin margin" style="margin-top: 20px">#}
+                      <div style="display: flex; justify-content: end">
+                        <button onclick="cancelPay()" style="margin-top: 30px; width: 100px" class="review-btn" type="button">결제 취소</button>
+                      </div>
+                    <!-- 유저 작성한 것들  -->
+{#                    <hr style="margin: 8px 0" />#}
+{#                    <span class="info-tag">결제</span>#}
+{#                    <div class="info-margin">#}
+{#                      <div class="write-count-box">#}
+{#                        <div>#}
+{#                          <span>결제 상태:</span>#}
+{#                        </div>#}
+{#                        <div class="count">#}
+{#                          <span>{{ post.get_pay_status_display }}</span>#}
+{#                        </div>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
                 </div>
               </section>
             </div>
@@ -214,5 +230,13 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script src="{% static 'js/admin/sidemenu.js'%}"></script>
+  <script>
+    let id = {{ post.id }};
+    let keyword = `{{ keyword }}`;
+    let page = {{ page }};
+    let member_id = {{ post.member.id }};
+    let teacher_id = {{ post.teacher.id }};
+  </script>
+  <script src="{% static 'js/admin/lesson_match_detail.js' %}"></script>
+{#  <script src="{% static 'js/admin/sidemenu.js'%}"></script>#}
 </html>

@@ -213,7 +213,7 @@ $(".heart").each((i, heart) => {
   $(heart).on('click', () => {
     if(!member){return;}
     $(".heart").removeClass("active");
-    if(i==0){
+    if(i===0){
       $(".heart").eq(1).addClass("active");
       fetch("/notice/likes/add/", {
             method: 'post',

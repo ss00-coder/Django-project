@@ -192,6 +192,10 @@ hr {
 }
 
 .review-btn {
+	font-family: 'GmarketSansMedium';
+	font-weight: normal;
+	border: none;
+	box-shadow: 2px 2px 8px -2px black;
 	width: 70px;
 	height: 40px;
 	background-color: #030303;
@@ -247,4 +251,3 @@ div.margin span {
 .gear-icon {
 	width: 10px;	
 }
-
