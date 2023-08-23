@@ -15,6 +15,7 @@ urlpatterns = [
     path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson_page'),
     path('lesson/<str:keyword>/', MyLessonView.as_view(), name='mylesson_find'),
     path('lesson/tab/<str:status>/', MyLessonView.as_view(), name='mylesson_status'),
+    path('lesson/<int:page>/<str:keyword>/<str:status>/', MyLessonView.as_view(), name='mylesson_status_save'),
     path('lesson/delete/<int:helpers_id>/', MyLessonDeleteView.as_view(), name='mylesson_delete'),
     path('lesson/<str:keyword>/<int:page>/', MyLessonView.as_view(), name='mylesson_list'),
     # 과외 리뷰
@@ -24,6 +25,7 @@ urlpatterns = [
     path('helpers/<int:page>/', MyHelpersView.as_view(), name='myhelpers_page'),
     path('helpers/<str:keyword>/', MyHelpersView.as_view(), name='myhelpers_find'),
     path('helpers/tab/<str:status>/', MyHelpersView.as_view(), name='myhelpers_status'),
+    path('helpers/<int:page>/<str:keyword>/<str:status>/', MyHelpersView.as_view(), name='myhelpers_status_save'),
     path('helpers/delete/<int:helpers_id>/', MyHelpersDeleteView.as_view(), name='myhelpers_delete'),
     path('helpers/<str:keyword>/<int:page>/', MyHelpersView.as_view(), name='myhelpers_list'),
     # 이벤트
@@ -31,7 +33,8 @@ urlpatterns = [
     path('event/<int:page>/', MyEventView.as_view(), name='myevent_page'),
     path('event/<str:keyword>/', MyEventView.as_view(), name='myevent_find'),
     path('event/tab/<str:status>/', MyEventView.as_view(), name='myevent_status'),
-    path('event/<int:page>/<str:keyword>/<str:status>/', MyEventView.as_view(), name='myevent_status_save'),
+    path('event/tab/<str:status>/<str:keyword>/', MyEventView.as_view(), name='myevent_status-search'),
+    path('event/<str:status>/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent_status_save'),
     path('event/delete/<int:event_id>/', MyEventDeleteView.as_view(), name='myevent_delete'),
     path('event/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent_list'),
     # 쪽지
@@ -43,7 +46,7 @@ urlpatterns = [
     path('message-send-list/<str:keyword>/<int:page>', MyMessageSendListView.as_view(), name='message-send-list-page'),
     path('message/delete/<int:id>', MyMessageDeleteView.as_view(), name='message-delete'),
     path('message/send/delete/<int:id>', MyMessageSendDeleteView.as_view(), name='message-send-delete'),
-    path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
+    path('message-detail/<int:receive_message_id>', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
