@@ -189,7 +189,7 @@
                       </button>
                     </li>
                     <li class="tab-item">
-                      <button class="tab-item-btn" type="button">
+                      <button onclick="location.href='{% url 'mypage:myhelpers_status' status='N' %}'" class="tab-item-btn" type="button">
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
@@ -214,7 +214,7 @@
                         {% else %}
                         <input value="{{ keyword }}" id="search-input" type="search" placeholder="검색어 입력">
                         {% endif %}
-                        <button onclick="location.href='{% url 'mypage:myevent_status' status=status keyword=keyword %} class="search-button" type="button">
+                        <button class="search-button" type="button">
                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                               d="M15.83 16.561a7.8 7.8 0 1 1 1.233-1.312l3.465 3.465a.9.9 0 1 1-1.272 1.273L15.83 16.56Zm1.13-5.961a6.16 6.16 0 1 1-12.32 0 6.16 6.16 0 0 1 12.32 0Z">

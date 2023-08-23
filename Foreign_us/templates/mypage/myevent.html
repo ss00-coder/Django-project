@@ -207,7 +207,6 @@
                     <span class="total-number">{{ current_count }}</span>
                   </div>
                   <div class="search">
-
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
                         {% if keyword == None %}
@@ -357,11 +356,10 @@
     </div>
   </div>
 <script>
-  const status = "{{ status }}"
+  const status_view = "{{ status }}"
 
 </script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-
 <script src="{% static 'js/mypage/myevent.js' %}"></script>
   <script>
       {#event_post = `{{ events }}`;#}
