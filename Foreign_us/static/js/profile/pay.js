@@ -1,9 +1,15 @@
 let price = "50000";
 let price_int = 50000;
 let item_name = "폴인어스 비대면 과외";
-
+let lesson_type = "N";
 $(".pay-btn").on('click', ()=>{
-    if(pay_item == "contact"){
+    if(member_id === "None") {
+        alert("로그인 해주세요.");
+        return;
+    }
+
+    if (pay_item === "contact") {
+        lesson_type = "Y";
         price = "120000";
         price_int = 120000;
         item_name = "폴인어스 대면 과외";
@@ -27,8 +33,8 @@ $(".pay-btn").on('click', ()=>{
             }
         ],
         user_info: {
-            username: '임희수',
-            email: 'gmatn96@naver.com',
+            username: member_nickname,
+            email: member_email,
             // addr: '사용자 주소',
             // phone: '010-1234-4567'
         },
@@ -70,5 +76,9 @@ $(".pay-btn").on('click', ()=>{
         //결제가 정상적으로 완료되면 수행됩니다
         //비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
         console.log(data);
+        $(".member_id").val(member_id);
+        $(".teacher_id").val(teacher_id);
+        $(".lesson_type").val(lesson_type);
+        document.getElementById("pay-form").submit();
     });
 });

@@ -198,7 +198,7 @@ div.board_content {
 }
 
 .board-info-box {
-    height: 453px;
+    /*height: 453px;*/
     width: 616px;
 }
 
@@ -238,4 +238,5 @@ div.board_content {
 	right: 22px;
 	top: 15px;
 	text-align: center;
+}
 

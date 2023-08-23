@@ -43,7 +43,7 @@ hr {
 }
 
 .board-info-title-box {
-	background-color: #fafafa;
+	/*background-color: #fafafa;*/
 	padding: 20px 27px 15px;
 }
 
@@ -279,7 +279,7 @@ input[type='date'] {
 }
 
 .board_info span {
-	font-size: 12px;
+	/*font-size: 12px;*/
 }
 
 .checkbox{

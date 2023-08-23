@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 쪽지 상세보기</title>
+    <title>관리자 페이지- 문의 상세보기</title>
     <link rel="stylesheet" href="{% static 'css/admin/inquiry/admin_inquiry_detail.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png'%}" type="image/x-icon">
 </head>
@@ -16,7 +16,7 @@
         <div class="info-title-box info-title-box-flex">
             <div class="logo-box-layout">
                 <div class="logo-box">
-                    <img src="../../../../static/image/logo/white.png">
+                  <img src="{% static 'image/logo/white.png' %}">
                 </div>
                 <div class="logo-title">
                     <span>Jar</span>
@@ -24,7 +24,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>쪽지 관리</span>
+                    <span>1:1 문의 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -38,8 +38,8 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
-                                <img src="../../../../static/image/admin/prev_icon.png" class="prev-icon">
+                            <a href="{% url 'admin:board-inquiry-list-page' page=page keyword=keyword %}">
+                                <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
                         </div>
@@ -49,19 +49,19 @@
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>📩 쪽지 상세보기</span>
+                                <span>📋 1:1 문의 상세보기</span>
                             </div>
                             <hr>
                             <div class="info-table">
                                 <div class="board_title">
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
-                                    <span>제목</span>
+                                    <span>{{ post.message_title }}</span>
                                 </div>
                                 <div class="board_info board_writer">
                                     <span class="span-bold">작성자 :</span>
                                     <!-- 작성자 명  -->
-                                    <span>닉네임</span>
+                                    <span>{{ post.send_member.member_nickname }}</span>
                                 </div>
                                 <!-- <div class="info-member">
 									<span class="span-bold">좋아요 :</span>
@@ -70,58 +70,74 @@
                                 <div class="board_info board_register_date">
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
-                                    <span>2023.08.09 11:01</span>
+                                    <span>{{ post.created_date|date:"Y-m-d H:i" }}</span>
                                 </div>
                                 <hr>
                                 <div class="board_content">
                                     <!-- 게시판 내용 -->
-                                    문의글 내용
-                                    <br>
-                                    문의글 내용
-                                    <br>
-                                    문의글 내용
+                                    {{ post.message_content }}
                                 </div>
+                                <section class="img_wrapper_box">
+                                    <div class="img_ul_wrapper">
+                                        <ul class="img_ul">
+                                            {% for post_file in post_files %}
+                                                <img style="display:block; margin: 0 auto" width="400px" src="/upload/{{ post_file.image }}">
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </section>
                                 <hr>
                                 <div class="answer_button_wrapper modify_button_wrapper" style="display: flex; justify-content: right;">
-                                    <button>답변하기</button>
+                                    <button><a href="{% url 'admin:board-inquiry-write' page=page post_id=post.id %}">답변하기</a></button>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <section class="board-info-box-layout">
-                        <div class="board-info-box">
-                            <div class="board-info-title-box">
-                                <span>📨 답변글</span>
-                            </div>
-                            <hr>
-                            <div class="info-table">
-                                <div class="board_title">
-                                    <span class="span-bold">제목 :</span>
-                                    <!-- 제목  -->
-                                    <span>제목</span>
-                                </div>
-                                <div class="board_info board_writer">
-                                    <span class="span-bold">작성자 :</span>
-                                    <!-- 작성자 명  -->
-                                    <span>관리자</span>
-                                </div>
-                                <!-- <div class="info-member">
-									<span class="span-bold">좋아요 :</span>
-									<span>3</span>
-								</div> -->
-                                <div class="board_info board_register_date">
-                                    <span class="span-bold">작성 날짜 :</span>
-                                    <!-- 작성 날짜  -->
-                                    <span>2023.08.09 11:01</span>
+                    {% if answer.message_title %}
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>📨 답변글</span>
                                 </div>
                                 <hr>
-                                <div class="board_content">
-                                    <!-- 게시판 내용 -->
-                                    답변글 내용
+                                <div class="info-table">
+                                    <div class="board_title">
+                                        <span class="span-bold">제목 :</span>
+                                        <!-- 제목  -->
+                                        <span>{{ answer.message_title }}</span>
+                                    </div>
+                                    <div class="board_info board_writer">
+                                        <span class="span-bold">작성자 :</span>
+                                        <!-- 작성자 명  -->
+                                        <span>{{ answer.member.member_nickname }}</span>
+                                    </div>
+                                    <!-- <div class="info-member">
+                                        <span class="span-bold">좋아요 :</span>
+                                        <span>3</span>
+                                    </div> -->
+                                    <div class="board_info board_register_date">
+                                        <span class="span-bold">답변 날짜 :</span>
+                                        <!-- 작성 날짜  -->
+                                        <span>{{ answer.created_date|date:"Y-m-d H:i" }}</span>
+                                    </div>
+                                    <hr>
+                                    <div class="board_content">
+                                        <!-- 게시판 내용 -->
+                                        {{ answer.message_content }}
+                                    </div>
+                                    <section class="img_wrapper_box">
+                                    <div class="img_ul_wrapper">
+                                        <ul class="img_ul">
+                                            {% for answer_file in answer_files %}
+                                                <img style="display:block; margin: 0 auto" width="400px" src="/upload/{{ answer_file.image }}">
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </section>
                                 </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    {% endif %}
                 </div>
             </div>
         </div>

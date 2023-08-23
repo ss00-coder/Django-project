@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from lesson.models import Lesson, LessonFile
 from member.models import Member
+from payment.models import Payment
 from review.models import Review, ReviewFile
 
 
@@ -12,11 +13,22 @@ from review.models import Review, ReviewFile
 class ProfileView(View):
     def get(self, request, member_id):
         member = Member.objects.get(id=member_id)
+
         context = {
             'member': member,
-            'member_profile': member.memberfile_set.filter(file_type="P"),
-            'member_background': member.memberfile_set.filter(file_type="B"),
+            'login_member': "None"
         }
+
+        if member.memberfile_set.filter(file_type='P'):
+            context['member_profile'] = member.memberfile_set.get(file_type='P')
+
+        if member.memberfile_set.filter(file_type='B'):
+            context['member_background'] = member.memberfile_set.get(file_type='B')
+
+        if 'member_email' in request.session:
+            login_member = Member.objects.get(member_email=request.session['member_email'])
+            context['login_member'] = login_member
+
         return render(request, 'profile/profile.html', context)
 
 
@@ -82,9 +94,39 @@ class ProfileLessonListAPI(APIView):
 class HostView(View):
     def get(self, request, member_id):
         member = Member.objects.get(id=member_id)
+
         context = {
             'member': member,
-            'member_profile': member.memberfile_set.filter(file_type="P"),
-            'member_background': member.memberfile_set.filter(file_type="B")
+            'login_member': None
         }
+
+        if member.memberfile_set.filter(file_type='P'):
+            context['member_profile'] = member.memberfile_set.get(file_type='P')
+
+        if member.memberfile_set.filter(file_type='B'):
+            context['member_background'] = member.memberfile_set.get(file_type='B')
+
+        if 'member_email' in request.session:
+            login_member = Member.objects.get(member_email=request.session['member_email'])
+            context['login_member'] = login_member
+
         return render(request, 'profile/host.html', context)
+
+
+class PayView(View):
+    def post(self, request):
+        datas = request.POST
+        member_id = datas['member_id']
+        teacher_id = datas['teacher_id']
+        lesson_type = datas['lesson_type']
+
+        datas = {
+            'member_id': member_id,
+            'teacher_id': teacher_id,
+            'lesson_type': lesson_type
+        }
+
+        Payment.objects.create(**datas)
+
+        return redirect(f'/profile/{teacher_id}')
+

@@ -26,15 +26,19 @@
                         </a>
                     </div>
                 </div>
-                <div class="profile_img">
-                    <div class="relative">
-                        <button class="img_button">
-                            <span>
-                                <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F50329359-0e8b-4ba3-a1b7-302917cad5b5%2FprofileImage%2Fe74552d2-4626-4596-8e6e-bbcc81285719.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1920&q=75">
-                            </span>
-                        </button>
-                    </div>
-                </div>
+    {#            <div class="profile_img">#}
+    {#                <div class="relative">#}
+    {#                    <button class="img_button">#}
+    {#                        <span>#}
+    {#                            {% if login_member_profile.image %}#}
+    {#                                <a href="{% url 'profile:profile' member_id=login_member.id %}"><img style="left: 189px;" class="profile_img_center" src="/upload/{{ login_member_profile.image }}"></a>#}
+    {#                            {% else %}#}
+    {#                                <div style="left: 189px; background-image: url({% static 'image/profile_icon.png' %})" class="profile_img_center"></div>#}
+    {#                            {% endif %}#}
+    {#                        </span>#}
+    {#                    </button>#}
+    {#                </div>#}
+    {#            </div>#}
             </header>
         </div>
         <!-- 헤더 백그라운드  -->
@@ -71,8 +75,8 @@
                                         <div>과외 가입</div>
                                     </button>
                                 </div>
-                                {% if member.address %}
-                                    <button onclick="{% url 'profile:host' member_id=member.id %}"  type="button" class="hosting-btn">
+                                {% if member.member_address %}
+                                    <button onclick="location.href = `{% url 'profile:host' member_id=member.id %}`"  type="button" class="hosting-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin" fill="none"
                                              height="18"
                                              stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -125,14 +129,12 @@
                                                         <span class="product-title">비대면 과외</span>
                                                         <div style="display: flex;">
                                                             <span class="price-container">
-                                                                <strong class="price-content">5,000원</strong>
-                                                                /월
+                                                                <strong class="price-content">50,000원</strong>/월
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <span class="product-check active-check">
-                                                        <svg class="product-check-svg active-check-svg"
-                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                         <svg class="product-check-svg active-check-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                                 d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
@@ -147,7 +149,7 @@
                                                     <div style="flex-basis: 20px;">
                                                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
+                                                                  d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
                                                         </svg>
                                                     </div>
@@ -170,15 +172,13 @@
                                                         <span class="product-title">대면 과외</span>
                                                         <div style="display: flex;">
                                                             <span class="price-container">
-                                                                <strong class="price-content">10,000원</strong>
-                                                                /월
+                                                                <strong class="price-content">120,000원</strong>/월
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <span class="product-check">
-                                                        <svg class="product-check-svg" viewBox="0 0 24 24"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        <svg class="product-check-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                             <path fill-rule="evenodd" clip-rule="evenodd"
                                                                 d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
                                                         </svg>
@@ -192,7 +192,7 @@
                                                     <div style="flex-basis: 20px;">
                                                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                             <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
+                                                                  d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
                                                         </svg>
                                                     </div>
@@ -205,12 +205,20 @@
                             </div>
                         </div>
 
+
                         <!-- 결제 버튼 -->
                         <div class="pay-wrapper">
                             <button class="pay-btn">
                                 과외 가입
                             </button>
                         </div>
+
+                        <form id="pay-form" action="{% url 'profile:pay' %}" method="post">
+                            {% csrf_token %}
+                            <input name="member_id" class="member_id" type="hidden">
+                            <input name="teacher_id" class="teacher_id" type="hidden">
+                            <input name="lesson_type" class="lesson_type" type="hidden">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -219,12 +227,30 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
-    <script src="{% static 'js/profile/host.js' %} "></script>
-    <script src="{% static 'js/profile/pay.js' %} "></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
+<script>
+    let member_id = {{ login_member.id }};
+    let member_nickname = `{{ login_member.member_nickname }}`;
+    let member_email = `{{ login_member.member_email }}`;
+    let teacher_id = {{ member.id }};
+</script>
+<script src="{% static 'js/profile/host.js' %} "></script>
+<script src="{% static 'js/profile/pay.js' %} "></script>
 </body>
 <script>
+    let member_id = "{{ login_member }}";
+    let member_nickname = null;
+    let member_email = null;
+    console.log(member_id);
+    if(member_id !== "None"){
+        console.log("왜들어와?");
+        member_id = `{{ login_member.id }}`;
+        member_nickname = `{{ login_member.member_nickname }}`;
+        member_email = `{{ login_member.member_email }}`;
+    }
+    let teacher_id = {{ member.id }};
+
     /* 구글 map */
     ((g) => {
       var h,
@@ -267,7 +293,7 @@
 
     async function initMap() {
       // The location of Uluru
-      const position = { lat: 37.49774293207681, lng: 127.10703608868103  };
+      const position = { lat: member_latitude, lng: member_longitude  };
       // Request needed libraries.
       //@ts-ignore
       const { Map } = await google.maps.importLibrary('maps');
@@ -275,7 +301,7 @@
 
       // The map, centered at Uluru
       map = new Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 17,
         center: position,
         mapId: 'DEMO_MAP_ID',
       });
@@ -283,20 +309,6 @@
       // The marker, positioned at Uluru
       const marker = new AdvancedMarkerView({
         map: map,
-        position: position,
-        title: 'Uluru',
-      });
-
-      // The map, centered at Uluru
-      appMap = new Map(document.getElementById('app-map'), {
-        zoom: 12,
-        center: position,
-        mapId: 'DEMO_MAP_ID',
-      });
-
-      // The marker, positioned at Uluru
-      const appMarker = new AdvancedMarkerView({
-        map: appMap,
         position: position,
         title: 'Uluru',
       });
