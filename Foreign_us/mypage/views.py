@@ -9,7 +9,7 @@ from Foreign_us.models import Message
 from event.models import Event, EventLike, EventFile
 from helpers.models import Helpers, HelpersLike, HelpersFile
 from lesson.models import Lesson, LessonLike, LessonFile
-from member.models import Member
+from member.models import Member, MemberFile, MemberSNS
 from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, SendMessageFile
 from review.models import Review, ReviewFile, ReviewLike
 
@@ -17,27 +17,58 @@ from review.models import Review, ReviewFile, ReviewLike
 # 내 페이지
 # Create your views here.
 class MyProfileView(View):
-    # 프로필 사이드바 닉네임
-    def get(self, request):
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
-        # member = Member.objects.get(member_email=email)
-        # member = Member.objects.filter(member_nickname='짱구')
-        # print(member[0].member_nickname)  // 이건 필터
-        # nicknames = {'nickname': member[0].member_nickname}
-        # print(nicknames)
-        # print(nicknames)
+    # def get(self, request):
+    #     return render(request, 'mypage/myprofile.html')
+    #
+    # def post(self, request):
+    #     datas = request.POST
+    #     files = request.FILES
+    #     # 로그인된 사람
+    #     member_id = Member.objects.get(member_email=request.session['member_email']).id
+    #     member_sns = MemberSNS.objects.get(member_email=request.session['member_email']).id
+    #
+    #     new_datas = {
+    #         'member_nickname': datas['member_nickname'],
+    #         'member_intro': datas['member_intro'],
+    #         'member_intro_detail': datas['member_intro_detail'],
+    #         'member_address': datas['member_address'],
+    #         'sns_url': datas['sns_url']
+    #     }
+    #
+    #     Member.objects.update(**new_datas)
+    #
+    #     if files:
+    #         for file in files.getlist('member_file'):
+    #             MemberFile.objects.create(image=file, member_id=member_id)
+    #
+    #     return render(redirect(post.get_absolute_url(1))
+
+class MyProfileView(View):
+    def get(self, request, member_id, page):
+        print(member_id)
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
+
         context = {
-            'member_nickname': member_nickname
+            'member_nickname': member_nickname,
+            'member_intro': member_intro,
+            'member_intro_detail': member_intro_detail,
+            'member_address': member_address,
+            'sns_url': sns_url,  # Corrected syntax, added ['sns_url']
+            'page': page
         }
-        return render(request, 'mypage/myprofile.html', context)
 
-    # def post(self, request, *args, **kwargs):
-    #     token, member_email, member_nickname, member_birth = request.POST.values()
-    #     Member.objects.create(member_email=member_email, member_password=member_password, member_name=member_name,
-    #                           member_age=member_age, member_birth=member_birth)
-    #     # 이동할 urls 경로를 작성한다.
-    #     return redirect('/member/myprofile')
+        # render(request, to, context): 바로 html 화면으로 이동
+        return render(request, "mypage/myprofile.html", context)
 
+    def post(self, request, member_id, page):
+        member_id = request.MEMBER
+        datas = {
+            'post_title': datas['post_title'],
+            'post_content': datas['post_content']
+        }
+        Post.objects.update(**datas)
+        # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
+        return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
 
 # 과외 목록
 class MyLessonView(View):
