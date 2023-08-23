@@ -244,19 +244,21 @@ class MyEventDeleteView(View):
 
 class MyMessageListView(View):
     def get(self, request, keyword=None, page=1):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
         if keyword == "None":
             keyword = None
 
         if keyword:
-            receive_messages = ReceiveMessage.objects.filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
+            receive_messages = ReceiveMessage.objects.filter(member_id=member_id).filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
         else:
-            receive_messages = ReceiveMessage.objects.order_by('-id').all()
+            receive_messages = ReceiveMessage.objects.filter(member_id=member_id).order_by('-id').all()
         type = "receive"
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_total = len(receive_messages)
-        real_total = ReceiveMessage.objects.count()
+        send_total = SendMessage.objects.filter(member_id=member_id).count()
+        receive_total = ReceiveMessage.objects.filter(member_id=member_id).count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -274,10 +276,9 @@ class MyMessageListView(View):
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'send_total': SendMessage.objects.count(),
-            'receive_total': ReceiveMessage.objects.count(),
             'current_total': current_total,
-            'real_total': real_total,
+            'send_total': send_total,
+            'receive_total': receive_total,
             'keyword': keyword,
             'member_nickname': member_nickname,
             'type': type,
@@ -287,20 +288,21 @@ class MyMessageListView(View):
 
 class MyMessageSendListView(View):
     def get(self, request, keyword=None, page=1):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
         if keyword == "None":
             keyword = None
 
         if keyword:
-            send_messages = SendMessage.objects.filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
+            send_messages = SendMessage.objects.filter(member_id=member_id).filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
         else:
-            send_messages = SendMessage.objects.order_by('-id').all()
+            send_messages = SendMessage.objects.filter(member_id=member_id).order_by('-id').all()
         type = "send"
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_total = len(send_messages)
-        send_total = SendMessage.objects.count()
-        receive_total = ReceiveMessage.objects.count()
+        send_total = SendMessage.objects.filter(member_id=member_id).count()
+        receive_total = ReceiveMessage.objects.filter(member_id=member_id).count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -343,10 +345,31 @@ class MyMessageSendDeleteView(View):
 
 
 class MyMessageDetailView(View):
-    print(8)
 
-    def get(self, request):
-        return render(request, 'message/detail.html')
+    def get(self, request, receive_message_id):
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+
+        # 받은 메세제 id
+        receive_message = ReceiveMessage.objects.get(id=receive_message_id)
+
+        # 받은 메세지 유저 id
+        send_member_id = ReceiveMessage.objects.get(id=receive_message_id).send_member_id
+
+        # 닉네임
+        nickname = Member.objects.get(id=send_member_id).member_nickname
+        # 프로필 이미지
+
+
+
+        # 이미지
+        context = {
+            'member_nickname': member_nickname,
+            'send_nickname': nickname,
+            'receive_message': receive_message,
+        }
+
+
+        return render(request, 'message/detail.html', context)
 
 
 class MyMessageWriteView(View):
@@ -356,23 +379,27 @@ class MyMessageWriteView(View):
     def post(self, request):
         datas = request.POST
         files = request.FILES
-        member_id = Member.objects.get(member_email=request.session['member_email']).id
-        send_member_id = Member.objects.get(member_email=datas['receive_email']).id
+        # 보내는 사람(로그인된 사람)
+        send_member_id = Member.objects.get(member_email=request.session['member_email']).id
+
+        # 받는 사람 (이메일 작성해서 넘겨준 사람의 id)
+        receive_member_id = Member.objects.get(member_email=datas['receive_email']).id
+
 
         receive_datas = {
             'message_title': datas['message_title'],
             'message_content': datas['message_content'],
             'message_status': 'N',
-            'send_member_id': Member.objects.get(member_email=datas['receive_email']).id,
-            'member_id': Member.objects.get(member_email=request.session['member_email']).id,
+            'send_member_id': send_member_id,
+            'member_id': receive_member_id,
         }
 
         Send_datas = {
             'message_title': datas['message_title'],
             'message_content': datas['message_content'],
             'message_status': 'N',
-            'member_id': Member.objects.get(member_email=datas['receive_email']).id,
-            'receive_member_id': Member.objects.get(member_email=request.session['member_email']).id,
+            'member_id': send_member_id,
+            'receive_member_id': receive_member_id,
         }
 
         ReceiveMessage.objects.create(**receive_datas)
@@ -382,11 +409,10 @@ class MyMessageWriteView(View):
             for file in files.getlist('message_file'):
                 # print(member_id)
                 # print(send_member_id)
-                ReceiveMessageFile.objects.create(image=file, receive_message_id=member_id)
+                ReceiveMessageFile.objects.create(image=file, receive_message_id=receive_member_id)
                 SendMessageFile.objects.create(image=file, send_message_id=send_member_id)
 
         return redirect('mypage:message-list-init')
-
 
 class MyPayView(View):
     def get(self, request):

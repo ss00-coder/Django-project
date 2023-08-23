@@ -46,7 +46,7 @@ urlpatterns = [
     path('message-send-list/<str:keyword>/<int:page>', MyMessageSendListView.as_view(), name='message-send-list-page'),
     path('message/delete/<int:id>', MyMessageDeleteView.as_view(), name='message-delete'),
     path('message/send/delete/<int:id>', MyMessageSendDeleteView.as_view(), name='message-send-delete'),
-    path('message-detail/', MyMessageDetailView.as_view(), name='message-detail'),
+    path('message-detail/<int:receive_message_id>', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
