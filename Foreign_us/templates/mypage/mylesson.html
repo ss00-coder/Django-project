@@ -178,22 +178,22 @@
                 <div class="tab-wrapper">
                   <ul class="tab-ul">
                     <li class="tab-item">
-                      <button class="tab-item-btn active-tab" type="button">
+                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='Y' %}'" class="tab-item-btn active-tab" type="button">
                         <div style="display: flex">
                           <p class="tab-title">게시완료</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">{{ total }}</p>
+                            <p class="tab-number">{{ saved_event }}</p>
                           </div>
                         </div>
                         <div class="tab-line"></div>
                       </button>
                     </li>
                     <li class="tab-item">
-                      <button class="tab-item-btn" type="button">
+                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='N' %}'" class="tab-item-btn" type="button">
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
-                            <p class="tab-number">0</p>
+                            <p class="tab-number">{{ temp_event }}</p>
                           </div>
                         </div>
                       </button>
@@ -204,12 +204,16 @@
                 <div class="total-and-search-wrapper">
                   <div class="total">
                     <span class="total-text">전체</span>
-                    <span class="total-number"></span>
+                    <span class="total-number">{{ current_count }}</span>
                   </div>
                   <div class="search">
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
+                        {% if keyword == None %}
                         <input id="search-input" type="search" placeholder="제목 검색">
+                        {% else %}
+                        <input value="{{ keyword }}" id="search-input" type="search" placeholder="검색어 입력">
+                        {% endif %}
                         <button class="search-button" type="button">
                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -226,7 +230,7 @@
               <!-- 내용 리스트 -->
               <ul class="posts-wrapper">
                 <!-- 작성 글 -->
-                {% for lesson, like in combine_like %}
+                {% for lesson, like, lesson_file in combine_like %}
                 <li class="post">
                   <button class="post-content-wrapper">
                     <div class="post-content">
@@ -236,6 +240,13 @@
                       <p class="post-content-text">{{ lesson.post_content }}</p>
                     </div>
                   </button>
+                  <div class="file-wrapper">
+{#                     {% if event_file.image %}#}
+                       <span class="file">
+                        <img src="{{ lesson_file.image }}" alt="Image">
+                       </span>
+{#                     {% endif %}#}
+                  </div>
                   <!-- 작성 정보 -->
                   <div class="info-wrapper">
                     <div class="info">
@@ -260,7 +271,7 @@
                         </path>
                       </svg>
                     </button>
-                    <button class="delete-button" type="button">
+                    <button id="{{ lesson.id }}" class="delete-button" type="button">
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M10 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 0 1 1.4 0v3.6a.7.7 0 0 1-.7.7ZM14 15.6a.7.7 0 0 1-.7-.7v-3.6a.7.7 0 1 1 1.4 0v3.6a.7.7 0 0 1-.7.7Z">
@@ -279,8 +290,8 @@
             <div class="paging-wrapper">
               <ul  style="display: flex">
               <!-- 이전버튼 -->
-              {% if startPage > 1 %}
-                  <a href="{% url 'mypage:mylesson' page=startPage|add:-1 %}" class="a-prev">
+                {% if startPage > 1 %}
+                  <a href="{% url 'mypage:mylesson_page' page=startPage|add:-1 %}" class="a-prev">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
@@ -292,7 +303,7 @@
               {% for i in "x"|rjust:5 %}
                   {% if forloop.counter0|add:startPage <= realEnd%}
                      <li>
-                         <a href="{% url 'mypage:mylesson' page=forloop.counter0|add:startPage %}" class="page">
+                         <a href="{% url 'mypage:mylesson_page' page=forloop.counter0|add:startPage %}" class="page">
                            {% if page ==  forloop.counter0|add:startPage %}
                                <button  class="page-active" type="button">
                                  <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
@@ -308,7 +319,7 @@
               {% endfor %}
              <!-- 다음버튼 -->
               {% if endPage < realEnd %}
-                  <a href="{% url 'mypage:mylesson' page=endPage|add:1 %}" class="a-next">
+                  <a href="{% url 'mypage:mylesson_page' page=endPage|add:1 %}" class="a-next">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
@@ -342,6 +353,10 @@
       <div class="modal-background"></div>
     </div>
   </div>
+  <script>
+   const status_view = "{{ status }}"
+
+  </script>
   <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
   <script src="{% static 'js/mypage/mylesson.js' %} "></script>
 </body>

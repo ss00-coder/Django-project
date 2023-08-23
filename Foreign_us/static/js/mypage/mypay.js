@@ -25,6 +25,7 @@ $(function () {
     })
 
 
+
     //모달창 이벤트
     $deleteBtn.click(() => { $modal.show() });
     $buttonCancel.click(() => { $modal.hide() })
