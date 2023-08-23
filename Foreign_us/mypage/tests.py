@@ -10,6 +10,7 @@ from helpers.models import HelpersLike, Helpers
 from lesson.models import Lesson, LessonLike
 from member.models import Member
 from message.models import ReceiveMessage, SendMessage
+from review.models import Review
 
 # Create your tests here.
 
@@ -75,32 +76,33 @@ class LessonLike(TestCase):
 
 
 class Helpers(TestCase):
-      Helpers.objects.bulk_create([
-        Helpers(post_title='도움1', post_content='도와주세요1', post_status='N', member_id=1),
-        Helpers(post_title='도움2', post_content='도와주세요2', post_status='Y',member_id=2),
-        Helpers(post_title='도움3', post_content='도와주세요3', post_status='Y',member_id=3),
-        Helpers(post_title='도움4', post_content='도와주세요4', post_status='Y',member_id=3),
-        Helpers(post_title='도움5', post_content='도와주세요5', post_status='N',member_id=16),
-        Helpers(post_title='도움6', post_content='도와주세요6', post_status='Y',member_id=5),
-        Helpers(post_title='도움7', post_content='도와주세요7', post_status='Y',member_id=1),
-        Helpers(post_title='도움8', post_content='도와주세요8', post_status='N',member_id=4),
-        Helpers(post_title='도움9', post_content='도와주세요9', post_status='Y',member_id=5),
-        Helpers(post_title='도움10', post_content='도와주세요10', post_status='N',member_id=12),
-        Helpers(post_title='도움11', post_content='도와주세요11', post_status='N',member_id=3),
-        Helpers(post_title='도움12', post_content='도와주세요12', post_status='Y',member_id=1),
-        Helpers(post_title='도움1', post_content='도와주세요1', post_status='N', member_id=1),
-        Helpers(post_title='도움2', post_content='도와주세요2', post_status='Y',member_id=2),
-        Helpers(post_title='도움3', post_content='도와주세요3', post_status='Y',member_id=3),
-        Helpers(post_title='도움4', post_content='도와주세요4', post_status='Y',member_id=3),
-        Helpers(post_title='도움5', post_content='도와주세요5', post_status='N',member_id=16),
-        Helpers(post_title='도움6', post_content='도와주세요6', post_status='Y',member_id=5),
-        Helpers(post_title='도움7', post_content='도와주세요7', post_status='Y',member_id=1),
-        Helpers(post_title='도움8', post_content='도와주세요8', post_status='N',member_id=4),
-        Helpers(post_title='도움9', post_content='도와주세요9', post_status='Y',member_id=5),
-        Helpers(post_title='도움10', post_content='도와주세요10', post_status='N',member_id=12),
-        Helpers(post_title='도움11', post_content='도와주세요11', post_status='N',member_id=3),
-        Helpers(post_title='도움12', post_content='도와주세요12', post_status='Y',member_id=1),
-    ])
+    pass
+    #   Helpers.objects.bulk_create([
+    #     Helpers(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1),
+    #     Helpers(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2),
+    #     Helpers(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3),
+    #     Helpers(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3),
+    #     Helpers(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16),
+    #     Helpers(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5),
+    #     Helpers(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1),
+    #     Helpers(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4),
+    #     Helpers(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5),
+    #     Helpers(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12),
+    #     Helpers(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3),
+    #     Helpers(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1),
+    #     Helpers(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1),
+    #     Helpers(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2),
+    #     Helpers(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3),
+    #     Helpers(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3),
+    #     Helpers(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16),
+    #     Helpers(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5),
+    #     Helpers(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1),
+    #     Helpers(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4),
+    #     Helpers(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5),
+    #     Helpers(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12),
+    #     Helpers(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3),
+    #     Helpers(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1),
+    # ])
 
 
 class HelpersLike(TestCase):
@@ -206,4 +208,33 @@ class ReceiveMessage(TestCase):
     #     ReceiveMessage(message_title='쪽지 제목9', message_content='쪽지 내용9', message_status='N', send_member_id=4, member_id=1),
     #     ReceiveMessage(message_title='쪽지 제목10', message_content='쪽지 내용10', message_status='N', send_member_id=1, member_id=1),
     #     ReceiveMessage(message_title='쪽지 제목11', message_content='쪽지 내용11', message_status='N', send_member_id=3, member_id=1)
+    # ])
+
+class Review(TestCase):
+    pass
+    #   Review.objects.bulk_create([
+    #     Review(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1, reviewed_member_id=2),
+    #     Review(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2, reviewed_member_id=4),
+    #     Review(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3, reviewed_member_id=5),
+    #     Review(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3, reviewed_member_id=5),
+    #     Review(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16, reviewed_member_id=5),
+    #     Review(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5, reviewed_member_id=5),
+    #     Review(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1, reviewed_member_id=5),
+    #     Review(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4, reviewed_member_id=3),
+    #     Review(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5, reviewed_member_id=5),
+    #     Review(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12, reviewed_member_id=5),
+    #     Review(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3, reviewed_member_id=5),
+    #     Review(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1, reviewed_member_id=5),
+    #     Review(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1, reviewed_member_id=3),
+    #     Review(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2, reviewed_member_id=5),
+    #     Review(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3, reviewed_member_id=1),
+    #     Review(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3, reviewed_member_id=5),
+    #     Review(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16, reviewed_member_id=3),
+    #     Review(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5, reviewed_member_id=5),
+    #     Review(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1, reviewed_member_id=5),
+    #     Review(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4, reviewed_member_id=1),
+    #     Review(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5, reviewed_member_id=5),
+    #     Review(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12, reviewed_member_id=5),
+    #     Review(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3, reviewed_member_id=1),
+    #     Review(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1, reviewed_member_id=5),
     # ])

@@ -3,7 +3,7 @@ from django.urls import path
 from mypage import views
 from mypage.views import MyProfileView, MyLessonView, MyLessonReviewView, MyHelpersView, MyEventView, MyMessageListView, \
     MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView, MyHelpersDeleteView, MyMessageSendListView, \
-    MyMessageDeleteView, MyMessageSendDeleteView
+    MyMessageDeleteView, MyMessageSendDeleteView, MyLessonDeleteView
 
 app_name = 'mypage'
 
@@ -11,8 +11,13 @@ urlpatterns = [
     # 프로필
     path('profile/', MyProfileView.as_view(), name='myprofile'),
     # 과외 매칭
-    path('lesson/', MyLessonView.as_view(), name='mylesson'),
-    path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson'),
+    path('lesson/', MyLessonView.as_view(), name='mylesson_init'),
+    path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson_page'),
+    path('lesson/<str:keyword>/', MyLessonView.as_view(), name='mylesson_find'),
+    path('lesson/tab/<str:status>/', MyLessonView.as_view(), name='mylesson_status'),
+    path('lesson/delete/<int:helpers_id>/', MyLessonDeleteView.as_view(), name='mylesson_delete'),
+    path('lesson/<str:keyword>/<int:page>/', MyLessonView.as_view(), name='mylesson_list'),
+    # 과외 리뷰
     path('lesson-review/', MyLessonReviewView.as_view(), name='mylesson-review'),
     # 헬퍼스
     path('helpers/', MyHelpersView.as_view(), name='myhelpers_init'),
@@ -26,6 +31,7 @@ urlpatterns = [
     path('event/<int:page>/', MyEventView.as_view(), name='myevent_page'),
     path('event/<str:keyword>/', MyEventView.as_view(), name='myevent_find'),
     path('event/tab/<str:status>/', MyEventView.as_view(), name='myevent_status'),
+    path('event/<int:page>/<str:keyword>/<str:status>/', MyEventView.as_view(), name='myevent_status_save'),
     path('event/delete/<int:event_id>/', MyEventDeleteView.as_view(), name='myevent_delete'),
     path('event/<str:keyword>/<int:page>/', MyEventView.as_view(), name='myevent_list'),
     # 쪽지

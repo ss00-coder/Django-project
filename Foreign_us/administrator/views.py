@@ -466,7 +466,7 @@ class MemberDetailView(View):
 class MemberDeleteAPI(APIView):
     def post(self, request):
         member_ids = request.data['member_ids']
-            Member.objects.filter(id__in=member_ids).update(member_type="N")
+        Member.objects.filter(id__in=member_ids).update(member_type="N")
         # member.member_type = 'N'
         # member.save()
 

@@ -10,7 +10,7 @@ $(function () {
     const $buttonAgree = $('.button-agree');
 
     // 해당 작성글 전체 수 최초 값 설정
-    $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
+    // $totalNumber.text($tabBtn.eq(0).find('.tab-number').text())
 
     // 탭 버튼 이벤트
     $tabBtn.click((e) => {
@@ -20,16 +20,49 @@ $(function () {
             $(e.currentTarget).append('<div class="tab-line"></div>');
 
             // 해당 작성글 전체 수 변경하는 이벤트
-            $totalNumber.text($(e.currentTarget).find('.tab-number').text());
+            // $totalNumber.text($(e.currentTarget).find('.tab-number').text());
         }
     })
 
+globalThis.lessonId;
+
     //모달창 이벤트
-    $deleteBtn.click(() => { $modal.show() });
+    $deleteBtn.click(function(){
+        globalThis.lessonId = this.id
+        // console.log(this.id);
+        $modal.show();
+    });
+
+
     $buttonCancel.click(() => { $modal.hide() })
-    $buttonAgree.click(() => { $modal.hide() })
+    $buttonAgree.click(function ()  {
+        console.log(lessonId)
+        $modal.hide()
+        location.href=`/mypage/lesson/delete/${globalThis.lessonId}/`
+    })
 });
 
+//검색창
+$(".search-button svg").on('click', ()=>{
+	keyword = $("#search-input").val();
+	location.href = keyword === "" ? "/mypage/lesson/" : `/mypage/lessons/${keyword}/`;
+})
+
+
+const $createBtn = $('.create-btn');
+
+    $createBtn.click(() => {
+        location.href=`/lesson/write/`
+    })
+
+let status = 'Y';
+
+if(status_view === 'N') {
+    $(".tab-item-btn").eq(0).removeClass("active-tab");
+    $(".tab-item-btn").eq(1).addClass("active-tab");
+    $('.tab-line').remove();
+    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+}
 
 
 
