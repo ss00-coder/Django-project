@@ -17,6 +17,7 @@ from review.models import Review, ReviewFile, ReviewLike
 # 내 페이지
 # Create your views here.
 class MyProfileView(View):
+    pass
     # def get(self, request):
     #     return render(request, 'mypage/myprofile.html')
     #
@@ -44,31 +45,29 @@ class MyProfileView(View):
     #     return render(redirect(post.get_absolute_url(1))
 
 class MyProfileView(View):
-    def get(self, request, member_id, page):
-        print(member_id)
-        member_id = Member.objects.get(member_email=request.session['member_email']).id
+    def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+        print(member)
 
         context = {
-            'member_nickname': member_nickname,
-            'member_intro': member_intro,
-            'member_intro_detail': member_intro_detail,
-            'member_address': member_address,
-            'sns_url': sns_url,  # Corrected syntax, added ['sns_url']
-            'page': page
+            'member_nickname': member.member_nickname,
+            'member_intro': member.member_intro,
+            'member_intro_detail': member.member_intro_detail,
+            'member_address': member.member_address,
+            'sns_url': member.sns_url,
         }
-
         # render(request, to, context): 바로 html 화면으로 이동
         return render(request, "mypage/myprofile.html", context)
 
-    def post(self, request, member_id, page):
-        member_id = request.MEMBER
-        datas = {
-            'post_title': datas['post_title'],
-            'post_content': datas['post_content']
-        }
-        Post.objects.update(**datas)
-        # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
-        return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
+    # def post(self, request):
+    #     datas = request.POST
+    #     datas = {
+    #         'post_title': datas['post_title'],
+    #         'post_content': datas['post_content']
+    #     }
+    #     Post.objects.update(**datas)
+    #     # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
+    #     return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
 
 # 과외 목록
 class MyLessonView(View):
@@ -450,12 +449,14 @@ class MyMessageDetailView(View):
         # 닉네임
         nickname = Member.objects.get(id=send_member_id).member_nickname
         # 프로필 이미지
-
+        # 파일 첨부 이미지
+        file = ReceiveMessageFile.objects.get(receive_message=receive_message)
         # 이미지
         context = {
             'member_nickname': member_nickname,
             'send_nickname': nickname,
             'receive_message': receive_message,
+            'file': file
         }
 
         return render(request, 'message/detail.html', context)
@@ -463,7 +464,10 @@ class MyMessageDetailView(View):
 
 class MyMessageWriteView(View):
     def get(self, request):
-        return render(request, 'message/write.html')
+        context = {
+            'member_nickname': Member.objects.get(member_email=request.session['member_email']).member_nickname
+        }
+        return render(request, 'message/write.html', context)
 
     def post(self, request):
         datas = request.POST
@@ -490,15 +494,15 @@ class MyMessageWriteView(View):
             'receive_member_id': receive_member_id,
         }
 
-        ReceiveMessage.objects.create(**receive_datas)
-        SendMessage.objects.create(**Send_datas)
+        receive_message = ReceiveMessage.objects.create(**receive_datas)
+        send_message = SendMessage.objects.create(**Send_datas)
 
         if files:
             for file in files.getlist('message_file'):
                 # print(member_id)
                 # print(send_member_id)
-                ReceiveMessageFile.objects.create(image=file, receive_message_id=receive_member_id)
-                SendMessageFile.objects.create(image=file, send_message_id=send_member_id)
+                ReceiveMessageFile.objects.create(image=file, receive_message=receive_message)
+                SendMessageFile.objects.create(image=file, send_message=send_message)
 
         return redirect('mypage:message-list-init')
 
