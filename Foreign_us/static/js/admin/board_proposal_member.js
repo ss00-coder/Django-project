@@ -12,6 +12,7 @@ $deleteButton.on("click", function (e) {
 			memberIdArr.push(id);
 		}
 	})
+	console.log(memberIdArr);
 	if (memberIdArr) {
 		if(confirm(memberIdArr + "번을 탈퇴 회원으로 변경하시겠습니까?")){
 			adminMemberService.remove(memberIdArr);

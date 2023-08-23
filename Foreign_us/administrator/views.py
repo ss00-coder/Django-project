@@ -453,9 +453,18 @@ class MemberDetailView(View):
             keyword = None
 
         member = Member.objects.get(id=member_id)
+        member_profile = member.memberfile_set.filter(member__memberfile__file_type="P")
+        lesson_match_count = Payment.objects.filter(Q(member_id=member_id) | Q(teacher_id=member_id)).count()
+        lesson_count = Lesson.objects.filter(member_id=member_id).count()
+        helpers_count = Helpers.objects.filter(member_id=member_id).count()
+        event_count = Event.objects.filter(member_id=member_id).count()
         context = {
             'member': member,
-            'post_files': list(member.memberfile_set.all()),
+            'member_profile': member_profile,
+            'lesson_match_count': lesson_match_count,
+            'lesson_count': lesson_count,
+            'helpers_count': helpers_count,
+            'event_count': event_count,
             'page': page,
             'keyword': keyword
         }
@@ -466,7 +475,7 @@ class MemberDetailView(View):
 class MemberDeleteAPI(APIView):
     def post(self, request):
         member_ids = request.data['member_ids']
-            Member.objects.filter(id__in=member_ids).update(member_type="N")
+        Member.objects.filter(id__in=member_ids).update(member_type="N")
         # member.member_type = 'N'
         # member.save()
 
