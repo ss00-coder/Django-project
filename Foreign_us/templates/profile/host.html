@@ -30,8 +30,7 @@
                     <div class="relative">
                         <button class="img_button">
                             <span>
-                                <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F50329359-0e8b-4ba3-a1b7-302917cad5b5%2FprofileImage%2Fe74552d2-4626-4596-8e6e-bbcc81285719.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1920&q=75"
-                                    alt="">
+                                <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F50329359-0e8b-4ba3-a1b7-302917cad5b5%2FprofileImage%2Fe74552d2-4626-4596-8e6e-bbcc81285719.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1920&q=75">
                             </span>
                         </button>
                     </div>
@@ -42,8 +41,9 @@
         <div class="header-background">
             <div class="header-back-img-wrap">
                 <span class="header-back-img-span">
-                    <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F3f09374b-6fb1-4469-904a-5adfdd2c7d2a%2FcreatorCoverImage%2F2eb186b7-ad7c-41a5-a9d9-3282c9fa900a.jpg%3Fauto%3Dformat%252Ccompress%26h%3D1184%26lossless%3Dtrue%26w%3D3200&w=1920&q=75"
-                        alt="배경이미지">
+                    {% if member_background.image %}
+                        <img src="/upload/{{ member_background.image }}">
+                    {% endif %}
                 </span>
                 <div class="absolute"></div>
             </div>
@@ -51,11 +51,19 @@
                 <div>
                     <div class="profile_info_box_padding">
                         <div class="profile_info_box_frame">
-                            <div class="profile_img_center"></div>
+                            {% if member_profile.image %}
+                                <a href="{% url 'profile:profile' member_id=member.id %}"><img style="left: 189px;" class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                            {% else %}
+                                <a href="{% url 'profile:profile' member_id=member.id %}"><div style="left: 189px; background-image: url({% static 'image/profile_icon.png' %})" class="profile_img_center"></div></a>
+                            {% endif %}
                             <div class="profile_info">
-                                <p class="profile_info_title">EMMA & DK</p>
+                                <p class="profile_info_title">{{ member.member_nickname }}</p>
                                 <!-- <div class="profile_info_num"></div> -->
-                                <p class="profile_info_text">다 같이 치킨 먹고 싶다</p>
+                                {% if member.member_intro %}
+                                    <p class="profile_info_text">{{ member.member_intro }}</p>
+                                {% else %}
+                                    <p class="profile_info_text">한 줄 소개가 없습니다. 등록해주세요~!</p>
+                                {% endif %}
                             </div>
                             <div class="profile_buttons">
                                 <div class="hosting">
@@ -63,16 +71,25 @@
                                         <div>과외 가입</div>
                                     </button>
                                 </div>
-                                <button type="button" class="hosting-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin" fill="none"
-                                        height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" viewBox="0 0 24 24" width="22">
-                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                                        <circle cx="12" cy="10" r="3" />
-                                    </svg>
-                                </button>
+                                {% if member.address %}
+                                    <button onclick="{% url 'profile:host' member_id=member.id %}"  type="button" class="hosting-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin" fill="none"
+                                             height="18"
+                                             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                             stroke-width="2"
+                                             viewBox="0 0 24 24" width="18">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                            <circle cx="12" cy="10" r="3"/>
+                                        </svg>
+                                    </button>
+                                {% endif %}
                                 <button type="button" class="message-btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-mail" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-mail" fill="none"
+                                         height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                         stroke-width="2" viewBox="0 0 24 24" width="24">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -84,7 +101,8 @@
         <main id="main">
             <div class="main-wrapper">
                 <h4>호스트 위치</h4>
-                <div class="map">구글 맵</div>
+{#                <div class="map">구글 맵</div>#}
+                <div class="map" id="map"></div>
             </div>
         </main>
 
@@ -119,7 +137,7 @@
                                                                 d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
                                                         </svg>
-                                                        <input type="radio" name="product-untact" id="product-untact">
+                                                        <input class="product-select-input" type="radio" name="product-untact" id="product-untact">
                                                     </span>
                                                 </div>
                                                 <p class="product-p">대면이 어려우신 분들을 위한 과외</p>
@@ -164,7 +182,7 @@
                                                                 d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                             </path>
                                                         </svg>
-                                                        <input type="radio" name="select-product" id="select-product">
+                                                        <input class="product-select-input" type="radio" name="select-product" id="select-product">
                                                     </span>
                                                 </div>
                                                 <p class="product-p">만나서 언어를 배우고 싶은 사람들을 위한 과외</p>
@@ -202,7 +220,88 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
     <script src="{% static 'js/profile/host.js' %} "></script>
+    <script src="{% static 'js/profile/pay.js' %} "></script>
 </body>
+<script>
+    /* 구글 map */
+    ((g) => {
+      var h,
+        a,
+        k,
+        p = 'The Google Maps JavaScript API',
+        c = 'google',
+        l = 'importLibrary',
+        q = '__ib__',
+        m = document,
+        b = window;
+      b = b[c] || (b[c] = {});
+      var d = b.maps || (b.maps = {}),
+        r = new Set(),
+        e = new URLSearchParams(),
+        u = () =>
+          h ||
+          (h = new Promise(async (f, n) => {
+            await (a = m.createElement('script'));
+            e.set('libraries', [...r] + '');
+            for (k in g)
+              e.set(
+                k.replace(/[A-Z]/g, (t) => '_' + t[0].toLowerCase()),
+                g[k]
+              );
+            e.set('callback', c + '.maps.' + q);
+            a.src = `https://maps.${c}apis.com/maps/api/js?` + e;
+            d[q] = f;
+            a.onerror = () => (h = n(Error(p + ' could not load.')));
+            a.nonce = m.querySelector('script[nonce]')?.nonce || '';
+            m.head.append(a);
+          }));
+      d[l]
+        ? console.warn(p + ' only loads once. Ignoring:', g)
+        : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
+    })({ key: 'AIzaSyBK6_JS2pgqaQ6S-zIX9JpTv9rT-ZheKcU', v: 'beta' });
 
+    // Initialize and add the map
+    let map;
+
+    async function initMap() {
+      // The location of Uluru
+      const position = { lat: 37.49774293207681, lng: 127.10703608868103  };
+      // Request needed libraries.
+      //@ts-ignore
+      const { Map } = await google.maps.importLibrary('maps');
+      const { AdvancedMarkerView } = await google.maps.importLibrary('marker');
+
+      // The map, centered at Uluru
+      map = new Map(document.getElementById('map'), {
+        zoom: 12,
+        center: position,
+        mapId: 'DEMO_MAP_ID',
+      });
+
+      // The marker, positioned at Uluru
+      const marker = new AdvancedMarkerView({
+        map: map,
+        position: position,
+        title: 'Uluru',
+      });
+
+      // The map, centered at Uluru
+      appMap = new Map(document.getElementById('app-map'), {
+        zoom: 12,
+        center: position,
+        mapId: 'DEMO_MAP_ID',
+      });
+
+      // The marker, positioned at Uluru
+      const appMarker = new AdvancedMarkerView({
+        map: appMap,
+        position: position,
+        title: 'Uluru',
+      });
+    }
+
+    initMap();
+  </script>
 </html>

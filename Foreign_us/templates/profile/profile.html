@@ -41,7 +41,9 @@
     <div class="header-background">
         <div class="header-back-img-wrap">
             <span class="header-back-img-span">
-                <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F3f09374b-6fb1-4469-904a-5adfdd2c7d2a%2FcreatorCoverImage%2F2eb186b7-ad7c-41a5-a9d9-3282c9fa900a.jpg%3Fauto%3Dformat%252Ccompress%26h%3D1184%26lossless%3Dtrue%26w%3D3200&w=1920&q=75">
+                {% if member_background.image %}
+                    <img src="/upload/{{ member_background.image }}">
+                {% endif %}
             </span>
             <div class="absolute"></div>
         </div>
@@ -49,11 +51,19 @@
             <div>
                 <div class="profile_info_box_padding">
                     <div class="profile_info_box_frame">
-                        <div class="profile_img_center"></div>
+                        {% if member_profile.image %}
+                            <a href="{% url 'profile:profile' member_id=member.id %}"><img style="left: 189px;" class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                        {% else %}
+                            <a href="{% url 'profile:profile' member_id=member.id %}"><div style="left: 189px; background-image: url({% static 'image/profile_icon.png' %})" class="profile_img_center"></div></a>
+                        {% endif %}
                         <div class="profile_info">
-                            <p class="profile_info_title">EMMA & DK</p>
+                            <p class="profile_info_title">{{ member.member_nickname }}</p>
                             <!-- <div class="profile_info_num"></div> -->
-                            <p class="profile_info_text">다 같이 치킨 먹고 싶다</p>
+                            {% if member.member_intro %}
+                                <p class="profile_info_text">{{ member.member_intro }}</p>
+                            {% else %}
+                                <p class="profile_info_text">한 줄 소개가 없습니다. 등록해주세요~!</p>
+                            {% endif %}
                         </div>
                         <div class="profile_buttons">
                             <div class="hosting">
@@ -61,16 +71,18 @@
                                     <div>과외 가입</div>
                                 </button>
                             </div>
-                            <button type="button" class="hosting-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin" fill="none"
-                                     height="18"
-                                     stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                     stroke-width="2"
-                                     viewBox="0 0 24 24" width="18">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                            </button>
+                            {% if member.address %}
+                                <button onclick="{% url 'profile:host' member_id=member.id %}"  type="button" class="hosting-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-map-pin" fill="none"
+                                         height="18"
+                                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                         stroke-width="2"
+                                         viewBox="0 0 24 24" width="18">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                </button>
+                            {% endif %}
                             <button type="button" class="message-btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-mail" fill="none"
                                      height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -101,17 +113,11 @@
                     <h4 class="introduction-title">헬퍼스 소개</h4>
                     <div class="introduction-text-wrap">
                         <div class="introduction-text-area">
-                            <p class="text-area">
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                                소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다 소개글이 들어갑니다
-                            </p>
+                            {% if member.member_intro_detail %}
+                                <p class="text-area">{{ member.member_intro_detail }}</p>
+                            {% else %}
+                                <p class="text-area">소개 글이 없습니다. 등록해주세요~!</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -373,7 +379,7 @@
                                                     <span class="product-title">비대면 과외</span>
                                                     <div style="display: flex;">
                                                         <span class="price-container">
-                                                            <strong class="price-content">5,000원</strong>/월
+                                                            <strong class="price-content">50,000원</strong>/월
                                                         </span>
                                                     </div>
                                                 </div>
@@ -383,7 +389,7 @@
                                                             d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                         </path>
                                                     </svg>
-                                                    <input type="radio" name="product-untact" id="product-untact">
+                                                    <input class="product-select-input" type="radio" name="product-untact" id="product-untact">
                                                 </span>
                                             </div>
                                             <p class="product-p">대면이 어려우신 분들을 위한 과외</p>
@@ -416,7 +422,7 @@
                                                     <span class="product-title">대면 과외</span>
                                                     <div style="display: flex;">
                                                         <span class="price-container">
-                                                            <strong class="price-content">10,000원</strong>/월
+                                                            <strong class="price-content">120,000원</strong>/월
                                                         </span>
                                                     </div>
                                                 </div>
@@ -426,7 +432,7 @@
                                                             d="M19.702 7.288a1 1 0 0 1 .01 1.414l-8.59 8.723-5.834-5.923a1 1 0 0 1 1.424-1.404l4.41 4.477 7.166-7.277a1 1 0 0 1 1.414-.01Z">
                                                         </path>
                                                     </svg>
-                                                    <input type="radio" name="select-product" id="select-product">
+                                                    <input class="product-select-input" type="radio" name="select-product" id="select-product">
                                                 </span>
                                             </div>
                                             <p class="product-p">만나서 언어를 배우고 싶은 사람들을 위한 과외</p>
@@ -464,7 +470,9 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
 <script src="{% static 'js/profile/profile.js' %} "></script>
+<script src="{% static 'js/profile/pay.js' %} "></script>
 </body>
 
 </html>

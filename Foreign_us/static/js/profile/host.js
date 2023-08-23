@@ -1,3 +1,4 @@
+let pay_item = "untact";
 
 $(function () {
     // 객체들
@@ -35,6 +36,13 @@ $(function () {
 
     // 과외 상품 클릭 이벤트
     $product.click((e) => {
+        e.stopImmediatePropagation();
+        if($(e.currentTarget).find(".product-select-input").attr('id') == "select-product"){
+            pay_item = "contact";
+            console.log(pay_item);
+        } else{
+            pay_item = "untact";
+        }
         if (!$(e.currentTarget).attr('class').includes('active-select')) {
             $product.toggleClass('active-select');
             $productBorder.toggleClass('active-product');

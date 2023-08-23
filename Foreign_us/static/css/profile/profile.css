@@ -453,7 +453,7 @@ ul {
 
 .introduction-text-area {
   overflow: hidden;
-  height: 278px;
+  /*height: 278px;*/
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;

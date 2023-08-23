@@ -39,9 +39,13 @@
                        <!-- 검색 창 -->
                     <div class="search-box-wrap">
                         <div class="search-container">
-                            <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% if keyword == None %}
+                                <input type="text" placeholder="검색어 입력" class="search-box">
+                            {% else %}
+                                <input value="{{ keyword }}" type="text" placeholder="검색어 입력" class="search-box">
+                            {% endif %}
                             <button type="button" class="search-button">
-                                <img src="{%  static 'image/admin/search-icon-black.png'%}" alt="">
+                                <img src="{% static 'image/admin/search-icon-black.png'%}" alt="">
                             </button>
                         </div>
                         <!-- <div class="buttons-container">
@@ -69,84 +73,36 @@
                                             </th>
                                             <th>No</th>
                                             <!-- <th>카테고리</th> -->
-                                            <th>게시판 제목</th>
-                                            <th>작성자 명</th>
+                                            <th>문의 제목</th>
+                                            <th>작성자</th>
                                             <th>작성 날짜</th>
-                                            <th>답변</th>
+                                            <th>답변 여부</th>
                                         </tr>
                                     </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_warning">
-                                            미답변
-                                            <hr>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            2
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_warning">
-                                            미답변
-                                            <hr>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check" class="memberCheckbox">
-                                        </td>
-                                        <td class="noticeId">
-                                            3
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_active">
-                                            답변완료
-                                            <hr>
-                                        </td>
-                                    </tr>
+                                    <tbody>
+                                        {% for post in posts %}
+                                            <tr>
+                                                <td class="checkbox-line">
+                                                    <input type="checkbox" name="check" class="memberCheckbox">
+                                                </td>
+                                                <td class="noticeId">{{ post.id }}</td>
+                                                <!-- <td>자유 게시판</td> -->
+                                                <td><a href="{% url 'admin:board-inquiry-detail' keyword=keyword post_id=post.id page=page %}">{{ post.message_title }}
+                                                </a></td>
+                                                <td>{{ post.send_member.member_nickname }}</td>
+                                                <td>
+                                                    {{ post.created_date|date:"Y-m-d H:i" }}
+                                                </td>
+                                                <td class="is_answer is_warning">
+                                                    {% if post.message_status == "Y" %}
+                                                      <span>답변 완료</span>
+                                                    {% else %}
+                                                      <span>미답변</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -155,44 +111,55 @@
                     <!-- 페이지 버튼 -->
                     <div class="page-button-box-layout">
                         <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{%  static 'image/admin/left_icon.png'%}"
-                                            class="left-button">
+                            {% if startPage > 1 %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-inquiry-list-page' keyword=keyword page=startPage|add:-1 %}">
+                                                <img src="{% static 'image/admin/left_icon.png'%}"
+                                                class="left-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
+                            {% endif %}
+                            {% for i in "x"|rjust:5 %}
+                                {% if forloop.counter0|add:startPage <= realEnd %}
+                                    {% if forloop.counter0|add:startPage == page %}
+                                        <div class="page-button page-button-active">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-inquiry-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="page-button">
+                                            <div class="page-button-margin">
+                                                <div>
+                                                    <a href="{% url 'admin:board-inquiry-list-page' keyword=keyword page=forloop.counter0|add:startPage %}">
+                                                        <span>{{ forloop.counter0|add:startPage}}</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if endPage < realEnd %}
+                                <div class="">
+                                    <div class="page-button-margin">
+                                        <div>
+                                            <a href="{% url 'admin:board-inquiry-list-page' keyword=keyword page=endPage|add:1 %}">
+                                                <img src="{% static 'image/admin/right_icon.png'%}"
+                                                class="right-button">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="{%  static 'image/admin/right_icon.png'%}"
-                                            class="right-button">
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
                         </div>
                     </div>
                     <!-- 페이지 버튼 끝 -->
@@ -203,7 +170,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="{%  static 'js/admin/checkbox.js'%}"></script>
-<script src="{%  static 'js/admin/board_proposal.js'%}"></script>
+<script src="{%  static 'js/admin/board_proposal_inquiry.js'%}"></script>
 {#<script src="{%  static 'js/admin/sidemenu.js'%}"></script>#}
 
 </html>
