@@ -51,7 +51,7 @@
                   <span class="side-nav-top-profile-icon-border"></span>
                 </button>
               </div>
-              <h2 class="side-nav-top-nickname">닉네임1</h2>
+              <h2 class="side-nav-top-nickname">{{ member_nickname }}</h2>
               <a class="side-nav-top-mypage" href="">
                 <button class="side-nav-top-mypage-btn" type="button">
                   <div class="side-nav-top-mypage-btn-flex">
@@ -168,7 +168,7 @@
                   <div class="top-wrapper">
                     <!-- 제목 및 답장 버튼 -->
                     <div class="title-wrapper">
-                      <h3>쪽지 제목이 들어갑니당</h3>
+                      <h3>{{ receive_message.message_title }}</h3>
                       <div style="display: flex">
                         <div style="width: 88px">
                           <button class="to-list" type="button">목록 보기</button>
@@ -193,7 +193,7 @@
                         </div>
                         <div>
                           <div>
-                            <a class="writer" href="">쪽지 작성자 닉네임</a>
+                            <a class="writer" href="">{{ send_nickname }}</a>
                           </div>
                           <div class="time-wrapper">
                             <div class="time">
@@ -211,24 +211,7 @@
                   <!-- 내용 -->
                   <div class="content-wrapper">
                     <div class="content">
-                      <p>
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이
-                        들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지
-                        내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이
-                        들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지
-                        내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이
-                        들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지
-                        내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이
-                        들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지
-                        내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이
-                        들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지
-                        내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                        쪽지 내용이 들어갑니담~~!! 쪽지 내용이 들어갑니담~~!!
-                      </p>
+                      <p class="message-content"></p>
                       <div class="image-wrapper">
                         <img src="/static/image/cake.jpg" alt="" />
                       </div>
