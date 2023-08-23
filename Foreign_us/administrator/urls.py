@@ -55,8 +55,10 @@ urlpatterns = [
     path('board/notice/delete/', BoardNoticeDeleteAPI.as_view(), name='board-notice-delete'),
     # 문의사항
     path('board/inquiry/list/', BoardInquiryListView.as_view(), name='board-inquiry-list-init'),
-    path('board/inquiry/list/<int:page>/', BoardInquiryListView.as_view(), name='board-inquiry-list'),
-    path('board/inquiry/detail/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail'),
+    path('board/inquiry/list/<str:keyword>/', BoardInquiryListView.as_view(), name='board-inquiry-list'),
+    path('board/inquiry/list/<str:keyword>/<int:page>/', BoardInquiryListView.as_view(), name='board-inquiry-list-page'),
+    path('board/inquiry/detail/<int:post_id>/<int:page>/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail-init'),
+    path('board/inquiry/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail'),
     path('board/inquiry/write/', BoardInquiryWriteView.as_view(), name='board-inquiry-write'),
     # 회원 관리
     path('member/list/', MemberListView.as_view(), name='member-list-init'),

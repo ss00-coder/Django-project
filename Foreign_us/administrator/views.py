@@ -11,6 +11,7 @@ from event.models import Event, EventFile
 from helpers.models import Helpers, HelpersFile
 from lesson.models import Lesson, LessonFile
 from member.models import Member
+from message.models import ReceiveMessage
 from notice.models import Notice, NoticeFile
 from payment.models import Payment
 from review.models import Review
@@ -395,14 +396,53 @@ class BoardNoticeDeleteAPI(APIView):
 
 # 문의 목록
 class BoardInquiryListView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/inquiry/list.html', {'page': page})
+    def get(self, request, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            posts = ReceiveMessage.objects.filter(member__member_type='A').filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword) | Q(send_member__member_nickname__contains=keyword)).order_by(
+                '-id').all()
+        else:
+            posts = ReceiveMessage.objects.filter(member__member_type='A').order_by('-id').all()
+
+        size = 7
+        offset = (page - 1) * size
+        limit = page * size
+        total = len(posts)
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(total / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        if endPage == 0:
+            endPage = 1
+
+        context = {
+            'posts': list(posts)[offset:limit],
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'keyword': keyword
+        }
+        return render(request, 'admin/board/inquiry/list.html', context)
 
 
 # 문의 조회
 class BoardInquiryDetailView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/inquiry/detail.html', {'page': page})
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        post = ReceiveMessage.objects.get(id=post_id)
+        context = {
+            'post': post,
+            'post_files': list(post.receivemessagefile_set.all()),
+            'page': page,
+            'keyword': keyword
+        }
+        return render(request, 'admin/board/inquiry/detail.html', context)
 
 
 # 문의 쓰기
