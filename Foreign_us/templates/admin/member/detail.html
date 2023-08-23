@@ -38,7 +38,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="{% url 'admin:board-lesson-list-page' page=page keyword=keyword %}">
+                            <a href="{% url 'admin:member-list-page' page=page keyword=keyword %}">
                                 <img src="{% static 'image/admin/prev_icon.png' %}" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -61,8 +61,11 @@
                             <hr>
                             <div class="board-info-box">
                                 <div class="member-img-box">
-                                    <div class="member-img">
-                                    </div>
+                                    {% if member_profile.image %}
+                                        <img style="opacity: 1; display: block" class="member-img" src="/upload/{{ member_profile.image }}" alt="">
+                                    {% else %}
+                                        <div class="member-img"></div>
+                                    {% endif %}
                                     <div class="member-nickname-box">
                                         <span>{{ member.member_nickname }}</span>
                                     </div>
@@ -120,7 +123,7 @@
                                                 <span>작성한 과외 게시글</span>
                                             </div>
                                             <div class="count">
-                                                <span>0개</span>
+                                                <span>{{ lesson_count }}개</span>
                                             </div>
                                         </div>
                                         <div class="write-count-box">
@@ -128,7 +131,7 @@
                                                 <span>참여한 과외</span>
                                             </div>
                                             <div class="count">
-                                                <span>0회</span>
+                                                <span>{{ lesson_match_count }}회</span>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +147,7 @@
                                                 <span>작성한 헬퍼스 게시글</span>
                                             </div>
                                             <div class="count">
-                                                <span>0회</span>
+                                                <span>{{ helpers_count }}회</span>
                                             </div>
                                         </div>
                                     </div>
@@ -160,7 +163,7 @@
                                                 <span>작성한 이벤트 게시글</span>
                                             </div>
                                             <div class="count">
-                                                <span>0회</span>
+                                                <span>{{ event_count }}회</span>
                                             </div>
                                         </div>
                                     </div>

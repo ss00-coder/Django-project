@@ -51,7 +51,7 @@
                         <div class="buttons-container">
                             <div class="delete-box-layout">
                                 <div class="delete-box">
-                                    <button class="deleteButton delete-button" onclick="deleteNotices(getSelectedNoticeIds())">회원 탈퇴</button>
+                                    <button style="display:inline-block; width: 100px" class="deleteButton delete-button">회원 탈퇴</button>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                             <th>회원 상태</th>
                                             <th>이메일</th>
                                             <th>닉네임</th>
-                                            <th>주소</th>
+                                            <th style="display: inline-block; width: 100px; height: 45px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">주소</th>
                                             <th>가입 날짜</th>
                                         </tr>
                                     </thead>
@@ -86,7 +86,7 @@
                                                 <td class="checkbox-line">
                                                     <input type="checkbox" class="memberCheckbox" name="check">
                                                 </td>
-                                                <td>{{ member.id }}</td>
+                                                <td class="noticeId">{{ member.id }}</td>
                                                 <td class="member_type is_active">
                                                     {{ member.get_member_type_display }}
                                                 </td>
@@ -94,9 +94,9 @@
                                                 </a></td>
                                                 <td>{{ member.member_nickname }}</td>
                                                 {% if member.member_address %}
-                                                  <td>{{ member.member_address }}</td>
+                                                  <td style="display: inline-block; width: 100px; height: 45px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">{{ member.member_address }}</td>
                                                 {% else %}
-                                                  <td>주소 비공개</td>
+                                                  <td style="display: inline-block; width: 100px; height: 45px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">주소 비공개</td>
                                                 {% endif %}
                                                 <td>{{ member.created_date|date:"Y-m-d H:i" }}</td>
                                             </tr>
