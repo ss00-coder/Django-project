@@ -42,21 +42,6 @@ class MyProfileView(View):
 
 class MyLessonView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
-
-        size = 5
-        offset = (page - 1) * size
-        limit = page * size
-        saved_event = Lesson.objects.filter(post_status="Y").count()
-        temp_event = Lesson.objects.filter(post_status='N').count()
-        pageCount = 5
-        endPage = math.ceil(page / pageCount) * pageCount
-        startPage = endPage - pageCount + 1
-        realEnd = math.ceil(saved_event / size)
-        endPage = realEnd if endPage > realEnd else endPage
-        pageUnit = (page - 1) // 5
-        if endPage == 0:
-            endPage = 1
-
         if keyword == "None":
             keyword = None
 
@@ -64,6 +49,22 @@ class MyLessonView(View):
             lessons = Lesson.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
             lessons = Lesson.objects.filter(post_status=status).order_by('-id').all()
+
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        current_count = len(lessons)
+        saved_event = Lesson.objects.filter(post_status="Y").count()
+        temp_event = Lesson.objects.filter(post_status='N').count()
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(current_count / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
 
         like_list = []
         image_list = []
@@ -76,7 +77,6 @@ class MyLessonView(View):
         likes = like_list[offset:limit]
         lesson_files = image_list[offset:limit]
         member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
-        current_count = len(lessons)
         lessons = list(lessons)[offset:limit]
         combine_like = zip(lessons, likes, lesson_files)
 
@@ -113,21 +113,6 @@ class MyLessonReviewView(View):
 
 class MyHelpersView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
-
-        size = 5
-        offset = (page - 1) * size
-        limit = page * size
-        saved_event = Helpers.objects.filter(post_status="Y").count()
-        temp_event = Helpers.objects.filter(post_status='N').count()
-        pageCount = 5
-        endPage = math.ceil(page / pageCount) * pageCount
-        startPage = endPage - pageCount + 1
-        realEnd = math.ceil(saved_event / size)
-        endPage = realEnd if endPage > realEnd else endPage
-        pageUnit = (page - 1) // 5
-        if endPage == 0:
-            endPage = 1
-
         if keyword == "None":
             keyword = None
 
@@ -135,6 +120,21 @@ class MyHelpersView(View):
             helperses = Helpers.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
             helperses = Helpers.objects.filter(post_status=status).order_by('-id').all()
+
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        current_count = len(helperses)
+        saved_event = Helpers.objects.filter(post_status="Y").count()
+        temp_event = Helpers.objects.filter(post_status='N').count()
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(current_count / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
 
         like_list = []
         image_list = []
@@ -147,7 +147,6 @@ class MyHelpersView(View):
         likes = like_list[offset:limit]
         helpers_files = image_list[offset:limit]
         member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
-        current_count = len(helperses)
         helperses = list(helperses)[offset:limit]
         combine_like = zip(helperses, likes, helpers_files)
 
@@ -202,8 +201,6 @@ class MyEventView(View):
         pageUnit = (page - 1) // 5
         if endPage == 0:
             endPage = 1
-
-
 
         like_list = []
         image_list = []

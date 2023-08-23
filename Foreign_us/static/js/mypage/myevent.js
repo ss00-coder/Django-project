@@ -42,18 +42,13 @@ $(function () {
     })
 });
 
-//검색창
-$(".search-button svg").on('click', ()=>{
-	keyword = $("#search-input").val();
-	location.href = keyword === "" ? "/mypage/event/" : `/mypage/event/${keyword}/`;
-})
 
 
 const $createBtn = $('.create-btn');
 
-    $createBtn.click(() => {
-        location.href=`/event/write/`
-    })
+$createBtn.click(() => {
+    location.href=`/event/write/`
+})
 
 let status = 'Y';
 // $(".tab-item-btn").each((i, tab)=>{
@@ -69,8 +64,10 @@ if(status_view === 'N'){
     $('.tab-line').remove();
     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
 }
-
-//     .on('click', ()=>{
-// 	location.href = `/mypage/event/${status}`;
-// })
+//검색창
+if(status_view === 'status'){
+$(".search-button svg").on('click', ()=>{
+    keyword = $("#search-input").val();
+    location.href = keyword === "" ? "/mypage/event/tab/$status_view/" : `/mypage/event/tab/$status_view/${keyword}/`;
+})}
 // console.log($status);

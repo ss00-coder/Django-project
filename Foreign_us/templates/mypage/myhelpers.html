@@ -189,7 +189,7 @@
                       </button>
                     </li>
                     <li class="tab-item">
-                      <button onclick="location.href='{% url 'mypage:myhelpers_status' status='N' %}'" class="tab-item-btn" type="button">
+                      <button class="tab-item-btn" type="button">
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
@@ -210,11 +210,11 @@
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
                         {% if keyword == None %}
-                        <input id="search-input" type="search" placeholder="제목 검색">
+                        <input id="search-input" type="search" placeholder="검색어 검색">
                         {% else %}
                         <input value="{{ keyword }}" id="search-input" type="search" placeholder="검색어 입력">
                         {% endif %}
-                        <button class="search-button" type="button">
+                        <button onclick="location.href='{% url 'mypage:myevent_status' status=status keyword=keyword %} class="search-button" type="button">
                           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                               d="M15.83 16.561a7.8 7.8 0 1 1 1.233-1.312l3.465 3.465a.9.9 0 1 1-1.272 1.273L15.83 16.56Zm1.13-5.961a6.16 6.16 0 1 1-12.32 0 6.16 6.16 0 0 1 12.32 0Z">
@@ -290,7 +290,7 @@
                 <ul style="display: flex">
                   <!-- 이전버튼 -->
                    {% if startPage > 1 %}
-                      <a href="{% url 'mypage:myhelpers_page' page=startPage|add:-1 %}" class="a-prev">
+                      <a href="{% url 'mypage:myhelpers_status_save' keyword=keyword status=status page=startPage|add:-1 %}" class="a-prev">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
@@ -302,7 +302,7 @@
                   {% for i in "x"|rjust:5 %}
                       {% if forloop.counter0|add:startPage <= realEnd%}
                          <li>
-                             <a href="{% url 'mypage:myhelpers_page' page=forloop.counter0|add:startPage %}" class="page">
+                             <a href="{% url 'mypage:myhelpers_status_save' keyword=keyword status=status page=forloop.counter0|add:startPage %}" class="page">
                                {% if page ==  forloop.counter0|add:startPage %}
                                    <button  class="page-active" type="button">
                                      <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
@@ -318,7 +318,7 @@
                   {% endfor %}
                  <!-- 다음버튼 -->
                   {% if endPage < realEnd %}
-                      <a href="{% url 'mypage:myhelpers_page' page=endPage|add:1 %}" class="a-next">
+                      <a href="{% url 'mypage:myhelpers_status_save' keyword=keyword status=status page=endPage|add:1 %}" class="a-next">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                           <path fill-rule="evenodd" clip-rule="evenodd"
                             d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
