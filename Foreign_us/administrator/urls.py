@@ -12,6 +12,7 @@ from administrator.views import BoardEventListView, BoardEventDetailView, BoardH
 app_name = 'admin'
 
 urlpatterns = [
+    path('', BoardNoticeListView.as_view(), name='init'),
     # 이벤트
     path('board/event/list/', BoardEventListView.as_view(), name='board-event-list-init'),
     path('board/event/list/<str:keyword>/', BoardEventListView.as_view(), name='board-event-list'),
@@ -59,7 +60,7 @@ urlpatterns = [
     path('board/inquiry/list/<str:keyword>/<int:page>/', BoardInquiryListView.as_view(), name='board-inquiry-list-page'),
     path('board/inquiry/detail/<int:post_id>/<int:page>/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail-init'),
     path('board/inquiry/detail/<str:keyword>/<int:post_id>/<int:page>/', BoardInquiryDetailView.as_view(), name='board-inquiry-detail'),
-    path('board/inquiry/write/', BoardInquiryWriteView.as_view(), name='board-inquiry-write'),
+    path('board/inquiry/write/<int:page>/<int:post_id>/', BoardInquiryWriteView.as_view(), name='board-inquiry-write'),
     # 회원 관리
     path('member/list/', MemberListView.as_view(), name='member-list-init'),
     path('member/list/<str:keyword>/', MemberListView.as_view(), name='member-list'),

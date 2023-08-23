@@ -8,7 +8,7 @@ from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from member.models import Member
+from member.models import Member, MemberFile
 from notice.models import Notice, NoticeFile, NoticeReply, NoticeLike
 from notice.serializers import NoticeSerializer, NoticeReplySerializer
 
@@ -63,10 +63,16 @@ class NoticeDetailView(View):
             'post': post,
             'post_files': list(post.noticefile_set.all()),
             'writer': post.member,
+
         }
+        if post.member.memberfile_set.filter(file_type='P'):
+            context['writer_profile'] = post.member.memberfile_set.get(file_type='P')
 
         if 'member_email' in request.session:
-            context['member'] = Member.objects.get(member_email=request.session['member_email'])
+            member = Member.objects.get(member_email=request.session['member_email'])
+            context['member'] = member
+            if member.memberfile_set.filter(file_type='P'):
+                context['member_profile'] = member.memberfile_set.get(file_type='P')
 
         return render(request, 'notice/detail.html', context)
 
@@ -78,11 +84,26 @@ class NoticeReplyListAPI(APIView):
         size = 5
         offset = (page - 1) * size
         limit = page * size
-        replies = list(NoticeReply.objects.filter(notice_id=post_id).order_by("-id").annotate(member_nickname=F('member__member_nickname')).values('id', 'reply_content', 'member_nickname', 'created_date'))
-        total = len(replies);
+
+        all_replies = list(NoticeReply.objects.filter(notice_id=post_id).order_by("-id").all())
+        total = len(all_replies)
+
+        replies = []
+        for i in range(len(all_replies)):
+            id = all_replies[i].member.id
+            reply_id = all_replies[i].id
+            reply_writer_file = MemberFile.objects.filter(member_id=id, file_type="P")
+            reply = NoticeReply.objects.filter(id=reply_id).order_by("-id").annotate(member_nickname=F('member__member_nickname'), reply_writer_file=reply_writer_file.values('image')[:1]).values('id', 'reply_content', 'member_nickname', 'created_date', 'reply_writer_file')
+            replies.append(reply)
+        #
+        # posts = posts[offset:limit + 1]
+
+
+
+        # replies = list(NoticeReply.objects.filter(notice_id=post_id).order_by("-id").annotate(member_nickname=F('member__member_nickname')).values('id', 'reply_content', 'member_nickname', 'created_date'))
+        # total = len(replies)
 
         replies = replies[offset:limit + 1]
-        # posts = list(Notice.objects.order_by('-id').all())[offset:limit + 1]
         hasNext = False
 
         if len(replies) > size:

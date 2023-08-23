@@ -60,6 +60,8 @@ const view = (function(){
             $(".reply-num").text(replies.total);
             let text = "";
             replies.replies.forEach((reply) => {
+                reply = reply[0];
+                console.log(reply);
                 text += `
                     <li class="comment-wrapper">
                         <div class="original-reply">
@@ -68,10 +70,17 @@ const view = (function(){
                                 <div>
                                   <button class="comment-profile-button">
                                     <span class="profile-icon">
-                                      <img
-                                        src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                                        alt=""
-                                      />
+                        `
+                if(reply.reply_writer_file){
+                   text += `      
+                          <img src="/upload/${reply.reply_writer_file}"/>
+                    `;
+                } else {
+                    text += `
+                          <img src="/static/image/profile_icon.png"/>
+                      `
+                }
+                text +=  `
                                     </span>
                                     <span></span>
                                   </button>

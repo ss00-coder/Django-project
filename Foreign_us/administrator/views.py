@@ -11,7 +11,7 @@ from event.models import Event, EventFile
 from helpers.models import Helpers, HelpersFile
 from lesson.models import Lesson, LessonFile
 from member.models import Member
-from message.models import ReceiveMessage
+from message.models import ReceiveMessage, SendMessage
 from notice.models import Notice, NoticeFile
 from payment.models import Payment
 from review.models import Review
@@ -436,19 +436,65 @@ class BoardInquiryDetailView(View):
             keyword = None
 
         post = ReceiveMessage.objects.get(id=post_id)
+
+
         context = {
             'post': post,
             'post_files': list(post.receivemessagefile_set.all()),
             'page': page,
             'keyword': keyword
         }
+
+        if SendMessage.objects.filter(message_id=post_id):
+            answer = SendMessage.objects.filter(message_id=post_id).order_by('-id').first()
+            context['answer'] = answer
+            context['answer_files'] = list(answer.sendmessagefile_set.all())
         return render(request, 'admin/board/inquiry/detail.html', context)
 
 
-# 문의 쓰기
+# 문의 답변
 class BoardInquiryWriteView(View):
-    def get(self, request, page=1):
-        return render(request, 'admin/board/inquiry/answer.html', {'page': page})
+    def get(self, request, post_id, keyword=None, page=1):
+        if keyword == "None":
+            keyword = None
+
+        post = ReceiveMessage.objects.get(id=post_id)
+
+        context = {
+            'post': post,
+            'post_files': list(post.receivemessagefile_set.all()),
+            'page': page,
+            'keyword': keyword
+        }
+
+        return render(request, 'admin/board/inquiry/answer.html', context)
+
+    def post(self, request, post_id, page=1):
+        datas = request.POST
+        message = ReceiveMessage.objects.get(id=post_id)
+
+        send_datas = {
+            'member': Member.objects.filter(member_email=request.session['member_email']).get(),
+            'receive_member': message.send_member,
+            'message': message,
+            'message_title': datas['post_title'],
+            'message_content': datas['post_content']
+        }
+
+        SendMessage.objects.create(**send_datas)
+
+        receive_datas = {
+            'send_member': Member.objects.filter(member_email=request.session['member_email']).get(),
+            'member': message.send_member,
+            'message_title': datas['post_title'],
+            'message_content': datas['post_content']
+        }
+
+        ReceiveMessage.objects.create(**receive_datas)
+        ReceiveMessage.objects.filter(id=post_id).update(message_status='Y')
+
+        return redirect(f'/administrator/board/inquiry/detail/{post_id}/{page}')
+
 
 
 # 회원 목록

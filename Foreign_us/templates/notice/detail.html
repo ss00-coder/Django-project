@@ -32,10 +32,11 @@
           <div>
             <button class="writer-detail-profile">
               <span class="writer-detail-profile-wrapper">
-                <img
-                  src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F58b04467-0a9c-4aaf-8986-716a09f9afa9%2FprofileImage%2Fef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                  alt=""
-                />
+                {% if writer_profile.image %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img src="/upload/{{ writer_profile.image }}"></a>
+                {% else %}
+                    <img src="{% static 'image/profile_icon.png' %}"/>
+                {% endif %}
               </span>
             </button>
           </div>
@@ -100,9 +101,11 @@
           <div class="post-info">
             <div class="info-left">
               <div>
-                <a href="">
-                  <div class="profile-image"></div>
-                </a>
+                {% if writer_profile.image %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="/upload/{{ writer_profile.image }}"></a>
+                {% else %}
+                    <img class="profile-image" src="{% static 'image/profile_icon.png' %}"/>
+                {% endif %}
               </div>
               <div>
                 <div>
@@ -182,10 +185,11 @@
               <button class="comment-write-with-login" type="button">
                 <div class="comment-write-profile">
                   <span class="profile-icon">
-                    <img
-                      src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                      alt=""
-                    />
+                    {% if member_profile.image %}
+                        <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                    {% else %}
+                        <img src="{% static 'image/profile_icon.png' %}"/>
+                    {% endif %}
                   </span>
                 </div>
                 <span class="comment-placeholder">댓글을 작성해주세요...</span>
@@ -194,10 +198,11 @@
                 <div class="comment-textarea-profile-wrapper">
                   <button class="comment-textarea-profile" type="button">
                     <span class="icon-container">
-                      <img
-                        src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                        alt=""
-                      />
+                      {% if member_profile.image %}
+                        <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                      {% else %}
+                        <img src="{% static 'image/profile_icon.png' %}"/>
+                      {% endif %}
                     </span>
                   </button>
                   <div class="comment-textarea-name">

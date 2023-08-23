@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.test import TestCase
 
 from member.models import Member
-from message.models import ReceiveMessage
+from message.models import ReceiveMessage, SendMessage
 from notice.models import Notice, NoticeFile
 
 # Create your tests here.
@@ -15,13 +15,21 @@ os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
 django.setup()
 
 class AdminTest(TestCase):
-    for i in range(0, 100):
-        ReceiveMessage.objects.create(
-            message_title=f"문의사항 제목{i+1}",
-            message_content=f"문의사항 내용{i+1}",
-            send_member=Member.objects.get(id=1),
-            member=Member.objects.get(id=19)
-        )
+    # for i in range(0, 100):
+    #     ReceiveMessage.objects.create(
+    #         message_title=f"문의사항 제목{i+1}",
+    #         message_content=f"문의사항 내용{i+1}",
+    #         send_member=Member.objects.get(id=1),
+    #         member=Member.objects.get(id=19)
+    #     )
+
+    SendMessage.objects.create(
+        message_title="문의사항 답변 제목",
+        message_content="문의사항 답변 내용",
+        message=ReceiveMessage.objects.get(id=154),
+        member=Member.objects.get(id=19),
+        receive_member=Member.objects.get(id=1)
+    )
 
     # Member.objects.create(
     #     member_email='admin@gmail.com',
