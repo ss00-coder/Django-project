@@ -65,9 +65,9 @@ if(status_view === 'N'){
     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
 }
 //검색창
-if(status_view === 'status'){
+
 $(".search-button svg").on('click', ()=>{
     keyword = $("#search-input").val();
-    location.href = keyword === "" ? "/mypage/event/tab/$status_view/" : `/mypage/event/tab/$status_view/${keyword}/`;
-})}
+    location.href = keyword === "" ? "/mypage/event/tab/status_view/" : `/mypage/event/tab/git status_view/${keyword}/`;
+})
 // console.log($status);
