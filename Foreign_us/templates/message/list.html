@@ -183,7 +183,7 @@
                                         <li>
                                             <button type="button" class="message-tab active-tab">
                                                 <div style="display: flex">
-                                                    <p class="text">보낸쪽지</p>
+                                                    <p class="text">받은쪽지</p>
                                                     <div class="number-wrapper">
                                                         <p class="number">{{ receive_total }}</p>
                                                     </div>
@@ -194,7 +194,7 @@
                                         <li>
                                             <button type="button" class="message-tab">
                                                 <div style="display: flex">
-                                                    <p class="text">받은쪽지</p>
+                                                    <p class="text">보낸쪽지</p>
                                                     <div class="number-wrapper">
                                                         <p class="number">{{ send_total }}</p>
                                                     </div>
@@ -205,7 +205,7 @@
                                         <li>
                                             <button type="button" class="message-tab">
                                                 <div style="display: flex">
-                                                    <p class="text">보낸쪽지</p>
+                                                    <p class="text">받은쪽지</p>
                                                     <div class="number-wrapper">
                                                         <p class="number">{{ receive_total }}</p>
                                                     </div>
@@ -215,7 +215,7 @@
                                         <li>
                                             <button type="button" class="message-tab active-tab">
                                                 <div style="display: flex">
-                                                    <p class="text">받은쪽지</p>
+                                                    <p class="text">보낸쪽지</p>
                                                     <div class="number-wrapper">
                                                         <p class="number">{{ send_total }}</p>
                                                     </div>
@@ -239,7 +239,7 @@
                                                 {% if keyword == None %}
                                                     <input id="search-input" type="text" placeholder="쪽지 검색"/>
                                                 {% else %}
-                                                    <input id="search-input" value="{{ keyword }}" type="text"
+                                                    <input id="search-input" type="text"
                                                            placeholder="쪽지 검색"/>
                                                 {% endif %}
                                                 <button class="search-button" type="button">
@@ -260,7 +260,7 @@
                             <ul class="message-wrapper">
                                 {% for receive_message in receive_messages %}
                                     <li class="message">
-                                        <button class="content-wrapper">
+                                        <button class="content-wrapper" type="button" onclick="location.href='{% url 'mypage:message-detail' receive_message_id=receive_message.id %}'">
                                             <div class="content">
                                                 <div class="title">
                                                     <p>{{ receive_message.message_title }}</p>
@@ -404,11 +404,11 @@
                                             </div>
                                             <div class="info">
                                                 <p class="info-content">{{ send_message.created_date|time:"H:i" }}</p>
-                                                <p class="info-menu">수신시간</p>
+                                                <p class="info-menu">발신시간</p>
                                             </div>
                                             <div class="info">
                                                 <p class="info-content">{{ send_message.created_date|date:"Y-m-d" }}</p>
-                                                <p class="info-menu">수신일</p>
+                                                <p class="info-menu">발신일</p>
                                             </div>
                                         </div>
                                         <div class="delete-wrapper">
@@ -523,7 +523,7 @@
     //메세지 탭 클릭시
     $('.message-tab').click((e) => {
         if (!$(e.currentTarget).attr('class').includes('active-tab')) {
-            if ('{{ type }}' == 'receive') {
+            if ('{{ type }}' === 'receive') {
                 location.href='/mypage/message-send-list';
             }else { location.href='/mypage/message-list'; }
         }
@@ -550,9 +550,10 @@
         if ('{{ type }}' === 'receive') {
             keyword = $("#search-input").val();
             location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
-        }
-        keyword = $("#search-input").val();
+        } else {
+            keyword = $("#search-input").val();
             location.href = keyword === "" ? "/mypage/message-send-list/" : `/mypage/message-send-list/${keyword}/`;
+        }
 
     })
 
@@ -561,9 +562,10 @@
             if ('{{ type }}' === 'receive') {
                 keyword = $("#search-input").val();
                 location.href = keyword === "" ? "/mypage/message-list/" : `/mypage/message-list/${keyword}/`;
+            } else {
+                keyword = $("#search-input").val();
+                location.href = keyword === "" ? "/mypage/message-send-list/" : `/mypage/message-send-list/${keyword}/`;
             }
-            keyword = $("#search-input").val();
-            location.href = keyword === "" ? "/mypage/message-send-list/" : `/mypage/message-send-list/${keyword}/`;
         }
     })
 </script>
