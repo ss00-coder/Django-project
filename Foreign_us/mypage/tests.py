@@ -142,6 +142,7 @@ class ReceiveMessage(TestCase):
 
 class Review(TestCase):
     pass
+
     #   Review.objects.bulk_create([
     #     Review(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1, reviewed_member_id=2),
     #     Review(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2, reviewed_member_id=4),

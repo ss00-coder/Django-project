@@ -26,7 +26,7 @@ urlpatterns = [
     path('lesson-review/tab/<str:status>/', MyLessonReviewView.as_view(), name='mylesson-review_status'),
     path('lesson-review/tab/<str:status>/<str:keyword>/', MyLessonReviewView.as_view(), name='mylesson-review_status-search'),
     path('lesson-review/<str:status>/<str:keyword>/<int:page>/', MyLessonReviewView.as_view(), name='mylesson-review_status_save'),
-    path('lesson-review/delete/<int:lesson_id>/', MyLessonReviewDeleteView.as_view(), name='mylesson-review_delete'),
+    path('lesson-review/delete/<int:review_id>/', MyLessonReviewDeleteView.as_view(), name='mylesson-review_delete'),
     path('lesson-review/<str:keyword>/<int:page>/', MyLessonReviewView.as_view(), name='mylesson-review_list'),
     # 헬퍼스
     path('helpers/', MyHelpersView.as_view(), name='myhelpers_init'),

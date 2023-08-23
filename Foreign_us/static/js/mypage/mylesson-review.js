@@ -38,7 +38,7 @@ globalThis.reviewId;
     $buttonAgree.click(function ()  {
         console.log(reviewId)
         $modal.hide()
-        location.href=`/mypage/review/delete/${globalThis.reviewId}/`
+        location.href=`/mypage/lesson-review/delete/${globalThis.reviewId}/`
     })
 });
 
@@ -48,8 +48,9 @@ const $createBtn = $('.create-btn');
 
     $createBtn.click(() => {
 
-        location.href=`/review/write/`
+        location.href=`/lesson/lesson-review/write/`
     })
+
 let status = 'Y';
 
 if(status_view === 'N') {
