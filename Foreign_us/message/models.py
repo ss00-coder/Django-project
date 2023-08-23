@@ -15,6 +15,7 @@ class ReceiveMessage(Message):
 
 class SendMessage(Message):
     member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE)
+    message = models.ForeignKey(ReceiveMessage, null=True, on_delete=models.CASCADE)
     receive_member = models.ForeignKey(Member, null=False, on_delete=models.CASCADE, related_name='receive_member')
 
     class Meta:
