@@ -42,14 +42,13 @@ globalThis.lessonId;
     })
 });
 
-//검색창
 const $createBtn = $('.create-btn');
 
 
-    $createBtn.click(() => {
+$createBtn.click(() => {
 
-        location.href=`/lesson/write/`
-    })
+    location.href=`/lesson/write/`
+})
 let status = 'Y';
 
 if(status_view === 'N') {
@@ -63,6 +62,7 @@ if(status_view === 'N') {
 
 
 
+//검색창
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();
 
