@@ -37,95 +37,35 @@ django.setup()
 
 
 class Lesson(TestCase):
-    pass
-    # Lesson.objects.bulk_create([
-    #     Lesson(post_title='영어', post_content='영어과외', post_view_count=12, post_status='Y', member_id=1),
-    #     Lesson(post_title='스페인어', post_content='일본어과외',post_view_count=142, post_status='Y', member_id=2),
-    #     Lesson(post_title='스웨덴어', post_content='중국어과외', post_view_count=24, post_status='N', member_id=3),
-    #     Lesson(post_title='독일어', post_content='독일어과외', post_view_count=19, post_status='Y', member_id=4),
-    #     Lesson(post_title='영어', post_content='영어과외', post_view_count=124, post_status='N', member_id=5),
-    #     Lesson(post_title='히말라야어', post_content='일본어과외', post_view_count=122, post_status='Y', member_id=5),
-    #     Lesson(post_title='중국어', post_content='중국어과외', post_view_count=95, post_status='N', member_id=1),
-    #     Lesson(post_title='독일어', post_content='독일어과외', post_view_count=42, post_status='Y', member_id=1),
-    # ])
+
+    Lesson.objects.bulk_create([
+        Lesson(post_title='영어', post_content='영어과외', post_view_count=12, post_status='Y', member_id=18),
+    ])
 
 
 class LessonLike(TestCase):
     pass
     # LessonLike.objects.bulk_create([
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=2, lesson_id=47),
-    #     LessonLike(member_id=2, lesson_id=47),
-    #     LessonLike(member_id=2, lesson_id=47),
-    #     LessonLike(member_id=2, lesson_id=47),
-    #     LessonLike(member_id=2, lesson_id=46),
-    #     LessonLike(member_id=2, lesson_id=46),
-    #     LessonLike(member_id=1, lesson_id=46),
-    #     LessonLike(member_id=1, lesson_id=46),
-    #     LessonLike(member_id=1, lesson_id=46),
-    #     LessonLike(member_id=1, lesson_id=46),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48),
-    #     LessonLike(member_id=1, lesson_id=48)
-    #
-    # ])
+    #     LessonLike(member_id=16, lesson_id=50),
+    #     LessonLike(member_id=18, lesson_id=50),
+    #     LessonLike(member_id=17, lesson_id=50),
+    #     LessonLike(member_id=2, lesson_id=50),
+    #     LessonLike(member_id=1, lesson_id=50),
+    #  ])
 
 
 class Helpers(TestCase):
     pass
-    #   Helpers.objects.bulk_create([
-    #     Helpers(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1),
-    #     Helpers(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2),
-    #     Helpers(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3),
-    #     Helpers(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3),
-    #     Helpers(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16),
-    #     Helpers(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5),
-    #     Helpers(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1),
-    #     Helpers(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4),
-    #     Helpers(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5),
-    #     Helpers(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12),
-    #     Helpers(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3),
-    #     Helpers(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1),
-    #     Helpers(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1),
-    #     Helpers(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2),
-    #     Helpers(post_title='후기 제목3', post_content='후기 내용이에요3', post_status='Y',member_id=3),
-    #     Helpers(post_title='후기 제목4', post_content='후기 내용이에요4', post_status='Y',member_id=3),
-    #     Helpers(post_title='후기 제목5', post_content='후기 내용이에요5', post_status='N',member_id=16),
-    #     Helpers(post_title='후기 제목6', post_content='후기 내용이에요6', post_status='Y',member_id=5),
-    #     Helpers(post_title='후기 제목7', post_content='후기 내용이에요7', post_status='Y',member_id=1),
-    #     Helpers(post_title='후기 제목8', post_content='후기 내용이에요8', post_status='N',member_id=4),
-    #     Helpers(post_title='후기 제목9', post_content='후기 내용이에요9', post_status='Y',member_id=5),
-    #     Helpers(post_title='후기 제목10', post_content='후기 내용이에요10', post_status='N',member_id=12),
-    #     Helpers(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3),
-    #     Helpers(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1),
-    # ])
+      # Helpers.objects.bulk_create([
+      #   Helpers(post_title='도움 제목9', post_content='도움내용1', post_status='Y', member_id=18),
+      # ])
 
 
 class HelpersLike(TestCase):
     pass
     # HelpersLike.objects.bulk_create([
-    #     HelpersLike(member_id=1, helpers_id=5),
-    #     HelpersLike(member_id=1, helpers_id=11),
-    #     HelpersLike(member_id=1, helpers_id=11),
-    #     HelpersLike(member_id=1, helpers_id=2),
-    #     HelpersLike(member_id=1, helpers_id=9),
-    #     HelpersLike(member_id=2, helpers_id=9),
-    #     HelpersLike(member_id=2, helpers_id=3),
-    #     HelpersLike(member_id=2, helpers_id=2),
-    #     HelpersLike(member_id=2, helpers_id=3),
-    #     HelpersLike(member_id=2, helpers_id=1),
-    #     HelpersLike(member_id=2, helpers_id=1),
-    #     HelpersLike(member_id=1, helpers_id=1),
-    #     HelpersLike(member_id=1, helpers_id=4),
-    #     HelpersLike(member_id=1, helpers_id=4),
-    #     HelpersLike(member_id=1, helpers_id=2),
-    #     HelpersLike(member_id=1, helpers_id=1),
-    #     HelpersLike(member_id=1, helpers_id=1),
-    #     HelpersLike(member_id=1, helpers_id=4)
+    #     HelpersLike(member_id=16, helpers_id=50),
+    #
     # ])
 
 
@@ -138,18 +78,8 @@ class Event(TestCase):
     # print(events)
 
     # Event.objects.bulk_create([
-    #     Event(post_title='이벤트15', post_content='이벤트에요10', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트16', post_content='이벤트에요20', post_status='Y', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트17', post_content='이벤트에요30', post_status='Y', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트18', post_content='이벤트에요40', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트19', post_content='이벤트에요50', post_status='Y', member_id=16, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트20', post_content='이벤트에요60', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트21', post_content='이벤트에요70', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트22', post_content='이벤트에요80', post_status='Y', member_id=4, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트23', post_content='이벤트에요90', post_status='N', member_id=5, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트10', post_content='이벤트에요100', post_status='Y', member_id=12, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트11', post_content='이벤트에요110', post_status='N', member_id=3, event_location='강남', event_latitude=0.10, event_longitude=2.2),
-    #     Event(post_title='이벤트12', post_content='이벤트에요120', post_status='Y', member_id=1, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #     Event(post_title='이벤트11', post_content='이벤트에요10', post_status='Y', member_id=18, event_location='강남', event_latitude=0.10, event_longitude=2.2),
+    #
     # ])
 
 
@@ -212,6 +142,7 @@ class ReceiveMessage(TestCase):
 
 class Review(TestCase):
     pass
+
     #   Review.objects.bulk_create([
     #     Review(post_title='후기 제목1', post_content='후기 내용이에요1', post_status='N', member_id=1, reviewed_member_id=2),
     #     Review(post_title='후기 제목2', post_content='후기 내용이에요2', post_status='Y',member_id=2, reviewed_member_id=4),

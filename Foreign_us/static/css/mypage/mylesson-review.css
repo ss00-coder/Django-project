@@ -636,7 +636,7 @@ body {
 }
 
 .info-wrapper {
-  margin: 0 0 0 222px;
+  margin: 0 30px 0 165px;
   display: flex;
   align-items: center;
   column-gap: 30px;
@@ -737,7 +737,7 @@ body {
   margin-right: 8px;
 }
 
-.paging-wrapper button.prev {
+a.a-prev {
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;
@@ -751,12 +751,12 @@ body {
   fill: #1d1d1e;
 }
 
-.paging-wrapper button.prev svg {
+a.a-prev svg{
   width: 16px;
   height: 16px;
 }
 
-.paging-wrapper button.next {
+a.a-next{
   opacity: 0.3;
   border-width: 1px;
   border-radius: 9999px;
@@ -768,6 +768,11 @@ body {
   border-color: #e6e6e7;
   color: #1d1d1e;
   fill: #1d1d1e;
+}
+
+a.a-next svg{
+  width: 16px;
+  height: 16px;
 }
 
 .paging-wrapper button.next svg {

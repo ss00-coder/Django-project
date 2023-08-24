@@ -9,53 +9,84 @@ from Foreign_us.models import Message
 from event.models import Event, EventLike, EventFile
 from helpers.models import Helpers, HelpersLike, HelpersFile
 from lesson.models import Lesson, LessonLike, LessonFile
-from member.models import Member
+from member.models import Member, MemberFile, MemberSNS
 from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, SendMessageFile
+from review.models import Review, ReviewFile, ReviewLike
 
 
+# 내 페이지
 # Create your views here.
 class MyProfileView(View):
-    # 프로필 사이드바 닉네임
+    pass
+    # def get(self, request):
+    #     return render(request, 'mypage/myprofile.html')
+    #
+    # def post(self, request):
+    #     datas = request.POST
+    #     files = request.FILES
+    #     # 로그인된 사람
+    #     member_id = Member.objects.get(member_email=request.session['member_email']).id
+    #     member_sns = MemberSNS.objects.get(member_email=request.session['member_email']).id
+    #
+    #     new_datas = {
+    #         'member_nickname': datas['member_nickname'],
+    #         'member_intro': datas['member_intro'],
+    #         'member_intro_detail': datas['member_intro_detail'],
+    #         'member_address': datas['member_address'],
+    #         'sns_url': datas['sns_url']
+    #     }
+    #
+    #     Member.objects.update(**new_datas)
+    #
+    #     if files:
+    #         for file in files.getlist('member_file'):
+    #             MemberFile.objects.create(image=file, member_id=member_id)
+    #
+    #     return render(redirect(post.get_absolute_url(1))
+
+class MyProfileView(View):
     def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+        print(member)
 
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
-        print(member_nickname)  # (멤버이메일값)
-        # print(Member.objects.annotate(email=F('member_email')).values('member_nickname'))
-        # member = Member.objects.get(member_email=email)
-        # member = Member.objects.filter(member_nickname='짱구')
-        # print(member[0].member_nickname)  // 이건 필터
-        # nicknames = {'nickname': member[0].member_nickname}
-        # print(nicknames)
-        # print(nicknames)
         context = {
-            'member_nickname': member_nickname
+            'member_nickname': member.member_nickname,
+            'member_intro': member.member_intro,
+            'member_intro_detail': member.member_intro_detail,
+            'member_address': member.member_address,
+            'sns_url': member.sns_url,
         }
-        return render(request, 'mypage/myprofile.html', context)
+        # render(request, to, context): 바로 html 화면으로 이동
+        return render(request, "mypage/myprofile.html", context)
 
-    # def post(self, request, *args, **kwargs):
-    #     token, member_email, member_nickname, member_birth = request.POST.values()
-    #     Member.objects.create(member_email=member_email, member_password=member_password, member_name=member_name,
-    #                           member_age=member_age, member_birth=member_birth)
-    #     # 이동할 urls 경로를 작성한다.
-    #     return redirect('/member/myprofile')
+    # def post(self, request):
+    #     datas = request.POST
+    #     datas = {
+    #         'post_title': datas['post_title'],
+    #         'post_content': datas['post_content']
+    #     }
+    #     Post.objects.update(**datas)
+    #     # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
+    #     return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
 
-
+# 과외 목록
 class MyLessonView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
         if keyword == "None":
             keyword = None
 
         if keyword:
-            lessons = Lesson.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            lessons = Lesson.objects.filter(member_id=member_id).filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
-            lessons = Lesson.objects.filter(post_status=status).order_by('-id').all()
+            lessons = Lesson.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_count = len(lessons)
-        saved_event = Lesson.objects.filter(post_status="Y").count()
-        temp_event = Lesson.objects.filter(post_status='N').count()
+        saved_event = Lesson.objects.filter(member_id=member_id).filter(post_status="Y").count()
+        temp_event = Lesson.objects.filter(member_id=member_id).filter(post_status='N').count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -64,7 +95,6 @@ class MyLessonView(View):
         pageUnit = (page - 1) // 5
         if endPage == 0:
             endPage = 1
-
 
         like_list = []
         image_list = []
@@ -98,35 +128,97 @@ class MyLessonView(View):
         return render(request, 'mypage/mylesson.html', context)
 
 
+# 과외 목록 삭제
 class MyLessonDeleteView(View):
     def get(self, request, lesson_id):
-        print("lesson_id")
-        Helpers.objects.get(id=lesson_id).delete()
+        Lesson.objects.get(id=lesson_id).delete()
         return redirect('mypage:mylesson_init')
 
 
+# 과외 후기
 class MyLessonReviewView(View):
-    def get(self, request):
-        print(3)
-        return render(request, 'mypage/mylesson-review.html')
-
-
-class MyHelpersView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
+
         if keyword == "None":
             keyword = None
 
         if keyword:
-            helperses = Helpers.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            reviews = Review.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
-            helperses = Helpers.objects.filter(post_status=status).order_by('-id').all()
+            reviews = Review.objects.filter(post_status=status).order_by('-id').all()
+
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        current_count = len(reviews)
+        saved_event = Review.objects.filter(post_status="Y").count()
+        temp_event = Review.objects.filter(post_status='N').count()
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(current_count / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
+        like_list = []
+        image_list = []
+        for review in reviews:
+            likes = ReviewLike.objects.all().filter(review_id=review).count()
+            like_list.append(likes)
+            review_file = ReviewFile.objects.all().filter(review_id=review)
+            image_list.append(review_file)
+
+        likes = like_list[offset:limit]
+        review_files = image_list[offset:limit]
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        reviews = list(reviews)[offset:limit]
+        combine_like = zip(reviews, likes, review_files)
+
+        context = {
+            # 'reviews': list(reviews)[offset:limit],
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'combine_like': combine_like,
+            'keyword': keyword,
+            'member_nickname': member_nickname,
+            'status': status,
+            'saved_event': saved_event,
+            'temp_event': temp_event,
+            'current_count': current_count
+        }
+
+        return render(request, 'mypage/mylesson-review.html', context)
+
+
+# 과외 목록 삭제
+class MyLessonReviewDeleteView(View):
+    def get(self, request, review_id):
+        Review.objects.get(id=review_id).delete()
+        return redirect('mypage:mylesson-review_init')
+
+
+class MyHelpersView(View):
+    def get(self, request, keyword=None, page=1, status='Y'):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
+        if keyword == "None":
+            keyword = None
+
+        if keyword:
+            helperses = Helpers.objects.filter(member_id=member_id).filter(post_status=status).filter(
+                Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+        else:
+            helperses = Helpers.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_count = len(helperses)
-        saved_event = Helpers.objects.filter(post_status="Y").count()
-        temp_event = Helpers.objects.filter(post_status='N').count()
+        saved_event = Helpers.objects.filter(member_id=member_id).filter(post_status="Y").count()
+        temp_event = Helpers.objects.filter(member_id=member_id).filter(post_status='N').count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -170,29 +262,29 @@ class MyHelpersView(View):
 
 class MyHelpersDeleteView(View):
     def get(self, request, helpers_id):
-        print("helpers_id")
         Helpers.objects.get(id=helpers_id).delete()
         return redirect('mypage:myhelpers_init')
 
 
 class MyEventView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
 
         if keyword == "None":
             keyword = None
 
-
         if keyword:
-            events = Event.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            events = Event.objects.filter(member_id=member_id).filter(post_status=status).filter(
+                Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
-            events = Event.objects.filter(post_status=status).order_by('-id').all()
+            events = Event.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_count = len(events)
-        saved_event = Event.objects.filter(post_status="Y").count()
-        temp_event = Event.objects.filter(post_status='N').count()
+        saved_event = Event.objects.filter(member_id=member_id).filter(post_status="Y").count()
+        temp_event = Event.objects.filter(member_id=member_id).filter(post_status='N').count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -215,8 +307,6 @@ class MyEventView(View):
         member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         events = list(events)[offset:limit]
         combine_like = zip(events, likes, event_files)
-        # print(event_file)
-        print(status)
 
         context = {
             # 'events': list(events)[offset:limit],
@@ -293,7 +383,8 @@ class MyMessageSendListView(View):
             keyword = None
 
         if keyword:
-            send_messages = SendMessage.objects.filter(member_id=member_id).filter(Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
+            send_messages = SendMessage.objects.filter(member_id=member_id).filter(
+                Q(message_title__contains=keyword) | Q(message_content__contains=keyword)).order_by('-id').all()
         else:
             send_messages = SendMessage.objects.filter(member_id=member_id).order_by('-id').all()
         type = "send"
@@ -358,23 +449,25 @@ class MyMessageDetailView(View):
         # 닉네임
         nickname = Member.objects.get(id=send_member_id).member_nickname
         # 프로필 이미지
-
-
-
+        # 파일 첨부 이미지
+        file = ReceiveMessageFile.objects.get(receive_message=receive_message)
         # 이미지
         context = {
             'member_nickname': member_nickname,
             'send_nickname': nickname,
             'receive_message': receive_message,
+            'file': file
         }
-
 
         return render(request, 'message/detail.html', context)
 
 
 class MyMessageWriteView(View):
     def get(self, request):
-        return render(request, 'message/write.html')
+        context = {
+            'member_nickname': Member.objects.get(member_email=request.session['member_email']).member_nickname
+        }
+        return render(request, 'message/write.html', context)
 
     def post(self, request):
         datas = request.POST
@@ -384,7 +477,6 @@ class MyMessageWriteView(View):
 
         # 받는 사람 (이메일 작성해서 넘겨준 사람의 id)
         receive_member_id = Member.objects.get(member_email=datas['receive_email']).id
-
 
         receive_datas = {
             'message_title': datas['message_title'],
@@ -402,17 +494,18 @@ class MyMessageWriteView(View):
             'receive_member_id': receive_member_id,
         }
 
-        ReceiveMessage.objects.create(**receive_datas)
-        SendMessage.objects.create(**Send_datas)
+        receive_message = ReceiveMessage.objects.create(**receive_datas)
+        send_message = SendMessage.objects.create(**Send_datas)
 
         if files:
             for file in files.getlist('message_file'):
                 # print(member_id)
                 # print(send_member_id)
-                ReceiveMessageFile.objects.create(image=file, receive_message_id=receive_member_id)
-                SendMessageFile.objects.create(image=file, send_message_id=send_member_id)
+                ReceiveMessageFile.objects.create(image=file, receive_message=receive_message)
+                SendMessageFile.objects.create(image=file, send_message=send_message)
 
         return redirect('mypage:message-list-init')
+
 
 class MyPayView(View):
     def get(self, request):

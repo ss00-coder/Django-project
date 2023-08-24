@@ -33,7 +33,7 @@ globalThis.helpersId;
         $modal.show();
     });
 
-
+    // 삭제 버튼
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
         console.log(helpersId)
@@ -43,23 +43,29 @@ globalThis.helpersId;
 });
 
 //검색창
-$(".search-button svg").on('click', ()=>{
-	keyword = $("#search-input").val();
-	location.href = keyword === "" ? "/mypage/helpers/" : `/mypage/helpers/${keyword}/`;
-})
-
-
 const $createBtn = $('.create-btn');
 
+
     $createBtn.click(() => {
+
         location.href=`/helpers/write/`
     })
-
 let status = 'Y';
 
 if(status_view === 'N') {
+
     $(".tab-item-btn").eq(0).removeClass("active-tab");
     $(".tab-item-btn").eq(1).addClass("active-tab");
     $('.tab-line').remove();
     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
 }
+
+$(".search-button svg").on('click', () => {
+    const keyword = $("#search-input").val();
+
+    if (status_view === 'N') {
+        window.location.href = keyword === "" ? "/mypage/helpers/tab/N/" : `/mypage/helpers/tab/N/${encodeURIComponent(keyword)}/`;
+    } else {
+        window.location.href = keyword === "" ? "/mypage/helpers/tab/Y/" : `/mypage/helpers/tab/Y/${encodeURIComponent(keyword)}/`;
+    }
+});

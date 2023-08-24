@@ -19,7 +19,7 @@ $(function () {
             $('.tab-line').remove();
             $(e.currentTarget).append('<div class="tab-line"></div>');
 
-            // 해당 작성글 전체 수 변경하는 이벤트
+            // 해당 작성글 전체 수 변경하는 이벤트// 삭제 버튼
             // $totalNumber.text($(e.currentTarget).find('.tab-number').text());
         }
     })
@@ -33,7 +33,7 @@ $(function () {
         $modal.show();
     });
 
-// 삭제 버튼
+
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
         console.log(eventId)
@@ -65,9 +65,13 @@ if(status_view === 'N'){
     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
 }
 //검색창
-if(status_view === 'status'){
-$(".search-button svg").on('click', ()=>{
-    keyword = $("#search-input").val();
-    location.href = keyword === "" ? "/mypage/event/tab/$status_view/" : `/mypage/event/tab/$status_view/${keyword}/`;
-})}
-// console.log($status);
+$(".search-button svg").on('click', () => {
+    const keyword = $("#search-input").val();
+
+    if (status_view === 'N') {
+        window.location.href = keyword === "" ? "/mypage/event/tab/N/" : `/mypage/event/tab/N/${encodeURIComponent(keyword)}/`;
+    } else {
+        window.location.href = keyword === "" ? "/mypage/event/tab/Y/" : `/mypage/event/tab/Y/${encodeURIComponent(keyword)}/`;
+    }
+});
+

@@ -33,7 +33,7 @@ globalThis.lessonId;
         $modal.show();
     });
 
-
+    // 삭제 버튼
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
         console.log(lessonId)
@@ -43,21 +43,17 @@ globalThis.lessonId;
 });
 
 //검색창
-$(".search-button svg").on('click', ()=>{
-	keyword = $("#search-input").val();
-	location.href = keyword === "" ? "/mypage/lesson/" : `/mypage/lessons/${keyword}/`;
-})
-
-
 const $createBtn = $('.create-btn');
 
+
     $createBtn.click(() => {
+
         location.href=`/lesson/write/`
     })
-
 let status = 'Y';
 
 if(status_view === 'N') {
+
     $(".tab-item-btn").eq(0).removeClass("active-tab");
     $(".tab-item-btn").eq(1).addClass("active-tab");
     $('.tab-line').remove();
@@ -67,5 +63,14 @@ if(status_view === 'N') {
 
 
 
+$(".search-button svg").on('click', () => {
+    const keyword = $("#search-input").val();
+
+    if (status_view === 'N') {
+        window.location.href = keyword === "" ? "/mypage/lesson/tab/N/" : `/mypage/lesson/tab/N/${encodeURIComponent(keyword)}/`;
+    } else {
+        window.location.href = keyword === "" ? "/mypage/lesson/tab/Y/" : `/mypage/lesson/tab/Y/${encodeURIComponent(keyword)}/`;
+    }
+});
 
 

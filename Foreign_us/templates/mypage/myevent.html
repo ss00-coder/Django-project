@@ -95,7 +95,7 @@
               </a>
             </li>
             <li class="side-nav-bottom-item">
-              <a class="side-nav-bottom-item-a" href="{% url 'mypage:mylesson-review' %}">
+              <a class="side-nav-bottom-item-a" href="{% url 'mypage:mylesson-review_init' %}">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z">
@@ -207,7 +207,6 @@
                     <span class="total-number">{{ current_count }}</span>
                   </div>
                   <div class="search">
-
                     <div class="search-wrapper">
                       <label class="search-label" for="search-input">
                         {% if keyword == None %}
@@ -357,11 +356,10 @@
     </div>
   </div>
 <script>
-  const status = "{{ status }}"
+  const status_view = "{{ status }}"
 
 </script>
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-
 <script src="{% static 'js/mypage/myevent.js' %}"></script>
   <script>
       {#event_post = `{{ events }}`;#}
