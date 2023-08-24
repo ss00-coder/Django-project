@@ -13,17 +13,20 @@ $(function () {
     const $productBorder = $('.product-border');
     const $productCheck = $('.product-check');
     const $productCheckSvg = $('.product-check-svg');
+    const $loginBtn = $('.main-header-login-btn');
 
 
     //스크롤시 헤더 이벤트
     $(window).scroll(function () {
         if ($(document).scrollTop() >= 100) {
             $header.css('background-color', '#fff').css('box-shadow', 'rgba(0, 0, 0, 0.15) 0px 0px 4px');
+            $loginBtn.css('background-color', '#333334').css('color', '#fff');
             $logoWhite.hide();
             $logoblack.show();
         }
         else {
             $header.css('background-color', 'transparent').css('box-shadow', 'none');
+            $loginBtn.css('background-color', '#fff').css('color', '#333334');
             $logoWhite.show();
             $logoblack.hide();
         }

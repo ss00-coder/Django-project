@@ -11,6 +11,26 @@
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css" />
     <link rel="stylesheet" href="{% static 'css/profile/host.css' %} ">
     <title>foreign-us 폴인어스</title>
+    <style>
+        button.main-header-login-btn {
+            height: 32px;
+            padding: 0 15px;
+            border-style: solid;
+            border-radius: 16px;
+            border-width: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            border-color: rgba(0, 0, 0, .1);
+            color: #333334;
+            fill: #333334;
+            background-color: #fff;
+        }
+    </style>
 </head>
 
 <body class="h-full">
@@ -26,19 +46,23 @@
                         </a>
                     </div>
                 </div>
-    {#            <div class="profile_img">#}
-    {#                <div class="relative">#}
-    {#                    <button class="img_button">#}
-    {#                        <span>#}
-    {#                            {% if login_member_profile.image %}#}
-    {#                                <a href="{% url 'profile:profile' member_id=login_member.id %}"><img style="left: 189px;" class="profile_img_center" src="/upload/{{ login_member_profile.image }}"></a>#}
-    {#                            {% else %}#}
-    {#                                <div style="left: 189px; background-image: url({% static 'image/profile_icon.png' %})" class="profile_img_center"></div>#}
-    {#                            {% endif %}#}
-    {#                        </span>#}
-    {#                    </button>#}
-    {#                </div>#}
-    {#            </div>#}
+                <div class="profile_img">
+                    <div class="relative">
+                        {% if login_member_profile.image %}
+                            <button class="img_button">
+                                <span>
+                                    <a href="{% url 'profile:profile' member_id=login_member.id %}"><img style="width: 32px; height: 32px; border-radius: 9999px" src="/upload/{{ login_member_profile.image }}"></a>
+                                </span>
+                            </button>
+                        {% else %}
+                            <div class="main-header-login">
+                                <button class="main-header-login-btn" type="button"
+                                        onclick="location.href='/member/login/'">로그인
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
             </header>
         </div>
         <!-- 헤더 백그라운드  -->
@@ -230,26 +254,22 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.6.min.js" type="application/javascript"></script>
 <script>
-    let member_id = {{ login_member.id }};
-    let member_nickname = `{{ login_member.member_nickname }}`;
-    let member_email = `{{ login_member.member_email }}`;
+    let member_id = "{{ login_member }}";
+    let member_nickname = null;
+    let member_email = null;
+    if(member_id !== "None"){
+        member_id = `{{ login_member.id }}`;
+        member_nickname = `{{ login_member.member_nickname }}`;
+        member_email = `{{ login_member.member_email }}`;
+    }
     let teacher_id = {{ member.id }};
 </script>
 <script src="{% static 'js/profile/host.js' %} "></script>
 <script src="{% static 'js/profile/pay.js' %} "></script>
 </body>
 <script>
-    let member_id = "{{ login_member }}";
-    let member_nickname = null;
-    let member_email = null;
-    console.log(member_id);
-    if(member_id !== "None"){
-        console.log("왜들어와?");
-        member_id = `{{ login_member.id }}`;
-        member_nickname = `{{ login_member.member_nickname }}`;
-        member_email = `{{ login_member.member_email }}`;
-    }
-    let teacher_id = {{ member.id }};
+    let member_latitude = {{ member.member_latitude }};
+    let member_longitude = {{ member.member_longitude }};
 
     /* 구글 map */
     ((g) => {

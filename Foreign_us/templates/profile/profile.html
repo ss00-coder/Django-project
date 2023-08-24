@@ -11,8 +11,69 @@
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css"/>
     <link rel="stylesheet" href="{% static 'css/profile/profile.css' %} ">
     <title>foreign-us 폴인어스</title>
-</head>
+    <style>
+        button.main-header-login-btn {
+            height: 32px;
+            padding: 0 15px;
+            border-style: solid;
+            border-radius: 16px;
+            border-width: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 16px;
+            border-color: rgba(0, 0, 0, .1);
+            color: #333334;
+            fill: #333334;
+            background-color: #fff;
+        }
 
+        div.post-image {
+          width: 102px;
+          height: 102px;
+          border-radius: 8px;
+          flex-shrink: 0;
+          position: relative;
+        }
+
+        span.post-thumbnail {
+          box-sizing: border-box;
+          display: block;
+          overflow: hidden;
+          width: initial;
+          height: initial;
+          background: none;
+          opacity: 1;
+          border: 0px;
+          margin: 0px;
+          padding: 0px;
+          position: absolute;
+          inset: 0px;
+        }
+
+        img.thumbnail-image {
+          position: absolute;
+          inset: 0px;
+          box-sizing: border-box;
+          padding: 0px;
+          border: none;
+          margin: auto;
+          display: block;
+          width: 0px;
+          height: 0px;
+          min-width: 100%;
+          max-width: 100%;
+          min-height: 100%;
+          max-height: 100%;
+          object-fit: cover;
+          object-position: center center;
+          border-radius: 8px;
+        }
+    </style>
+</head>
 <body class="h-full">
 <div id="wrap">
     <!-- 헤더 -->
@@ -26,19 +87,23 @@
                     </a>
                 </div>
             </div>
-{#            <div class="profile_img">#}
-{#                <div class="relative">#}
-{#                    <button class="img_button">#}
-{#                        <span>#}
-{#                            {% if login_member_profile.image %}#}
-{#                                <a href="{% url 'profile:profile' member_id=login_member.id %}"><img style="left: 189px;" class="profile_img_center" src="/upload/{{ login_member_profile.image }}"></a>#}
-{#                            {% else %}#}
-{#                                <div style="left: 189px; background-image: url({% static 'image/profile_icon.png' %})" class="profile_img_center"></div>#}
-{#                            {% endif %}#}
-{#                        </span>#}
-{#                    </button>#}
-{#                </div>#}
-{#            </div>#}
+            <div class="profile_img">
+                <div class="relative">
+                        {% if login_member_profile.image %}
+                            <button class="img_button">
+                                <span>
+                                    <a href="{% url 'profile:profile' member_id=login_member.id %}"><img style="width: 32px; height: 32px; border-radius: 9999px" src="/upload/{{ login_member_profile.image }}"></a>
+                                </span>
+                            </button>
+                        {% else %}
+                            <div class="main-header-login">
+                                <button class="main-header-login-btn" type="button"
+                                        onclick="location.href='/member/login/'">로그인
+                                </button>
+                            </div>
+                        {% endif %}
+                    </div>
+            </div>
         </header>
     </div>
     <!-- 헤더 백그라운드  -->
@@ -130,201 +195,108 @@
                 <div class="review-wrapper">
                     <div class="review-container">
                         <!-- 한개글 -->
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-text">
-                                <p class="item-content">후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-text">
-                                <p class="item-content">후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-text">
-                                <p class="item-content">후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                    후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다 후기 내용이 들어갑니다
-                                </p>
-                            </div>
-                        </div>
+{#                        <div style="display: flex; align-items: flex-end;" class="item-wrapper">#}
+{#                            <div>#}
+{#                                <div class="item-container">#}
+{#                                    <div class="item-profile">#}
+{#                                        <div class="icon-container">#}
+{#                                            <a href="">#}
+{#                                                <div class="item-icon"></div>#}
+{#                                            </a>#}
+{#                                        </div>#}
+{#                                        <div class="info-container">#}
+{#                                            <div>#}
+{#                                                <a class="info-nickname" href="">배드캐럿</a>#}
+{#                                            </div>#}
+{#                                            <div class="info-flex">#}
+{#                                                <a class="info-a" href="">#}
+{#                                                    <span>1일 전</span>#}
+{#                                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">#}
+{#                                                        <circle cx="12" cy="12" r="4"></circle>#}
+{#                                                    </svg>#}
+{#                                                    <span>조회수 33</span>#}
+{#                                                </a>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <button class="item-text">#}
+{#                                    <h4 class="item-h4">작성글 제목이 들어갑니다.</h4>#}
+{#                                    <p style="height: 40px; overflow: hidden; padding-right: 5px; text-overflow: ellipsis" class="item-content-p">#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                    </p>#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <div class="post-image">#}
+{#                                <span class="post-thumbnail">#}
+{#                                  <img#}
+{#                                    class="thumbnail-image"#}
+{#                                    src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"#}
+{#                                    alt=""#}
+{#                                  />#}
+{#                                </span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <hr style="border: 0; height: 1px; background: #e5e7eb; margin-top: 35px;">#}
                     </div>
+                    <div class="add-review"></div>
                 </div>
 
                 <!-- 작성글 -->
                 <div class="posts-wrapper">
-                    <div class="posts-container">
+                    <div class="lesson-container">
                         <!-- 한개글 -->
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="4"></circle>
-                                                </svg>
-                                                <span>조회수 33</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="item-text">
-                                <h4 class="item-h4">작성글 제목이 들어갑니다.</h4>
-                                <p class="item-content-p">
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                </p>
-                            </button>
-                        </div>
-
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="4"></circle>
-                                                </svg>
-                                                <span>조회수 33</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="item-text">
-                                <h4 class="item-h4">작성글 제목이 들어갑니다.</h4>
-                                <p class="item-content-p">
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                </p>
-                            </button>
-                        </div>
-
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="item-profile">
-                                    <div class="icon-container">
-                                        <a href="">
-                                            <div class="item-icon"></div>
-                                        </a>
-                                    </div>
-                                    <div class="info-container">
-                                        <div>
-                                            <a class="info-nickname" href="">배드캐럿</a>
-                                        </div>
-                                        <div class="info-flex">
-                                            <a class="info-a" href="">
-                                                <span>1일 전</span>
-                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <circle cx="12" cy="12" r="4"></circle>
-                                                </svg>
-                                                <span>조회수 33</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="item-text">
-                                <h4 class="item-h4">작성글 제목이 들어갑니다.</h4>
-                                <p class="item-content-p">
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                    작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다
-                                </p>
-                            </button>
-                        </div>
+{#                        <div style="display: flex; align-items: flex-end;" class="item-wrapper">#}
+{#                            <div>#}
+{#                                <div class="item-container">#}
+{#                                    <div class="item-profile">#}
+{#                                        <div class="icon-container">#}
+{#                                            <a href="">#}
+{#                                                <div class="item-icon"></div>#}
+{#                                            </a>#}
+{#                                        </div>#}
+{#                                        <div class="info-container">#}
+{#                                            <div>#}
+{#                                                <a class="info-nickname" href="">배드캐럿</a>#}
+{#                                            </div>#}
+{#                                            <div class="info-flex">#}
+{#                                                <a class="info-a" href="">#}
+{#                                                    <span>1일 전</span>#}
+{#                                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">#}
+{#                                                        <circle cx="12" cy="12" r="4"></circle>#}
+{#                                                    </svg>#}
+{#                                                    <span>조회수 33</span>#}
+{#                                                </a>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <button class="item-text">#}
+{#                                    <h4 class="item-h4">작성글 제목이 들어갑니다.</h4>#}
+{#                                    <p style="height: 40px; overflow: hidden; padding-right: 5px; text-overflow: ellipsis" class="item-content-p">#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                        작성글 내용이 들어갑니다 작성글 내용이 들어갑니다 작성글 내용이 들어갑니다#}
+{#                                    </p>#}
+{#                                </button>#}
+{#                            </div>#}
+{#                            <div class="post-image">#}
+{#                                <span class="post-thumbnail">#}
+{#                                  <img#}
+{#                                    class="thumbnail-image"#}
+{#                                    src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"#}
+{#                                    alt=""#}
+{#                                  />#}
+{#                                </span>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <hr style="border: 0; height: 1px; background: #e5e7eb; margin-top: 35px;">#}
                     </div>
+                    <div class="add-lesson"></div>
                 </div>
 
                 <!-- 소셜 미디어 -->
@@ -486,9 +458,7 @@
     let member_id = "{{ login_member }}";
     let member_nickname = null;
     let member_email = null;
-    console.log(member_id);
     if(member_id !== "None"){
-        console.log("왜들어와?");
         member_id = `{{ login_member.id }}`;
         member_nickname = `{{ login_member.member_nickname }}`;
         member_email = `{{ login_member.member_email }}`;
