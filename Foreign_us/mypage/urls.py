@@ -10,7 +10,6 @@ app_name = 'mypage'
 urlpatterns = [
     # 프로필
     path('profile/', MyProfileView.as_view(), name='myprofile'),
-    path('profile/update/', MyProfileView.as_view(), name='myprofile_update'),
     # 과외 매칭
     path('lesson/', MyLessonView.as_view(), name='mylesson_init'),
     path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson_page'),

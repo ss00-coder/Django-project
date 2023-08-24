@@ -17,57 +17,75 @@ from review.models import Review, ReviewFile, ReviewLike
 # 내 페이지
 # Create your views here.
 class MyProfileView(View):
-    pass
-    # def get(self, request):
-    #     return render(request, 'mypage/myprofile.html')
-    #
-    # def post(self, request):
-    #     datas = request.POST
-    #     files = request.FILES
-    #     # 로그인된 사람
-    #     member_id = Member.objects.get(member_email=request.session['member_email']).id
-    #     member_sns = MemberSNS.objects.get(member_email=request.session['member_email']).id
-    #
-    #     new_datas = {
-    #         'member_nickname': datas['member_nickname'],
-    #         'member_intro': datas['member_intro'],
-    #         'member_intro_detail': datas['member_intro_detail'],
-    #         'member_address': datas['member_address'],
-    #         'sns_url': datas['sns_url']
-    #     }
-    #
-    #     Member.objects.update(**new_datas)
-    #
-    #     if files:
-    #         for file in files.getlist('member_file'):
-    #             MemberFile.objects.create(image=file, member_id=member_id)
-    #
-    #     return render(redirect(post.get_absolute_url(1))
-
-class MyProfileView(View):
     def get(self, request):
         member = Member.objects.get(member_email=request.session['member_email'])
-        print(member)
+        member_sns = member.membersns_set
+        member_file = member.memberfile_set
 
         context = {
+            'member_profile_img': member_file.get(file_type="P").image if member_file.filter(file_type="p") else '',
+            'member_background_img': member_file.get(file_type="B").image if member_file.filter(file_type="B") else '',
             'member_nickname': member.member_nickname,
+            'member_address': member.member_address,
             'member_intro': member.member_intro,
             'member_intro_detail': member.member_intro_detail,
-            'member_address': member.member_address,
-            'sns_url': member.sns_url,
+            'member_sns_insta': member_sns.get(sns_type="insta").sns_url if member_sns.filter(sns_type="insta") else '',
+            'member_sns_twitter': member_sns.get(sns_type="twitter").sns_url if member_sns.filter(sns_type="twitter") else '',
+            'member_sns_youtube': member_sns.get(sns_type="youtube").sns_url if member_sns.filter(sns_type="youtube") else '',
+            'member_sns_facebook': member_sns.get(sns_type="facebook").sns_url if member_sns.filter(sns_type="facebook") else '',
         }
+
         # render(request, to, context): 바로 html 화면으로 이동
         return render(request, "mypage/myprofile.html", context)
 
-    # def post(self, request):
-    #     datas = request.POST
-    #     datas = {
-    #         'post_title': datas['post_title'],
-    #         'post_content': datas['post_content']
-    #     }
-    #     Post.objects.update(**datas)
-    #     # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
-    #     return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
+    def post(self, request):
+        datas = request.POST
+        files = request.FILES
+
+        member = Member.objects.get(member_email=request.session['member_email'])
+        # print(datas)
+        member_datas = {
+            'member_nickname': datas['member_nickname'],
+            'member_address': datas['member_address'],
+            'member_intro': datas['member_intro'],
+            'member_intro_detail': datas['member_intro_detail'],
+        }
+
+        Member.objects.filter(id=member.id).update(**member_datas)
+
+        # if MemberFile.objects.filter(member_id=member.id, file_type='P'):
+        #     MemberFile.objects.get(member_id=member.id, file_type='P').update()
+
+        for file in files.getlist('file1'):
+            memberPimg = MemberFile.objects.get_or_create(member_id=member.id, file_type='P')[0]
+            memberPimg.image = file
+            memberPimg.save()
+
+        for file in files.getlist('file2'):
+            memberBimg = MemberFile.objects.get_or_create(member_id=member.id, file_type='B')[0]
+            memberBimg.image = file
+            memberBimg.save()
+
+
+        memberSNS_insta = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='insta')[0]
+        memberSNS_insta.sns_url = datas['insta']
+        memberSNS_insta.save()
+
+        memberSNS_twitter = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='twitter')[0]
+        memberSNS_twitter.sns_url = datas['twitter']
+        memberSNS_twitter.save()
+
+        memberSNS_youtube = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='youtube')[0]
+        memberSNS_youtube.sns_url = datas['youtube']
+        memberSNS_youtube.save()
+
+        memberSNS_facebook = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='facebook')[0]
+        memberSNS_facebook.sns_url = datas['facebook']
+        memberSNS_facebook.save()
+
+
+
+        return redirect("mypage:myprofile")
 
 # 과외 목록
 class MyLessonView(View):
