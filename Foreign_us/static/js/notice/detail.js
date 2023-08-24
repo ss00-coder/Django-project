@@ -147,13 +147,11 @@ const view = (function(){
                       </li>
                 `;
             });
-
             document.getElementById("reply").innerHTML += text;
-            if (!replies.hasNext){
-                $(".more-button").hide();
-            }
         }
-
+        if (!replies.hasNext){
+            $(".more-button").hide();
+        }
     }
 
     return {showList: showList};
