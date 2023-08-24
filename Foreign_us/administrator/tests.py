@@ -33,10 +33,10 @@ class AdminTest(TestCase):
     #         reviewed_member_id=1
     #     )
 
-    # ReviewFile.objects.create(
-    #     review_id=50,
-    #     image="notice/2023/08/21/dogs.jpg"
-    # )
+    ReviewFile.objects.create(
+        review_id=96,
+        image="notice/2023/08/21/cake.jpg"
+    )
 
     # for i in range(0, 100):
     #     ReceiveMessage.objects.create(
