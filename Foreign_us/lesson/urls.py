@@ -9,9 +9,10 @@ from profilepage.views import ProfileView, HostView
 app_name = 'lesson'
 
 urlpatterns = [
-    path('list/', LessonListView.as_view(), name='list'),
+    path('list/', LessonListView.as_view(), name='list-init'),
     path('detail/', LessonDetailView.as_view(), name='detail'),
-    path('write/', LessonWriteView.as_view(), name='write'),
+    path('write/', LessonWriteView.as_view(), name='write-init'),
+    path('write/<int:post_id>', LessonWriteView.as_view(), name='write'),
     path('review/detail/', LessonReviewDetailView.as_view(), name='review-detail'),
     path('review/write/', LessonReviewWriteView.as_view(), name='review-write'),
 ]
