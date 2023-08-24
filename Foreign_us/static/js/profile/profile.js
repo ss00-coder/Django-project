@@ -120,11 +120,11 @@ function getList(url){
     fetch(`/profile/${url}/${teacher_id}/${page}`)
         .then((response) => response.json())
         .then((posts)=>{
-            console.log(posts);
             let text = "";
             posts.posts.forEach(post => {
-                console.log(post);
-                post = post[0];
+                if(url==="review"){
+                    post = post[0];
+                }
                 text += `<div style="display: flex; align-items: flex-end; justify-content: space-between;" class="item-wrapper">
                             <div>
                                 <div class="item-container">
@@ -198,7 +198,7 @@ window.addEventListener('scroll', () => {
     const windowHeight = window.innerHeight;
     const bodyHeight = document.body.scrollHeight;
     // console.log(currentScroll + windowHeight + 0.5, bodyHeight);
-    if(currentScroll + windowHeight + 0.5 > bodyHeight){
+    if(currentScroll + windowHeight + 0.5 >= bodyHeight){
         if($('.title-button.active-tab').text() === "과외 후기"){
             content = "review";
         } else{
