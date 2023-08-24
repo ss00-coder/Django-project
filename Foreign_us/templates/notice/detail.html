@@ -104,7 +104,7 @@
                 {% if writer_profile.image %}
                     <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="/upload/{{ writer_profile.image }}"></a>
                 {% else %}
-                    <img class="profile-image" src="{% static 'image/profile_icon.png' %}"/>
+                    <img style="width: 34px; height: 34px; border-radius: 9999px" src="{% static 'image/profile_icon.png' %}"/>
                 {% endif %}
               </div>
               <div>
@@ -176,7 +176,7 @@
           <div>
             <h4 class="comment-title">
               댓글
-              <span></span>
+              <span>0</span>
             </h4>
             <div style="height: 24px"></div>
             <div class="comment-write-wrapper">
@@ -289,7 +289,7 @@
         </main>
       </div>
       <!-- 푸터 -->
-        <footer class="post-footer">
+        <footer class="post-footer" style="position: fixed; width: 100%">
           <div class="post-footer-wrapper">
             <div class="post-footer-container">
               <div class="footer-left-wrapper">
@@ -333,7 +333,7 @@
                           d="M8.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM10.667 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM13.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0Z"
                         ></path>
                       </svg>
-                      <span class="left-num reply-num"></span>
+                      <span class="left-num reply-num">0</span>
                     </button>
                   </a>
                 </div>
