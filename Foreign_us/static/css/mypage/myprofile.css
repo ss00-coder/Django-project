@@ -670,6 +670,7 @@ p.mypage-grid-imgicon-explanation {
     border: 1px solid #e6e6e7;
     outline: none;
     resize: none;
+    text-align: center;
 }
 
 .mypage-grid-sns {

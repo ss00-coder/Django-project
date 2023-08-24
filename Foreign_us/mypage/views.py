@@ -1,4 +1,5 @@
 import math
+from itertools import chain
 
 from django.contrib.admin import helpers
 from django.db.models import F, Q
@@ -11,63 +12,82 @@ from helpers.models import Helpers, HelpersLike, HelpersFile
 from lesson.models import Lesson, LessonLike, LessonFile
 from member.models import Member, MemberFile, MemberSNS
 from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, SendMessageFile
+from payment.models import Payment
 from review.models import Review, ReviewFile, ReviewLike
 
 
 # 내 페이지
 # Create your views here.
 class MyProfileView(View):
-    pass
-    # def get(self, request):
-    #     return render(request, 'mypage/myprofile.html')
-    #
-    # def post(self, request):
-    #     datas = request.POST
-    #     files = request.FILES
-    #     # 로그인된 사람
-    #     member_id = Member.objects.get(member_email=request.session['member_email']).id
-    #     member_sns = MemberSNS.objects.get(member_email=request.session['member_email']).id
-    #
-    #     new_datas = {
-    #         'member_nickname': datas['member_nickname'],
-    #         'member_intro': datas['member_intro'],
-    #         'member_intro_detail': datas['member_intro_detail'],
-    #         'member_address': datas['member_address'],
-    #         'sns_url': datas['sns_url']
-    #     }
-    #
-    #     Member.objects.update(**new_datas)
-    #
-    #     if files:
-    #         for file in files.getlist('member_file'):
-    #             MemberFile.objects.create(image=file, member_id=member_id)
-    #
-    #     return render(redirect(post.get_absolute_url(1))
-
-class MyProfileView(View):
     def get(self, request):
         member = Member.objects.get(member_email=request.session['member_email'])
-        print(member)
+        member_sns = member.membersns_set
+        member_file = member.memberfile_set
 
         context = {
+            'member_profile_img': member_file.get(file_type="P").image if member_file.filter(file_type="p") else '',
+            'member_background_img': member_file.get(file_type="B").image if member_file.filter(file_type="B") else '',
             'member_nickname': member.member_nickname,
+            'member_address': member.member_address,
             'member_intro': member.member_intro,
             'member_intro_detail': member.member_intro_detail,
-            'member_address': member.member_address,
-            'sns_url': member.sns_url,
+            'member_sns_insta': member_sns.get(sns_type="insta").sns_url if member_sns.filter(sns_type="insta") else '',
+            'member_sns_twitter': member_sns.get(sns_type="twitter").sns_url if member_sns.filter(sns_type="twitter") else '',
+            'member_sns_youtube': member_sns.get(sns_type="youtube").sns_url if member_sns.filter(sns_type="youtube") else '',
+            'member_sns_facebook': member_sns.get(sns_type="facebook").sns_url if member_sns.filter(sns_type="facebook") else '',
         }
+
         # render(request, to, context): 바로 html 화면으로 이동
         return render(request, "mypage/myprofile.html", context)
 
-    # def post(self, request):
-    #     datas = request.POST
-    #     datas = {
-    #         'post_title': datas['post_title'],
-    #         'post_content': datas['post_content']
-    #     }
-    #     Post.objects.update(**datas)
-    #     # redirect(to): URL로 이동하여 다른 View에서 render()로 html 화면 이동
-    #     return redirect(Post.objects.get(id=post_id).get_absolute_url(page))
+    def post(self, request):
+        datas = request.POST
+        files = request.FILES
+
+        member = Member.objects.get(member_email=request.session['member_email'])
+        # print(datas)
+        member_datas = {
+            'member_nickname': datas['member_nickname'],
+            'member_address': datas['member_address'],
+            'member_intro': datas['member_intro'],
+            'member_intro_detail': datas['member_intro_detail'],
+        }
+
+        Member.objects.filter(id=member.id).update(**member_datas)
+
+        # if MemberFile.objects.filter(member_id=member.id, file_type='P'):
+        #     MemberFile.objects.get(member_id=member.id, file_type='P').update()
+
+        for file in files.getlist('file1'):
+            memberPimg = MemberFile.objects.get_or_create(member_id=member.id, file_type='P')[0]
+            memberPimg.image = file
+            memberPimg.save()
+
+        for file in files.getlist('file2'):
+            memberBimg = MemberFile.objects.get_or_create(member_id=member.id, file_type='B')[0]
+            memberBimg.image = file
+            memberBimg.save()
+
+
+        memberSNS_insta = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='insta')[0]
+        memberSNS_insta.sns_url = datas['insta']
+        memberSNS_insta.save()
+
+        memberSNS_twitter = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='twitter')[0]
+        memberSNS_twitter.sns_url = datas['twitter']
+        memberSNS_twitter.save()
+
+        memberSNS_youtube = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='youtube')[0]
+        memberSNS_youtube.sns_url = datas['youtube']
+        memberSNS_youtube.save()
+
+        memberSNS_facebook = MemberSNS.objects.get_or_create(member_id=member.id, sns_type='facebook')[0]
+        memberSNS_facebook.sns_url = datas['facebook']
+        memberSNS_facebook.save()
+
+
+
+        return redirect("mypage:myprofile")
 
 # 과외 목록
 class MyLessonView(View):
@@ -274,8 +294,7 @@ class MyEventView(View):
             keyword = None
 
         if keyword:
-            events = Event.objects.filter(member_id=member_id).filter(post_status=status).filter(
-                Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            events = Event.objects.filter(member_id=member_id).filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
             events = Event.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
@@ -332,6 +351,58 @@ class MyEventDeleteView(View):
         return redirect('mypage:myevent_init')
 
 
+class MyPayView(View):
+    def get(self, request, keyword=None, page=1):
+        print(keyword)
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
+        print(member_id)
+
+        if keyword == "None":
+            keyword = None
+        print(keyword)
+        if keyword:
+            payments = Payment.objects.filter(Q(member_id=member_id) & (Q(member__member_nickname__contains=keyword) | Q(teacher__member_nickname__contains=keyword))).order_by('-id').all()
+        else:
+            payments = Payment.objects.filter(member_id=member_id).order_by('-id').all()
+
+        print(payments)
+
+
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+        current_count = len(payments)
+        pay_total = Payment.objects.filter(member_id=member_id).all().count()
+        pageCount = 5
+        endPage = math.ceil(page / pageCount) * pageCount
+        startPage = endPage - pageCount + 1
+        realEnd = math.ceil(current_count / size)
+        endPage = realEnd if endPage > realEnd else endPage
+        pageUnit = (page - 1) // 5
+        if endPage == 0:
+            endPage = 1
+
+        payments = list(payments)[offset:limit]
+        # 결제한 핼퍼스의 닉네임
+        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+
+        context = {
+            'startPage': startPage,
+            'endPage': endPage,
+            'page': page,
+            'realEnd': realEnd,
+            'payments': payments,
+            'member_nickname': member_nickname,
+            'keyword': keyword,
+            'payments': payments,
+            'current_count': current_count,
+            'pay_total': pay_total
+
+        }
+
+        return render(request, 'mypage/mypay.html', context)
+
+
 class MyMessageListView(View):
     def get(self, request, keyword=None, page=1):
         member_id = Member.objects.get(member_email=request.session['member_email']).id
@@ -358,10 +429,20 @@ class MyMessageListView(View):
         if endPage == 0:
             endPage = 1
 
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
+        receive_messages_imgs = []
+        for receive_message in list(receive_messages)[offset:limit]:
+            receive_messages_imgs.append(receive_message.receivemessagefile_set.first())
+
+        receive_container = zip(list(receive_messages)[offset:limit], receive_messages_imgs)
 
         context = {
-            'receive_messages': list(receive_messages)[offset:limit],
+            'receive_container': receive_container,
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
@@ -370,7 +451,8 @@ class MyMessageListView(View):
             'send_total': send_total,
             'receive_total': receive_total,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
+            'member_file': member_profile_img,
             'type': type,
         }
         return render(request, 'message/list.html', context)
@@ -403,10 +485,19 @@ class MyMessageSendListView(View):
         if endPage == 0:
             endPage = 1
 
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        member = Member.objects.get(member_email=request.session['member_email'])
 
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
+        send_messages_imgs = []
+        for send_message in list(send_messages)[offset:limit]:
+            send_messages_imgs.append(send_message.sendmessagefile_set.first())
+
+        send_container = zip(list(send_messages)[offset:limit], send_messages_imgs)
         context = {
-            'send_messages': list(send_messages)[offset:limit],
+            'send_container': send_container,
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
@@ -415,7 +506,8 @@ class MyMessageSendListView(View):
             'send_total': send_total,
             'receive_total': receive_total,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
+            'member_file': member_profile_img,
             'type': type,
         }
         return render(request, 'message/list.html', context)
@@ -438,25 +530,69 @@ class MyMessageSendDeleteView(View):
 class MyMessageDetailView(View):
 
     def get(self, request, receive_message_id):
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        member = Member.objects.get(member_email=request.session['member_email'])
 
-        # 받은 메세제 id
+        # 받은 메세지
         receive_message = ReceiveMessage.objects.get(id=receive_message_id)
 
-        # 받은 메세지 유저 id
-        send_member_id = ReceiveMessage.objects.get(id=receive_message_id).send_member_id
+        # 보낸 유저
+        send_member = Member.objects.get(id=ReceiveMessage.objects.get(id=receive_message_id).send_member_id)
 
-        # 닉네임
-        nickname = Member.objects.get(id=send_member_id).member_nickname
-        # 프로필 이미지
-        # 파일 첨부 이미지
-        file = ReceiveMessageFile.objects.get(receive_message=receive_message)
-        # 이미지
+        # 보낸 유저 프로필 이미지
+        send_member_profile_img = "member/profile_icon.png"
+        if send_member.memberfile_set.filter(file_type="P"):
+            send_member_profile_img = send_member.memberfile_set.get(file_type="P").image
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
+        # 받은 메세지의 이미지들
+        receive_files = list(receive_message.receivemessagefile_set.all())
+
         context = {
-            'member_nickname': member_nickname,
-            'send_nickname': nickname,
+            'type': 'receive',
+            'member_nickname': member.member_nickname,
+            'send_member_nickname': send_member.member_nickname,
             'receive_message': receive_message,
-            'file': file
+            'receive_files': receive_files,
+            'send_member_profile_img': send_member_profile_img,
+            'member_file': member_profile_img,
+        }
+
+        return render(request, 'message/detail.html', context)
+
+class MyMessageSendDetailView(View):
+
+    def get(self, request, send_message_id):
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        # 보낸 메세지
+        send_message = SendMessage.objects.get(id=send_message_id)
+
+        # 보낸 유저
+        send_member = Member.objects.get(id=SendMessage.objects.get(id=send_message_id).member_id)
+
+        # 보낸 유저 프로필 이미지
+        send_member_profile_img = "member/profile_icon.png"
+        if send_member.memberfile_set.filter(file_type="P"):
+            send_member_profile_img = send_member.memberfile_set.get(file_type="P").image
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
+        # 보낸 메세지의 이미지들
+        send_files = list(send_message.sendmessagefile_set.all())
+
+        context = {
+            'type': "send",
+            'member_nickname': member.member_nickname,
+            'send_member_nickname': send_member.member_nickname,
+            'send_message': send_message,
+            'send_files': send_files,
+            'send_member_profile_img': send_member_profile_img,
+            'member_file': member_profile_img,
         }
 
         return render(request, 'message/detail.html', context)
@@ -464,8 +600,14 @@ class MyMessageDetailView(View):
 
 class MyMessageWriteView(View):
     def get(self, request):
+        member = Member.objects.get(member_email=request.session['member_email'])
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
         context = {
-            'member_nickname': Member.objects.get(member_email=request.session['member_email']).member_nickname
+            'member_nickname': member.member_nickname,
+            'member_file': member_profile_img,
         }
         return render(request, 'message/write.html', context)
 
@@ -499,14 +641,9 @@ class MyMessageWriteView(View):
 
         if files:
             for file in files.getlist('message_file'):
-                # print(member_id)
-                # print(send_member_id)
                 ReceiveMessageFile.objects.create(image=file, receive_message=receive_message)
                 SendMessageFile.objects.create(image=file, send_message=send_message)
 
         return redirect('mypage:message-list-init')
 
 
-class MyPayView(View):
-    def get(self, request):
-        return render(request, 'mypage/mypay.html')

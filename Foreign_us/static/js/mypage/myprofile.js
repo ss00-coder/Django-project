@@ -12,6 +12,11 @@ function setCover() {
         $('.back-pic').show();
         $('.cover-pic').remove();
         $('.back-pic').attr('src', event.target.result);
+        console.log(event.target.result)
     }
     reader.readAsDataURL(event.target.files[0]);
 }
+
+
+
+//

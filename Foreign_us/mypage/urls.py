@@ -3,14 +3,13 @@ from django.urls import path
 from mypage import views
 from mypage.views import MyProfileView, MyLessonView, MyLessonReviewView, MyHelpersView, MyEventView, MyMessageListView, \
     MyMessageDetailView, MyMessageWriteView, MyPayView, MyEventDeleteView, MyHelpersDeleteView, MyMessageSendListView, \
-    MyMessageDeleteView, MyMessageSendDeleteView, MyLessonDeleteView, MyLessonReviewDeleteView
+    MyMessageDeleteView, MyMessageSendDeleteView, MyLessonDeleteView, MyLessonReviewDeleteView, MyMessageSendDetailView
 
 app_name = 'mypage'
 
 urlpatterns = [
     # 프로필
     path('profile/', MyProfileView.as_view(), name='myprofile'),
-    path('profile/update/', MyProfileView.as_view(), name='myprofile_update'),
     # 과외 매칭
     path('lesson/', MyLessonView.as_view(), name='mylesson_init'),
     path('lesson/<int:page>/', MyLessonView.as_view(), name='mylesson_page'),
@@ -57,7 +56,11 @@ urlpatterns = [
     path('message/delete/<int:id>', MyMessageDeleteView.as_view(), name='message-delete'),
     path('message/send/delete/<int:id>', MyMessageSendDeleteView.as_view(), name='message-send-delete'),
     path('message-detail/<int:receive_message_id>', MyMessageDetailView.as_view(), name='message-detail'),
+    path('message-send-detail/<int:send_message_id>', MyMessageSendDetailView.as_view(), name='message-send-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
+    path('pay/<int:page>/', MyPayView.as_view(), name='mypay_page'),
+    # path('pay/<str:keyword>/', MyPayView.as_view(), name='mypay_find'),
+    path('pay/<int:page>/<str:keyword>/', MyPayView.as_view(), name='mypay_search'),
 ]
