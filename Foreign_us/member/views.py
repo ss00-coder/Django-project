@@ -8,7 +8,6 @@ from member.models import Member
 # Create your views here.
 class MemberLoginView(View):
     def get(self, request):
-        print(request)
         return render(request, 'login/login.html')
 
 

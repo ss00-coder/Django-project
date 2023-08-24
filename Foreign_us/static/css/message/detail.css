@@ -316,5 +316,5 @@ div.main-content div.content p {
 div.main-content div.image-wrapper {
   margin: 0 0 24px 0;
   width: 500px;
-  height: 500px;
+  min-height: 400px;
 }

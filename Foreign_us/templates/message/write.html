@@ -32,8 +32,7 @@
                 <div class="header-profile-pos">
                     <button class="header-profile-btn">
                 <span class="header-profile-btn-span">
-                  <img
-                          src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2Fdafd8eca-60ea-40bf-80a3-a4e2e869485a%2FprofileImage%2Ff83e85b0-87ed-4fbf-9a1f-d858ebe2d809.png%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1080&q=75"/>
+                    <img src="/upload/{{ member_file }}">
                 </span>
                     </button>
                 </div>
@@ -46,7 +45,7 @@
                         <div class="side-nav-top-profile-icon">
                             <button class="side-nav-top-profile-icon-btn" type="button">
                                 <span class="side-nav-top-profile-icon-img">
-                                    <img src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2Fdafd8eca-60ea-40bf-80a3-a4e2e869485a%2FprofileImage%2Ff83e85b0-87ed-4fbf-9a1f-d858ebe2d809.png%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=1080&q=75"/>
+                                    <img src="/upload/{{ member_file }}">
                                 </span>
                                 <span class="side-nav-top-profile-icon-border"></span>
                             </button>
@@ -96,7 +95,7 @@
                         </a>
                     </li>
                     <li class="side-nav-bottom-item">
-                        <a class="side-nav-bottom-item-a" href="{% url 'mypage:mylesson-review' %}">
+                        <a class="side-nav-bottom-item-a" href="{% url 'mypage:mylesson-review_init' %}">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                         d="M15.078 3.137H8.6a5.6 5.6 0 0 0-5.6 5.6v6.8a5.6 5.6 0 0 0 5.6 5.6h6.8a5.6 5.6 0 0 0 5.6-5.6V8.944l-1.6 1.6v4.993a4 4 0 0 1-4 4H8.6a4 4 0 0 1-4-4v-6.8a4 4 0 0 1 4-4h4.878l1.6-1.6Z">
@@ -238,7 +237,7 @@
                                                         <strong class="sub-title-text">파일 첨부</strong>
                                                     </div>
                                                     <label class="file-upload-label" for="file-upload">
-                                                        <input style="display: none" type="file" id="file-upload" name="message_file"/>
+                                                        <input style="display: none" type="file" id="file-upload" name="message_file" multiple/>
                                                         업로드
                                                     </label>
                                                 </div>
