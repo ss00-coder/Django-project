@@ -93,7 +93,7 @@ class NoticeReplyListAPI(APIView):
             id = all_replies[i].member.id
             reply_id = all_replies[i].id
             reply_writer_file = MemberFile.objects.filter(member_id=id, file_type="P")
-            reply = NoticeReply.objects.filter(id=reply_id).order_by("-id").annotate(member_nickname=F('member__member_nickname'), reply_writer_file=reply_writer_file.values('image')[:1]).values('id', 'reply_content', 'member_nickname', 'created_date', 'reply_writer_file')
+            reply = NoticeReply.objects.filter(id=reply_id).order_by("-id").annotate(member_nickname=F('member__member_nickname'), reply_writer_file=reply_writer_file.values('image')[:1]).values('id', 'reply_content', 'member_id', 'member_nickname', 'created_date', 'reply_writer_file')
             replies.append(reply)
         #
         # posts = posts[offset:limit + 1]

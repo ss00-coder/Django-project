@@ -73,11 +73,11 @@ const view = (function(){
                         `
                 if(reply.reply_writer_file){
                    text += `      
-                          <img src="/upload/${reply.reply_writer_file}"/>
+                          <a class="writer" href="/profile/${reply.member_id}"><img src="/upload/${reply.reply_writer_file}"/></a>
                     `;
                 } else {
                     text += `
-                          <img src="/static/image/profile_icon.png"/>
+                          <a class="writer" href="/profile/${reply.member_id}"><img src="/static/image/profile_icon.png"/></a>
                       `
                 }
                 text +=  `
