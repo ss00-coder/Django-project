@@ -1,5 +1,8 @@
 import os
 
+import geolocator as geolocator
+import geopy
+from geopy.geocoders import Nominatim
 import django
 from django.db.models import Q
 from django.test import TestCase
@@ -33,10 +36,18 @@ class AdminTest(TestCase):
     #         reviewed_member_id=1
     #     )
 
-    ReviewFile.objects.create(
-        review_id=96,
-        image="notice/2023/08/21/cake.jpg"
-    )
+    # ReviewFile.objects.create(
+    #     review_id=96,
+    #     image="notice/2023/08/21/cake.jpg"
+    # )
+    # print(geolocator.DummyLocator('서울특별시 송파구 송파대로345'))
+    # print(geopy.geocode('서울특별시 송파구 송파대로345'))
+    # geolocator = Nominatim(user_agent="heesu")
+    # location = geolocator.geocode('서울특별시 송파구 송파대로345')
+    # print(location)
+    # print(location.latitude)
+    # print(location.longitude)
+
 
     # for i in range(0, 100):
     #     ReceiveMessage.objects.create(

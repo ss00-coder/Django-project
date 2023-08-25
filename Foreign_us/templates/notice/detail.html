@@ -35,14 +35,14 @@
                 {% if writer_profile.image %}
                     <a href="{% url 'profile:profile' member_id=writer.id %}"><img src="/upload/{{ writer_profile.image }}"></a>
                 {% else %}
-                    <img src="{% static 'image/profile_icon.png' %}"/>
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img src="{% static 'image/profile_icon.png' %}"/></a>
                 {% endif %}
               </span>
             </button>
           </div>
           <div style="width: 260px">
             <div class="writer-introduce">
-              <button>{{ writer.member_nickname }}</button>
+              <button onclick="location.href='{% url 'profile:profile' member_id=writer.id %}'">{{ writer.member_nickname }}</button>
               <p>{{ writer.member_intro }}</p>
               <p>{{ writer.member_intro_detail }}</p>
             </div>
@@ -104,12 +104,12 @@
                 {% if writer_profile.image %}
                     <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="/upload/{{ writer_profile.image }}"></a>
                 {% else %}
-                    <img style="width: 34px; height: 34px; border-radius: 9999px" src="{% static 'image/profile_icon.png' %}"/>
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="{% static 'image/profile_icon.png' %}"/></a>
                 {% endif %}
               </div>
               <div>
                 <div>
-                  <a class="writer" href="">{{ writer.member_nickname }}</a>
+                  <a class="writer" href="{% url 'profile:profile' member_id=writer.id %}">{{ writer.member_nickname }}</a>
                 </div>
                 <div class="remain">
 {#                  <p class="public">전체공개</p>#}
