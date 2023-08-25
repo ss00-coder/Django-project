@@ -586,6 +586,7 @@ body {
 }
 
 .post {
+  position: relative;
   border-color: #f3f3f4;
   display: flex;
   align-items: center;
@@ -929,5 +930,8 @@ button.page span.page-number {
 }
 
 .file-wrapper img {
-  position: fixed;
+    position: absolute;
+    top: 50%;
+    right: 600px;
+    transform: translateY(-50%);
 }

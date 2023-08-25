@@ -35,20 +35,35 @@ $(function () {
 
 
     $buttonCancel.click(() => { $modal.hide() })
+    // $buttonAgree.click(function ()  {
+    //     console.log(eventId)
+    //     $modal.hide()
+    //     location.href=`/mypage/event/delete/${globalThis.eventId}/`
+    // })
     $buttonAgree.click(function ()  {
-        console.log(eventId)
-        $modal.hide()
+    console.log(eventId);
+    $modal.hide();
+    // 현재 선택된 탭의 상태에 따라 다른 경로로 이동
+
+        if ($(".active-tab").children().children().text().trim() === "게시완료") {
+            status = 'Y'
+        } else if ($(".active-tab").children().children().text().trim() === "임시저장") {
+            status = 'N'
+        }
         location.href=`/mypage/event/delete/${globalThis.eventId}/`
-    })
+    });
 });
 
 
-
+// 작성 페이지로 이동
 const $createBtn = $('.create-btn');
-
 $createBtn.click(() => {
     location.href=`/event/write/`
 })
+
+
+
+
 
 let status = 'Y';
 // $(".tab-item-btn").each((i, tab)=>{
