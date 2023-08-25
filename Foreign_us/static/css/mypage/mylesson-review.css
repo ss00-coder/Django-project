@@ -594,7 +594,7 @@ body {
 }
 
 .post-content-wrapper {
-  width: 280px;
+  width: 200px;
   text-align: left;
 }
 
@@ -639,12 +639,12 @@ body {
   margin: 0 30px 0 165px;
   display: flex;
   align-items: center;
-  column-gap: 30px;
+  column-gap: 16px;
 }
 
 .info {
   display: flex;
-  width: 70px;
+  width: 84px;
   flex-direction: column;
   align-items: flex-end;
   row-gap: 4px;
@@ -922,4 +922,12 @@ button.page span.page-number {
   z-index: 40;
   width: 100%;
   height: 100%;
+}
+
+.post .file-wrapper {
+  margin-left: 50px;
+}
+
+.file-wrapper img {
+  position: fixed;
 }

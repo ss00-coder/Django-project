@@ -61,6 +61,8 @@ urlpatterns = [
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
     path('pay/<int:page>/', MyPayView.as_view(), name='mypay_page'),
-    # path('pay/<str:keyword>/', MyPayView.as_view(), name='mypay_find'),
-    path('pay/<int:page>/<str:keyword>/', MyPayView.as_view(), name='mypay_search'),
+    path('pay/<str:keyword>/', MyPayView.as_view(), name='mypay_find'),
+    path('pay/tab/<str:status>/', MyPayView.as_view(), name='mypay_status'),
+    path('pay/tab/<str:status>/<str:keyword>/', MyPayView.as_view(), name='mypay_status-search'),
+    path('pay/<str:status>/<str:keyword>/<int:page>/', MyPayView.as_view(), name='mypay_status_save'),
 ]

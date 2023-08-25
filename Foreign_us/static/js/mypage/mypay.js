@@ -32,14 +32,25 @@ $(function () {
     $buttonAgree.click(() => { $modal.hide() })
 });
 
-let page = 1
+
+
+if(status_view === 'N'){
+    $(".tab-item-btn").eq(0).removeClass("active-tab");
+    $(".tab-item-btn").eq(1).addClass("active-tab");
+    $('.tab-line').remove();
+    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+}
+
+
 
 //검색창
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();
-
-    // window.location.href = keyword === "" ? "/mypage/pay/" : "/mypage/pay/" + encodeURIComponent(keyword) + "/";
-    window.location.href = keyword === "" ? `/mypage/pay/${page}/` : `/mypage/pay/${page}/${keyword}/`;
+ if (status_view === 'N') {
+        window.location.href = keyword === "" ? "/mypage/pay/tab/N/" : `/mypage/pay/tab/N/${encodeURIComponent(keyword)}/`;
+    } else {
+        window.location.href = keyword === "" ? "/mypage/pay/tab/Y/" : `/mypage/pay/tab/Y/${encodeURIComponent(keyword)}/`;
+    }
 });
 console.log(keyword)
 
