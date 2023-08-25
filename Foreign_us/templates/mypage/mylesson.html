@@ -280,6 +280,12 @@
                     </button>
                   </div>
                 </li>
+                <script>
+                    for(var i = 0; i < {{ current_count }}; i++) {
+                        document.getElementsByClassName('post-content-text').item(i).innerText =
+                                document.getElementsByClassName('post-content-text').item(i).innerText.replace(/<[^>]*>?/g, '');
+                    }
+                </script>
                 {% endfor %}
               </ul>
 
