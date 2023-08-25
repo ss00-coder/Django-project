@@ -15,6 +15,9 @@ from message.models import ReceiveMessage, SendMessage, ReceiveMessageFile, Send
 from payment.models import Payment
 from review.models import Review, ReviewFile, ReviewLike
 
+import geopy
+from geopy.geocoders import Nominatim
+
 
 # 내 페이지
 # Create your views here.
@@ -46,12 +49,21 @@ class MyProfileView(View):
 
         member = Member.objects.get(member_email=request.session['member_email'])
         # print(datas)
+
+        geolocator = Nominatim(user_agent='heesu')
+        location = geolocator.geocode(datas['member_address'])
+
         member_datas = {
             'member_nickname': datas['member_nickname'],
             'member_address': datas['member_address'],
             'member_intro': datas['member_intro'],
             'member_intro_detail': datas['member_intro_detail'],
         }
+
+        if location:
+            member_datas['member_latitude'] = location.latitude
+            member_datas['member_longitude'] = location.longitude
+
 
         Member.objects.filter(id=member.id).update(**member_datas)
 
@@ -352,7 +364,7 @@ class MyEventDeleteView(View):
 
 
 class MyPayView(View):
-    def get(self, request, keyword=None, page=1):
+    def get(self, request, keyword=None, page=1, status='Y'):
         print(keyword)
         member_id = Member.objects.get(member_email=request.session['member_email']).id
         print(member_id)
@@ -360,19 +372,23 @@ class MyPayView(View):
         if keyword == "None":
             keyword = None
         print(keyword)
-        if keyword:
-            payments = Payment.objects.filter(Q(member_id=member_id) & (Q(member__member_nickname__contains=keyword) | Q(teacher__member_nickname__contains=keyword))).order_by('-id').all()
+        if status == "N":
+            if keyword:
+                payments = Payment.objects.filter(Q(teacher_id=member_id) & (Q(member__member_nickname__contains=keyword) | Q(teacher__member_nickname__contains=keyword))).order_by('-id').all()
+            else:
+                payments = Payment.objects.filter(Q(teacher_id=member_id))
         else:
-            payments = Payment.objects.filter(member_id=member_id).order_by('-id').all()
-
-        print(payments)
-
+            if keyword:
+                payments = Payment.objects.filter(Q(member_id=member_id) & (Q(member__member_nickname__contains=keyword) | Q(teacher__member_nickname__contains=keyword))).order_by('-id').all()
+            else:
+                payments = Payment.objects.filter(member_id=member_id).order_by('-id').all()
 
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_count = len(payments)
-        pay_total = Payment.objects.filter(member_id=member_id).all().count()
+        pay_total = Payment.objects.filter(member_id=member_id).count()
+        payed_total = Payment.objects.filter(teacher_id=member_id).count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -392,11 +408,12 @@ class MyPayView(View):
             'page': page,
             'realEnd': realEnd,
             'payments': payments,
+            'pay_total': pay_total,
+            'payed_total': payed_total,
             'member_nickname': member_nickname,
             'keyword': keyword,
-            'payments': payments,
+            'status': status,
             'current_count': current_count,
-            'pay_total': pay_total
 
         }
 
