@@ -16,7 +16,7 @@
 </head>
 <body>
 <div style="min-height: 100%">
-    <form action="{% url 'lesson:write' post_id=post_id %}" method="post" enctype="multipart/form-data">
+    <form id="write-form" action="{% url 'lesson:write' post_id=post_id %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
             <!-- 마이페이지 헤더 -->
@@ -150,7 +150,6 @@
                                     <div>
                                         <label class="tag-label" for="tag-input">
                                             <input
-                                                    onkeyup="enterkey()"
                                                     placeholder="포스트의 키워드를 태그로 입력하세요."
                                                     id="tag-input"
                                                     type="text"
@@ -165,16 +164,19 @@
                                 </div>
                             </div>
                             <ul class="tag-ul" style="display: flex; flex-wrap: wrap">
-                                <!-- <li class="tag-wrapper">
-                                  <span class="tag-text">태그 예시</span>
-                                  <button onclick="removeTag(this)" type="button">
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                      <path
-                                        d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"
-                                      ></path>
-                                    </svg>
-                                  </button>
-                                </li> -->
+                                {% if post_tags %}
+                                    {% for post_tag in post_tags %}
+                                        <li class="tag-wrapper">
+                                            <input value='{{ post_tag.language_type }}' class="tags" name="post_tags" type="hidden">
+                                            <span class="tag-text">{{ post_tag.language_type }}</span>
+                                            <button onclick="removeTag(this)" type="button">
+                                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5.707 5.707a1 1 0 0 0 0 1.414l4.95 4.95-4.95 4.95a1 1 0 1 0 1.414 1.414l4.95-4.95 4.95 4.95a1 1 0 0 0 1.414-1.414l-4.95-4.95 4.95-4.95a1 1 0 1 0-1.414-1.414l-4.95 4.95-4.95-4.95a1 1 0 0 0-1.414 0Z"></path>
+                                                </svg>
+                                            </button>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
                             </ul>
                         </div>
                         <div class="sub-title">

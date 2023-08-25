@@ -23,10 +23,10 @@ tinymce.init({
 });
 
 /* 태그 추가 */
-function enterkey() {
-  if (window.event.keyCode == 13) {
-    // 엔터키가 눌렸을 때
+$('#tag-input').keydown((e) => {
+  if (e.keyCode === 13 || e.which === 13) {
     text = `<li class="tag-wrapper">
+              <input value='${$("#tag-input").val()}' class="tags" name="post_tags" type="hidden">
               <span class="tag-text">${$("#tag-input").val()}</span>
               <button onclick="removeTag(this)" type="button">
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,10 +36,13 @@ function enterkey() {
                 </svg>
               </button>
             </li>`;
-    document.querySelector('.tag-ul').innerHTML += text;
+    $('.tag-ul').append(text);
+    e.preventDefault();
+    // list_tag.push($("#tag-input").val());
+    // console.log(list_tag);
     $("#tag-input").val("");
   }
-}
+})
 
 function removeTag(button) {
   $(button).parent().remove();
