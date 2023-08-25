@@ -97,9 +97,8 @@ class MyProfileView(View):
         memberSNS_facebook.sns_url = datas['facebook']
         memberSNS_facebook.save()
 
-
-
         return redirect("mypage:myprofile")
+
 
 # 과외 목록
 class MyLessonView(View):
@@ -138,9 +137,13 @@ class MyLessonView(View):
 
         likes = like_list[offset:limit]
         lesson_files = image_list[offset:limit]
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         lessons = list(lessons)[offset:limit]
         combine_like = zip(lessons, likes, lesson_files)
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
             # 'events': list(lessons)[offset:limit],
@@ -150,11 +153,12 @@ class MyLessonView(View):
             'realEnd': realEnd,
             'combine_like': combine_like,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
-            'current_count': current_count
+            'current_count': current_count,
+            'member_profile_img': member_profile_img
         }
 
         return render(request, 'mypage/mylesson.html', context)
@@ -204,9 +208,13 @@ class MyLessonReviewView(View):
 
         likes = like_list[offset:limit]
         review_files = image_list[offset:limit]
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
         reviews = list(reviews)[offset:limit]
         combine_like = zip(reviews, likes, review_files)
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
             # 'reviews': list(reviews)[offset:limit],
@@ -216,11 +224,12 @@ class MyLessonReviewView(View):
             'realEnd': realEnd,
             'combine_like': combine_like,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
-            'current_count': current_count
+            'current_count': current_count,
+            'member_profile_img': member_profile_img
         }
 
         return render(request, 'mypage/mylesson-review.html', context)
@@ -274,6 +283,12 @@ class MyHelpersView(View):
         helperses = list(helperses)[offset:limit]
         combine_like = zip(helperses, likes, helpers_files)
 
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
+
         context = {
             # 'events': list(helperses)[offset:limit],
             'startPage': startPage,
@@ -286,7 +301,8 @@ class MyHelpersView(View):
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
-            'current_count': current_count
+            'current_count': current_count,
+            'member_profile_img': member_profile_img,
         }
 
         return render(request, 'mypage/myhelpers.html', context)
@@ -335,9 +351,15 @@ class MyEventView(View):
 
         likes = like_list[offset:limit]
         event_files = image_list[offset:limit]
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        member = Member.objects.get(member_email=request.session['member_email'])
         events = list(events)[offset:limit]
         combine_like = zip(events, likes, event_files)
+
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
             # 'events': list(events)[offset:limit],
@@ -347,11 +369,12 @@ class MyEventView(View):
             'realEnd': realEnd,
             'combine_like': combine_like,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
-            'current_count': current_count
+            'current_count': current_count,
+            'member_profile_img': member_profile_img,
 
         }
         return render(request, 'mypage/myevent.html', context)
@@ -400,7 +423,11 @@ class MyPayView(View):
 
         payments = list(payments)[offset:limit]
         # 결제한 핼퍼스의 닉네임
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
+        member = Member.objects.get(member_email=request.session['member_email'])
+
+        member_profile_img = "member/profile_icon.png"
+        if member.memberfile_set.filter(file_type='P'):
+            member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
             'startPage': startPage,
@@ -410,10 +437,11 @@ class MyPayView(View):
             'payments': payments,
             'pay_total': pay_total,
             'payed_total': payed_total,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
             'keyword': keyword,
             'status': status,
             'current_count': current_count,
+            'member_profile_img': member_profile_img,
 
         }
 
