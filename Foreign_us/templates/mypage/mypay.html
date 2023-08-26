@@ -174,24 +174,37 @@
                             <div class="tab-wrapper">
                                 <ul class="tab-ul">
                                     <li class="tab-item">
-                                        <button onclick="location.href='{% url 'mypage:mypay_status' status='Y' %}'" class="tab-item-btn active-tab" type="button">
+                                        <button onclick="location.href='{% url 'mypage:mypay_status' status='Y' %}'" class="tab-item-btn
+                                        {% if status == "Y" %}
+                                         active-tab
+                                        {% endif %}
+                                         "  type="button">
                                             <div style="display: flex">
-                                                <p class="tab-title">결제</p>
-                                                <div class="tab-number-wrapper">
-                                                    <p class="tab-number">{{pay_total}}</p>
-                                                </div>
+                                               <p class="tab-title">결제</p>
+                                               <div class="tab-number-wrapper">
+                                                 <p class="tab-number">{{pay_total}}</p>
+                                               </div>
                                             </div>
-                                            <div class="tab-line"></div>
+                                        {% if status == "Y" %}
+                                        <div class="tab-line"></div>
+                                        {% endif %}
                                         </button>
                                     </li>
                                     <li class="tab-item">
-                                        <button onclick="location.href='{% url 'mypage:mypay_status' status='N' %}'" class="tab-item-btn" type="button">
+                                        <button onclick="location.href='{% url 'mypage:mypay_status' status='N' %}'" class="tab-item-btn
+                                         {% if status == "N" %}
+                                         active-tab
+                                         {% endif %}
+                                         " type="button">
                                             <div style="display: flex">
                                                 <p class="tab-title">입금</p>
                                                 <div class="tab-number-wrapper">
                                                     <p class="tab-number">{{ payed_total }}</p>
                                                 </div>
                                             </div>
+                                        {% if status == "N" %}
+                                        <div class="tab-line"></div>
+                                        {% endif %}
                                         </button>
                                     </li>
                                 </ul>

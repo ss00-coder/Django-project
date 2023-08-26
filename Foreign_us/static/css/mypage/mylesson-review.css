@@ -925,13 +925,24 @@ button.page span.page-number {
   height: 100%;
 }
 
-.post .file-wrapper {
-  margin-left: 50px;
+.post div.file-wrapper {
+  width: 36px;
+  height: 36px;
+  margin-left: 40px;
+  position: relative;
 }
 
-.file-wrapper img {
-    position: absolute;
-    top: 50%;
-    right: 600px;
-    transform: translateY(-50%);
+.file-wrapper span.file{
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
 }

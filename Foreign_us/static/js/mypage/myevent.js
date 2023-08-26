@@ -24,7 +24,7 @@ $(function () {
         }
     })
 
-    globalThis.eventId;
+globalThis.eventId;
 
     //모달창 이벤트
     $deleteBtn.click(function(){
@@ -35,11 +35,6 @@ $(function () {
 
 
     $buttonCancel.click(() => { $modal.hide() })
-    // $buttonAgree.click(function ()  {
-    //     console.log(eventId)
-    //     $modal.hide()
-    //     location.href=`/mypage/event/delete/${globalThis.eventId}/`
-    // })
     $buttonAgree.click(function ()  {
     console.log(eventId);
     $modal.hide();
@@ -61,24 +56,14 @@ $createBtn.click(() => {
     location.href=`/event/write/`
 })
 
-
-
-
-
-let status = 'Y';
-// $(".tab-item-btn").each((i, tab)=>{
-//     $(tab).on('click', ()=>{
-//         status = i === 0 ? 'Y' : 'N';
-//         location.href = `/mypage/event/tab/${status}`;
-//     })
-// })
-
-if(status_view === 'N'){
-    $(".tab-item-btn").eq(0).removeClass("active-tab");
-    $(".tab-item-btn").eq(1).addClass("active-tab");
-    $('.tab-line').remove();
-    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-}
+// let status = 'Y';
+//
+// if(status_view === 'N'){
+//     $(".tab-item-btn").eq(0).removeClass("active-tab");
+//     $(".tab-item-btn").eq(1).addClass("active-tab");
+//     $('.tab-line').remove();
+//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+// }
 //검색창
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();

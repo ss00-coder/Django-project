@@ -378,28 +378,27 @@ body {
   fill: #1d1d1e;
 }
 
-/* 쪽지 사진 */
-/*.post div.file-wrapper {*/
-/*  width: 36px;*/
-/*  height: 36px;*/
-/*  margin-left: 40px;*/
-/*  position: relative;*/
-/*}*/
+.post div.file-wrapper {
+  width: 36px;
+  height: 36px;
+  margin-left: 40px;
+  position: relative;
+}
 
-/*.file-wrapper span.file {*/
-/*  box-sizing: border-box;*/
-/*  display: block;*/
-/*  overflow: hidden;*/
-/*  width: initial;*/
-/*  height: initial;*/
-/*  background: none;*/
-/*  opacity: 1;*/
-/*  border: 0px;*/
-/*  margin: 0px;*/
-/*  padding: 0px;*/
-/*  position: absolute;*/
-/*  inset: 0px;*/
-/*}*/
+.file-wrapper span.file{
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
 
 /* 작성 글 목록 */
 .main-content {

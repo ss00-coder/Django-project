@@ -38,8 +38,14 @@ globalThis.lessonId;
     $buttonAgree.click(function ()  {
         console.log(lessonId)
         $modal.hide()
+
+            if ($(".active-tab").children().children().text().trim() === "게시완료") {
+            status = 'Y'
+        } else if ($(".active-tab").children().children().text().trim() === "임시저장") {
+            status = 'N'
+        }
         location.href=`/mypage/lesson/delete/${globalThis.lessonId}/`
-    })
+    });
 });
 
 const $createBtn = $('.create-btn');

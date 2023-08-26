@@ -36,29 +36,33 @@ globalThis.helpersId;
     // 삭제 버튼
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
-        console.log(helpersId)
-        $modal.hide()
+    $modal.hide();
+    // 현재 선택된 탭의 상태에 따라 다른 경로로 이동
+        if ($(".active-tab").children().children().text().trim() === "게시완료") {
+            status = 'Y'
+        } else if ($(".active-tab").children().children().text().trim() === "임시저장") {
+            status = 'N'
+        }
         location.href=`/mypage/helpers/delete/${globalThis.helpersId}/`
-    })
+    });
 });
 
 //검색창
 const $createBtn = $('.create-btn');
 
-
     $createBtn.click(() => {
-
         location.href=`/helpers/write/`
     })
-let status = 'Y';
 
-if(status_view === 'N') {
+// let status = 'Y';
 
-    $(".tab-item-btn").eq(0).removeClass("active-tab");
-    $(".tab-item-btn").eq(1).addClass("active-tab");
-    $('.tab-line').remove();
-    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-}
+// if(status_view === 'N') {
+//
+//     $(".tab-item-btn").eq(0).removeClass("active-tab");
+//     $(".tab-item-btn").eq(1).addClass("active-tab");
+//     $('.tab-line').remove();
+//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+// }
 
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();
