@@ -123,42 +123,27 @@ main.main {
   display: flex;
 }
 
-.main div.filter label.order-label:first-child {
-  padding-left: 0;
-  padding-right: 12px;
-  position: relative;
+.order-btn {
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8a8a8b;
+    fill: #8a8a8b;
 }
 
-.main div.filter label.order-label {
-  padding-left: 12px;
-  padding-right: 12px;
-  position: relative;
+.order-btn:first-child {
+    padding-left: 0;
 }
 
-.main div.filter input.order-input {
-  opacity: 0;
-  cursor: pointer;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-}
-
-.main div.filter label.order-label.active span.order-text {
+.active-post {
   font-weight: 700;
   font-size: 15px;
   line-height: 20px;
   color: #1d1d1e;
   fill: #1d1d1e;
-}
-
-.main div.filter label.order-label span.order-text {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 20px;
-  color: #8a8a8b;
-  fill: #8a8a8b;
 }
 
 .main div.filter span.order-line {
@@ -313,10 +298,15 @@ main.main {
 .main ul.post-wrapper div.writer-profile-image {
   width: 18px;
   height: 18px;
-  background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
+  background: url('/static/image/profile_icon.png')
       center center / cover no-repeat,
     rgb(255, 255, 255);
-  box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
+}
+
+.main ul.post-wrapper div.writer-profile-image > img {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
 }
 
 .main ul.post-wrapper div.writer-info {
