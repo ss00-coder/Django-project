@@ -24,7 +24,7 @@
                 <div>
                     <div class="logo-wrapper">
                         <a href="">
-                            <img class="logo-image" src="../../static/image/logo/white.png" alt="">
+                            <img class="logo-image" src="{% static 'image/logo/white.png' %}">
                         </a>
                         <div class="line">|</div>
                         <div class="my-page-text">
@@ -35,9 +35,9 @@
                 <div class="member-profile-wrapper">
                     <div style="position: relative">
                         <button class="profile-modal-button">
-                <span class="profile-image">
-                  <img src="../../static/image/profile_icon.png" alt=""/>
-                </span>
+                            <span class="profile-image">
+                                <img src="/upload/{{ member_file }}"/>
+                            </span>
                         </button>
                     </div>
                 </div>
