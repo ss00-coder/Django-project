@@ -122,6 +122,28 @@ main.main {
   align-items: center;
   display: flex;
 }
+.order-btn {
+    padding-left: 12px;
+    padding-right: 12px;
+    position: relative;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #8a8a8b;
+    fill: #8a8a8b;
+}
+
+.active-post {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 20px;
+  color: #1d1d1e;
+  fill: #1d1d1e;
+}
+
+.order-btn:first-child {
+    padding-left: 0;
+}
 
 .main div.filter label.order-label:first-child {
   padding-left: 0;
@@ -313,10 +335,13 @@ main.main {
 .main ul.post-wrapper div.writer-profile-image {
   width: 18px;
   height: 18px;
-  background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
-      center center / cover no-repeat,
-    rgb(255, 255, 255);
   box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
+}
+
+.main ul.post-wrapper div.writer-profile-image > img {
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
 }
 
 .main ul.post-wrapper div.writer-info {
@@ -497,4 +522,33 @@ div.filter-modal button.category-apply {
     width: 72px;
     height: 72px;
   }
+}
+
+/*사이드*/
+button.helpers-button {
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    display: flex;
+    position: relative;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    fill: #fff;
+    background-color: #1d1d1e;
+}
+
+div.writer-button-wrapper div.helpers {
+    height: 32px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
 }

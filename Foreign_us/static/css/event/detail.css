@@ -324,7 +324,7 @@ div.writer-button-wrapper {
   display: flex;
 }
 
-div.writer-button-wrapper div.lesson {
+div.writer-button-wrapper div.event {
   height: 32px;
   display: flex;
   margin-left: auto;
@@ -335,7 +335,7 @@ div.writer-button-wrapper div.lesson {
   line-height: 18px;
 }
 
-button.lesson-button {
+button.event-button {
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 16px;
@@ -352,13 +352,13 @@ button.lesson-button {
   background-color: #1d1d1e;
 }
 
-button.lesson-button .lesson-text {
+button.event-button .event-text {
   justify-content: center;
   align-items: center;
   display: flex;
 }
 
-button.lesson-button .lesson-text svg {
+button.event-button .event-text svg {
   flex-shrink: 0;
   margin-right: 4px;
 }

@@ -45,13 +45,12 @@
               <div class="writer-introduce">
                  <button onclick="location.href='{% url 'profile:profile' member_id=writer.id %}'">{{ writer.member_nickname }}</button>
                  <p>{{ writer.member_intro }}</p>
-                 <p>{{ writer.member_intro_detail }}</p>
               </div>
             </div>
             <div class="writer-button-wrapper">
               <div class="helpers">
                 <div>
-                  <button type="button" class="helpers-button">
+                  <button type="button" class="helpers-button" onclick="location.href='/profile/{{ writer.id }}'">
                     <div class="helpers-text">
                       <svg
                         viewBox="0 0 24 24"
@@ -72,7 +71,7 @@
               </div>
               <div class="hosting">
                 <div>
-                  <button  onclick="location.href='/profile/host/{{ member.id }}'" type="button" class="hosting-button">
+                  <button  onclick="location.href='/profile/host/{{ writer.id }}'" type="button" class="hosting-button">
                     <div class="hosting-text">
                       <svg
                         viewBox="0 0 24 24"
@@ -98,7 +97,7 @@
         <div class="main-content">
           <main class="main">
             <div style="height: 12px"></div>
-            <h3 class="title">글 제목이 들어갑니당~!</h3>
+            <h3 class="title">{{ post.post_title }}</h3>
             <div class="post-info">
               <div class="info-left">
                 <div>
@@ -113,10 +112,6 @@
                  <a class="writer" href="{% url 'profile:profile' member_id=writer.id %}">{{ writer.member_nickname }}</a>
                   </div>
                   <div class="remain">
-{#                    <p class="public">전체공개</p>#}
-{#                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">#}
-{#                      <circle cx="12" cy="12" r="4"></circle>#}
-{#                    </svg>#}
                     <div class="sub-info">
                       <span>{{ post.updated_date|date:"Y-m-d" }}</span>
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">
@@ -159,19 +154,10 @@
             <div>
               <h4 class="comment-title">
                 댓글
-                <span>5</span>
+                <span>0</span>
               </h4>
               <div style="height: 24px"></div>
               <div class="comment-write-wrapper">
-                <!-- 로그인 안했을 때 -->
-                <!-- <div class="comment-write">
-                <div class="comment-write-content">
-                  <p >댓글을 작성하려면 로그인을 해주세요.</p>
-                </div>
-                <div style="flex-shrink: 0;">
-                  <button class="login-button" type="button">로그인</button>
-                </div>
-              </div> -->
                 <!-- 로그인 했을 때 -->
                {% if request.session.session_key %}
                 <button class="comment-write-with-login" type="button">
@@ -201,7 +187,7 @@
                       <div class="name">{{ member.member_nickname }}</div>
                     </div>
                   </div>
-                  <div style="height: 12px">{{ member.member_nickname }}</div>
+                  <div style="height: 12px"></div>
                   <div class="comment-textarea-container">
                     <label class="comment-textarea-label" for="comment-content">
                       <textarea id="comment-content"  placeholder="댓글을 작성해주세요..."></textarea>

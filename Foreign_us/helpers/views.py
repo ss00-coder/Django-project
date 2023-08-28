@@ -129,7 +129,7 @@ class HelpersWriteView(View):
                 'post_img': ""
             }
 
-            return render(request, 'event/write.html', context)
+            return render(request, 'helpers/write.html', context)
 
     def post(self, request, post_id):
         # 멤버 정보
