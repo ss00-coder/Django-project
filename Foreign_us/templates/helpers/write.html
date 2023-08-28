@@ -55,10 +55,10 @@
             </div>
             <div class="right">
               <div style="margin-right: 12px">
-                <button type="button" class="save">임시저장</button>
+                <button type="button" class="save" value="N" name="post_status">임시저장</button>
               </div>
               <div>
-                <button type="button" class="submit">게시</button>
+                <button type="button" class="submit" value="Y" name="post_status">게시</button>
               </div>
             </div>
           </div>
@@ -75,13 +75,15 @@
                     class="title-input"
                     placeholder="제목을 입력해주세요."
                     type="text"
+                    name ="post_title"
+                    value="{{ post_title }}"
                   />
                 </label>
               </div>
             </div>
             <div>
               <div style="margin-bottom: 48px">
-                <textarea id="image-tools"></textarea>
+                <textarea id="image-tools" name="post_content">{{ post_content }}></textarea>
               </div>
             </div>
           </section>
@@ -95,8 +97,8 @@
               <div class="info-content">
                 <ul>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position: relative; display: flex">
-                      <input type="radio" id="lesson" />
+                    <label for="helpers" style="position: relative; display: flex">
+                      <input type="radio" id="helpers" />
                       <div class="radio-button">
                         <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="4" cy="4" r="4"></circle>
@@ -108,8 +110,8 @@
                     </label>
                   </li>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position: relative; display: flex">
-                      <input type="radio" id="lesson" checked/>
+                    <label for="helpers" style="position: relative; display: flex">
+                      <input type="radio" id="helpers" checked/>
                       <div class="radio-button">
                         <svg class="active" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="4" cy="4" r="4"></circle>
@@ -121,8 +123,8 @@
                     </label>
                   </li>
                   <li class="board-type-wrapper">
-                    <label for="lesson" style="position: relative; display: flex">
-                      <input type="radio" id="lesson"/>
+                    <label for="helpers" style="position: relative; display: flex">
+                      <input type="radio" id="helpers"/>
                       <div class="radio-button">
                         <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="4" cy="4" r="4"></circle>
@@ -140,7 +142,7 @@
                   <strong class="sub-title-text">파일 첨부</strong>
                 </div>
                 <label class="file-upload-label" for="file-upload">
-                  <input style="display: none" type="file" id="file-upload" />
+                  <input style="display: none" type="file" id="file-upload" name="post_file" multiple/>
                   업로드
                 </label>
               </div>

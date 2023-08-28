@@ -12,6 +12,7 @@ class LessonListView(View):
     def get(self, request):
         return render(request, 'lesson/list.html')
 
+
 class LessonListAPI(APIView):
     def get(self, request, page, type):
         size = 7
