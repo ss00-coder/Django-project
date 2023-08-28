@@ -31,7 +31,6 @@ $('.order-btn').click((e) => {
 })
 
 /* 카테고리 필터 */
-function loading () {
     $(".filter-modal").hide();
 
     $('.filter-button').on('click', () => {
@@ -56,7 +55,7 @@ function loading () {
     $('.category-apply').on('click', () => {
         $(".filter-modal").hide();
     });
-}
+
 
 function getList(){
     fetch(`/lesson/list/${page}/${type}`)
