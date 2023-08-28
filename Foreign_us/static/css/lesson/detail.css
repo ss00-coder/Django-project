@@ -142,12 +142,9 @@ main div.info-left {
   display: flex;
 }
 
-main div.info-left div.profile-image {
+.profile-image {
   width: 34px;
   height: 34px;
-  background: url(https://steadio.imgix.net/profiles/58b04467-0a9c-4aaf-8986-716a09f9afa9/profileImage/ef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg?auto=format%2Ccompress&h=300&lossless=true&w=300)
-      center center / cover no-repeat,
-    rgb(255, 255, 255);
   box-shadow: 0 0 #0000, 0 0 #0000, 0px -2px 20px rgba(0, 0, 0, 0.08);
   flex-shrink: 0;
   flex-shrink: 0;
@@ -230,6 +227,7 @@ main div.image-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
+  padding-bottom: 10px;
 }
 
 /* 글 작성자 */

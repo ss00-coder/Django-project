@@ -2,23 +2,39 @@ from django.urls import path
 from django.views.generic import TemplateView
 
 from lesson.views import LessonListView, LessonDetailView, LessonWriteView, LessonReviewDetailView, \
-    LessonReviewWriteView, LessonListAPI
+    LessonReviewWriteView, LessonListAPI, LessonReplyListAPI, LessonReplyWriteAPI, LessonReplyModifyAPI, \
+    LessonReplyDeleteAPI, LessonLikeAddAPI, LessonLikeDeleteAPI, LessonLikeCountAPI, LessonLikeExistAPI
 from member.views import MemberLoginView
 from profilepage.views import ProfileView, HostView
 
 app_name = 'lesson'
 
 urlpatterns = [
+# 과외 홍보
     path('list/', LessonListView.as_view(), name='list-init'),
     path('list/<int:page>/<str:type>', LessonListAPI.as_view(), name='list'),
-    path('detail/', LessonDetailView.as_view(), name='detail'),
+    path('detail/<int:post_id>', LessonDetailView.as_view(), name='detail'),
     path('write/', LessonWriteView.as_view(), name='write-init'),
     path('write/<int:post_id>', LessonWriteView.as_view(), name='write'),
+
+    # 과외 홍보 댓글
+    path('replies/list/<int:post_id>', LessonReplyListAPI.as_view(), name='list-init'),
+    path('replies/list/<int:post_id>/<int:page>', LessonReplyListAPI.as_view(), name='list'),
+    path('replies/write/', LessonReplyWriteAPI.as_view(), name='write'),
+    path('replies/modify/', LessonReplyModifyAPI.as_view(), name='modify'),
+    path('replies/delete/<int:id>/', LessonReplyDeleteAPI.as_view(), name='delete_get'),
+    # 과외 홍보 좋아요
+    path('likes/add/', LessonLikeAddAPI.as_view(), name='add'),
+    path('likes/delete/', LessonLikeDeleteAPI.as_view(), name='delete'),
+    path('likes/count/<int:id>/', LessonLikeCountAPI.as_view(), name='count'),
+    path('likes/exist/<int:id>/', LessonLikeExistAPI.as_view(), name='exist'),
+    # 과외 후기
     path('review/detail/', LessonReviewDetailView.as_view(), name='review-detail'),
     path('review/write/', LessonReviewWriteView.as_view(), name='review-write'),
+]
 
 
-
+# 공지사항
 
 
 # # 공지사항
@@ -36,4 +52,3 @@ urlpatterns = [
 #     path('likes/delete/', NoticeLikeDeleteAPI.as_view(), name='delete'),
 #     path('likes/count/<int:id>/', NoticeLikeCountAPI.as_view(), name='count'),
 #     path('likes/exist/<int:id>/', NoticeLikeExistAPI.as_view(), name='exist'),
-]

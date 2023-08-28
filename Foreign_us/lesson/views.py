@@ -1,9 +1,10 @@
+from django.db.models import F
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from lesson.models import LessonFile, Lesson, LanguageTag
+from lesson.models import LessonFile, Lesson, LanguageTag, LessonReply, LessonLike
 from member.models import Member, MemberFile
 
 
@@ -22,19 +23,17 @@ class LessonListAPI(APIView):
         if type == 'popular_post':
             all_posts = list(Lesson.objects.order_by('-post_view_count').all())
 
-
         posts = []
         for i in range(len(all_posts)):
             id = all_posts[i].id
-            member_files = all_posts[i].member.memberfile_set.filter(file_type="P")
-            # print(member)
-            # member_files = Member.objects.get(id=member_writer.id).memberfile_set.filter(file_type="P").values('image')
+            member_id = all_posts[i].member_id
+            member_files = MemberFile.objects.filter(member_id=member_id, file_type="P")
             lesson_file = LessonFile.objects.filter(lesson_id=id)
             post = Lesson.objects.filter(id=id).annotate(post_file=lesson_file.values('image')[:1], member_file=member_files.values('image')[:1]).values('id', 'created_date', 'post_title', 'post_content', 'post_view_count', 'post_file', 'member__member_nickname', 'member_file')
             posts.append(post)
 
         posts = posts[offset:limit + 1]
-        # posts = list(Notice.objects.order_by('-id').all())[offset:limit + 1]
+        # posts = list(Lesson.objects.order_by('-id').all())[offset:limit + 1]
         hasNext = False
 
         if len(posts) > size:
@@ -43,7 +42,7 @@ class LessonListAPI(APIView):
 
 
         context = {
-            # 'posts': NoticeSerializer(posts, many=True).data,
+            # 'posts': LessonSerializer(posts, many=True).data,
             'posts': posts,
             'hasNext': hasNext
         }
@@ -53,8 +52,34 @@ class LessonListAPI(APIView):
 
 
 class LessonDetailView(View):
-    def get(self, request):
-        return render(request, 'lesson/detail.html')
+    # def get(self, request):
+    #     return render(request, 'lesson/detail.html')
+
+    def get(self, request, post_id):
+        post = Lesson.objects.get(id=post_id)
+        # post.post_view_count = post.post_view_count + 1
+        # post.save()
+
+        # 게시글 작성자의 모든 게시글 출력
+        # member_posts = Lesson.objects.filter(member_id=post.member_id).all()
+
+        writer_profile = "member/profile_icon.png"
+        if post.member.memberfile_set.filter(file_type='P'):
+            writer_profile = post.member.memberfile_set.get(file_type='P')
+
+        context = {
+            'post': post,
+            'post_files': list(post.lessonfile_set.all()),
+            'writer': post.member,
+            'writer_profile': writer_profile,
+        }
+        if 'member_email' in request.session:
+            member = Member.objects.get(member_email=request.session['member_email'])
+            context['member'] = member
+            if member.memberfile_set.filter(file_type='P'):
+                context['member_profile'] = member.memberfile_set.get(file_type='P')
+
+        return render(request, 'lesson/detail.html', context)
 
 
 class LessonWriteView(View):
@@ -147,6 +172,112 @@ class LessonWriteView(View):
 
 
         return redirect('lesson:list-init')
+
+
+# 과외 홍보 댓글
+
+class LessonReplyListAPI(APIView):
+    def get(self, request, post_id, page=1):
+        size = 5
+        offset = (page - 1) * size
+        limit = page * size
+
+        all_replies = list(LessonReply.objects.filter(lesson_id=post_id).order_by("-id").all())
+        total = len(all_replies)
+
+        replies = []
+        for i in range(len(all_replies)):
+            id = all_replies[i].member.id
+            reply_id = all_replies[i].id
+            reply_writer_file = MemberFile.objects.filter(member_id=id, file_type="P")
+            reply = LessonReply.objects.filter(id=reply_id).order_by("-id").annotate(member_nickname=F('member__member_nickname'), reply_writer_file=reply_writer_file.values('image')[:1]).values('id', 'reply_content', 'member_id', 'member_nickname', 'created_date', 'reply_writer_file')
+            replies.append(reply)
+        #
+        # posts = posts[offset:limit + 1]
+
+
+
+        # replies = list(LessonReply.objects.filter(notice_id=post_id).order_by("-id").annotate(member_nickname=F('member__member_nickname')).values('id', 'reply_content', 'member_nickname', 'created_date'))
+        # total = len(replies)
+
+        replies = replies[offset:limit + 1]
+        hasNext = False
+
+        if len(replies) > size:
+            hasNext = True
+            replies.pop(size)
+
+        context = {
+            # 'posts': LessonSerializer(posts, many=True).data,
+            'replies': replies,
+            'hasNext': hasNext,
+            'total': total
+        }
+        return Response(context)
+        # return Response(LessonReplySerializer(replies, many=True).data)
+
+class LessonReplyWriteAPI(APIView):
+    def post(self, request):
+        datas = request.data
+        datas = {
+            'lesson': Lesson.objects.get(id=datas.get('post_id')),
+            'member': Member.objects.get(member_email=request.session['member_email']),
+            'reply_content': datas.get('reply_content')
+        }
+        LessonReply.objects.create(**datas)
+        return Response('success')
+
+
+class LessonReplyModifyAPI(APIView):
+    def post(self, request):
+        datas = request.data
+
+        LessonReply.objects.filter(id=datas['id']).update(reply_content=datas['reply_content'])
+        return Response('success')
+
+
+class LessonReplyDeleteAPI(APIView):
+    def get(self, request, id):
+        LessonReply.objects.filter(id=id).delete()
+        return Response('success')
+
+
+class LessonLikeAddAPI(APIView):
+    def post(self, request):
+        datas = request.data
+        datas = {
+            'lesson': Lesson.objects.get(id=datas['id']),
+            'member': Member.objects.get(member_email=request.session['member_email']),
+        }
+        LessonLike.objects.create(**datas)
+        return Response('success')
+
+
+class LessonLikeDeleteAPI(APIView):
+    def post(self, request):
+        datas = request.data
+        member = Member.objects.get(member_email=request.session['member_email'])
+        LessonLike.objects.filter(lesson_id=datas['id'], member=member).delete()
+        return Response('success')
+
+
+class LessonLikeCountAPI(APIView):
+    def get(self, request, id):
+        return Response(LessonLike.objects.filter(lesson_id=id).count())
+
+
+class LessonLikeExistAPI(APIView):
+    def get(self, request, id):
+        # datas = request.data
+        member = Member.objects.get(member_email=request.session['member_email'])
+        check = LessonLike.objects.filter(lesson_id=id, member=member).exists()
+        return Response(check)
+
+
+
+
+
+
 
 
 class LessonReviewDetailView(View):
