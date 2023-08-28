@@ -947,3 +947,8 @@ button.page span.page-number {
   position: absolute;
   inset: 0px;
 }
+
+.file img{
+  max-width: 100%;
+  height: auto;
+}

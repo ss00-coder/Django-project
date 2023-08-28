@@ -17,6 +17,7 @@ class NoticeListView(View):
     def get(self, request):
         return render(request, 'notice/list.html')
 
+
 # Create your views here.
 class NoticeListAPI(APIView):
     def get(self, request, page):

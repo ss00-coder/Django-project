@@ -54,15 +54,14 @@ const $createBtn = $('.create-btn');
         location.href=`/helpers/write/`
     })
 
-// let status = 'Y';
 
-// if(status_view === 'N') {
-//
-//     $(".tab-item-btn").eq(0).removeClass("active-tab");
-//     $(".tab-item-btn").eq(1).addClass("active-tab");
-//     $('.tab-line').remove();
-//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-// }
+// $('.update-button').click(function() {
+//   const postId = $(this).data('post-id');
+//   if (postId) {
+//     location.href = `/helpers/write/${postId}`;
+//   }
+// });
+
 
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();

@@ -65,6 +65,14 @@ $createBtn.click(() => {
 //     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
 // }
 //검색창
+
+$('.update-button').click(function() {
+  const postId = $(this).data('post-id');
+  if (postId) {
+    location.href = `/event/write/${postId}`;
+  }
+});
+
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();
 
@@ -74,4 +82,3 @@ $(".search-button svg").on('click', () => {
         window.location.href = keyword === "" ? "/mypage/event/tab/Y/" : `/mypage/event/tab/Y/${encodeURIComponent(keyword)}/`;
     }
 });
-

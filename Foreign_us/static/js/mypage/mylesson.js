@@ -49,21 +49,27 @@ globalThis.lessonId;
 });
 
 const $createBtn = $('.create-btn');
-
-
 $createBtn.click(() => {
 
     location.href=`/lesson/write/`
-})
-let status = 'Y';
+});
 
-if(status_view === 'N') {
+$('.update-button').click(function() {
+  const postId = $(this).data('post-id');
+  if (postId) {
+    location.href = `/lesson/write/${postId}`;
+  }
+});
 
-    $(".tab-item-btn").eq(0).removeClass("active-tab");
-    $(".tab-item-btn").eq(1).addClass("active-tab");
-    $('.tab-line').remove();
-    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-}
+// let status = 'Y';
+//
+// if(status_view === 'N') {
+//
+//     $(".tab-item-btn").eq(0).removeClass("active-tab");
+//     $(".tab-item-btn").eq(1).addClass("active-tab");
+//     $('.tab-line').remove();
+//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+// }
 
 
 

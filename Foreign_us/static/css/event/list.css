@@ -232,7 +232,7 @@ main.main {
   flex-direction: column;
 }
 
-.main ul.post-wrapper h2.post-title {
+.main ul.post-wrapper h2.post-title{
   display: block;
   font-weight: 700;
   font-size: 17px;
@@ -263,8 +263,8 @@ main.main {
 }
 
 .main ul.post-wrapper div.post-image {
-  width: 102px;
-  height: 102px;
+  width: 170px;
+  height: 128px;
   border-radius: 8px;
   flex-shrink: 0;
   position: relative;
@@ -285,23 +285,9 @@ main.main {
   inset: 0px;
 }
 
-.main ul.post-wrapper img.thumbnail-image {
-  position: absolute;
-  inset: 0px;
-  box-sizing: border-box;
-  padding: 0px;
-  border: none;
-  margin: auto;
-  display: block;
-  width: 0px;
-  height: 0px;
-  min-width: 100%;
+.post-thumbnail img{
   max-width: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  border-radius: 8px;
+  border-radius: 17%;
 }
 
 .main ul.post-wrapper div.post-writer {

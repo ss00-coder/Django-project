@@ -495,7 +495,7 @@ main div.comment-write-profile span.profile-icon {
 }
 
 main div.comment-write-profile span.profile-icon img {
-  position: absolute;
+  position: absolute !important;
   inset: 0px;
   box-sizing: border-box;
   padding: 0px;

@@ -16,7 +16,7 @@
 </head>
 <body>
     <div style="min-height: 100%">
-        <form action="{% url 'event:write' post_id=post_id %}" method="post" enctype="multipart/form-data">
+        <form action="{% url 'event:write_modify' post_id=post_id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="top">
                 <!-- 마이페이지 헤더 -->
