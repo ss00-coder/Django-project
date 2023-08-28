@@ -26,9 +26,11 @@ class LessonListAPI(APIView):
         posts = []
         for i in range(len(all_posts)):
             id = all_posts[i].id
-            member_files = Member.objects.get(id=Lesson.objects.get(id=id).member_id).memberfile_set.filter(file_type="P").values('image')
+            member_files = all_posts[i].member.memberfile_set.filter(file_type="P")
+            # print(member)
+            # member_files = Member.objects.get(id=member_writer.id).memberfile_set.filter(file_type="P").values('image')
             lesson_file = LessonFile.objects.filter(lesson_id=id)
-            post = Lesson.objects.filter(id=id).annotate(post_file=lesson_file.values('image')[:1], member_file=member_files).values('id', 'created_date', 'post_title', 'post_content', 'post_view_count', 'post_file', 'member__member_nickname', 'member_file')
+            post = Lesson.objects.filter(id=id).annotate(post_file=lesson_file.values('image')[:1], member_file=member_files.values('image')[:1]).values('id', 'created_date', 'post_title', 'post_content', 'post_view_count', 'post_file', 'member__member_nickname', 'member_file')
             posts.append(post)
 
         posts = posts[offset:limit + 1]
