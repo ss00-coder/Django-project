@@ -57,8 +57,8 @@ class LessonDetailView(View):
 
     def get(self, request, post_id):
         post = Lesson.objects.get(id=post_id)
-        # post.post_view_count = post.post_view_count + 1
-        # post.save()
+        post.post_view_count = post.post_view_count + 1
+        post.save()
 
         # 게시글 작성자의 모든 게시글 출력
         # member_posts = Lesson.objects.filter(member_id=post.member_id).all()
