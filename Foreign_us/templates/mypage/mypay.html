@@ -258,13 +258,18 @@
                                         <p class="info-menu">결제 상품</p>
                                         {% else %}
                                         <p class="info-content">비대면</p>
-                                        <p class="info-menu">과외 종류</p>
+                                        <p class="info-menu">결제 상품</p>
                                         {% endif %}
                                     </div>
 
                                     <div class="info">
-                                        <p class="info-content">12,000원</p>
+                                        {% if payment.lesson_type == "Y" %}
+                                        <p class="info-content">120,000원</p>
                                         <p class="info-menu">결제 금액</p>
+                                        {% else %}
+                                        <p class="info-content">50,000원</p>
+                                        <p class="info-menu">결제 금액</p>
+                                        {% endif %}
                                     </div>
 
                                     <div class="info-date">
