@@ -33,17 +33,19 @@
             <div>
               <button class="writer-detail-profile">
                 <span class="writer-detail-profile-wrapper">
-                  <img
-                    src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F58b04467-0a9c-4aaf-8986-716a09f9afa9%2FprofileImage%2Fef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                    alt=""
-                  />
+                   {% if writer_profile.image %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img src="/upload/{{ writer_profile.image }}"></a>
+                   {% else %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img src="{% static 'image/profile_icon.png' %}"/></a>
+                   {% endif %}
                 </span>
               </button>
             </div>
             <div style="width: 260px">
               <div class="writer-introduce">
-                <button>글 작성자 이름임당~!</button>
-                <p>글 작성자 한줄소개임당~!!~!!!!</p>
+                 <button onclick="location.href='{% url 'profile:profile' member_id=writer.id %}'">{{ writer.member_nickname }}</button>
+                 <p>{{ writer.member_intro }}</p>
+                 <p>{{ writer.member_intro_detail }}</p>
               </div>
             </div>
             <div class="writer-button-wrapper">
@@ -102,25 +104,27 @@
             <div class="post-info">
               <div class="info-left">
                 <div>
-                  <a href="">
-                    <div class="profile-image"></div>
-                  </a>
+                    {% if writer_profile.image %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="/upload/{{ writer_profile.image }}"></a>
+                     {% else %}
+                    <a href="{% url 'profile:profile' member_id=writer.id %}"><img style="width: 34px; height: 34px; border-radius: 9999px" src="{% static 'image/profile_icon.png' %}"/></a>
+                    {% endif %}
                 </div>
                 <div>
                   <div>
-                    <a class="writer" href="">작성자가 들어감당</a>
+                    <a class="writer" href="{% url 'profile:profile' member_id=writer.id %}">{{ writer.member_nickname }}</a>
                   </div>
                   <div class="remain">
-                    <p class="public">전체공개</p>
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">
-                      <circle cx="12" cy="12" r="4"></circle>
-                    </svg>
+{#                    <p class="public">전체공개</p>#}
+{#                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">#}
+{#                      <circle cx="12" cy="12" r="4"></circle>#}
+{#                    </svg>#}
                     <div class="sub-info">
-                      <span>하루 전</span>
+                      <span>{{ post.updated_date|date:"Y-m-d" }}</span>
                       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">
-                        <circle cx="12" cy="12" r="4"></circle>
+                          <circle cx="12" cy="12" r="4"></circle>
                       </svg>
-                      <span>조회수 85</span>
+                      <span>조회수 {{ post.post_view_count }}</span>
                     </div>
                   </div>
                 </div>
@@ -142,26 +146,27 @@
             <div class="post-content">
               <div class="content-text">
                 <div class="image-wrapper">
-                  <img
-                    src="https://steadio.imgix.net/creator-posts/58b04467-0a9c-4aaf-8986-716a09f9afa9/creatorPostImage/9ad29e0f-66ea-460f-9209-73b5a422e1d3.jpeg?auto=format%2Ccompress&amp;fit=max&amp;lossless=true&amp;w=1240"
-                  />
+                  {% for post_file in post_files %}
+                  <img style="display:block; margin: 0 auto" width="600px" src="/upload/{{ post_file.image }}">
+                  {% endfor %}
                 </div>
                 <p>
-                  글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이
-                  들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~
-                  글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이
-                  들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이
-                  들어갑니당~
+{#                  글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이#}
+{#                  들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~#}
+{#                  글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이#}
+{#                  들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
+{#                  들어갑니당~#}
+                  {{ post.post_content }}
                 </p>
                 <p>&nbsp;</p>
               </div>
@@ -210,7 +215,7 @@
                   </div>
                   <div class="hosting">
                     <div>
-                      <button type="button" class="hosting-button">
+                      <button  onclick = "location.href='/profile/host/{{ member.id }}'" type="button" class="hosting-button">
                         <div class="hosting-text">
                           <svg
                             viewBox="0 0 24 24"
@@ -254,13 +259,15 @@
                 </div>
               </div> -->
                 <!-- 로그인 했을 때 -->
+              {% if request.session.session_key %}
                 <button class="comment-write-with-login" type="button">
                   <div class="comment-write-profile">
                     <span class="profile-icon">
-                      <img
-                        src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                        alt=""
-                      />
+                      {% if member_profile.image %}
+                        <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                      {% else %}
+                        <img src="{% static 'image/profile_icon.png' %}"/>
+                      {% endif %}
                     </span>
                   </div>
                   <span class="comment-placeholder">댓글을 작성해주세요...</span>
@@ -269,23 +276,21 @@
                   <div class="comment-textarea-profile-wrapper">
                     <button class="comment-textarea-profile" type="button">
                       <span class="icon-container">
-                        <img
-                          src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                          alt=""
-                        />
+                        {% if member_profile.image %}
+                        <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                        {% else %}
+                        <img src="{% static 'image/profile_icon.png' %}"/>
+                        {% endif %}
                       </span>
                     </button>
                     <div class="comment-textarea-name">
-                      <div class="name">로그인 한 사람 이름</div>
+                      <div class="name">{{ member.member_nickname }}</div>
                     </div>
                   </div>
                   <div style="height: 12px"></div>
                   <div class="comment-textarea-container">
                     <label class="comment-textarea-label" for="comment-content">
-                      <textarea
-                        id="comment-content"
-                        placeholder="댓글을 작성해주세요..."
-                      ></textarea>
+                      <textarea  id="comment-content"  placeholder="댓글을 작성해주세요..." ></textarea>
                     </label>
                   </div>
                   <div style="height: 18px"></div>
@@ -294,174 +299,53 @@
                     <button class="write-button" type="button">등록</button>
                   </div>
                 </div>
+              {% else %}
+                <!-- 로그인 안했을 때 -->
+                 <div class="comment-write">
+                   <div class="comment-write-content">
+                    <p >댓글을 작성하려면 로그인을 해주세요.</p>
+                   </div>
+                   <div style="flex-shrink: 0;">
+                    <button onclick="location.href='/member/login/'" class="login-button" type="button">로그인</button>
+                   </div>
+                 </div>
+              {% endif %}
               </div>
               <div style="height: 33px"></div>
               <ul>
-                <li class="comment-wrapper">
-                  <div class="comment">
-                    <div class="comment-profile">
-                      <div>
-                        <button class="comment-profile-button">
-                          <span class="profile-icon">
-                            <img
-                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                              alt=""
-                            />
-                          </span>
-                          <span></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="comment-content">
-                      <div class="comment-writer">
-                        <div class="comment-writer-name">댓글 작성자 이름</div>
-                      </div>
-                      <div style="height: 5px"></div>
-                      <div class="comment-text">
-                        <p><span>댓글 내용이 들어갑니당~!!</span></p>
-                      </div>
-                      <div style="height: 8px"></div>
-                      <div class="comment-info">
-                        <div class="comment-time">
-                          <span class="time-text">하루 전</span>
-                        </div>
-                        <button class="recomment-button" type="button">답글달기</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="comment-wrapper">
-                  <div class="comment">
-                    <div class="comment-profile">
-                      <div>
-                        <button class="comment-profile-button">
-                          <span class="profile-icon">
-                            <img
-                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                              alt=""
-                            />
-                          </span>
-                          <span></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="comment-content">
-                      <div class="comment-writer">
-                        <div class="comment-writer-name">댓글 작성자 이름</div>
-                      </div>
-                      <div style="height: 5px"></div>
-                      <div class="comment-text">
-                        <p><span>댓글 내용이 들어갑니당~!!</span></p>
-                      </div>
-                      <div style="height: 8px"></div>
-                      <div class="comment-info">
-                        <div class="comment-time">
-                          <span class="time-text">하루 전</span>
-                        </div>
-                        <button class="recomment-button" type="button">답글달기</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="comment-wrapper">
-                  <div class="comment">
-                    <div class="comment-profile">
-                      <div>
-                        <button class="comment-profile-button">
-                          <span class="profile-icon">
-                            <img
-                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                              alt=""
-                            />
-                          </span>
-                          <span></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="comment-content">
-                      <div class="comment-writer">
-                        <div class="comment-writer-name">댓글 작성자 이름</div>
-                      </div>
-                      <div style="height: 5px"></div>
-                      <div class="comment-text">
-                        <p><span>댓글 내용이 들어갑니당~!!</span></p>
-                      </div>
-                      <div style="height: 8px"></div>
-                      <div class="comment-info">
-                        <div class="comment-time">
-                          <span class="time-text">하루 전</span>
-                        </div>
-                        <button class="recomment-button" type="button">답글달기</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="comment-wrapper">
-                  <div class="comment">
-                    <div class="comment-profile">
-                      <div>
-                        <button class="comment-profile-button">
-                          <span class="profile-icon">
-                            <img
-                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                              alt=""
-                            />
-                          </span>
-                          <span></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="comment-content">
-                      <div class="comment-writer">
-                        <div class="comment-writer-name">댓글 작성자 이름</div>
-                      </div>
-                      <div style="height: 5px"></div>
-                      <div class="comment-text">
-                        <p><span>댓글 내용이 들어갑니당~!!</span></p>
-                      </div>
-                      <div style="height: 8px"></div>
-                      <div class="comment-info">
-                        <div class="comment-time">
-                          <span class="time-text">하루 전</span>
-                        </div>
-                        <button class="recomment-button" type="button">답글달기</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-                <li class="comment-wrapper">
-                  <div class="comment">
-                    <div class="comment-profile">
-                      <div>
-                        <button class="comment-profile-button">
-                          <span class="profile-icon">
-                            <img
-                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                              alt=""
-                            />
-                          </span>
-                          <span></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="comment-content">
-                      <div class="comment-writer">
-                        <div class="comment-writer-name">댓글 작성자 이름</div>
-                      </div>
-                      <div style="height: 5px"></div>
-                      <div class="comment-text">
-                        <p><span>댓글 내용이 들어갑니당~!!</span></p>
-                      </div>
-                      <div style="height: 8px"></div>
-                      <div class="comment-info">
-                        <div class="comment-time">
-                          <span class="time-text">하루 전</span>
-                        </div>
-                        <button class="recomment-button" type="button">답글달기</button>
-                      </div>
-                    </div>
-                  </div>
-                </li>
+{#                <li class="comment-wrapper">#}
+{#                  <div class="comment">#}
+{#                    <div class="comment-profile">#}
+{#                      <div>#}
+{#                        <button class="comment-profile-button">#}
+{#                          <span class="profile-icon">#}
+{#                            <img#}
+{#                              src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F72ea0630-d1aa-4f02-bb0a-f07638e0ff92%2FprofileImage%2Fc0a7c669-e0e8-410c-b738-2caad9a51e76.jpg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"#}
+{#                              alt=""#}
+{#                            />#}
+{#                          </span>#}
+{#                          <span></span>#}
+{#                        </button>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                    <div class="comment-content">#}
+{#                      <div class="comment-writer">#}
+{#                        <div class="comment-writer-name">댓글 작성자 이름</div>#}
+{#                      </div>#}
+{#                      <div style="height: 5px"></div>#}
+{#                      <div class="comment-text">#}
+{#                        <p><span>댓글 내용이 들어갑니당~!!</span></p>#}
+{#                      </div>#}
+{#                      <div style="height: 8px"></div>#}
+{#                      <div class="comment-info">#}
+{#                        <div class="comment-time">#}
+{#                          <span class="time-text">하루 전</span>#}
+{#                        </div>#}
+{#                        <button class="recomment-button" type="button">답글달기</button>#}
+{#                      </div>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </li>#}
               </ul>
               <div class="more-post-wrapper">
                 <button class="more-button" type="button">
@@ -543,230 +427,6 @@
                     </button>
                   </div>
                 </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
               </ul>
               <div class="more-post-wrapper">
                 <button class="more-button" type="button">
@@ -792,230 +452,6 @@
                 </div>
               </h4>
               <ul class="post-wrapper">
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
                 <li class="post">
                   <div>
                     <button type="button" class="post-link">
@@ -1187,8 +623,15 @@
     </div>
   </body>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="../../static/js/event/detail.js"></script>
   <script>
+        let post_id = {{ post.id }};
+        let member = `{{ member.member_nickname }}`;
+  </script>
+  <script src="{% static 'js/event/detail.js' %}"></script>
+  <script>
+    let member_latitude = {{ member.member_latitude }};
+    let member_longitude = {{ member.member_longitude }};
+
     /* 구글 map */
     ((g) => {
       var h,

@@ -5,6 +5,7 @@ from django.contrib.admin import helpers
 from django.db.models import F, Q
 from django.shortcuts import render, redirect
 from django.views import View
+from django.urls import reverse
 
 from Foreign_us.models import Message
 from event.models import Event, EventLike, EventFile
@@ -63,7 +64,6 @@ class MyProfileView(View):
         if location:
             member_datas['member_latitude'] = location.latitude
             member_datas['member_longitude'] = location.longitude
-
 
         Member.objects.filter(id=member.id).update(**member_datas)
 
@@ -129,16 +129,14 @@ class MyLessonView(View):
 
         like_list = []
         image_list = []
-        for lesson in lessons:
+        for lesson in list(lessons)[offset:limit]:
             likes = LessonLike.objects.all().filter(lesson_id=lesson).count()
             like_list.append(likes)
-            lesson_file = LessonFile.objects.all().filter(lesson_id=lesson)
-            image_list.append(lesson_file)
+            image_list.append(lesson.lessonfile_set.first())
 
         likes = like_list[offset:limit]
-        lesson_files = image_list[offset:limit]
-        lessons = list(lessons)[offset:limit]
-        combine_like = zip(lessons, likes, lesson_files)
+        combine_all = zip(list(lessons)[offset:limit], likes, image_list)
+
         member = Member.objects.get(member_email=request.session['member_email'])
 
         member_profile_img = "member/profile_icon.png"
@@ -151,7 +149,7 @@ class MyLessonView(View):
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'combine_like': combine_like,
+            'combine_all': combine_all,
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
@@ -167,8 +165,17 @@ class MyLessonView(View):
 # 과외 목록 삭제
 class MyLessonDeleteView(View):
     def get(self, request, lesson_id):
-        Lesson.objects.get(id=lesson_id).delete()
-        return redirect('mypage:mylesson_init')
+        deleted_lesson = Lesson.objects.get(id=lesson_id)
+        status = deleted_lesson.post_status  # 이벤트의 상태 가져오기
+        deleted_lesson.delete()
+
+        # 상태에 따라 다른 URL로 이동
+        if status == 'Y':
+            url = reverse('mypage:mylesson_status', args=['Y'])
+        elif status == 'N':
+            url = reverse('mypage:mylesson_status', args=['N'])
+
+        return redirect(url)
 
 
 # 과외 후기
@@ -200,16 +207,14 @@ class MyLessonReviewView(View):
 
         like_list = []
         image_list = []
-        for review in reviews:
+        for review in list(reviews)[offset:limit]:
             likes = ReviewLike.objects.all().filter(review_id=review).count()
             like_list.append(likes)
-            review_file = ReviewFile.objects.all().filter(review_id=review)
-            image_list.append(review_file)
+            image_list.append(review.reviewfile_set.first())
 
         likes = like_list[offset:limit]
-        review_files = image_list[offset:limit]
-        reviews = list(reviews)[offset:limit]
-        combine_like = zip(reviews, likes, review_files)
+        combine_all = zip(list(reviews)[offset:limit], likes, image_list)
+
         member = Member.objects.get(member_email=request.session['member_email'])
 
         member_profile_img = "member/profile_icon.png"
@@ -217,12 +222,11 @@ class MyLessonReviewView(View):
             member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
-            # 'reviews': list(reviews)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'combine_like': combine_like,
+            'combine_all': combine_all,
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
@@ -238,8 +242,17 @@ class MyLessonReviewView(View):
 # 과외 목록 삭제
 class MyLessonReviewDeleteView(View):
     def get(self, request, review_id):
-        Review.objects.get(id=review_id).delete()
-        return redirect('mypage:mylesson-review_init')
+        deleted_review = Review.objects.get(id=review_id)
+        status = deleted_review.post_status  # 이벤트의 상태 가져오기
+        deleted_review.delete()
+
+        # 상태에 따라 다른 URL로 이동
+        if status == 'Y':
+            url = reverse('mypage:mylesson-review_status', args=['Y'])
+        elif status == 'N':
+            url = reverse('mypage:mylesson-review_status', args=['N'])
+
+        return redirect(url)
 
 
 class MyHelpersView(View):
@@ -271,17 +284,13 @@ class MyHelpersView(View):
 
         like_list = []
         image_list = []
-        for helpers in helperses:
+        for helpers in list(helperses)[offset:limit]:
             likes = HelpersLike.objects.all().filter(helpers_id=helpers).count()
             like_list.append(likes)
-            helpers_file = HelpersFile.objects.all().filter(helpers_id=helpers)
-            image_list.append(helpers_file)
+            image_list.append(helpers.helpersfile_set.first())
 
         likes = like_list[offset:limit]
-        helpers_files = image_list[offset:limit]
-        member_nickname = Member.objects.get(member_email=request.session['member_email']).member_nickname
-        helperses = list(helperses)[offset:limit]
-        combine_like = zip(helperses, likes, helpers_files)
+        combine_all = zip(list(helperses)[offset:limit], likes, image_list)
 
         member = Member.objects.get(member_email=request.session['member_email'])
 
@@ -290,14 +299,13 @@ class MyHelpersView(View):
             member_profile_img = member.memberfile_set.get(file_type="P").image
 
         context = {
-            # 'events': list(helperses)[offset:limit],
             'startPage': startPage,
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'combine_like': combine_like,
+            'combine_all': combine_all,
             'keyword': keyword,
-            'member_nickname': member_nickname,
+            'member_nickname': member.member_nickname,
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
@@ -310,8 +318,17 @@ class MyHelpersView(View):
 
 class MyHelpersDeleteView(View):
     def get(self, request, helpers_id):
-        Helpers.objects.get(id=helpers_id).delete()
-        return redirect('mypage:myhelpers_init')
+        deleted_helpers = Helpers.objects.get(id=helpers_id)
+        status = deleted_helpers.post_status  # 이벤트의 상태 가져오기
+        deleted_helpers.delete()
+
+        # 상태에 따라 다른 URL로 이동
+        if status == 'Y':
+            url = reverse('mypage:myhelpers_status', args=['Y'])
+        elif status == 'N':
+            url = reverse('mypage:myhelpers_status', args=['N'])
+
+        return redirect(url)
 
 
 class MyEventView(View):
@@ -325,6 +342,7 @@ class MyEventView(View):
             events = Event.objects.filter(member_id=member_id).filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
             events = Event.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
+
 
         size = 5
         offset = (page - 1) * size
@@ -343,17 +361,13 @@ class MyEventView(View):
 
         like_list = []
         image_list = []
-        for event in events:
+        for event in list(events)[offset:limit]:
             likes = EventLike.objects.all().filter(event_id=event).count()
             like_list.append(likes)
-            event_files = EventFile.objects.all().filter(event_id=event)
-            image_list.append(event_files)
+            image_list.append(event.eventfile_set.first())
 
         likes = like_list[offset:limit]
-        event_files = image_list[offset:limit]
-        member = Member.objects.get(member_email=request.session['member_email'])
-        events = list(events)[offset:limit]
-        combine_like = zip(events, likes, event_files)
+        combine_all = zip(list(events)[offset:limit], likes, image_list)
 
         member = Member.objects.get(member_email=request.session['member_email'])
 
@@ -367,7 +381,7 @@ class MyEventView(View):
             'endPage': endPage,
             'page': page,
             'realEnd': realEnd,
-            'combine_like': combine_like,
+            'combine_all': combine_all,
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
@@ -375,15 +389,23 @@ class MyEventView(View):
             'temp_event': temp_event,
             'current_count': current_count,
             'member_profile_img': member_profile_img,
-
         }
         return render(request, 'mypage/myevent.html', context)
 
 
 class MyEventDeleteView(View):
     def get(self, request, event_id):
-        Event.objects.get(id=event_id).delete()
-        return redirect('mypage:myevent_init')
+        deleted_event = Event.objects.get(id=event_id)
+        status = deleted_event.post_status  # 이벤트의 상태 가져오기
+        deleted_event.delete()
+
+        # 상태에 따라 다른 URL로 이동
+        if status == 'Y':
+            url = reverse('mypage:myevent_status', args=['Y'])
+        elif status == 'N':
+            url = reverse('mypage:myevent_status', args=['N'])
+
+        return redirect(url)
 
 
 class MyPayView(View):
@@ -442,7 +464,6 @@ class MyPayView(View):
             'status': status,
             'current_count': current_count,
             'member_profile_img': member_profile_img,
-
         }
 
         return render(request, 'mypage/mypay.html', context)

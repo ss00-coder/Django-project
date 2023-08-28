@@ -38,28 +38,29 @@ globalThis.reviewId;
     $buttonAgree.click(function ()  {
         console.log(reviewId)
         $modal.hide()
+      if ($(".active-tab").children().children().text().trim() === "게시완료") {
+            status = 'Y'
+        } else if ($(".active-tab").children().children().text().trim() === "임시저장") {
+            status = 'N'
+        }
         location.href=`/mypage/lesson-review/delete/${globalThis.reviewId}/`
-    })
+    });
 });
 
 //검색창
 const $createBtn = $('.create-btn');
-
-
     $createBtn.click(() => {
-
         location.href=`/lesson/lesson-review/write/`
     })
 
-let status = 'Y';
-
-if(status_view === 'N') {
-
-    $(".tab-item-btn").eq(0).removeClass("active-tab");
-    $(".tab-item-btn").eq(1).addClass("active-tab");
-    $('.tab-line').remove();
-    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-}
+// let status = 'Y';
+//
+// if(status_view === 'N') {
+//     $(".tab-item-btn").eq(0).removeClass("active-tab");
+//     $(".tab-item-btn").eq(1).addClass("active-tab");
+//     $('.tab-line').remove();
+//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+// }
 
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();

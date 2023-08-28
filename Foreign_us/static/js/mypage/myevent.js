@@ -24,7 +24,7 @@ $(function () {
         }
     })
 
-    globalThis.eventId;
+globalThis.eventId;
 
     //모달창 이벤트
     $deleteBtn.click(function(){
@@ -36,35 +36,43 @@ $(function () {
 
     $buttonCancel.click(() => { $modal.hide() })
     $buttonAgree.click(function ()  {
-        console.log(eventId)
-        $modal.hide()
+    console.log(eventId);
+    $modal.hide();
+    // 현재 선택된 탭의 상태에 따라 다른 경로로 이동
+
+        if ($(".active-tab").children().children().text().trim() === "게시완료") {
+            status = 'Y'
+        } else if ($(".active-tab").children().children().text().trim() === "임시저장") {
+            status = 'N'
+        }
         location.href=`/mypage/event/delete/${globalThis.eventId}/`
-    })
+    });
 });
 
 
-
+// 작성 페이지로 이동
 const $createBtn = $('.create-btn');
-
 $createBtn.click(() => {
     location.href=`/event/write/`
 })
 
-let status = 'Y';
-// $(".tab-item-btn").each((i, tab)=>{
-//     $(tab).on('click', ()=>{
-//         status = i === 0 ? 'Y' : 'N';
-//         location.href = `/mypage/event/tab/${status}`;
-//     })
-// })
-
-if(status_view === 'N'){
-    $(".tab-item-btn").eq(0).removeClass("active-tab");
-    $(".tab-item-btn").eq(1).addClass("active-tab");
-    $('.tab-line').remove();
-    $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
-}
+// let status = 'Y';
+//
+// if(status_view === 'N'){
+//     $(".tab-item-btn").eq(0).removeClass("active-tab");
+//     $(".tab-item-btn").eq(1).addClass("active-tab");
+//     $('.tab-line').remove();
+//     $(".tab-item-btn").eq(1).append('<div class="tab-line"></div>');
+// }
 //검색창
+
+$('.update-button').click(function() {
+  const postId = $(this).data('post-id');
+  if (postId) {
+    location.href = `/event/write/${postId}`;
+  }
+});
+
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();
 
@@ -74,4 +82,3 @@ $(".search-button svg").on('click', () => {
         window.location.href = keyword === "" ? "/mypage/event/tab/Y/" : `/mypage/event/tab/Y/${encodeURIComponent(keyword)}/`;
     }
 });
-

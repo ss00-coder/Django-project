@@ -175,24 +175,37 @@
                 <div class="tab-wrapper">
                   <ul class="tab-ul">
                     <li class="tab-item">
-                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='Y' %}'" class="tab-item-btn active-tab" type="button">
+                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='Y' %}'" class="tab-item-btn
+                      {% if status == "Y" %}
+                      active-tab
+                      {% endif %}
+                       " type="button">
                         <div style="display: flex">
                           <p class="tab-title">게시완료</p>
                           <div class="tab-number-wrapper">
                             <p class="tab-number">{{ saved_event }}</p>
                           </div>
                         </div>
-                        <div class="tab-line"></div>
+                      {% if status == "Y" %}
+                      <div class="tab-line"></div>
+                      {% endif %}
                       </button>
                     </li>
                     <li class="tab-item">
-                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='N' %}'" class="tab-item-btn" type="button">
+                      <button onclick="location.href='{% url 'mypage:mylesson_status' status='N' %}'" class="tab-item-btn
+                      {% if status == "N" %}
+                      active-tab
+                      {% endif %}
+                        "  type="button">
                         <div style="display: flex">
                           <p class="tab-title">임시저장</p>
                           <div class="tab-number-wrapper">
                             <p class="tab-number">{{ temp_event }}</p>
                           </div>
                         </div>
+                      {% if status == "N" %}
+                      <div class="tab-line"></div>
+                      {% endif %}
                       </button>
                     </li>
                   </ul>
@@ -227,7 +240,7 @@
               <!-- 내용 리스트 -->
               <ul class="posts-wrapper">
                 <!-- 작성 글 -->
-                {% for lesson, like, lesson_file in combine_like %}
+                {% for lesson, like, image_list in combine_all %}
                 <li class="post">
                   <button class="post-content-wrapper">
                     <div class="post-content">
@@ -238,11 +251,9 @@
                     </div>
                   </button>
                   <div class="file-wrapper">
-{#                     {% if event_file.image %}#}
                        <span class="file">
-                        <img src="{{ lesson_file.image }}" alt="Image">
+                        <img src="{{ image_list.image }}" alt="Image">
                        </span>
-{#                     {% endif %}#}
                   </div>
                   <!-- 작성 정보 -->
                   <div class="info-wrapper">
@@ -261,7 +272,7 @@
                   </div>
                   <!-- 작성 수정 삭제 -->
                   <div class="edit-wrapper">
-                    <button class="update-button" type="button">
+                    <button class="update-button" data-post-id="{{ event.id }}" type="button">
                       <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd"
                           d="m15.687 8.163.545-.506c1.024-.951 1.024-2.493 0-3.444-1.024-.95-2.684-.95-3.709 0l-8.362 7.765-1.127 3.547c-.183.577.395 1.113 1.016.943l3.82-1.046 6.661-6.186.005.004 1.155-1.073-.004-.004Zm-2.312 0-6.367 5.912-1.981.543.584-1.84 6.367-5.912 1.397 1.297Zm1.156-1.073-1.397-1.298.545-.506a1.042 1.042 0 0 1 1.397 0 .872.872 0 0 1 0 1.298l-.545.506Z">

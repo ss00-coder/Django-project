@@ -10,6 +10,12 @@ a {
   text-decoration: inherit;
 }
 
+audio, canvas, embed, iframe, img, object, svg, video {
+    display: block;
+    vertical-align: middle;
+}
+
+
 button,
 input,
 optgroup,
@@ -378,28 +384,34 @@ body {
   fill: #1d1d1e;
 }
 
-/* 쪽지 사진 */
-/*.post div.file-wrapper {*/
-/*  width: 36px;*/
-/*  height: 36px;*/
-/*  margin-left: 40px;*/
-/*  position: relative;*/
-/*}*/
 
-/*.file-wrapper span.file {*/
-/*  box-sizing: border-box;*/
-/*  display: block;*/
-/*  overflow: hidden;*/
-/*  width: initial;*/
-/*  height: initial;*/
-/*  background: none;*/
-/*  opacity: 1;*/
-/*  border: 0px;*/
-/*  margin: 0px;*/
-/*  padding: 0px;*/
-/*  position: absolute;*/
-/*  inset: 0px;*/
-/*}*/
+.post div.file-wrapper {
+  width: 50px;
+  height: 36px;
+  margin-left: 20px; /* 여백 조정 */
+  padding: 8px; /* 이미지 공간을 위해 패딩 추가 */
+  position: relative;
+}
+
+.file-wrapper span.file{
+  box-sizing: border-box;
+  display: block;
+  overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 1;
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  inset: 0px;
+}
+
+.file img{
+  max-width: 100%;
+  height: auto;
+}
 
 /* 작성 글 목록 */
 .main-content {
