@@ -47,3 +47,34 @@ $('#tag-input').keydown((e) => {
 function removeTag(button) {
   $(button).parent().remove();
 }
+
+
+//업로드한 이미지 미리보기
+function readMultipleImage(input) {
+  const file_wrapper = document.getElementsByClassName('file-wrapper')
+  if(input.files) {
+    console.log(input.files)
+
+    const fileArr = Array.from(input.files)
+
+    fileArr.forEach((file, index) => {
+        const reader = new FileReader();
+        const $img = document.createElement("img");
+        $img.classList.add("upload-image");
+        console.log($img)
+
+        reader.onload = e => {
+          $img.src = e.target.result;
+        }
+        reader.readAsDataURL(file)
+        file_wrapper.item(0).appendChild($img)
+    })
+  }
+}
+
+const inputMultipleImage = document.getElementById("file-upload")
+inputMultipleImage.addEventListener("change", e => {
+    document.getElementsByClassName('file-wrapper').item(0).innerHTML = '';
+    readMultipleImage(e.target)
+
+})
