@@ -779,6 +779,13 @@ main ul div.comment-info {
 
 main ul div.comment-time {
   display: flex;
+  /*align-items: center;*/
+  gap: 13px;
+  align-items: baseline;
+}
+
+main ul div.comment-time {
+  display: flex;
   align-items: center;
 }
 
