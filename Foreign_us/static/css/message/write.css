@@ -236,6 +236,12 @@ div.main-content div.title-wrapper button.write {
   background-color: #1d1d1e;
 }
 
+.upload-image {
+  width: 200px;
+  height: 200px;
+  margin: 10px 0;
+}
+
 /* 작성자 및 시간 */
 div.main-content div.write-info-wrapper {
   justify-content: space-between;

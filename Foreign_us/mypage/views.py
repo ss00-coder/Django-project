@@ -519,6 +519,7 @@ class MyMessageListView(View):
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'member_file': member_profile_img,
+            'member': member,
             'type': type,
         }
         return render(request, 'message/list.html', context)
@@ -561,6 +562,7 @@ class MyMessageSendListView(View):
         for send_message in list(send_messages)[offset:limit]:
             send_messages_imgs.append(send_message.sendmessagefile_set.first())
 
+
         send_container = zip(list(send_messages)[offset:limit], send_messages_imgs)
         context = {
             'send_container': send_container,
@@ -574,6 +576,7 @@ class MyMessageSendListView(View):
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'member_file': member_profile_img,
+            'member': member,
             'type': type,
         }
         return render(request, 'message/list.html', context)
@@ -596,6 +599,14 @@ class MyMessageSendDeleteView(View):
 class MyMessageDetailView(View):
 
     def get(self, request, receive_message_id):
+
+        if ReceiveMessage.objects.get(id=receive_message_id).message_status == 'N':
+            receive_message = ReceiveMessage.objects.get(id=receive_message_id)
+            receive_message.message_status = 'Y'
+            receive_message.save()
+
+
+
         member = Member.objects.get(member_email=request.session['member_email'])
 
         # 받은 메세지
@@ -624,13 +635,21 @@ class MyMessageDetailView(View):
             'receive_files': receive_files,
             'send_member_profile_img': send_member_profile_img,
             'member_file': member_profile_img,
+            'member': member,
         }
 
         return render(request, 'message/detail.html', context)
 
 class MyMessageSendDetailView(View):
 
+
     def get(self, request, send_message_id):
+
+        if SendMessage.objects.get(id=send_message_id).message_status == 'N':
+            send_message = SendMessage.objects.get(id=send_message_id)
+            send_message.message_status = 'Y'
+            send_message.save()
+
         member = Member.objects.get(member_email=request.session['member_email'])
 
         # 보낸 메세지
@@ -659,6 +678,7 @@ class MyMessageSendDetailView(View):
             'send_files': send_files,
             'send_member_profile_img': send_member_profile_img,
             'member_file': member_profile_img,
+            'member': member,
         }
 
         return render(request, 'message/detail.html', context)
@@ -674,6 +694,7 @@ class MyMessageWriteView(View):
         context = {
             'member_nickname': member.member_nickname,
             'member_file': member_profile_img,
+            'member': member,
         }
         return render(request, 'message/write.html', context)
 

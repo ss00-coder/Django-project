@@ -95,7 +95,7 @@ class ProfileLessonListAPI(APIView):
                           member_file=member_file.values('image')[:1]) \
                 .values('id', 'member_id', 'member_nickname', 'post_title', 'post_content', 'post_file', 'member_file',
                         'created_date', 'post_view_count')
-            print(post[0])
+            # print(post[0])
             posts.append(post[0])
 
         for i in range(len(all_events)):
@@ -108,12 +108,12 @@ class ProfileLessonListAPI(APIView):
                 .values('id', 'member_id', 'member_nickname', 'post_title', 'post_content', 'post_file',
                         'member_file',
                         'created_date', 'post_view_count')
-            print(post[0])
+            # print(post[0])
             posts.append(post[0])
 
         # sorted_data = dict(sorted(dataList.items(), key=lambda item: item[1]['date'], reverse=True))
-        print(posts)
-        print(sorted(posts, key=lambda x: x['created_date'], reverse=True))
+        # print(posts)
+        # print(sorted(posts, key=lambda x: x['created_date'], reverse=True))
         sorted_posts = sorted(posts, key=lambda x: x['created_date'], reverse=True)
 
         posts = sorted_posts[offset:limit + 1]

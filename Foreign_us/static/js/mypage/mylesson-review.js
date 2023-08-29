@@ -50,7 +50,7 @@ globalThis.reviewId;
 //검색창
 const $createBtn = $('.create-btn');
     $createBtn.click(() => {
-        location.href=`/lesson/lesson-review/write/`
+        location.href=`/lesson/review/write/`
     })
 
 // let status = 'Y';
