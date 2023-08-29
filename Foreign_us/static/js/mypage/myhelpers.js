@@ -61,7 +61,12 @@ const $createBtn = $('.create-btn');
 //     location.href = `/helpers/write/${postId}`;
 //   }
 // });
-
+$('.update-button').click(function() {
+  const postId = $(this).data('post-id');
+  if (postId) {
+    location.href = `/helpers/write/${postId}`;
+  }
+});
 
 $(".search-button svg").on('click', () => {
     const keyword = $("#search-input").val();

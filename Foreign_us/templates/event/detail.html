@@ -45,14 +45,13 @@
               <div class="writer-introduce">
                  <button onclick="location.href='{% url 'profile:profile' member_id=writer.id %}'">{{ writer.member_nickname }}</button>
                  <p>{{ writer.member_intro }}</p>
-                 <p>{{ writer.member_intro_detail }}</p>
               </div>
             </div>
             <div class="writer-button-wrapper">
-              <div class="lesson">
+              <div class="event">
                 <div>
-                  <button type="button" class="lesson-button">
-                    <div class="lesson-text">
+                  <button type="button" class="event-button">
+                    <div class="event-text">
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +71,7 @@
               </div>
               <div class="hosting">
                 <div>
-                  <button type="button" class="hosting-button">
+                  <button onclick="location.href='/profile/host/{{ member.id }}'" type="button" class="hosting-button">
                     <div class="hosting-text">
                       <svg
                         viewBox="0 0 24 24"
@@ -131,7 +130,7 @@
               </div>
               <div class="info-right">
                 <div class="message">
-                  <button type="button">
+                  <button type="button" onclick = "location.href='/mypage/message-write/'">
                     <img
                       style="opacity: 40%; margin-right: 20px"
                       width="22"
@@ -150,97 +149,13 @@
                   <img style="display:block; margin: 0 auto" width="600px" src="/upload/{{ post_file.image }}">
                   {% endfor %}
                 </div>
-                <p>
-{#                  글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이#}
-{#                  들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~#}
-{#                  글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이#}
-{#                  들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
-{#                  들어갑니당~#}
-                  {{ post.post_content }}
-                </p>
-                <p>&nbsp;</p>
+                  <input type="hidden" value="{{ post.post_content }}" class="post-content-val">
+                  <p class="post-content-p"></p>
+                  <p>&nbsp;</p>
               </div>
             </div>
             <div style="border-top-width: 1px; border-color: #e6e6e7"></div>
             <div style="height: 28px"></div>
-            <div class="writer-fade">
-              <section class="writer-detail-info">
-                <div>
-                  <button class="writer-detail-profile">
-                    <span class="writer-detail-profile-wrapper">
-                      <img
-                        src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fprofiles%2F58b04467-0a9c-4aaf-8986-716a09f9afa9%2FprofileImage%2Fef43fadb-b232-4b31-a48b-4af3071c6b01.jpeg%3Fauto%3Dformat%252Ccompress%26h%3D300%26lossless%3Dtrue%26w%3D300&w=3840&q=75"
-                        alt=""
-                      />
-                    </span>
-                  </button>
-                </div>
-                <div style="width: 260px">
-                  <div class="writer-introduce">
-                    <button>글 작성자 이름임당~!</button>
-                    <p>글 작성자 한줄소개임당~!!~!!!!</p>
-                  </div>
-                </div>
-                <div class="writer-button-wrapper">
-                  <div class="lesson">
-                    <div>
-                      <button type="button" class="lesson-button">
-                        <div class="lesson-text">
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="16px"
-                            width="16px"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"
-                            ></path>
-                          </svg>
-                          <div>과외 신청</div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="hosting">
-                    <div>
-                      <button  onclick = "location.href='/profile/host/{{ member.id }}'" type="button" class="hosting-button">
-                        <div class="hosting-text">
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="16px"
-                            width="16px"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              clip-rule="evenodd"
-                              d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"
-                            ></path>
-                          </svg>
-                          <div>호스팅 신청</div>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <!-- 구글맵 -->
-                <div id="app-map"></div>
-              </section>
-              <div style="z-index: 20; border-top-width: 1px; border-color: #e6e6e7"></div>
-              <div style="height: 28px"></div>
-            </div>
             <!-- 댓글 -->
             <div>
               <h4 class="comment-title">
@@ -287,7 +202,7 @@
                       <div class="name">{{ member.member_nickname }}</div>
                     </div>
                   </div>
-                  <div style="height: 12px"></div>
+                  <div style="height: 12px">{{ member.member_nickname }}</div>
                   <div class="comment-textarea-container">
                     <label class="comment-textarea-label" for="comment-content">
                       <textarea  id="comment-content"  placeholder="댓글을 작성해주세요..." ></textarea>
@@ -299,7 +214,7 @@
                     <button class="write-button" type="button">등록</button>
                   </div>
                 </div>
-              {% else %}
+               {% else %}
                 <!-- 로그인 안했을 때 -->
                  <div class="comment-write">
                    <div class="comment-write-content">
@@ -363,166 +278,6 @@
             <div style="height: 40px"></div>
             <div style="border-top-width: 1px; border-color: #e6e6e7"></div>
             <div style="height: 28px"></div>
-            <section>
-              <h4 class="board-title-wrapper">
-                <div class="board-title">
-                  <span>글 작성자</span>
-                  님의 최신 포스트
-                </div>
-              </h4>
-              <ul class="post-wrapper">
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-              <div class="more-post-wrapper">
-                <button class="more-button" type="button">
-                  더보기
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="more-icon">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="m20.023 11.886-7 7a.9.9 0 0 1-1.273-1.273l4.827-4.827H5.15a.9.9 0 0 1 0-1.8h11.427L11.75 6.16a.9.9 0 1 1 1.273-1.273l7 7Z"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div style="height: 48px"></div>
-              <div style="border-top-width: 1px; border-color: #e6e6e7"></div>
-              <div style="height: 28px"></div>
-            </section>
-            <section>
-              <h4 class="board-title-wrapper">
-                <div class="board-title">
-                  <span>과외 게시판&nbsp</span>
-                  최신 포스트
-                </div>
-              </h4>
-              <ul class="post-wrapper">
-                <li class="post">
-                  <div>
-                    <button type="button" class="post-link">
-                      <div class="post-container">
-                        <div class="post-text">
-                          <h2 class="post-title">😈 대답을 듣지 않는 고약한 상사(메인작가)</h2>
-                          <p class="post-content">
-                            유리향기_송아론 꿈을 꾸었다 너의 향기가 내려오는 것을 나는 그것을 잡을
-                            줄 알아 달려갔다 매일 둥둥 떠 있는 이 마음을 너는 알지 못할 것이다
-                            허망함에 눈을 뜨면 나는 오늘도 다른 얼굴 색깔을 하고 있다 가면을 쓰는 건
-                            어렵지 않다 미소를 띠우면 그만이고 착각 속에 사는 시간도 나쁘지 않다
-                            우울함을 잡으면 감성도 풍부해지고 내 감정에 더 귀 기울이게 된다 그런데
-                            꿈을 꾸었다 너의 향기가 내 머리맡에 앉는 것을 나는 신기루에 빠진
-                            사람처럼 양팔을 허우적거렸고 잡히지 않는데도 손을 베었다 아프지 않다고
-                            하면 거짓말이겠지 꿈이라도 그 세계가 더 애틋한 게 사실이지 문제는 그곳과
-                            이곳의 시간이 달라 매일 유리처럼 깨어난다는 것이다 그래도 괜찮다
-                            이렇게나마 잠시 너의 채취를 느끼고 일어날 때면 언제나 그랬듯 웃고
-                            있으니까
-                          </p>
-                        </div>
-                        <div class="post-image">
-                          <span class="post-thumbnail">
-                            <img
-                              class="thumbnail-image"
-                              src="https://steadio.imgix.net/creator-posts/e587b12f-71bc-4296-8a6d-94e74b383686/creatorPostImage/d45deb85-931d-4f68-8ec9-3457ec8fa12a.png?auto=format%2Ccompress&fit=max&lossless=true&w=1240"
-                              alt=""
-                            />
-                          </span>
-                          <div></div>
-                        </div>
-                      </div>
-                      <div class="post-writer">
-                        <div class="writer-profile-image"></div>
-                        <div class="writer-info">
-                          <span class="writer-name">사라있네 SARAHITNE (작가)</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">한 시간 전</span>
-                          <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="writer-line"
-                          >
-                            <circle cx="12" cy="12" r="4"></circle>
-                          </svg>
-                          <span class="write-info">조회수 3</span>
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                </li>
-              </ul>
-              <div class="more-post-wrapper">
-                <button class="more-button" type="button">
-                  더보기
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="more-icon">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="m20.023 11.886-7 7a.9.9 0 0 1-1.273-1.273l4.827-4.827H5.15a.9.9 0 0 1 0-1.8h11.427L11.75 6.16a.9.9 0 1 1 1.273-1.273l7 7Z"
-                    ></path>
-                  </svg>
-                </button>
-              </div>
-              <div style="height: 48px"></div>
-            </section>
           </main>
         </div>
         <!-- 푸터 -->
@@ -552,7 +307,7 @@
                         d="M11.163 19.654a1.185 1.185 0 0 0 1.675 0l6.642-6.584c2.008-2.143 2.008-5.57.11-7.595-1.51-1.684-4.27-2.025-5.93-.506L12 6.488l-1.66-1.52c-1.66-1.518-4.42-1.177-5.93.507-1.898 2.025-1.898 5.452.11 7.595l6.643 6.584Z"
                       ></path>
                     </svg>
-                    <span class="left-num">14</span>
+                    <span class="like-num">0</span>
                   </button>
                   <a href="#reply">
                     <button class="left-icon">
@@ -570,7 +325,7 @@
                           d="M8.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM10.667 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0ZM13.167 9a.667.667 0 1 1-1.334 0 .667.667 0 0 1 1.334 0Z"
                         ></path>
                       </svg>
-                      <span class="left-num">5</span>
+                      <span class="reply-num">0</span>
                     </button>
                   </a>
                 </div>
@@ -590,7 +345,7 @@
                     ></path>
                   </svg>
                 </a>
-                <a href="">
+                <a href="{% url 'event:list-init' %}">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -626,11 +381,12 @@
   <script>
         let post_id = {{ post.id }};
         let member = `{{ member.member_nickname }}`;
+        document.querySelector(".post-content-p").innerHTML = $('.post-content-val').val();
   </script>
   <script src="{% static 'js/event/detail.js' %}"></script>
   <script>
-    let member_latitude = {{ member.member_latitude }};
-    let member_longitude = {{ member.member_longitude }};
+    let event_latitude = {{ post.event_latitude }};
+    let event_longitude = {{ post.event_longitude }};
 
     /* 구글 map */
     ((g) => {
@@ -674,7 +430,7 @@
 
     async function initMap() {
       // The location of Uluru
-      const position = { lat: 37.49774293207681, lng: 127.10703608868103  };
+      const position = { lat: event_latitude, lng: event_longitude  };
       // Request needed libraries.
       //@ts-ignore
       const { Map } = await google.maps.importLibrary('maps');
@@ -682,7 +438,7 @@
 
       // The map, centered at Uluru
       map = new Map(document.getElementById('map'), {
-        zoom: 12,
+        zoom: 17,
         center: position,
         mapId: 'DEMO_MAP_ID',
       });
@@ -696,7 +452,7 @@
 
       // The map, centered at Uluru
       appMap = new Map(document.getElementById('app-map'), {
-        zoom: 12,
+        zoom: 20,
         center: position,
         mapId: 'DEMO_MAP_ID',
       });

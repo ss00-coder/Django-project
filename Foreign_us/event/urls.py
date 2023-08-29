@@ -10,7 +10,7 @@ app_name = 'event'
 urlpatterns = [
     # 이벤트
     path('list/', EventListView.as_view(), name='list-init'),
-    path('list/<int:page>/', EventListAPI.as_view(), name='list'),
+    path('list/<int:page>/<str:type>/', EventListAPI.as_view(), name='list_type'),
     path('detail/<int:post_id>', EventDetailView.as_view(), name='detail'),
     path('write/', EventWriteView.as_view(), name='write-init'),
     path('write/<int:post_id>', EventWriteView.as_view(), name='write_modify'),

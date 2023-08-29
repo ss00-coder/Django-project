@@ -4,8 +4,6 @@ from django.views import View
 from geopy import Nominatim
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.utils import timezone
-from datetime import timedelta
 
 from event.models import Event, EventFile, EventLike, EventReply
 from member.models import Member, MemberFile
@@ -19,22 +17,27 @@ class EventListView(View):
 
 
 class EventListAPI(APIView):
-    def get(self, request, page):
-
-        size = 5
+    def get(self, request, page, type):
+        size = 7
         offset = (page - 1) * size
         limit = page * size
+        posts = []
 
         all_posts = list(Event.objects.order_by('-id').all())
-        posts = []
+
+        if type == 'popular_post':
+            all_posts = list(Event.objects.order_by('-post_view_count').all())
+
         for i in range(len(all_posts)):
             id = all_posts[i].id
+            member_id = all_posts[i].member_id
+            member_files = MemberFile.objects.filter(member_id=member_id, file_type="P")
+            # member_files = Member.objects.get(id=Event.objects.get(id=id).member_id).memberfile_set.filter(file_type="P").values('image')
             event_file = EventFile.objects.filter(event_id=id)
-            post = Event.objects.filter(id=id).annotate(post_file=event_file.values('image')[:1]).values('id', 'post_title', 'post_content', 'post_file', 'member__member_nickname', 'post_view_count', 'created_date')
+            post = Event.objects.filter(id=id).annotate(post_file=event_file.values('image')[:1], member_file=member_files.values('image')[:1]).values('id', 'post_title', 'post_content', 'post_file', 'member__member_nickname', 'post_view_count', 'created_date', 'member_file')
             posts.append(post)
-            print(post)
 
-        posts = posts[offset:limit + 1]
+        posts = posts[offset:limit]  # Remove +1 from the limit
 
         hasNext = False
 
@@ -48,7 +51,6 @@ class EventListAPI(APIView):
             'hasNext': hasNext
         }
 
-        # return Response(posts)
         return Response(context)
 
 
@@ -63,9 +65,7 @@ class EventDetailView(View):
         for i in range(len(all_posts)):
             id = all_posts[i].id
             writer_event_file = EventFile.objects.filter(event_id=id)
-            writer_post = Event.objects.filter(id=id)\
-                .annotate(post_file=writer_event_file.values('image')[:1])\
-                .values('id', 'post_title', 'post_content', 'post_file', 'member__member_nickname', 'post_view_count', 'created_date')
+            writer_post = Event.objects.filter(id=id).annotate(post_file=writer_event_file.values('image')[:1]).values('id', 'post_title', 'post_content', 'post_file', 'member__member_nickname', 'post_view_count', 'created_date')
             posts.append(writer_post)
             # print(post)
 
@@ -85,9 +85,7 @@ class EventDetailView(View):
             if member.memberfile_set.filter(file_type='P'):
                 context['member_profile'] = member.memberfile_set.get(file_type='P')
 
-
         return render(request, 'event/detail.html', context)
-
 
 
 class EventWriteView(View):
@@ -168,9 +166,10 @@ class EventWriteView(View):
             event_post = Event.objects.get(id=post_id)
 
             # 파일 업로드 시 전에 있던 파일 삭제 후 새로 받은 파일로 생성
-            EventFile.objects.filter(event=event_post).delete()
-            for file in files.getlist('post_file'):
-                EventFile.objects.create(image=file, event=event_post)
+            if files:
+                EventFile.objects.filter(event=event_post).delete()
+                for file in files.getlist('post_file'):
+                    EventFile.objects.create(image=file, event=event_post)
 
         # 수정할 게시글이 없다면 새로운 게시글 생성
         else:
@@ -199,13 +198,6 @@ class EventReplyListAPI(APIView):
             reply_writer_file = MemberFile.objects.filter(member_id=id, file_type="P")
             reply = EventReply.objects.filter(id=reply_id).order_by("-id").annotate(member_nickname=F('member__member_nickname'), reply_writer_file=reply_writer_file.values('image')[:1]).values('id', 'reply_content', 'member_id', 'member_nickname', 'created_date', 'reply_writer_file')
             replies.append(reply)
-        #
-        # posts = posts[offset:limit + 1]
-
-
-
-        # replies = list(NoticeReply.objects.filter(notice_id=post_id).order_by("-id").annotate(member_nickname=F('member__member_nickname')).values('id', 'reply_content', 'member_nickname', 'created_date'))
-        # total = len(replies)
 
         replies = replies[offset:limit + 1]
         hasNext = False
