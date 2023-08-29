@@ -7,7 +7,7 @@ from helpers.views import HelpersListView, HelpersDetailView, HelpersWriteView, 
 app_name = 'helpers'
 
 urlpatterns = [
-    path('list/', HelpersListView.as_view(), name='list'),
+    path('list/', HelpersListView.as_view(), name='list-init'),
     path('list/<int:page>/<str:type>/', HelpersListAPI.as_view(), name='list_type'),
     path('detail/<int:post_id>', HelpersDetailView.as_view(), name='detail'),
     path('write/', HelpersWriteView.as_view(), name='write-init'),

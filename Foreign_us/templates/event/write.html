@@ -24,7 +24,7 @@
                     <div>
                         <div class="logo-wrapper">
                             <a href="">
-                                <img class="logo-image" src="../../static/image/logo/white.png" alt="">
+                                <img class="logo-image" src="{% static '/image/logo/white.png' %}" alt="">
                             </a>
                             <div class="line">|</div>
                             <div class="my-page-text">
@@ -35,9 +35,13 @@
                     <div class="member-profile-wrapper">
                         <div style="position: relative">
                             <button class="profile-modal-button">
-                <span class="profile-image">
-                  <img src="/upload/{{ member_profile_img }}" alt=""/>
-                </span>
+                                <span class="profile-image">
+                                    {% if member_profile.image %}
+                                    <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                                    {% else %}
+                                    <img src="{% static 'image/profile_icon.png' %}"/>
+                                    {% endif %}
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -193,5 +197,5 @@
         src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"
 ></script>
-<script src="../../static/js/event/write.js"></script>
+<script  src="{% static 'js/event/write.js' %}"></script>
 </html>
