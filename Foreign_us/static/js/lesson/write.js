@@ -53,16 +53,12 @@ function removeTag(button) {
 function readMultipleImage(input) {
   const file_wrapper = document.getElementsByClassName('file-wrapper')
   if(input.files) {
-    console.log(input.files)
-
     const fileArr = Array.from(input.files)
 
     fileArr.forEach((file, index) => {
         const reader = new FileReader();
         const $img = document.createElement("img");
         $img.classList.add("upload-image");
-        console.log($img)
-
         reader.onload = e => {
           $img.src = e.target.result;
         }
@@ -76,5 +72,4 @@ const inputMultipleImage = document.getElementById("file-upload")
 inputMultipleImage.addEventListener("change", e => {
     document.getElementsByClassName('file-wrapper').item(0).innerHTML = '';
     readMultipleImage(e.target)
-
 })
