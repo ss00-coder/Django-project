@@ -129,6 +129,11 @@ header div.logo-wrapper {
   display: flex;
 }
 
+header div.logo-wrapper > a {
+  position: relative;
+  bottom: 3px;
+}
+
 header .logo-image {
   display: block;
   width: 96px;

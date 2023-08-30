@@ -602,7 +602,7 @@ class MyMessageSendDeleteView(View):
 
 class MyMessageDetailView(View):
 
-    def get(self, request, receive_message_id, status):
+    def get(self, request, receive_message_id):
         unread_count = request.session['unread_message_count']
 
         if ReceiveMessage.objects.get(id=receive_message_id).message_status == 'N':
@@ -640,7 +640,6 @@ class MyMessageDetailView(View):
             'send_member_profile_img': send_member_profile_img,
             'member_file': member_profile_img,
             'member': member,
-            'status': status,
             'unread_count': unread_count,
         }
 
