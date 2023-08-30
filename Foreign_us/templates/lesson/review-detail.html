@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/lesson/detail.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/lesson/review-detail.css' %}"/>
     <link rel="shortcut icon" href="{% static 'image/logo/logo-color.png' %}" type="image/x-icon">
     <link
       rel="stylesheet"
@@ -19,76 +19,6 @@
       <!-- 헤더 -->
       {% include "header/header.html" %}
       <main class="web">
-        <!-- 사이드 바 (글 작성자 정보) -->
-{#        <div class="writer-show" style="z-index: 10; position: absolute; right: 460px; top: 150px">#}
-{#          <section#}
-{#            class="writer-detail-info"#}
-{#            style="#}
-{#              position: fixed;#}
-{#              background-color: #f3f3f44d;#}
-{#              border: 1px solid #b9b9bb59;#}
-{#              border-radius: 10px;#}
-{#            "#}
-{#          >#}
-{#            <div>#}
-{#              <button class="writer-detail-profile">#}
-{#                <span class="writer-detail-profile-wrapper">#}
-{#                  <img src="/upload/{{ writer_profile.image }}">#}
-{#                </span>#}
-{#              </button>#}
-{#            </div>#}
-{#            <div style="width: 260px">#}
-{#              <div class="writer-introduce">#}
-{#                <button>{{ writer.member_nickname }}</button>#}
-{#                <p>{{ writer.member_intro }}</p>#}
-{#              </div>#}
-{#            </div>#}
-{#            <div class="writer-button-wrapper">#}
-{#              <div class="lesson">#}
-{#                <div>#}
-{#                  <button type="button" class="lesson-button" onclick="location.href='/profile/{{ writer.id }}'">#}
-{#                    <div class="lesson-text">#}
-{#                      <svg#}
-{#                        viewBox="0 0 24 24"#}
-{#                        xmlns="http://www.w3.org/2000/svg"#}
-{#                        height="16px"#}
-{#                        width="16px"#}
-{#                      >#}
-{#                        <path#}
-{#                          fill-rule="evenodd"#}
-{#                          clip-rule="evenodd"#}
-{#                          d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"#}
-{#                        ></path>#}
-{#                      </svg>#}
-{#                      <div>과외 신청</div>#}
-{#                    </div>#}
-{#                  </button>#}
-{#                </div>#}
-{#              </div>#}
-{#              <div class="hosting">#}
-{#                <div>#}
-{#                  <button type="button" class="hosting-button" onclick="location.href='/profile/host/{{ writer.id }}'">#}
-{#                    <div class="hosting-text">#}
-{#                      <svg#}
-{#                        viewBox="0 0 24 24"#}
-{#                        xmlns="http://www.w3.org/2000/svg"#}
-{#                        height="16px"#}
-{#                        width="16px"#}
-{#                      >#}
-{#                        <path#}
-{#                          fill-rule="evenodd"#}
-{#                          clip-rule="evenodd"#}
-{#                          d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"#}
-{#                        ></path>#}
-{#                      </svg>#}
-{#                      <div>호스팅 신청</div>#}
-{#                    </div>#}
-{#                  </button>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{#          </section>#}
-{#        </div>#}
         <!-- 메인 -->
         <div class="main-content">
           <main class="main">
@@ -118,7 +48,7 @@
               </div>
               <div class="info-right">
                 <div class="message">
-                  <button type="button">
+                  <button type="button" onclick="location.href='/mypage/message-write/{{ writer.id }}'">
                     <img
                       style="opacity: 40%; margin-right: 20px"
                       width="22"
