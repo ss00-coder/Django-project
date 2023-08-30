@@ -50,7 +50,7 @@
                 </button>
               </div>
               <h2 class="side-nav-top-nickname">{{member_nickname}}</h2>
-              <a class="side-nav-top-mypage" href="">
+              <a class="side-nav-top-mypage" href="/profile/{{ member.id }}">
                 <button class="side-nav-top-mypage-btn" type="button">
                   <div class="side-nav-top-mypage-btn-flex">
                     <div>내 프로필</div>
@@ -243,7 +243,7 @@
                 <!-- 작성 글 -->
                 {% for helpers, like, image_list in combine_all %}
                 <li class="post">
-                  <button class="post-content-wrapper">
+                  <button class="post-content-wrapper" type="button" onclick="location.href='{% url 'helpers:detail' post_id=helpers.id %}'">
                     <div class="post-content">
                       <div>
                         <p class="post-title">{{ helpers.post_title }}</p>

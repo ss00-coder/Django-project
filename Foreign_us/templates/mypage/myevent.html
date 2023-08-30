@@ -243,7 +243,7 @@
                 <!-- 작성 글 -->
                 {% for event, like, image_list in combine_all %}
                 <li class="post">
-                  <button class="post-content-wrapper" >
+                  <button class="post-content-wrapper" type="button" onclick="location.href='{% url 'event:detail' post_id=event.id %}'">
                     <div class="post-content">
                       <div>
                         <p class="post-title">{{ event.post_title }}</p>

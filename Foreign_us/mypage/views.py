@@ -29,6 +29,7 @@ class MyProfileView(View):
         member_file = member.memberfile_set
 
         context = {
+            'member': member,
             'member_profile_img': member_file.get(file_type="P").image if member_file.filter(file_type="p") else '',
             'member_background_img': member_file.get(file_type="B").image if member_file.filter(file_type="B") else '',
             'member_nickname': member.member_nickname,
@@ -153,6 +154,7 @@ class MyLessonView(View):
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
+            'member': member,
             'saved_event': saved_event,
             'temp_event': temp_event,
             'current_count': current_count,
@@ -181,21 +183,22 @@ class MyLessonDeleteView(View):
 # 과외 후기
 class MyLessonReviewView(View):
     def get(self, request, keyword=None, page=1, status='Y'):
+        member_id = Member.objects.get(member_email=request.session['member_email']).id
 
         if keyword == "None":
             keyword = None
 
         if keyword:
-            reviews = Review.objects.filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
+            reviews = Review.objects.filter(member_id=member_id).filter(post_status=status).filter(Q(post_title__contains=keyword) | Q(post_content__contains=keyword)).order_by('-id').all()
         else:
-            reviews = Review.objects.filter(post_status=status).order_by('-id').all()
+            reviews = Review.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
         size = 5
         offset = (page - 1) * size
         limit = page * size
         current_count = len(reviews)
-        saved_event = Review.objects.filter(post_status="Y").count()
-        temp_event = Review.objects.filter(post_status='N').count()
+        saved_event = Review.objects.filter(member_id=member_id).filter(post_status="Y").count()
+        temp_event = Review.objects.filter(member_id=member_id).filter(post_status='N').count()
         pageCount = 5
         endPage = math.ceil(page / pageCount) * pageCount
         startPage = endPage - pageCount + 1
@@ -231,6 +234,7 @@ class MyLessonReviewView(View):
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
+            'member': member,
             'saved_event': saved_event,
             'temp_event': temp_event,
             'current_count': current_count,
@@ -308,6 +312,7 @@ class MyHelpersView(View):
             'keyword': keyword,
             'member_nickname': member.member_nickname,
             'status': status,
+            'member': member,
             'saved_event': saved_event,
             'temp_event': temp_event,
             'current_count': current_count,
@@ -391,6 +396,7 @@ class MyEventView(View):
             'status': status,
             'saved_event': saved_event,
             'temp_event': temp_event,
+            'member': member,
             'current_count': current_count,
             'member_profile_img': member_profile_img,
         }
@@ -466,6 +472,7 @@ class MyPayView(View):
             'member_nickname': member.member_nickname,
             'keyword': keyword,
             'status': status,
+            'member': member,
             'current_count': current_count,
             'member_profile_img': member_profile_img,
         }
@@ -643,6 +650,7 @@ class MyMessageDetailView(View):
         }
 
         return render(request, 'message/detail.html', context)
+
 
 class MyMessageSendDetailView(View):
 

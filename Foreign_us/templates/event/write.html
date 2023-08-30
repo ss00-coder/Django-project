@@ -195,7 +195,34 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script
         src="https://cdn.tiny.cloud/1/oyftbbpg9czujh22qz99ti5pkpym01nfis0fadhi5mzxxhxv/tinymce/5/tinymce.min.js"
-        referrerpolicy="origin"
-></script>
+        referrerpolicy="origin"></script>
 <script  src="{% static 'js/event/write.js' %}"></script>
+<script>
+
+    //업로드한 이미지 미리보기
+function readMultipleImage(input) {
+  const file_wrapper = document.getElementsByClassName('file-wrapper')
+  if(input.files) {
+    const fileArr = Array.from(input.files)
+
+    fileArr.forEach((file, index) => {
+        const reader = new FileReader();
+        const $img = document.createElement("img");
+        $img.classList.add("upload-image");
+        reader.onload = e => {
+          $img.src = e.target.result;
+        }
+        reader.readAsDataURL(file)
+        file_wrapper.item(0).appendChild($img)
+    })
+  }
+}
+
+const inputMultipleImage = document.getElementById("file-upload")
+inputMultipleImage.addEventListener("change", e => {
+    document.getElementsByClassName('file-wrapper').item(0).innerHTML = '';
+    readMultipleImage(e.target)
+})
+
+</script>
 </html>

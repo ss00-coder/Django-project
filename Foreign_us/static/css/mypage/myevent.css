@@ -410,7 +410,7 @@ body {
 
 .file img{
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 /* 작성 글 목록 */
