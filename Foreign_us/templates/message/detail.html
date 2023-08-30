@@ -28,6 +28,7 @@
             </div>
           </div>
           <div class="header-profile">
+              <div class="unread-alarm" style="color: white">{{ unread_count }}</div>
             <div class="header-profile-pos">
               <button class="header-profile-btn">
                 <span class="header-profile-btn-span">
@@ -166,6 +167,8 @@
                 <div class="content-container">
                   <div class="top-wrapper">
                     <!-- 제목 및 답장 버튼 -->
+
+
                     <div class="title-wrapper">
                       {% if type == 'receive' %}
                         <h3>{{ receive_message.message_title }}</h3>
@@ -248,5 +251,6 @@
       const receive_message = '{{ receive_message.message_content }}'.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", '"')
       const send_message = '{{ send_message.message_content }}'.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", '"')
       '{{ type }}' == 'receive' ? $('.message-content').html(receive_message) : $('.message-content').html(send_message)
+      console.log(`{{ receive_message.message_status }}`);
   </script>
 </html>

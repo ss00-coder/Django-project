@@ -610,13 +610,13 @@ class MyMessageSendDeleteView(View):
 class MyMessageDetailView(View):
 
     def get(self, request, receive_message_id):
+        unread_count = request.session['unread_message_count']
 
         if ReceiveMessage.objects.get(id=receive_message_id).message_status == 'N':
             receive_message = ReceiveMessage.objects.get(id=receive_message_id)
             receive_message.message_status = 'Y'
             receive_message.save()
-
-
+            unread_count = unread_count - 1
 
         member = Member.objects.get(member_email=request.session['member_email'])
 
@@ -647,6 +647,7 @@ class MyMessageDetailView(View):
             'send_member_profile_img': send_member_profile_img,
             'member_file': member_profile_img,
             'member': member,
+            'unread_count': unread_count,
         }
 
         return render(request, 'message/detail.html', context)
