@@ -26,6 +26,11 @@
             <div class="main-header-select">
                 <div class="main-header-select-flex">
                     {% if request.session.session_key %}
+                        <div class="main-header-login">
+                            <button class="main-header-login-btn" type="button"
+                                    onclick="location.href='/member/logout/'">로그아웃
+                            </button>
+                        </div>
                         {% if request.session.member_type == 'A' %}
                             <div class="main-header-sigup">
                                 <button class="main-header-sigup-btn"
