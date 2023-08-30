@@ -27,8 +27,12 @@
           </div>
         </div>
         <div class="header-profile">
+          <div class="notice_icon_wrapper">
+             <img class="notice_icon" src="{% static 'image/notification_alert_bell_notice_alarm_icon.png' %}" alt="">
+             <div class="notice_num" style="color: white">{{ request.session.unread_message_count }}</div>
+          </div>
           <div class="header-profile-pos">
-            <button class="header-profile-btn">
+            <button class="header-profile-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=member.id %}'">
               <span class="header-profile-btn-span">
                 <img src="/upload/{{ member_profile_img }}" />
               </span>
