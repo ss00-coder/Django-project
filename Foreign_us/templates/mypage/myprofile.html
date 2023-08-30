@@ -29,6 +29,8 @@
           </div>
         </div>
         <div class="header-profile">
+          <img class="notice_icon" src="{% static 'image/notification_alert_bell_notice_alarm_icon.png' %}" alt="">
+          <div class="notice_num" style="color: white">{{ request.session.unread_message_count }}</div>
           <div class="header-profile-pos">
             <button class="header-profile-btn">
               <span class="header-profile-btn-span">

@@ -15,7 +15,7 @@ function getList(){
                     post = post[0];
                     text += ` <li class="recommend-post-item">
                     <div>
-                        <button type="button" class="recommend-post-item-btn">
+                        <button type="button" class="recommend-post-item-btn" onclick="location.href='/helpers/detail/${post.id}'">
                             <div class="recommend-post-item-flex">
                                 <div class="recommend-post-item-content">
                                     <h2>${post.post_title}</h2>

@@ -825,3 +825,11 @@ p.mypage-grid-imgicon-explanation {
     fill: #b9b9bb;
 }
 
+/*알림*/
+.notice_icon{
+    filter: brightness(0) invert(1) grayscale(1);
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+
+}
