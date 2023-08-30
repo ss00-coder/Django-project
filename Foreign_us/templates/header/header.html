@@ -24,11 +24,19 @@
                                 onclick="location.href='/member/logout/'">로그아웃
                         </button>
                     </div>
-                    <div class="main-header-sigup">
-                        <button class="main-header-sigup-btn"
-                                onclick="location.href='/mypage/profile/'">헬퍼스 스튜디오
-                        </button>
-                    </div>
+                    {% if request.session.member_type == 'A' %}
+                        <div class="main-header-sigup">
+                            <button class="main-header-sigup-btn"
+                                    onclick="location.href='/administrator/board/notice/list/'">관리자 스튜디오
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="main-header-sigup">
+                            <button class="main-header-sigup-btn"
+                                    onclick="location.href='/mypage/profile/'">헬퍼스 스튜디오
+                            </button>
+                        </div>
+                    {% endif %}
                 {% else %}
                     <div class="main-header-login">
                         <button class="main-header-login-btn" type="button"
