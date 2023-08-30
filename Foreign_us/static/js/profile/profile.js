@@ -147,7 +147,7 @@ function getList(url){
                                                 <a class="info-nickname" href="/profile/${post.member_id}">${post.member_nickname}</a>
                                             </div>
                                             <div class="info-flex">
-                                                <a class="info-a" href="">
+                                                <a class="info-a" style="margin: 0" href="">
                                                     <span>${elapsedTime(post.created_date)}</span>
                                                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                         <circle cx="12" cy="12" r="4"></circle>
@@ -158,7 +158,15 @@ function getList(url){
                                         </div>
                                     </div>
                                 </div>
-                                <button class="item-text">
+                               `
+                if(url==="review"){
+                    text += `<button onclick="location.href='/lesson/review/detail/${post.id}'" class="item-text">`
+                } else if (post.event_location){
+                    text += `<button onclick="location.href='/event/detail/${post.id}'" class="item-text">`
+                } else {
+                    text += `<button onclick="location.href='/helpers/detail/${post.id}'" class="item-text">`
+                }
+                text += `
                                     <h4 class="item-h4">${post.post_title}</h4>
                                     <p style="height: 40px; overflow: hidden; padding-right: 5px; text-overflow: ellipsis;" class="item-content-p">
                                         ${post.post_content}

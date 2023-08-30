@@ -74,10 +74,9 @@
                                 </div>
                                 <hr>
                                 <div class="board_content">
-                                    <!-- 게시판 내용 -->
-                                    {{ post.message_content }}
                                 </div>
-                                <section class="img_wrapper_box">
+                                <input type="hidden" value="{{ post.message_content }}" class="post-content-value">
+                                <section style="margin: 0 auto" class="img_wrapper_box">
                                     <div class="img_ul_wrapper">
                                         <ul class="img_ul">
                                             {% for post_file in post_files %}
@@ -144,6 +143,9 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+      document.querySelector(".board_content").innerHTML = $('.post-content-value').val();
+</script>
 <script src="{%  static 'js/admin/sidemenu.js'%}"></script>
 
 </html>

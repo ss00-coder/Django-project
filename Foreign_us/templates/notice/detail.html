@@ -117,7 +117,7 @@
 {#                    <circle cx="12" cy="12" r="4"></circle>#}
 {#                  </svg>#}
                   <div class="sub-info">
-                    <span>{{ post.updated_date|date:"Y-m-d" }}</span>
+                    <span>{{ post.created_date|date:"Y-m-d" }}</span>
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="dot">
                       <circle cx="12" cy="12" r="4"></circle>
                     </svg>
@@ -128,7 +128,7 @@
             </div>
             <div class="info-right">
               <div class="message">
-                <button type="button">
+                <button onclick="location.href='{% url 'mypage:message-write' %}'" type="button">
                   <img
                     style="opacity: 40%; margin-right: 20px"
                     width="22"
@@ -273,7 +273,7 @@
 {#              </li>#}
             </ul>
             <div class="more-post-wrapper">
-              <button class="more-button" type="button">
+              <button class="more-button" type="button" style="margin-bottom: 30px;">
                 더보기
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="more-icon">
                   <path
@@ -353,7 +353,7 @@
                     ></path>
                   </svg>
                 </a>
-                <a href="">
+                <a href="/notice/list/">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -389,6 +389,15 @@
       let post_id = {{ post.id }};
       let member = `{{ member.member_nickname }}`;
       console.log(member);
+      $('.lesson-button').on('click', () => {
+          if(member){
+            location.href = '/mypage/message-write';
+          } else{
+            location.href = '/member/login';
+          }
+
+
+      })
   </script>
   <script src="{% static 'js/notice/detail.js' %}"></script>
 </html>

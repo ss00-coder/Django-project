@@ -107,7 +107,7 @@ class ProfileLessonListAPI(APIView):
                           member_file=member_file.values('image')[:1]) \
                 .values('id', 'member_id', 'member_nickname', 'post_title', 'post_content', 'post_file',
                         'member_file',
-                        'created_date', 'post_view_count')
+                        'created_date', 'post_view_count', 'event_location')
             # print(post[0])
             posts.append(post[0])
 

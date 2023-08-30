@@ -194,7 +194,7 @@ div.info-table>div.board_info {
 }
 
 div.board_content {
-  min-height: 183px;
+  /*min-height: 183px;*/
 }
 
 .board-info-box {
