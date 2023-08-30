@@ -372,6 +372,8 @@ class BoardNoticeModifyView(View):
         post.post_content = datas['post_content']
         post.save()
 
+        print(datas)
+
         if 'file_name' in datas:
             prevFiles = dict(datas)['file_name']
             print(prevFiles)

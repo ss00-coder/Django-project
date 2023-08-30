@@ -39,7 +39,7 @@ hr {
 .info-table {
 	margin: 0 auto;
 	padding: 10px 30px;
-	min-height: 400px;
+	/*min-height: 400px;*/
 }
 
 .board-info-title-box {
