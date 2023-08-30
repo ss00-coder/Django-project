@@ -252,7 +252,9 @@
                   </button>
                   <div class="file-wrapper">
                        <span class="file">
-                        <img src="{{ image_list.image }}" alt="Image">
+                           {% if image_list.image %}
+                               <img src="/upload/{{ image_list.image }}" alt="">
+                           {% endif %}
                        </span>
                   </div>
                   <!-- 작성 정보 -->

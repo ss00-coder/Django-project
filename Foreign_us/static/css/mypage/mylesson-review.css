@@ -637,7 +637,7 @@ body {
 }
 
 .info-wrapper {
-  margin: 0 30px 0 165px;
+  margin: 0 30px 0 90px;
   display: flex;
   align-items: center;
   column-gap: 16px;
@@ -928,7 +928,7 @@ button.page span.page-number {
 .post div.file-wrapper {
   width: 36px;
   height: 36px;
-  margin-left: 40px;
+  margin-left: 100px;
   position: relative;
 }
 
@@ -945,4 +945,9 @@ button.page span.page-number {
   padding: 0px;
   position: absolute;
   inset: 0px;
+}
+
+.file-wrapper span.file > img {
+  width: 100%;
+  height: 100%;
 }

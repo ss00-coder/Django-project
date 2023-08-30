@@ -160,7 +160,7 @@
         </nav>
 
         <div class="main-content">
-        <div class="main-content">
+          <div class="main-content">
           <div class="main-content-grid">
             <div class="content-wrapper">
               <!-- 상단 메뉴 -->
@@ -253,7 +253,9 @@
                   </button>
                   <div class="file-wrapper">
                        <span class="file">
-                        <img src="/upload/{{ image_list.image }}" alt="">
+                            {% if image_list.image %}
+                                <img src="/upload/{{ image_list.image }}" alt="">
+                            {% endif %}
                        </span>
                   </div>
                   <!-- 작성 정보 -->
@@ -301,52 +303,53 @@
                 {% endfor %}
               </ul>
 
-              <!-- 페이징 -->
-            <div class="paging-wrapper">
-              <ul  style="display: flex">
-              <!-- 이전버튼 -->
-              {% if startPage > 1 %}
-                  <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=startPage|add:-1 %}" class="a-prev">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
-                      </path>
-                    </svg>
-                  </a>
-              {% endif %}
-              <!-- 페이지 번호 -->
-              {% for i in "x"|rjust:5 %}
-                  {% if forloop.counter0|add:startPage <= realEnd%}
-                     <li>
-                         <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=forloop.counter0|add:startPage %}" class="page">
-                           {% if page ==  forloop.counter0|add:startPage %}
-                               <button  class="page-active" type="button">
-                                 <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
-                               </button>
-                           {% else %}
-                               <button class="page" type="button">
-                                 <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
-                               </button>
-                           {% endif %}
-                         </a>
-                     </li>
-                  {% endif %}
-              {% endfor %}
-             <!-- 다음버튼 -->
-              {% if endPage < realEnd %}
-                  <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=endPage|add:1 %}" class="a-next">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
-                      </path>
-                    </svg>
-                  </a>
-                {% endif %}
-                </ul>
-              </div>
 
+              <!-- 페이징 -->
+              <div class="paging-wrapper">
+                  <ul  style="display: flex">
+                  <!-- 이전버튼 -->
+                  {% if startPage > 1 %}
+                      <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=startPage|add:-1 %}" class="a-prev">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M15.58 3.27c.504.405.563 1.115.13 1.587L9.168 12l6.543 7.143a1.076 1.076 0 0 1-.13 1.586 1.26 1.26 0 0 1-1.695-.122L6 12l7.885-8.607a1.26 1.26 0 0 1 1.695-.122Z">
+                          </path>
+                        </svg>
+                      </a>
+                  {% endif %}
+                  <!-- 페이지 번호 -->
+                  {% for i in "x"|rjust:5 %}
+                      {% if forloop.counter0|add:startPage <= realEnd%}
+                         <li>
+                             <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=forloop.counter0|add:startPage %}" class="page">
+                               {% if page ==  forloop.counter0|add:startPage %}
+                                   <button  class="page-active" type="button">
+                                     <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                                   </button>
+                               {% else %}
+                                   <button class="page" type="button">
+                                     <span class="page-number">{{ forloop.counter0|add:startPage}}</span>
+                                   </button>
+                               {% endif %}
+                             </a>
+                         </li>
+                      {% endif %}
+                  {% endfor %}
+                 <!-- 다음버튼 -->
+                  {% if endPage < realEnd %}
+                      <a href="{% url 'mypage:myevent_status_save' status=status  keyword=keyword page=endPage|add:1 %}" class="a-next">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M8.42 20.73a1.076 1.076 0 0 1-.13-1.587L14.832 12 8.289 4.857a1.076 1.076 0 0 1 .13-1.586 1.26 1.26 0 0 1 1.696.122L18 12l-7.885 8.607a1.26 1.26 0 0 1-1.695.122Z">
+                          </path>
+                        </svg>
+                      </a>
+                    {% endif %}
+                    </ul>
+                  </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -370,20 +373,21 @@
       <div class="modal-background"></div>
     </div>
   </div>
-<script>
+    <script>
   const status_view = "{{ status }}"
 
 
 </script>
-<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-<script src="{% static 'js/mypage/myevent.js' %}"></script>
-  <script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="{% static 'js/mypage/myevent.js' %}"></script>
+    <script>
       {#event_post = `{{ events }}`;#}
       {#console.log(event_post)#}
       // event_post.forEach(event => {
       //    console.log(event.post_title);
       // })
       {#console.log(`{{ events.post_title }}`);#}
+      {#combine_all = `{{ combine_all }}`;#}
   </script>
 </body>
 

@@ -58,6 +58,7 @@ urlpatterns = [
     path('message-detail/<int:receive_message_id>', MyMessageDetailView.as_view(), name='message-detail'),
     path('message-send-detail/<int:send_message_id>', MyMessageSendDetailView.as_view(), name='message-send-detail'),
     path('message-write/', MyMessageWriteView.as_view(), name='message-write'),
+    path('message-write/<int:receive_member_id>', MyMessageWriteView.as_view(), name='message-write-id'),
     # 결제
     path('pay/', MyPayView.as_view(), name='mypay'),
     path('pay/<int:page>/', MyPayView.as_view(), name='mypay_page'),

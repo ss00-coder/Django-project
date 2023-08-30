@@ -134,7 +134,7 @@ class MyLessonView(View):
             like_list.append(likes)
             image_list.append(lesson.lessonfile_set.first())
 
-        likes = like_list[offset:limit]
+        likes = like_list[0:5]
         combine_all = zip(list(lessons)[offset:limit], likes, image_list)
 
         member = Member.objects.get(member_email=request.session['member_email'])
@@ -205,6 +205,7 @@ class MyLessonReviewView(View):
         if endPage == 0:
             endPage = 1
 
+
         like_list = []
         image_list = []
         for review in list(reviews)[offset:limit]:
@@ -212,7 +213,7 @@ class MyLessonReviewView(View):
             like_list.append(likes)
             image_list.append(review.reviewfile_set.first())
 
-        likes = like_list[offset:limit]
+        likes = like_list[0:5]
         combine_all = zip(list(reviews)[offset:limit], likes, image_list)
 
         member = Member.objects.get(member_email=request.session['member_email'])
@@ -289,7 +290,7 @@ class MyHelpersView(View):
             like_list.append(likes)
             image_list.append(helpers.helpersfile_set.first())
 
-        likes = like_list[offset:limit]
+        likes = like_list[0:5]
         combine_all = zip(list(helperses)[offset:limit], likes, image_list)
 
         member = Member.objects.get(member_email=request.session['member_email'])
@@ -344,6 +345,7 @@ class MyEventView(View):
             events = Event.objects.filter(member_id=member_id).filter(post_status=status).order_by('-id').all()
 
 
+
         size = 5
         offset = (page - 1) * size
         limit = page * size
@@ -366,8 +368,10 @@ class MyEventView(View):
             like_list.append(likes)
             image_list.append(event.eventfile_set.first())
 
-        likes = like_list[offset:limit]
+        likes = like_list[0:5]
         combine_all = zip(list(events)[offset:limit], likes, image_list)
+        # for temp in combine_all:
+        #     print(temp)
 
         member = Member.objects.get(member_email=request.session['member_email'])
 
@@ -685,16 +689,19 @@ class MyMessageSendDetailView(View):
 
 
 class MyMessageWriteView(View):
-    def get(self, request):
+    def get(self, request, receive_member_id=-1):
         member = Member.objects.get(member_email=request.session['member_email'])
         member_profile_img = "member/profile_icon.png"
         if member.memberfile_set.filter(file_type='P'):
             member_profile_img = member.memberfile_set.get(file_type="P").image
 
+        receive_member = Member.objects.filter(id=receive_member_id).first()
+
         context = {
             'member_nickname': member.member_nickname,
             'member_file': member_profile_img,
             'member': member,
+            'receive_member': receive_member,
         }
         return render(request, 'message/write.html', context)
 
@@ -705,7 +712,7 @@ class MyMessageWriteView(View):
         send_member_id = Member.objects.get(member_email=request.session['member_email']).id
 
         # 받는 사람 (이메일 작성해서 넘겨준 사람의 id)
-        receive_member_id = Member.objects.get(member_email=datas['receive_email']).id
+        receive_member_id = Member.objects.get(member_nickname=datas['receive_nickname']).id
 
         receive_datas = {
             'message_title': datas['message_title'],
@@ -732,5 +739,3 @@ class MyMessageWriteView(View):
                 SendMessageFile.objects.create(image=file, send_message=send_message)
 
         return redirect('mypage:message-list-init')
-
-
