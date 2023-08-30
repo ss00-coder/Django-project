@@ -207,7 +207,7 @@
                                 {% if forloop.counter == 1 %}
                                     <div class="swiper-slide swiper-slide-active">
                                         <div>
-                                            <button class="swiper-slide-sub-btn" type="button">
+                                            <button class="swiper-slide-sub-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=popular_teacher.id %}'">
                                                 <div style="position: relative; width: 129px; height: 127px;">
                                                     <span class="swiper-slide-sub-btn-child-span">
                                                       <span></span>
@@ -227,7 +227,7 @@
                                 {% elif forloop.counter == 2 %}
                                     <div class="swiper-slide swiper-slide-next">
                                         <div>
-                                            <button class="swiper-slide-sub-btn" type="button">
+                                            <button class="swiper-slide-sub-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=popular_teacher.id %}'">
                                                 <div style="position: relative; width: 129px; height: 127px;">
                                                     <span class="swiper-slide-sub-btn-child-span">
                                                       <span></span>
@@ -247,7 +247,7 @@
                                 {% else  %}
                                     <div class="swiper-slide">
                                         <div>
-                                            <button class="swiper-slide-sub-btn" type="button">
+                                            <button class="swiper-slide-sub-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=popular_teacher.id %}'">
                                                 <div style="position: relative; width: 129px; height: 127px;">
                                                     <span class="swiper-slide-sub-btn-child-span">
                                                       <span></span>
@@ -291,7 +291,7 @@
             {% for event in first_event %}
             <div>
                 <div class="recommend-one-post">
-                    <button class="recommend-one-post-btn">
+                    <button class="recommend-one-post-btn" onclick="location.href='{% url 'event:detail' post_id=event.id %}'">
                         <div class="recommend-one-post-btn-img">
                         <span class="recommend-one-post-btn-img-span">
                           <span></span>
@@ -384,7 +384,7 @@
                             {% if forloop.counter == 1 %}
                             <div class="swiper-slide swiper-slide-active">
                                 <div>
-                                    <button class="swiper-slide-third-btn" type="button">
+                                    <button class="swiper-slide-third-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=new_member.id %}'">
                                         <div style="position: relative; width: 129px; height: 127px;">
                                             <span class="swiper-slide-third-btn-child-span">
                                               <span></span>
@@ -404,7 +404,7 @@
                            {% elif forloop.counter == 2 %}
                             <div class="swiper-slide swiper-slide-next">
                                 <div>
-                                    <button class="swiper-slide-third-btn" type="button">
+                                    <button class="swiper-slide-third-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=new_member.id %}'">
                                         <div style="position: relative; width: 129px; height: 127px;">
                                               <span class="swiper-slide-third-btn-child-span">
                                                   <span></span>
@@ -424,7 +424,7 @@
                             {% else %}
                             <div class="swiper-slide">
                                 <div>
-                                    <button class="swiper-slide-third-btn" type="button">
+                                    <button class="swiper-slide-third-btn" type="button" onclick="location.href='{% url 'profile:profile' member_id=new_member.id %}'">
                                         <div style="position: relative; width: 129px; height: 127px;">
                                              <span class="swiper-slide-third-btn-child-span">
                                                  <span></span>
@@ -468,7 +468,7 @@
            {% for event in second_event %}
             <div>
                 <div class="recommend-one-post">
-                    <button class="recommend-one-post-btn">
+                    <button class="recommend-one-post-btn" onclick="location.href='{% url 'event:detail' post_id=event.id %}'">
                         <div class="recommend-one-post-btn-img">
                            <span class="recommend-one-post-btn-img-span">
                              <span></span>

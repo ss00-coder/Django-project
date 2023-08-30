@@ -307,7 +307,13 @@ main.main {
   inset: 0px;
 }
 
-.main ul.post-wrapper img.thumbnail-image {
+.main ul.post-wrapper div.post-writer {
+  align-items: center;
+  display: flex;
+  margin-top: 12px;
+}
+
+.post-thumbnail img {
   position: absolute;
   inset: 0px;
   box-sizing: border-box;
@@ -324,12 +330,6 @@ main.main {
   object-fit: cover;
   object-position: center center;
   border-radius: 8px;
-}
-
-.main ul.post-wrapper div.post-writer {
-  align-items: center;
-  display: flex;
-  margin-top: 12px;
 }
 
 .main ul.post-wrapper div.writer-profile-image {

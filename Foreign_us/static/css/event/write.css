@@ -595,11 +595,18 @@ main section.info-wrapper label.file-upload-label {
   background-color: #fff;
 }
 
+.upload-image {
+  width: 200px;
+  height: 200px;
+  margin: 10px 0;
+}
+
 main section.info-wrapper div.file-wrapper {
   justify-content: center;
   align-items: center;
-  height: 88px;
+  min-height: 88px;
   display: flex;
+  flex-direction: column;
 }
 
 main section.info-wrapper span.file-text {

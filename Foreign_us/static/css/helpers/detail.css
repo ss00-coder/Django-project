@@ -230,6 +230,7 @@ main div.image-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
+  padding-bottom: 20px;
 }
 
 /* 글 작성자 */
