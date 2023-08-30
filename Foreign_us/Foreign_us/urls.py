@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 
-from Foreign_us.views import MainView, AboutUsView
+from Foreign_us.views import MainView, AboutUsView, MainHelpersListAPI
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -34,6 +34,7 @@ urlpatterns = [
     path('administrator/', include('administrator.urls')),
     path('', MainView.as_view()),
     path('about-us/', TemplateView.as_view()),
+    path('list/<int:page>', MainHelpersListAPI.as_view(), name='helpers_list'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

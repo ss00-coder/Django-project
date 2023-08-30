@@ -41,7 +41,6 @@ class LessonListAPI(APIView):
             hasNext = True
             posts.pop(size)
 
-
         context = {
             # 'posts': LessonSerializer(posts, many=True).data,
             'posts': posts,

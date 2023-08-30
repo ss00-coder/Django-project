@@ -19,21 +19,21 @@ os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
 django.setup()
 
 
-# class MemberTest(TestCase):
-#     # 클래스 내부에 코드를 작성하면, 커밋 된다.
-#     # 하지만 메소드 내에서 코드를 작성하면, 롤백 된다.
-#
-#     # ======================================
-#     # bulk_create
-#     # ======================================
-#
-#     Member.objects.bulk_create([
-#         Member(member_email='test55@gmail.com', member_nickname='석'),
-#         Member(member_email='test95@naver.com', member_nickname='길동'),
-#         Member(member_email='test3@naver.com', member_nickname='짱구'),
-#         Member(member_email='test4@google.com', member_nickname='철수'),
-#         Member(member_email='test5@nate.com', member_nickname='유리'),
-#     ])
+class MemberTest(TestCase):
+    # 클래스 내부에 코드를 작성하면, 커밋 된다.
+    # 하지만 메소드 내에서 코드를 작성하면, 롤백 된다.
+
+    # ======================================
+    # bulk_create
+    # ======================================
+
+    Member.objects.bulk_create([
+        Member(member_email='test55@gmail.com', member_nickname='석', member_intro='테스틍', member_intro_detail='테스트내용'),
+        Member(member_email='test95@naver.com', member_nickname='길동'),
+        Member(member_email='test3@naver.com', member_nickname='짱구'),
+        Member(member_email='test4@google.com', member_nickname='철수'),
+        Member(member_email='test5@nate.com', member_nickname='유리'),
+    ])
 
 
 class Lesson(TestCase):
