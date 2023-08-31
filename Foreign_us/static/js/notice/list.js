@@ -55,7 +55,7 @@ window.addEventListener('scroll', () => {
     const windowHeight = window.innerHeight;
     const bodyHeight = document.body.scrollHeight;
     // console.log(currentScroll + windowHeight + 20, bodyHeight);
-    if(currentScroll + windowHeight + 0.5 >= bodyHeight){
+    if(currentScroll + windowHeight + 0.5 > bodyHeight){
         // currentScroll + windowHeight >= bodyHeight
         page++;
         getList();

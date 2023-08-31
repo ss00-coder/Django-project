@@ -55,7 +55,11 @@
                 <hr />
                 <div class="board-info-box">
                   <div class="member-img-box">
-                    <div class="member-img"></div>
+                    {% if teacher_profile %}
+                        <img style="width: 80px; height: 80px; border-radius: 50%; display: block; margin: 0 auto" src="/upload/{{ teacher_profile.image }}" alt="">
+                    {% else %}
+                      <div class="member-img"></div>
+                    {% endif %}
                     <div class="member-nickname-box">
                       <span>{{ post.teacher.member_nickname }}</span>
                     </div>
@@ -107,7 +111,11 @@
                 <hr />
                 <div class="board-info-box">
                   <div class="member-img-box">
-                    <div class="member-img"></div>
+                    {% if student_profile %}
+                        <img style="width: 80px; height: 80px; border-radius: 50%; display: block; margin: 0 auto" src="/upload/{{ student_profile.image }}" alt="">
+                    {% else %}
+                      <div class="member-img"></div>
+                    {% endif %}
                     <div class="member-nickname-box">
                       <span>{{ post.member.member_nickname }}</span>
                     </div>

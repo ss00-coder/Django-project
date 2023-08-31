@@ -150,7 +150,7 @@
 {#                  src="https://steadio.imgix.net/creator-posts/58b04467-0a9c-4aaf-8986-716a09f9afa9/creatorPostImage/9ad29e0f-66ea-460f-9209-73b5a422e1d3.jpeg?auto=format%2Ccompress&amp;fit=max&amp;lossless=true&amp;w=1240"#}
 {#                />#}
               </div>
-              <p>
+              <p id="outputElement">
 {#                글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이#}
 {#                들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이 들어갑니당~#}
 {#                글내용이 들어갑니당~ 글 내용이 들어갑니당~ 글내용이 들어갑니당~ 글 내용이#}
@@ -165,7 +165,7 @@
 {#                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
 {#                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이#}
 {#                들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~글내용이 들어갑니당~#}
-                  {{ post.post_content }}
+{#                  {{ post.post_content }}#}
               </p>
               <p>&nbsp;</p>
             </div>
@@ -386,6 +386,8 @@
   </body>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script>
+      let textareaValue = `{{ post.post_content }}`;
+      document.getElementById("outputElement").innerText = textareaValue;
       let post_id = {{ post.id }};
       let member = `{{ member.member_nickname }}`;
       console.log(member);
