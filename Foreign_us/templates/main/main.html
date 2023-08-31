@@ -39,6 +39,9 @@
                             </div>
                         {% else %}
                             <div class="main-header-sigup">
+                                {% if request.session.unread_message_count >= 1 %}
+                                    <div class="notice_num" style="color: white">{{ request.session.unread_message_count }}</div>
+                                {% endif %}
                                 <button class="main-header-sigup-btn"
                                         onclick="location.href='/mypage/profile/'">헬퍼스 스튜디오
                                 </button>

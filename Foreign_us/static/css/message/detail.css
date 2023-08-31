@@ -318,3 +318,37 @@ div.main-content div.image-wrapper {
   width: 500px;
   min-height: 400px;
 }
+
+/*알림*/
+.notice_icon_wrapper {
+    display: flex; /* 가로 정렬 */
+    align-items: center; /* 세로 정렬 */
+    margin-right: 10px;
+}
+
+.notice_icon{
+    position: relative;
+    filter: brightness(0) invert(1) grayscale(1);
+    width: 22px;
+    height: 22px;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+.notice_num{
+    position: absolute;
+    top: 14px;
+    right: 94px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 4px 8px;
+    height: 15px;
+    line-height: 7px;
+    font-size: 12px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 10px;
+    font-weight: bold;
+}
