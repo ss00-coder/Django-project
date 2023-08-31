@@ -168,9 +168,9 @@ function getList(url){
                 }
                 text += `
                                     <h4 class="item-h4">${post.post_title}</h4>
-                                    <p style="height: 40px; overflow: hidden; padding-right: 5px; text-overflow: ellipsis;" class="item-content-p">
+                                    <div style="height: 40px; overflow: hidden; padding-right: 5px; text-overflow: ellipsis;" class="item-content-p">
                                         ${post.post_content}
-                                    </p>
+                                    </div>
                                 </button>
                             </div>
                     `

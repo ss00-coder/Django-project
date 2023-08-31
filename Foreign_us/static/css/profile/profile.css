@@ -867,7 +867,7 @@ p.item-content {
   overflow: hidden;
 }
 
-p.item-content-p {
+div.item-content-p {
   color: #666667;
   fill: #666667;
   font-weight: 400;
