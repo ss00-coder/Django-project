@@ -701,13 +701,36 @@ h2.recommend-one-post-btn-content-h2 {
   fill: #333334;
 }
 
+.recommend-one-post-btn-content-C {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #666667;
+  fill: #666667;
+  height: 100px;
+  margin: 0;
+}
+
+.recommend-one-post-btn-content-C p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 p.recommend-one-post-btn-content-p {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #666667;
   fill: #666667;
+  height: 100px;
   margin: 0;
+}
+
+p.recommend-one-post-btn-content-p p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
