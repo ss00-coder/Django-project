@@ -26,8 +26,6 @@ function getList(){
                                            `;
                                 if(post.post_file){
                                     text += `<img style="object-fit: cover" src="/upload/${post.post_file}">`;
-                                } else {
-                                    text += `<img style="object-fit: cover" src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fsub_banners%2F0731_%25EC%2582%25AC%25EB%259D%25BC%25EC%259E%2588%25EB%2584%25A4.png%3Fauto%3Dformat%252Ccompress%26h%3D840%26lossless%3Dtrue%26w%3D840&w=1920&q=75">`;
                                 }
                                 text += `              
                                   </span>
