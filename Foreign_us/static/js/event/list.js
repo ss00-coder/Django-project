@@ -35,10 +35,8 @@ function getList(){
     fetch(`/event/list/${page}/${type}`)
         .then((response) => response.json())
         .then((posts)=>{
-            console.log(posts);
             let text = "";
             posts.posts.forEach(post => {
-                console.log(post);
                 post = post[0];
                 text += `<li class="post">
                           <a href="/event/detail/${post.id}" style="text-decoration: none; color: #030303">
@@ -47,7 +45,7 @@ function getList(){
                                 <div class="post-container">
                                   <div class="post-text">
                                     <h2 style="margin-bottom: 15px;" class="post-title">${post.post_title}</h2>
-                                    ${post.post_content}
+                                    <div class="post-content">${post.post_content}</div>
                                   </div>
                                   <div class="post-image">
                                     <span class="post-thumbnail">
@@ -55,8 +53,6 @@ function getList(){
                                       `;
                                 if(post.post_file){
                                     text += `<img style="object-fit: cover" src="/upload/${post.post_file}">`;
-                                } else {
-                                    text += `<img style="object-fit: cover" src="https://steadio.co/_next/image?url=https%3A%2F%2Fsteadio.imgix.net%2Fsub_banners%2F0731_%25EC%2582%25AC%25EB%259D%25BC%25EC%259E%2588%25EB%2584%25A4.png%3Fauto%3Dformat%252Ccompress%26h%3D840%26lossless%3Dtrue%26w%3D840&w=1920&q=75">`;
                                 }
                                 text += `                
                                     </span>
@@ -91,9 +87,26 @@ function getList(){
                          </li> 
                     `
             })
+
+            // $(document).ready(function() {
+            //   const postContent = `post.post_content`;
+            //   const container = document.getElementById('post-container');
+            //   container.innerHTML = postContent;
+            //
+            //   const h2Element = $(`.post-title ${postContent}`); // 이 부분을 수정
+            //   h2Element.css('color', 'red');
+            //   h2Element.css('font-weight', 'bold');
+            //   // 필요한 스타일 속성을 추가로 설정할 수 있습니다.
+            // });
+
             document.querySelector(".post-wrapper").innerHTML += text;
+
+            // $('.post-title').each((i, tag) => {
+            //     console.log($(tag).next());
+            // });
    })
 }
+
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
