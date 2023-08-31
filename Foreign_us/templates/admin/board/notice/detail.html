@@ -75,7 +75,7 @@
                                     </div>
                                     <hr>
                                     <div class="info-text-area">
-                                        <div><!-- 게시판 내용 -->
+                                        <div id="outputElement"><!-- 게시판 내용 -->
                                             {{ post.post_content }}
                                         </div>
                                     </div>
@@ -106,4 +106,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="{% static 'js/admin/sidemenu.js' %}"></script>
+<script>
+    let textareaValue = `{{ post.post_content }}`;
+    document.getElementById("outputElement").innerText = textareaValue;
+</script>
 </html>

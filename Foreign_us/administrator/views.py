@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from event.models import Event, EventFile
 from helpers.models import Helpers, HelpersFile
 from lesson.models import Lesson, LessonFile
-from member.models import Member
+from member.models import Member, MemberFile
 from message.models import ReceiveMessage, SendMessage
 from notice.models import Notice, NoticeFile
 from payment.models import Payment
@@ -235,8 +235,12 @@ class BoardLessonMatchDetailView(View):
             keyword = None
 
         post = Payment.objects.get(id=post_id)
+        teacher = Member.objects.get(id=post.teacher_id)
+        student = Member.objects.get(id=post.member_id)
         context = {
             'post': post,
+            'teacher_profile': teacher.memberfile_set.get(file_type='P') if teacher.memberfile_set.filter(file_type='P') else "",
+            'student_profile': student.memberfile_set.get(file_type='P') if student.memberfile_set.filter(file_type='P') else "",
             'page': page,
             'keyword': keyword
         }
