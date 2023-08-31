@@ -46,8 +46,8 @@ function getList(){
                               <button type="button" class="post-link" onclick="location.href='/event/detail/${post.id}'">
                                 <div class="post-container">
                                   <div class="post-text">
-                                    <h2 class="post-title">${post.post_title}</h2>
-                                    <p class="post-content"> ${post.post_content} </p>
+                                    <h2 style="margin-bottom: 15px;" class="post-title">${post.post_title}</h2>
+                                    ${post.post_content}
                                   </div>
                                   <div class="post-image">
                                     <span class="post-thumbnail">
