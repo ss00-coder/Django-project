@@ -22,6 +22,6 @@ class PaymentTest(TestCase):
     #         member=member,
     #         teacher=teacher
     #     )
-    for id in range(34,40):
-        Payment.objects.create(member_id=id, teacher_id=18, lesson_type='Y')
+    for id in range(18,20):
+        Payment.objects.create(member_id=id, teacher_id=27, lesson_type='Y')
     pass

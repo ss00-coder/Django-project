@@ -866,3 +866,7 @@ p.mypage-grid-imgicon-explanation {
     fill: #b9b9bb;
 }
 
+#error-message {
+  color: red;
+  display: none;
+}

@@ -265,7 +265,8 @@
                 <div class="mypage-grid-introduce">
                   <div>
                     <label class="mypage-grid-introduce-label">
-                      <input name="member_nickname" type="text" value="{{ member_nickname }}" placeholder="닉네임을 입력해주세요." />
+                      <input id="nickname-input" name="member_nickname" type="text" value="{{ member_nickname }}" placeholder="닉네임을 입력해주세요." />
+                      <div id="error-message" class="hidden">이미 사용중인 닉네임 입니다.</div>
                     </label>
                     <div class="mypage-grid-introduce-count">
                     </div>
