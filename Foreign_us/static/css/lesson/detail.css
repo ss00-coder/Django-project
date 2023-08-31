@@ -227,7 +227,7 @@ main div.image-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 /* 글 작성자 */
@@ -947,7 +947,6 @@ h4.board-title-wrapper div.board-title span {
   background: url(https://steadio.imgix.net/profiles/441df290-4f1f-4bbe-ad59-4e1fca1811b8/profileImage/7d528809-1be6-4b28-b087-b6b344f19045.png?auto=format%2Ccompress&h=300&lossless=true&w=300)
       center center / cover no-repeat,
     rgb(255, 255, 255);
-  box-shadow: var(0 0 #0000, 0 0 #0000), var(0 0 #0000, 0 0 #0000), var(0 0 #0000);
 }
 
 .main ul.post-wrapper div.writer-info {

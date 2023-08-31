@@ -1,0 +1,168 @@
+    def post(self, request, *args, **kwargs):
+
+        try:
+            data = json.loads(request.body)
+            page = data['page']
+            start = page * 9
+            end = start + 9
+            data['city_detail_name'] = '동작구'
+
+            if "전체" in data['city_detail_name']:
+                print("문자열 안에 '전체'가 포함되어 있습니다.")
+
+            elif "지역선택" in data['city_detail_name']:
+                if data['type'] == 1:
+                    # 펀딩 최신순
+                    if data['catetype'] == 0:
+                        dataList = Funding.objects.filter(status=1).order_by('-id')
+                    # 펀딩 참여순
+                    elif data['catetype'] == 1:
+                        dataList = Funding.objects.annotate(funding_sponsor_count=Count('fundingsponsor__funding_id')).filter(status=1).order_by('-funding_sponsor_count')
+
+                elif data['type'] == 2:
+                    # 기부 최신순
+                    if data['catetype'] == 0:
+                        dataList = Donation.objects.annotate(donation_doner_count=Count('donationdoner__donation_id')).filter(status=1).order_by('-id')
+                    # 기부 참여순
+                    elif data['catetype'] == 1:
+                        dataList = Donation.objects.annotate(donation_doner_count=Count('donationdoner__donation_id')).filter(status=1).order_by('-donation_doner_count')
+
+            else:
+                city = CityDetail.objects.filter(city_detail_name__contains=data['city_detail_name'])
+
+                if data['type'] == 1:
+                    # 펀딩 최신순
+                    if data['catetype'] == 0:
+                        dataList = Funding.objects.filter(campaign__city_detail_id=city[0].id, status=1).order_by('-id')
+                    # 펀딩 참여순
+                    elif data['catetype'] == 1:
+                        dataList = Funding.objects.annotate(funding_sponsor_count=Count('fundingsponsor__funding_id')).filter(campaign__city_detail_id=city[0].id,status=1).order_by('-funding_sponsor_count')
+
+                elif data['type'] == 2:
+                    # 기부 최신순
+                    if data['catetype'] == 0:
+                        dataList = Donation.objects.annotate(donation_doner_count=Count('donationdoner__donation_id')).filter(status=1).order_by('-id')
+                    # 기부 참여순
+                    elif data['catetype'] == 1:
+                        dataList = Donation.objects.annotate(donation_doner_count=Count('donationdoner__donation_id')).filter(status=1).order_by('-donation_doner_count')
+
+
+            cnt = dataList.count()
+            dataList = dataList[start:end]
+            queryset_json = serializers.serialize('json', dataList)
+        except json.JSONDecodeError as e:
+            return JsonResponse({'error': 'Invalid JSON'}, status=400)
+
+        return JsonResponse({'result': queryset_json,'cnt':cnt}, status=200)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function fetch_data( name ){
+
+        // CSRF 토큰 가져오기
+        let csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+        // 서버로 보낼 데이터 구성
+        let dataToSend = {
+            city_detail_name: name,
+            type:type,
+            page:page,
+            catetype:catetype
+        };
+
+        // 요청 헤더에 CSRF 토큰 추가
+        let headers = {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // 이 부분이 중요합니다
+        };
+
+        //  서버로 데이터를 전송합니다.
+         fetch('/funding/donation/', {
+            method: 'POST',
+            headers: headers, // 요청 헤더에 CSRF 토큰을 추가
+            body: JSON.stringify(dataToSend),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 서버로부터 받은 응답 데이터를 처리합니다.
+            get_list(data.result,data.cnt);
+        })
+        .catch(error => {
+            // 오류 처리
+            console.error('Error:', error);
+        });
+    }
+
+
+    function get_list( data,cnt ){
+        let dataObj = JSON.parse(data);
+        let con = document.querySelector(`#con${type}`);
+        let cntNum = document.querySelector(`.cnt${type}`);
+
+        for (let j=0; j<Object.keys(dataObj).length; j++){
+            let obj = dataObj[j].fields;
+            let img;
+            let title;
+            let amount;
+            let href;
+
+            if(type == 1){
+                img = obj.funding_image;
+                title = obj.funding_title;
+                amount = obj.funding_minimum_amount;
+                href = obj.id
+            }else if(type == 2){
+                img = obj.donation_image;
+                title = obj.donation_title;
+                amount = obj.donation_minimum_amount;
+                href = obj.id
+            }
+                html += `   <article class="product-list-item5 responsive5"><a href="${href}">
+                                                    <div class="item-image5">
+                                                        <article class="preview-image5">
+                                                            <div class="image-wrap5" style="padding-top: 66.6667%;"><img
+                                                                    data-src="/upload/${img}"
+                                                                    src="/upload/${img}"
+                                                                    lazy="loaded"></div>
+                                                        </article>
+                                                    </div>
+                                                    <div class="service-name"><span>펀딩</span></div>
+                                                    <div class="item-title">
+                                                        <div class="collapsed">
+                                                            <div class="line-clamp">
+                                                                <h3>${title}</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="item-price"><strong>${amount}원 ~</strong></div>
+                                                </a></article>`
+
+        }
+        con.innerHTML = html;
+        cntNum.innerHTML = cnt;
+
+    }
+</script>
