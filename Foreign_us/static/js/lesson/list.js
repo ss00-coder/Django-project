@@ -86,7 +86,7 @@ function getList(){
                                 <div class="post-container">
                                   <div class="post-text">
                                     <h2 class="post-title">${post.post_title}</h2>
-                                    <p class="post-content">${post.post_content}</p>
+                                    <div class="post-content">${post.post_content}</div>
                                   </div>
                                   <div class="post-image">
                                     <span class="post-thumbnail">
@@ -173,7 +173,7 @@ function postList(post_filters){
                                 <div class="post-container">
                                   <div class="post-text">
                                     <h2 class="post-title">${post1.fields.post_title}</h2>
-                                    <p class="post-content">${post1.fields.post_content}</p>
+                                    <div class="post-content">${post1.fields.post_content}</div>
                                   </div>
                                   <div class="post-image">
                                     <span class="post-thumbnail">

@@ -230,17 +230,17 @@
                   <!-- 내용 -->
                   <div class="content-wrapper">
                     <div class="content">
-                      <p class="message-content"></p>
                       <div class="image-wrapper">
                       {% if type == 'receive' %}
                         {% for receive_file in receive_files  %}
-                            <img style="display:block; margin: 0 auto 10px auto" width="400px" src="/upload/{{ receive_file.image }}"/>
+                            <img style="display:block; margin: 0 auto 20px auto" width="400px" src="/upload/{{ receive_file.image }}"/>
                         {% endfor %}
                       {% elif type == 'send' %}
                         {% for send_file in send_files  %}
-                            <img style="display:block; margin: 0 auto 10px auto" width="400px" src="/upload/{{ send_file.image }}"/>
+                            <img style="display:block; margin: 0 auto 20px auto" width="400px" src="/upload/{{ send_file.image }}"/>
                         {% endfor %}
                       {% endif %}
+                      <p class="message-content"></p>
                       </div>
                     </div>
                   </div>
