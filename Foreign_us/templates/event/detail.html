@@ -50,7 +50,7 @@
             <div class="writer-button-wrapper">
               <div class="event">
                 <div>
-                  <button type="button" class="event-button">
+                  <button type="button" class="event-button" onclick="location.href='/profile/{{ writer.id }}'">
                     <div class="event-text">
                       <svg
                         viewBox="0 0 24 24"
@@ -71,7 +71,7 @@
               </div>
               <div class="hosting">
                 <div>
-                  <button onclick="location.href='/profile/host/{{ member.id }}'" type="button" class="hosting-button">
+                  <button onclick="location.href='/profile/host/{{ writer.id }}'" type="button" class="hosting-button">
                     <div class="hosting-text">
                       <svg
                         viewBox="0 0 24 24"
@@ -99,7 +99,7 @@
         <div class="main-content">
           <main class="main">
             <div style="height: 12px"></div>
-            <h3 class="title">글 제목이 들어갑니당~!</h3>
+            <h3 class="title">{{ post.post_title }}</h3>
             <div class="post-info">
               <div class="info-left">
                 <div>
