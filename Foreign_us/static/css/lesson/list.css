@@ -231,7 +231,7 @@ main.main {
   white-space: nowrap;
 }
 
-.main ul.post-wrapper p.post-content {
+.main ul.post-wrapper div.post-content {
   display: block;
   margin-top: 6px;
   word-break: break-word;
