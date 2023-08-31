@@ -8,7 +8,7 @@ from Foreign_us.models import Message
 from event.models import Event, EventLike
 from helpers.models import HelpersLike, Helpers
 from lesson.models import Lesson, LessonLike
-from member.models import Member
+from member.models import Member, MemberFile
 from message.models import ReceiveMessage, SendMessage
 from review.models import Review
 
@@ -27,13 +27,69 @@ class MemberTest(TestCase):
     # bulk_create
     # ======================================
 
-    Member.objects.bulk_create([
-        Member(member_email='test55@gmail.com', member_nickname='석', member_intro='테스틍', member_intro_detail='테스트내용'),
-        Member(member_email='test95@naver.com', member_nickname='길동'),
-        Member(member_email='test3@naver.com', member_nickname='짱구'),
-        Member(member_email='test4@google.com', member_nickname='철수'),
-        Member(member_email='test5@nate.com', member_nickname='유리'),
-    ])
+    # Member.objects.bulk_create([
+        pass
+    #     Member(member_email='test1@gmail.com', member_nickname='지우', member_intro='안녕하세요!',
+    #            member_intro_detail='한국에 놀러오게 되어 기뻐요.'),
+    #     Member(member_email='test2@gmail.com', member_nickname='하나', member_intro='안녕하세요, 저는 하나입니다.',
+    #            member_intro_detail='음악을 좋아하고 새로운 사람들을 만나는 걸 좋아해요.'),
+    #     Member(member_email='test3@gmail.com', member_nickname='정우', member_intro='안녕하세요, 정우입니다.',
+    #            member_intro_detail='맛있는 음식과 여행을 사랑합니다.'),
+    #     Member(member_email='test4@gmail.com', member_nickname='예은', member_intro='안녕하세요! 저는 예은에요.',
+    #            member_intro_detail='예술과 문화에 관심이 많아요.'),
+    #     Member(member_email='test5@gmail.com', member_nickname='도현', member_intro='안녕하세요, 도현입니다.',
+    #            member_intro_detail='스포츠와 영화를 좋아합니다.'),
+    #     Member(member_email='test6@gmail.com', member_nickname='미나', member_intro='안녕하세요, 미나에요!',
+    #            member_intro_detail='새로운 친구를 만나고 싶어요.'),
+    #     Member(member_email='test7@gmail.com', member_nickname='민준', member_intro='안녕하세요, 민준입니다.',
+    #            member_intro_detail='자연과 활동을 즐겨요.'),
+    #     Member(member_email='test8@gmail.com', member_nickname='서연', member_intro='안녕하세요, 서연이에요.',
+    #            member_intro_detail='다양한 문화를 경험하고 싶어요.'),
+    #     Member(member_email='test9@gmail.com', member_nickname='동하', member_intro='안녕하세요, 동하입니다.',
+    #            member_intro_detail='음악과 음식을 사랑합니다.'),
+    #     Member(member_email='test10@gmail.com', member_nickname='하린', member_intro='안녕하세요, 저는 하린입니다.',
+    #            member_intro_detail='여행을 좋아하고 새로운 경험을 찾고 있어요.'),
+    #     Member(member_email='test11@gmail.com', member_nickname='승우', member_intro='안녕하세요, 승우입니다.',
+    #            member_intro_detail='스포츠와 모험을 좋아합니다.'),
+    #     Member(member_email='test12@gmail.com', member_nickname='미정', member_intro='안녕하세요, 미정에요.',
+    #            member_intro_detail='예술과 디자인에 관심이 많아요.'),
+    #     Member(member_email='test13@gmail.com', member_nickname='준서', member_intro='안녕하세요, 준서입니다.',
+    #            member_intro_detail='독서와 영화 감상을 좋아합니다.'),
+    #     Member(member_email='test14@gmail.com', member_nickname='하윤', member_intro='안녕하세요, 하윤이에요.',
+    #            member_intro_detail='다양한 문화를 배우고 싶어요.'),
+    #     Member(member_email='test15@gmail.com', member_nickname='시우', member_intro='안녕하세요, 시우입니다.',
+    #            member_intro_detail='음악과 여행을 사랑합니다.'),
+    #     Member(member_email='test16@gmail.com', member_nickname='민서', member_intro='안녕하세요, 민서에요!',
+    #            member_intro_detail='새로운 사람들과 어울리는 걸 좋아해요.'),
+    #     Member(member_email='test17@gmail.com', member_nickname='건우', member_intro='안녕하세요, 건우입니다.',
+    #            member_intro_detail='스포츠와 활동을 즐겨요.'),
+    #     Member(member_email='test18@gmail.com', member_nickname='예나', member_intro='안녕하세요, 예나에요.',
+    #            member_intro_detail='다양한 문화를 배우고 경험하고 싶어요.'),
+    #     Member(member_email='test19@gmail.com', member_nickname='서준', member_intro='안녕하세요, 서준입니다.',
+    #            member_intro_detail='음악과 예술을 즐기는 걸 좋아합니다.'),
+    #     Member(member_email='test20@gmail.com', member_nickname='소희', member_intro='안녕하세요, 저는 소희에요.',
+    #            member_intro_detail='새로운 친구를 사귀고 싶어요.'),
+    #     Member(member_email='test21@gmail.com', member_nickname='태영', member_intro='안녕하세요, 태영입니다.',
+    #            member_intro_detail='여행과 모험을 좋아합니다.'),
+    #     Member(member_email='test22@gmail.com', member_nickname='예린', member_intro='안녕하세요, 예린이에요.',
+    #            member_intro_detail='예술과 디자인에 관심이 많아요.'),
+    #     Member(member_email='test23@gmail.com', member_nickname='건호', member_intro='안녕하세요, 건호입니다.',
+    #            member_intro_detail='독서와 영화 감상을 좋아해요.'),
+    #     Member(member_email='test24@gmail.com', member_nickname='민지', member_intro='안녕하세요, 민지에요.',
+    #            member_intro_detail='새로운 경험을 찾고 있어요.'),
+    #     Member(member_email='test25@gmail.com', member_nickname='유준', member_intro='안녕하세요, 유준입니다.',
+    #            member_intro_detail='스포츠와 활동을 즐겨요.'),
+    #     Member(member_email='test26@gmail.com', member_nickname='예림', member_intro='안녕하세요, 예림이에요.',
+    #            member_intro_detail='다양한 문화를 배우고 싶어요.'),
+    #     Member(member_email='test27@gmail.com', member_nickname='민재', member_intro='안녕하세요, 민재입니다.',
+    #            member_intro_detail='음악과 예술을 즐기는 걸 좋아합니다.'),
+    #     Member(member_email='test28@gmail.com', member_nickname='하은', member_intro='안녕하세요, 하은이에요!',
+    #            member_intro_detail='새로운 친구를 사귀고 싶어요.'),
+    #     Member(member_email='test29@gmail.com', member_nickname='주원', member_intro='안녕하세요, 주원입니다.',
+    #            member_intro_detail='여행과 모험을 좋아합니다.'),
+    #     Member(member_email='test30@gmail.com', member_nickname='지민', member_intro='안녕하세요, 지민이라고 해요.',
+    #            member_intro_detail='예술과 문화를 즐기는 걸 좋아해요.')
+    # ])
 
 
 class Lesson(TestCase):
@@ -169,3 +225,38 @@ class Review(TestCase):
     #     Review(post_title='후기 제목11', post_content='후기 내용이에요11', post_status='N',member_id=3, reviewed_member_id=1),
     #     Review(post_title='후기 제목12', post_content='후기 내용이에요12', post_status='Y',member_id=1, reviewed_member_id=5),
     # ])
+
+class MemberFile(TestCase):
+    MemberFile.objects.bulk_create([
+        MemberFile(image='', file_type='P', member_id='21'),
+        MemberFile(image='', file_type='P', member_id='22'),
+        MemberFile(image='', file_type='P', member_id='23'),
+        MemberFile(image='', file_type='P', member_id='24'),
+        MemberFile(image='', file_type='P', member_id='25'),
+        MemberFile(image='', file_type='P', member_id='26'),
+        MemberFile(image='', file_type='P', member_id='27'),
+        MemberFile(image='', file_type='P', member_id='28'),
+        MemberFile(image='', file_type='P', member_id='29'),
+        MemberFile(image='', file_type='P', member_id='30'),
+        MemberFile(image='', file_type='P', member_id='31'),
+        MemberFile(image='', file_type='P', member_id='32'),
+        MemberFile(image='', file_type='P', member_id='33'),
+        MemberFile(image='', file_type='P', member_id='34'),
+        MemberFile(image='', file_type='P', member_id='35'),
+        MemberFile(image='', file_type='P', member_id='36'),
+        MemberFile(image='', file_type='P', member_id='37'),
+        MemberFile(image='', file_type='P', member_id='38'),
+        MemberFile(image='', file_type='P', member_id='39'),
+        MemberFile(image='', file_type='P', member_id='40'),
+        MemberFile(image='', file_type='P', member_id='41'),
+        MemberFile(image='', file_type='P', member_id='42'),
+        MemberFile(image='', file_type='P', member_id='43'),
+        MemberFile(image='', file_type='P', member_id='44'),
+        MemberFile(image='', file_type='P', member_id='45'),
+        MemberFile(image='', file_type='P', member_id='46'),
+        MemberFile(image='', file_type='P', member_id='47'),
+        MemberFile(image='', file_type='P', member_id='48'),
+        MemberFile(image='', file_type='P', member_id='49'),
+        MemberFile(image='', file_type='P', member_id='50')
+
+    ])
