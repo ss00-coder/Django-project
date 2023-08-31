@@ -33,7 +33,7 @@ urlpatterns = [
     path('notice/', include('notice.urls')),
     path('administrator/', include('administrator.urls')),
     path('', MainView.as_view()),
-    path('about-us/', TemplateView.as_view()),
+    path('about-us/', TemplateView.as_view(template_name='about_us/about_us.html')),
     path('list/<int:page>', MainHelpersListAPI.as_view(), name='helpers_list'),
 ]
 
