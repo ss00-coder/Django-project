@@ -43,6 +43,7 @@ $('.order-btn').click((e) => {
 
     $(".category-tag").each((i, tag) => {
         $(tag).on('click', (e) => {
+            // console.log($(e.target))
             tag = $(e.target).parent();
             if (tag.hasClass("active")) {
                 tag.removeClass("active");
@@ -53,18 +54,31 @@ $('.order-btn').click((e) => {
     })
 
     $('.category-apply').on('click', () => {
+        let post_filters = []
         $(".filter-modal").hide();
+        $(".category-tag").each((i, tag) => {
+            // console.log($(tag).hasClass("active"))
+            if($(tag).hasClass("active")) {
+                // console.log($(tag).children(0).val());
+                // $(tag).children(0).val()s
+                post_filters.push($(tag).children(0).val())
+                // $('.input-values').append(`<input value='${$(tag).children(0).val()}' name="post_filter" type="hidden">`);
+            }
+        })
+        // console.log(post_filters)
+        document.querySelector(".post-wrapper").innerHTML = '';
+        page = 1;
+        postList(post_filters)
     });
-
 
 function getList(){
     fetch(`/lesson/list/${page}/${type}`)
         .then((response) => response.json())
         .then((posts)=>{
-            console.log(posts);
+            // console.log(posts);
             let text = "";
             posts.posts.forEach(post => {
-                console.log(post);
+                // console.log(post);
                 post = post[0];
                 text += `<li class="post">
                             <div>
@@ -119,6 +133,92 @@ function getList(){
         })
 }
 
+function postList(post_filters){
+    // CSRF 토큰 가져오기
+    let csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+    // 요청 헤더에 CSRF 토큰 추가
+    let headers = {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrfToken, // 이 부분이 중요합니다
+    };
+    fetch(`/lesson/list/${page}`, {
+            method: 'post',
+            headers: headers,
+            body: JSON.stringify({post_filters: post_filters})
+        }).then((response) => response.json())
+        .then((posts)=>{
+            // console.log(posts);
+            // posts.posts[0]
+            // temp = JSON.parse(posts.posts[0])
+            // console.log(temp)
+            // filter_post = JSON.parse(posts.posts)
+            let text = "";
+            // console.log(posts.posts)
+            posts.posts.forEach(post => {
+                post1 = JSON.parse(post[0])[0]
+                post_file = JSON.parse((post[1]))[0]
+                member_file = JSON.parse((post[2]))[0]
+                member = JSON.parse((post[3]))[0]
+                // console.log(member)
+                // console.log("들어옴")
+                // console.log(post1)
+                // console.log(post_file)
+                // console.log(member_file)
+                // post1 = post1[0]
+                // console.log(post1[0])
+                text += `<li class="post">
+                            <div>
+                              <button type="button" class="post-link" onclick="location.href='/lesson/detail/${post1.pk}'">
+                                <div class="post-container">
+                                  <div class="post-text">
+                                    <h2 class="post-title">${post1.fields.post_title}</h2>
+                                    <p class="post-content">${post1.fields.post_content}</p>
+                                  </div>
+                                  <div class="post-image">
+                                    <span class="post-thumbnail">
+                            `;
+
+                                  if(post_file) {
+                                     text += `<img class="thumbnail-image" src="/upload/${post_file.fields.image}">`
+                                  } else {
+                                     text += `<img class="thumbnail-image" src="" hidden>`
+                                  }
+                text += `                  
+                                </span>
+                                <div></div>
+                              </div>
+                            </div>
+                            <div class="post-writer">
+                              <div class="writer-profile-image">
+                            `;
+                                if(member_file) {
+                                     text += `<img src="/upload/${member_file.fields.image}">`
+                                  } else {
+                                     text += `<img src="/upload/member/profile_icon.png">`
+                                  }
+                text += `                
+                              </div>
+                              <div class="writer-info">
+                                <span class="writer-name">${member.fields.member_nickname}</span>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="writer-line">
+                                  <circle cx="12" cy="12" r="4"></circle>
+                                </svg>
+                                <span class="write-info">${elapsedTime(post1.fields.created_date)}</span>
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="writer-line">
+                                  <circle cx="12" cy="12" r="4"></circle>
+                                </svg>
+                                <span class="write-info">조회수 ${post1.fields.post_view_count}</span>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </li>
+                    `
+            })
+            document.querySelector(".post-wrapper").innerHTML += text;
+        })
+}
 
 
 

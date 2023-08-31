@@ -1,4 +1,5 @@
 from django.db.models import F
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from rest_framework.response import Response
@@ -7,6 +8,8 @@ from rest_framework.views import APIView
 from lesson.models import LessonFile, Lesson, LanguageTag, LessonReply, LessonLike
 from member.models import Member, MemberFile
 from review.models import Review, ReviewFile, ReviewLike, ReviewReply
+from django.core import serializers
+import json
 
 
 # Create your views here.
@@ -50,6 +53,90 @@ class LessonListAPI(APIView):
 
         # return Response(posts)
         return Response(context)
+
+    def post(self, request, page):
+        datas = json.loads(request.body)
+        # print(dict(datas).get("post_filter"))
+        # print(datas)
+        # print(datas['post_filters'])
+        post_filters = datas['post_filters']
+        # print(post_filters)
+        # print(datas)
+        # print(post_filters)
+        # print(post_filters)
+        all_posts_filter = []
+        # all_posts_filter = Lesson.objects.filter(languagetag__language_type__in=post_filters).order_by('-id')
+        # print(all_posts_filter)
+        # print(list(set(all_posts_filter)))
+
+        if post_filters:
+            for i in list(Lesson.objects.filter(languagetag__language_type__in=post_filters).order_by('-id')):
+                if i not in all_posts_filter:
+                    all_posts_filter.append(i)
+
+        # print(Lesson.objects.filter(languagetag__language_type__in=post_filters).order_by('-id'))
+        # print(all_posts_filter)
+
+
+        size = 7
+        offset = (page - 1) * size
+        limit = page * size
+        # all_posts = list(Lesson.objects.order_by('-id').all())
+        # # print(all_posts)
+        #
+        # if type == 'popular_post':
+        #     all_posts = list(Lesson.objects.order_by('-post_view_count').all())
+
+        posts = []
+        for i in range(len(all_posts_filter)):
+            id = all_posts_filter[i].id
+            member_id = all_posts_filter[i].member_id
+            member = Member.objects.filter(id=member_id)
+            member_files = MemberFile.objects.filter(member_id=member_id, file_type="P")
+            lesson_file = LessonFile.objects.filter(lesson_id=id)
+            post = Lesson.objects.filter(id=id)
+
+            # post = Lesson.objects.filter(id=id).annotate(post_file=lesson_file.values('image')[:1], member_file=member_files.values('image')[:1]).values('id', 'created_date', 'post_title', 'post_content', 'post_view_count', 'post_file', 'member__member_nickname', 'member_file')
+            # serializers.serialize('json', i)
+            # print(i)
+            # print(post)
+            # temp = serializers.serialize('json', post)
+            # print(temp)
+            posts.append([serializers.serialize('json', post), serializers.serialize('json', lesson_file), serializers.serialize('json', member_files), serializers.serialize('json', member)])
+
+
+        posts = posts[offset:limit + 1]
+        # posts = list(Lesson.objects.order_by('-id').all())[offset:limit + 1]
+        hasNext = False
+
+        if len(posts) > size:
+            hasNext = True
+            posts.pop(size)
+
+        # serialized_data = {
+        #     'id': data['id'],
+        #     'created_date': data['created_date'],
+        #     'post_title': data['post_title'],
+        #     'post_content': data['post_content'],
+        #     'post_view_count': data['post_view_count'],
+        #     'post_file': data['post_file'],
+        #     'member__member_nickname': data['member__member_nickname'],
+        #     'member_file': data['member_file'],
+        # }
+
+
+        # queryset_json = serializers.serialize('json', posts)
+        # queryset_json = []
+        # # for i in posts:
+        # #     queryset_json.append(serializers.serialize('json', i))
+        # print(queryset_json)
+        # print((queryset_json))
+
+        context = {
+            'posts': posts,
+            'hasNext': hasNext
+        }
+        return JsonResponse(context, status=200)
 
 
 class LessonDetailView(View):

@@ -30,7 +30,6 @@ const adminEventService = (function () {
 		}).then(()=>{
 			location.reload();
 		});
-
 	}
 
 	return { remove: remove }

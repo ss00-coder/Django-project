@@ -12,8 +12,9 @@ from profilepage.views import ProfileView, HostView
 app_name = 'lesson'
 
 urlpatterns = [
-# 과외 홍보
+    # 과외 홍보
     path('list/', LessonListView.as_view(), name='list-init'),
+    path('list/<int:page>', LessonListAPI.as_view(), name='list-post'),
     path('list/<int:page>/<str:type>', LessonListAPI.as_view(), name='list'),
     path('detail/<int:post_id>', LessonDetailView.as_view(), name='detail'),
     path('write/', LessonWriteView.as_view(), name='write-init'),

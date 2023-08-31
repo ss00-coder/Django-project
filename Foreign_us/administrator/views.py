@@ -78,6 +78,7 @@ class BoardEventDeleteAPI(APIView):
         Event.objects.filter(id__in=post_ids).delete()
 
 
+
 # 헬퍼스 목록
 class BoardHelpersListView(View):
     def get(self, request, keyword=None, page=1):
