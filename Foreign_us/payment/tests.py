@@ -12,7 +12,7 @@ os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
 django.setup()
 
 class PaymentTest(TestCase):
-    Payment.objects.all().update(pay_status="Y")
+    # Payment.objects.all().update(pay_status="Y")
     # member = Member.objects.filter(id=1).get()
     # teacher = Member.objects.filter(id=2).get()
     # for i in range(0, 100):
@@ -22,4 +22,6 @@ class PaymentTest(TestCase):
     #         member=member,
     #         teacher=teacher
     #     )
+    for id in range(34,40):
+        Payment.objects.create(member_id=id, teacher_id=18, lesson_type='Y')
     pass
