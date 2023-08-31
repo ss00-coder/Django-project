@@ -53,6 +53,12 @@ const $createBtn = $('.create-btn');
         location.href=`/lesson/review/write/`
     })
 
+$('.update-button').click(function() {
+  const postId = $(this).data('post-id');
+  if (postId) {
+    location.href = `/lesson/review/write/${postId}`;
+  }
+});
 // let status = 'Y';
 //
 // if(status_view === 'N') {
