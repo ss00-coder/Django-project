@@ -30,6 +30,12 @@
                 </div>
             </div>
             <div class="header-profile">
+                <button class="notice_icon_wrapper" onclick="location.href='/mypage/message-list/'">
+                    {% if request.session.unread_message_count >= 1 %}
+                        <img class="notice_icon" src="{% static 'image/notification_alert_bell_notice_alarm_icon.png' %}" alt="">
+                        <div class="notice_num" style="color: white">{{ request.session.unread_message_count }}</div>
+                    {% endif %}
+                </button>
                 <div class="header-profile-pos">
                     <button class="header-profile-btn">
                 <span class="header-profile-btn-span">

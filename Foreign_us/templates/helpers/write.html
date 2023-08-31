@@ -24,7 +24,7 @@
             <header class="my-page-header">
               <div>
                 <div class="logo-wrapper">
-                  <a href="">
+                  <a href="/">
                     <img class="logo-image" src="{% static '/image/logo/white.png' %}" alt="">
                   </a>
                   <div class="line">|</div>
@@ -37,10 +37,10 @@
                 <div style="position: relative">
                   <button class="profile-modal-button">
                     <span class="profile-image">
-                        {% if member_profile.image %}
-                        <a href="{% url 'profile:profile' member_id=member.id %}"><img class="profile_img_center" src="/upload/{{ member_profile.image }}"></a>
+                        {% if member_file %}
+                            <img class="profile_img_center" src="/upload/{{ member_file }}">
                         {% else %}
-                        <img src="{% static 'image/profile_icon.png' %}"/>
+                            <img src="{% static 'image/profile_icon.png' %}"/>
                         {% endif %}
                     </span>
                   </button>

@@ -124,7 +124,7 @@ class HelpersWriteView(View):
                 'post_title': "",
                 'post_content': "",
                 'post_status': "",
-                'member': "",
+                'member': member,
                 'post_id': 0,
                 'post_img': ""
             }
