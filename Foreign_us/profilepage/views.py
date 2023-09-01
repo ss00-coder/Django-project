@@ -175,5 +175,6 @@ class PayView(View):
 
         Payment.objects.create(**datas)
 
-        return redirect(f'/profile/{teacher_id}')
+        # return redirect(f'/profile/{teacher_id}')
+        return redirect('mypage:mypay')
 

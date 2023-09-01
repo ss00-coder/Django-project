@@ -14,10 +14,11 @@ class MemberLoginView(View):
 class KakaoView(View):
     def get(self, request):
         code = request.GET.get("code")
+        print()
         query_string = '?Content-type: application/x-www-form-urlencoded;charset=utf-8&' \
                        'grant_type=authorization_code&' \
                        'client_id=58c7a23bf4f0c4c562ce6e0fea062614&' \
-                       'redirect_uri=http://192.168.137.1:10000/member/oauth/redirect&' \
+                       'redirect_uri=http://localhost:10000/member/oauth/redirect&' \
                        f'code={code}'
         response = requests.post(f'https://kauth.kakao.com/oauth/token{query_string}')
         access_token = response.json().get('access_token')

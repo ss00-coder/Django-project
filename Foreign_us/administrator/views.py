@@ -546,14 +546,14 @@ class MemberDetailView(View):
             keyword = None
 
         member = Member.objects.get(id=member_id)
-        member_profile = member.memberfile_set.filter(member__memberfile__file_type="P")
+        # member_profile = member.memberfile_set.filter(file_type="P")
         lesson_match_count = Payment.objects.filter(Q(member_id=member_id) | Q(teacher_id=member_id)).count()
         lesson_count = Lesson.objects.filter(member_id=member_id).count()
         helpers_count = Helpers.objects.filter(member_id=member_id).count()
         event_count = Event.objects.filter(member_id=member_id).count()
         context = {
             'member': member,
-            'member_profile': member_profile,
+            'member_profile': member.memberfile_set.get(file_type='P') if member.memberfile_set.filter(file_type='P') else "",
             'lesson_match_count': lesson_match_count,
             'lesson_count': lesson_count,
             'helpers_count': helpers_count,
